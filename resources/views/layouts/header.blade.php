@@ -1,6 +1,6 @@
 <section id="header">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="home.html">
+            <a class="navbar-brand" href="{{url('/home')}}">
                 <img src="assets/img/logo.png" alt="" class="img-fluid">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,7 +11,7 @@
               
               <ul class="navbar-nav mt-2 mt-lg-0">
                 <li class="nav-item active">
-                  <a class="nav-link" href="home.html">Home</a>
+                  <a class="nav-link" href="{{url('/home')}}">Home</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Freelancer</a>
@@ -36,12 +36,24 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('profile') }}">Profile</a>
                 </li>
+                @guest
                 <li class="nav-item">
                     <a class="nav-link loginLink" href="{{ url('login') }}"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
                 </li>
+                @endguest
+                @auth
+                <li class="nav-item">
+                    <a class="nav-link loginLink" href="{{ url('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign-in" aria-hidden="true"></i> Logout</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+                </li>
+                @endauth
+                @guest
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('register') }}" >Join Now</a>
                 </li>
+                @endguest
                 <li class="nav-item">
                     <select name="" id="" class="language">
                         <option value="ENG">ENG</option>
