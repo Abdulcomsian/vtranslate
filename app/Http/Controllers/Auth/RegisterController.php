@@ -71,7 +71,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        if($data->job_notification)
+        
+        if($data['job_notification'])
         {
             $job_notification_status=1;
         }

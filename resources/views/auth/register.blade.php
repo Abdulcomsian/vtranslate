@@ -101,7 +101,7 @@
                             <div class="col-md-6">
                                 <div class="inputDiv">
                                     <label for="">Email Address <span>*</span></label>
-                                    <input type="text" class="@error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  autocomplete="email" placeholder="Enter Email Address" required="required">
+                                    <input type="email" class="@error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  autocomplete="email" placeholder="Enter Email Address" required="required">
                                     @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
