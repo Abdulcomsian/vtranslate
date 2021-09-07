@@ -1016,211 +1016,933 @@
                                 <div class="col-lg-12">
                                     <div class="commonDiv">
                                         <h3>Specialized Language</h3>
-                                        <p class="warningself">Please select your subject areas and click or tap the Save button. ?</p>
+                                        <p>View Your Profile (Specialization)</p>
+                                        <p>Please select your subject areas adn click ot tab to <b>Save</b> Button</p>
                                         <form action="">
                                         
                                             <div class="row">
-                                                <div class="col-md-12 ">
-                                                    <table class="table-responsive">
-                                                        <tbody>
-                                                           <td class="text-center ml-5">
-                                                            <select id="languages" name="languages">
-                                                                <option value="ad">Acting and Directing</option>
-                                                                <option value="el">Ecology</option>
-                                                                <option value="mp">Medicine — Public Health Education and Promotion</option>
-                                                                <option value="ad">Advertising</option>
-                                                                <option value="en">Economics</option>
-                                                                <option value="ms">Medicine — Social Psychology</option>
-                                                                <option value="ae">Aerospace Engineering</option>
-                                                                <option value="ed">Education</option>
-                                                                <option value="el">Ecology</option>
-                                                                <option value="mt">Medicine — Toxicology</option>
-                                                                <option value="ag">Agriculture</option>
-                                                                <option value="ee">Electrical Engineering</option>
-                                                                <option value="mg">Medicine (General)</option>
-                                                                <option value="ac">Agronomy and Crop Science</option>
-                                                                <option value="eg">Engineering</option>
-                                                                <option value="mr">Medieval and Renaissance Studies</option>
-                                                                <option value="ac">Aircraft</option>
-                                                                <option value="et">Entomology</option>
-                                                                <option value="me">Metallurgical Engineering</option>
-                                                                <option value="at">Anatomy</option>
-                                                                <option value="ep">Entrepreneurship</option>
-                                                                <option value="mt">Military Technologies</option>
-                                                                <option value="as">Animal Sciences</option>
-                                                                <option value="es">Environmental Science</option>
-                                                                <option value="mm">Mining and Mineral Engineering</option>
-                                                                <option value="at">Anthropology</option>
-                                                                <option value="ec">Ethnic and Cultural Studies</option>
-                                                                <option value="mp">Mining and Petroleum Technology</option>
-                                                                <option value="am">Applied Mathematics</option>
-                                                                <option value="ft">Fibre, Textile and Weaving	</option>
-                                                                <option value="mo">Molecular Biology</option>
-                                                                <option value="aq">Aquaculture</option>
-                                                                <option value="fc">Film and Cinema Studies</option>
-                                                                <option value="mu">Music</option>
-                                                                <option value="ac">Archaeology</option>
-                                                                <option value="fi">Finance</option>
-                                                                <option value="mh">Music History and Literature</option>
-                                                                <option value="at">Architecture</option>
-                                                                <option value="fp">Fire Protection</option>
-                                                                <option value="na">Naval Architecture And Marine Engineering</option>
-                                                                <option value="ar">Art</option>
-                                                                <option value="ff">Fishing and Fisheries Sciences	</option>
-                                                                <option value="ne">Nuclear Engineering</option>
-                                                                <option value="at">Astronomy</option>
-                                                                <option value="fs">Food Sciences	</option>
-                                                                <option value="og">Oceanography</option>
-                                                                <option value="as">Astrophysics</option>
-                                                                <option value="fs">Forensic Science	</option>
-                                                                <option value="og">Oil and Gas Engineering</option>
-                                                                <option value="as">Atmospheric Sciences and Meteorology</option>
-                                                                <option value="fr">Forestry</option>
-                                                                <option value="op">Optics</option>
-                                                                <option value="am">Automotive</option>
-                                                                <option value="gf">Genealogy/Family History Research</option>
-                                                                <option value="oc">Organic Chemistry</option>
-                                                                <option value="at">Aviation</option>
-                                                                <option value="gn">General</option>
-                                                                <option value="pt">Patent Translation</option>
-                                                                <option value="bf">Banking and Financial</option>
-                                                                <option value="gt">Genetics</option>
-                                                                <option value="pc">Petrochemistry</option>
-                                                                <option value="bb">Bible and Biblical Studies</option>
-                                                                <option value="gc">Geochemistry</option>
-                                                                <option value="pe">Petroleum Engineering</option>
-                                                                <option value="bc">Biochemistry</option>
-                                                                <option value="gg">Geography</option>
-                                                                <option value="pl">Philosophy</option>
-                                                                <option value="bb">Bioengineering and Biomedical Engineering</option>
-                                                                <option value="gl">Geology</option>
-                                                                <option value="pa">Photographic Arts</option>
-                                                                <option value="bl">Biology</option>
-                                                                <option value="gs">Geophysics and Seismology</option>
-                                                                <option value="pg">Photography</option>
-                                                                <option value="bd">Biomedical</option>
-                                                                <option value="gt">Gerontology</option>
-                                                                <option value="pt">Physical and Theoretical Chemistry</option>
-                                                                <option value="bt">Biometrics</option>
-                                                                <option value="ht">Health</option>
-                                                                <option value="pe">Physical Education Teaching and Coaching</option>
-                                                                <option value="by">Biophysics</option>
-                                                                <option value="ha">Heating, Air Condition and Refrigeration</option>
-                                                                <option value="py">Physics</option>
-                                                                <option value="bp">Biopsychology</option>
-                                                                <option value="ht">History</option>
-                                                                <option value="ps">Political Science</option>
-                                                                <option value="bt">Biostatistics</option>
-                                                                <option value="hp">Hospitality</option>
-                                                                <option value="pc">Polymer Chemistry</option>
-                                                                <option value="multiBtn">Biotechnology</option>
-                                                                <option value="hh">Humanities and Humanistic Studies</option>
-                                                                <option value="pc">Psychology</option>
-                                                                <option value="bt">Botany</option>
-                                                                <option value="in">Information Sciences and Systems</option>
-                                                                <option value="rb">Radiation Biology</option>
-                                                                <option value="bj">Broadcast Journalism</option>
-                                                                <option value="in">Internet</option>
-                                                                <option value="rt">Radio and Television Broadcasting</option>
-                                                                <option value="bl">Buildings</option>
-                                                                <option value="is">Islamic Studies</option>
-                                                                <option value="rl">Religion</option>
-                                                                <option value="ba">Business Administration and Management</option>
-                                                                <option value="jm">Journalism and Mass Communication</option>
-                                                                <option value="rr">Religion and Religious Studies</option>
-                                                                <option value="bg">Business General</option>
-                                                                <option value="la">Law and Legal</option>
-                                                                <option value="sc">Science (General)</option>
-                                                                <option value="bu">Business Marketing</option>
-                                                                <option value="li">Linguistics</option>
-                                                                <option value="so">Sociology</option>
-                                                                <option value="ca">Cartography</option>
-                                                                <option value="li">Literature</option>
-                                                                <option value="se">Software Engineering</option>
-                                                                <option value="ca">Ceramics Arts and Ceramics</option>
-                                                                <option value="mf">Manufacturing (Metal Working and Products, Instruments, Furniture, Printing, Clothing, etc.)</option>
-                                                                <option value="sf">Sport and Fitness</option>
-                                                                <option value="ct">Chemical Technology and Related Industries</option>
-                                                                <option value="mb">Marine and Aquatic Biology	</option>
-                                                                <option value="tx">Taxation</option>
-                                                                <option value=""ct>Chemistry</option>
-                                                                <option value="mm">Mathematics</option>
-                                                                <option value="tt">Telecommunications</option>
-                                                                <option value="cc">Child Care	</option>
-                                                                <option value="me">Mechanical Engineering	</option>
-                                                                <option value="ts">Textile Sciences and Engineering</option>
-                                                                <option value="ce">Civil Engineering	</option>
-                                                                <option value="ma">Medicine — Acupuncture and Oriental Medicine</option>
-                                                                <option value="th">Theatre</option>
-                                                                <option value="ci">Computer and Information Sciences</option>
-                                                                <option value="">Medicine — Dentistry</option>
-                                                                <option value="ts">Theology and Theological Studies</option>
-                                                                <option value="ce">Computer Engineering</option>
-                                                                <option value="mt">Medicine — Medical Technology</option>
-                                                                <option value="tm">Theoretical and Mathematical Physics</option>
-                                                                <option value="cg">Computer Games and Gambling, Electronic Games, Games of Chance</option>
-                                                                <option value="mm">Medicine — Microbiology and Bacteriology</option>
-                                                                <option value="tt">Tourism and Travel</option>
-                                                                <option value="cl">Criminology</option>
-                                                                <option value="mn">Medicine — Neuroscience</option>
-                                                                <option value="ts">Transportation</option>
-                                                                <option value="ca">Culinary Arts</option>
-                                                                <option value="mn">Medicine — Nursing	</option>
-                                                                <option value="vt">Veterinary</option>
-                                                                <option value="dc">Data Communications</option>
-                                                                <option value="mo">Medicine — Occupational Health and Industrial Hygiene</option>
-                                                                <option value="va">Visual and Performing Arts</option>
-                                                                <option value="dp">Data Processing</option>
-                                                                <option value="mo">Medicine — Ophthalmology</option>
-                                                                <option value="ws">Women Studies</option>
-                                                                <option value="da">Design and Applied Arts</option>
-                                                                <option value="mp">Medicine — Pharmacology</option>
-                                                                <option value="zo">Zoology</option>
-                                                                <option value="dp">Desktop Publishing (DTP)</option>
-                                                                <option value="mp">Medicine — Psychiatry	</option>
-                                                            </select>
-                    
-                                                           </td>
-                                                        </tbody>
-                                                    </table>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Acting and Directing</label>
+                                                    </div>
                                                 </div>  
-                                           
-                                            </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Ecology</label>
+                                                    </div>
+                                                </div> 
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Medicine - Public Health Education & Poromotion</label>
+                                                    </div>
+                                                </div> 
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Advertising</label>
+                                                    </div>
+                                                </div>  
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Economics</label>
+                                                    </div>
+                                                </div>  
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Medicine - Social Psychology</label>
+                                                    </div>
+                                                </div> 
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Arespace Engineering</label>
+                                                    </div>
+                                                </div> 
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Education</label>
+                                                    </div>
+                                                </div> 
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Medicine - Taxicology</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Agriculture</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Electrical Engineering</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Medicine (General)</label>
+                                                    </div>
+                                                </div> 
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Agronomy and Crop Science</label>
+                                                    </div>
+                                                </div> 
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Engineering</label>
+                                                    </div>
+                                                </div> 
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Medieval and Renaissance Studies</label>
+                                                    </div>
+                                                </div> 
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Aircraft</label>
+                                                    </div>
+                                                </div> 
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Entomology</label>
+                                                    </div>
+                                                </div> 
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Metallurgical Engineering</label>
+                                                    </div>
+                                                </div>  
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Antomy</label>
+                                                    </div>
+                                                </div>  
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Enterpreneurship</label>
+                                                    </div>
+                                                </div>  
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Military Technologies</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Animal Sciences</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Enviornmental Sciences</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Mining & Mineral Engineering</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Antropology</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Ethnic and Culture Studies</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Mining & Petrolium Technology</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Applied Mathematics</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Fibre, Textile and Weaving</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Molecular Biology</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Aquaculture</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Film & Cinema Studies</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Music</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Archaeology</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Finance</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Music History & Literature</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Architecture</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Fire Protection</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Naval Architecture And Marine Engineering</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Art</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Fishing & Fisheries Sciences</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Nuclear Engineering</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Astronomy</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Food Sciences</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Oceanography</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Astrophysics</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Fornsics Science</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Oil & Gas Engineering</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Atmospheric Sciences and Meterology</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Foresty</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Optics</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Automotive</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Genealogy/Family History Research</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Organic Chemistry</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Aviation</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">General</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Patent Translaion</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Banking & Financial</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Genetics</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Petrochemistry</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Bible and Biblical Studies</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Geochemistry</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Petrolium Engineering</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Bio Chemistry</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Geography</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Philosophy</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Bioengineering and Biomedical Engineering</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Geology</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Photographic Art</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Biology</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Geophysics and Seismology</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Photography</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Biomedical</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Gerontology</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Physical and Theoretical Chemistry</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Biometrics</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Health</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Physical Education Teaching and Coaching</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Biophysics</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Heating, Air Condition and Refrigeration</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Physics</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Biopsycology</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">History</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Political Science</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Biostatistics</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Hospitality</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Polymer Chemistry</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Biotechnology</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Humanities and Humanistics Studies</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Psychology</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Botany</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Information Science and Systems</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Raditions Biology</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Broadcast Jouralism</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Internet</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Radio Television Broadcasting</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Buildings</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Islamic Studies</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Religion</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Business Adminitration and Management</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Journalism and Mass Communication</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Religion and Religious Studies</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Busines General</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Law and Legal</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Science (General)</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Business Marketing</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Liguistics</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Sociology</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Cartography</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Literature</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Software Engineering</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Ceramics Arts and Ceramics</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Manufacturing (Metal Working and Product, Instruments, Funiture, Printing, Clothing, etc)</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Sport and Fitness</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Chemical Technology and Related Industries</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Marine and Aquatics Biology</label>
+                                                    </div>
+                                                </div>
+                                            
+                                            <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Taxation</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Chemistry</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Mathematics</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Telecommuincations</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Child Care</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Mechanical Engineering</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Textiles Sciences and Engineering</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Civil Engineering</label>
+                                                    </div>
+                                                </div>
+                                                 <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Medicine - Acupuncture and Oriental Medicine</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Theatre</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Computer and Information Science</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Medicine - Dentistry</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Theology and Theological Studies</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Computer Engineering</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Medicine - Medical Technology</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Theology and Methematical Studies</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Computer Games and Gambling, Electronic Games, Games of Chance</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Medicine - Microbology and Bacterioloy</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Tourism and Travel</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Criminology</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Medicine - Neuroscience</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Transportation</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Culinary Arts</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Mdeicine - Nursing</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Veteinary</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Data Communications</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Medicine - Occupatinal Health and Industrial Hygiene</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Visual and Performing Arts</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Data Processing</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Medicine - Ophthalmology</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Women Studies</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Design and Applied Arts</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Medicine - Pahrmacology</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Zoology</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Desktop Publising (DTP)</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Medicine - Psychiatry</label>
+                                                    </div>
+                                                </div>
+                                                </div>
                 
                                             <div class="multiBtn pt-5">
                                                 <button class="commonBtn">Submit</button>
                                             </div>
                                            
                                         </form>
-                
-                                        <div class="pt-5">
-                                            <table class="table table-responsive">
-                                         
-                                                <thead>
-                                                  <tr>
-                                                    <th scope="col-2">No:</th>
-                                                    <th scope="col-10">Specialized Language</th>
-                                                    
-                                                  </tr>
-                                                </thead>
-                                                <tbody>
-                                                  <tr>
-                                                    <th scope="row">1</th>
-                                                    <td class="col">English</td>
-                                                  </tr>
-                                                  <tr>
-                                                    <th scope="row">2</th>
-                                                    <td class="col">English</td>
-                                                  </tr>
-                                                  <tr>
-                                                    <th scope="row">3</th>
-                                                    <td class="col">English</td>
-                                                  </tr>
-                                                  
-                                                  
-                                                </tbody>
-                                              </table>
-                                        </div>
+                                        <p style="margin-top:20px" class="notice"><b>Note:</b> Job notification will be send according to the subject areas selected on this page.</p>
+                                        <p><b>Hint:</b> Do not forget to select a general specialization if you selected a narrow one. For example, if you selected Aerospace Engineering, select also Engineering. See the <a href="">Subject Index</a> for more information</p>
                                     </div>
                                 </div>
                             </div>
@@ -1232,88 +1954,226 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <div class="commonDiv">
+                                <div class="commonDiv">
                                         <h3>Software</h3>
-                                        <h5 class=" pb-2">Please select the software you use and click or tap the Save button.</h5>
-                                        <div class="row">
-                                            <div class="col-md-12 ">
-                                                <table class="table-responsive">
-                                                    <tbody>
-                                                       <td class="text-center ml-5">
-                                                        <select id="languages" name="languages">
-                                                            <option value="">Across</option>
-                                                            <option value="">IBM TranslationManager	</option>
-                                                            <option value="">PASSOLO</option>
-                                                            <option value="">Adobe Acrobat</option>
-                                                            <option value="">Idiom WorldServer</option>
-                                                            <option value="">PowerPoint</option>
-                                                            <option value="">Adobe Captivate</option>
-                                                            <option value="">JCAT</option>
-                                                            <option value="">QuarkXPress</option>
-                                                            <option value="">Adobe Illustrator</option>
-                                                            <option value="">MemoQ</option>
-                                                            <option value="">Robohelp</option>
-                                                            <option value="">Adobe InDesign	</option>
-                                                            <option value="">MetaTexis</option>
-                                                            <option value="">SDLX Translation Suite</option>
-                                                            <option value="">Adobe Photoshop</option>
-                                                            <option value="">MultiCorpora</option>
-                                                            <option value="">STAR Transit</option>
-                                                            <option value="">AidTrans Studio	</option>
-                                                            <option value="">MultiTrans</option>
-                                                            <option value="">TRADOS</option>
-                                                            <option value="">AutoCAD</option>
-                                                            <option value="">OmegaT</option>
-                                                            <option value="">TRANS Suite 2000</option>
-                                                            <option value="">Déjà Vu</option>
-                                                            <option value="">Open Language Tools</option>
-                                                            <option value="">TransAssist</option>
-                                                            <option value="">Heartsome Translation Suite</option>
-                                                            <option value="">PageMaker</option>
-                                                            <option value="">Wordfast</option>
-                                                        </select>
-                
-                                                       </td>
-                                                    </tbody>
-                                                </table>
-                                            </div>  
-                                        </div>
-                                        <div class="pt-3">
-                                            <p><b>Note</b> Note: Job notifications will be sent according to the software selected on this page.</p>
-                                            <!-- <button class="btn btn-danger">Save</button> -->
-                                            <!-- <a class="btn btn-danger" style="float: right;" href="button">Save</a> -->
-                                            <div class="multiBtn text-center pt-4">
-                                                <button class="softcommonBtn">Submit</button>
+                                        <p>View Your Profile (Specialization)</p>
+                                        <p>Please select your subject areas adn click ot tab to <b>Save</b> Button</p>
+                                        <form action="">
+                                        
+                                            <div class="row">
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Across</label>
+                                                    </div>
+                                                </div>  
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">IBM TranslationManager</label>
+                                                    </div>
+                                                </div> 
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">PASSOLO</label>
+                                                    </div>
+                                                </div> 
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Adobe Acrobt</label>
+                                                    </div>
+                                                </div>  
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Idiom WorldServer</label>
+                                                    </div>
+                                                </div>  
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">PowerPoint</label>
+                                                    </div>
+                                                </div> 
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Adobe Captivate</label>
+                                                    </div>
+                                                </div> 
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">JCAT</label>
+                                                    </div>
+                                                </div> 
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">QuarkXPress</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Adobe Illustrator</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">MemoQ</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Robohelp</label>
+                                                    </div>
+                                                </div> 
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Adobe InDesign</label>
+                                                    </div>
+                                                </div> 
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Meta Texis</label>
+                                                    </div>
+                                                </div> 
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">SDLX Translation Suite</label>
+                                                    </div>
+                                                </div> 
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Adobe Photoshop</label>
+                                                    </div>
+                                                </div> 
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">MultiCorpora</label>
+                                                    </div>
+                                                </div> 
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">STAR Transit</label>
+                                                    </div>
+                                                </div>  
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">AidTrans Studio</label>
+                                                    </div>
+                                                </div>  
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">MultiCorpora</label>
+                                                    </div>
+                                                </div>  
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">STAR Transit</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">AidTrans Studio</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">MultiTrans</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">TRADOS</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">AutoCAD</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">OmegaT</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">TRANS Suite 2000</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Deja Vu</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Open Language Tools</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">TransAssist</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">Heartsome Translation Suite</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">PageMaker</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <div class="checkBox-Div">
+                                                        <input type="checkbox">
+                                                        <label for="">WordFast</label>
+                                                    </div>
+                                                </div>
+                                                
+                                                </div>
+                                                <p style="margin-top:20px" class="notice"><b>Note:</b> Job notification will be send according to the subject areas selected on this page.</p>
+                                                <p><b>Other Soft</b> (Max. 500 characters, including spaces)</p>
+                                                <div class="inputDiv">
+                                                    <div class="inputSpan">
+                                                        <textarea name="" id="" cols="30" rows="4"></textarea>
+                                                    </div>
+                                                </div>
+                                            <div class="multiBtn pt-5">
+                                                <button class="commonBtn">Submit</button>
                                             </div>
-                                        </div>
-                                        <div class="pt-5">
-                                            <table class="table table-responsive">
-                                         
-                                                <thead>
-                                                  <tr>
-                                                    <th scope="col-2">No:</th>
-                                                    <th scope="col-10">Software type</th>
-                                                    
-                                                  </tr>
-                                                </thead>
-                                                <tbody>
-                                                  <tr>
-                                                    <th scope="row">1</th>
-                                                    <td class="col">TransAssist</td>
-                                                  </tr>
-                                                  <tr>
-                                                    <th scope="row">2</th>
-                                                    <td class="col">PageMaker</td>
-                                                  </tr>
-                                                  <tr>
-                                                    <th scope="row">3</th>
-                                                    <td class="col">Wordfast</td>
-                                                  </tr>
-                                                  
-                                                  
-                                                </tbody>
-                                              </table>
-                                        </div>
+                                           
+                                        </form>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -1327,48 +2187,91 @@
                                 <div class="col-lg-12">
                                     <div class="commonDiv">
                                         <h3>Files</h3>
-                                        <p class="warning">Upload Your Files</p>
+                                        <p>View Automatically Inserted Links to You Files:</p>
+                                        <a href="">On Your Profile</a> 
+                                        <a href="">On Your Voice Page</a>
+                                        <p>As a regular, you can upload on the TranslatorCafe.com. Web server several files up to <b>2,048</b> KB. Master Members can upload up to <b>10,240</b> KB.</p>
+                                        <p>Example of Such File are:</p>
+                                        <ul style="padding: 0px 40px; list-style: disc;">
+                                            <li>Your detailed presentation page or resourcebundle_get_error_message</li>
+                                            <li>Your transaction samples (doc or pdf format)</li>
+                                            <li>Your voice welcome message (only flv, vp6, mp3 or mp4 audio or video format)</li>
+                                            <li>Your voice-over demo files (only flv, vp6, mp3 or mp4 audio or video format)</li>
+                                            <li>Your electronic business card vCard (vcf format)</li>
+                                            <li>Images showing you interpreting at a conference (gif, jpeg or png format)</li>
+                                        </ul>
+                                        <p>Using HTML images tags and link to files.</p>
+                                        <p>You have total 42,42 Kb Uploaded and <b>2,005.76</b> KB for free space. The limit is 2,048 KB.</p>
+                                        <table>
+                                            <thead>
+                                                <th>File Name and Link</th>
+                                                <th>File Size</th>
+                                                <th>Download Count</th>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <div class="checkBoxDiv">
+                                                            <input type="checkbox">
+                                                            <div class="contentDiv">
+                                                                <p><b>Areeb's_Resume.pdf</b></p>
+                                                                <p>CV</p>
+                                                                <p><b>Link to File:</b> /cafe/file/?id=188175</p>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>42.24 KB</td>
+                                                    <td>0</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <button class="deleteSelected">Delete Selected</button>
                                         <form action="">
-                                            
-                                            <div class="control-group">
-                                                <div class="controls bootstrap-timepicker">
-                                                    <label class="form-label" for="customFile">Upload Your Files</label>
-                                                    <input type="file" accept="application/pdf,application/ms-word" class="control " id="customFile" />
+                                            <p><b>Upload File</b></p>
+                                            <div class="inputDiv">
+                                                <label for="">File Title:</label>
+                                                <div class="inputSpan">
+                                                    <input type="text" name="" id="">
                                                 </div>
                                             </div>
-                
-                                            <div class="multiBtn text-center">
-                                                <button class="commonBtn">Submit</button>
+                                            <div class="inputDiv">
+                                                <label for="">File:</label>
+                                                <div class="inputSpan">
+                                                    <input type="file" name="" id="">
+                                                </div>
                                             </div>
-                                            <div class="uploadheader">
-                                                <h2>Your Uploaded Files</h2>
+                                            <div class="inputDiv">
+                                                <label for="">Purpose:</label>
+                                                <div class="inputSpan">
+                                                    <select name="" id="">
+                                                        <option value="Resumes File">Resumes File</option>
+                                                    </select>
+                                                </div>
                                             </div>
-                                            <table class="table">
-            
-                                                <thead>
-                                                  <tr>
-                                                    <th scope="col-4">No:</th>
-                                                    <th scope="col-8">Files</th>
-                                                    <!-- <th scope="col"></th>
-                                                    <th scope="col"></th> -->
-                                                  </tr>
-                                                </thead>
-                                                <tbody>
-                                                  <tr>
-                                                    <th scope="row">1</th>
-                                                    <td class="col-12">User data</td>
-                                                  </tr>
-                                                  <tr>
-                                                    <th scope="row">2</th>
-                                                    <td class="col-12">User data</td>
-                                                  </tr>
-                                                  <tr>
-                                                    <th scope="row">3</th>
-                                                    <td class="col-12">User data</td>
-                                                  </tr>
-                                                  
-                                                </tbody>
-                                              </table>
+                                            <div class="inputDiv">
+                                                <label for="">Language:</label>
+                                                <div class="inputSpan">
+                                                    <select name="" id="">
+                                                        <option value="Resumes File">Language</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="inputDiv">
+                                                <label for="">Comments:</label>
+                                                <div class="inputSpan">
+                                                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                                                </div>
+                                            </div>
+                                            <p><b>Instruction :</b></p>
+                                            <ul>
+                                                <li>Files Must be less than <b>1,024</b> KB.</li>
+                                                <li>Non-Latin and accented character are not accepted in file names.</li>
+                                                <li>Please select the language of the file content. do not select the language if the content is language-neutral, for example for images files.</li>
+                                                <li>You can enter Optional File title and comments on the file in any language.</li>
+                                                <li>Link to your Uploaded resume files along with the title and comments will be automatically shown under your resume on your profile page (Background)
+                                                    <b>only if you submitted your resume in HTML or text-only format. If your resume is absent, </b>
+                                                </li>
+                                            </ul>
                                            
                                         </form>
                                     </div>
