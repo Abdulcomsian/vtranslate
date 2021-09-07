@@ -80,135 +80,197 @@
             <div class="tab-content">
                 <div id="profile" class="container tab-pane active">
                     <div class="commonDiv">
-                        <p>View Your Profile</p>
-                        <p class="notice"><b>Important:</b> Please fill in all fields marked with an asterisk (*) before you attempt to send this form. Please use plain text. You can use any language.</p>
-                        <p>Please note that the period of waiting for your input is limited on all Web sites. It is set to 30 minutes here. If you are not ready to fill out all fields, then first fill out only the required fields and save the form. After saving, enter your information in other fields or only in one field and save again. You can use this technique for completing any forms on the Internet. Because sometimes your session ends unexpectedly, sometimes errors happen. So to save your time, save often.</p>
-                        <h4 class="font-weight-600">General Information</h4>
-                        <div class="infoDiv">
-                            <span>User Name: <b>Honey King</b></span>
-                            <span>Current Status: <b>Lingusit</b></span>
-                            <span>
-                                <a href="">Click or tap to change</a>
-                            </span>
+                        <h3>My Profile</h3>
+                        <div class="text-center">
+                            <p class="mainHeading">Profile Management</p>
                         </div>
-                        <h4 class="font-weight-600">Contact Information</h4>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <button>Editing Wizard</button>
+                            </div>
+                            <div class="col-lg-3">
+                                <button>Submit Photo</button>
+                            </div>
+                            <div class="col-lg-3">
+                                <button>Delete Photo</button>
+                            </div>
+                            <div class="col-lg-3">
+                                <button>Add Agency</button>
+                            </div>
+                            <div class="col-lg-3">
+                                <button>Editing Wizard</button>
+                            </div>
+                            <div class="col-lg-3">
+                                <button>Submit Photo</button>
+                            </div>
+                            <div class="col-lg-3">
+                                <button>Delete Photo</button>
+                            </div>
+                            <div class="col-lg-3">
+                                <button>Add Agency</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               <div id="status" class="container tab-pane fade">
+                    <div class="commonDiv">
+                        <h3>Select Status</h3>
+                        <span>User Name: <b>Honey King</b></span>
+                        <span>Current Status: <b>Lingusit</b></span>
                         <form action="">
-                            <div class="inputDiv">
-                                <label for="">Title:</label>
-                                <div class="inputSpan">
-                                    <input type="text" name="" id="">
-                                    <p>Mr., Ms., Dr., etc.</p>
-                                </div>
-                            </div>
-                            <div class="inputDiv">
-                                <label for="">First Name (Given):</label>
-                                <div class="inputSpan">
-                                    <input type="text" name="" id="">
-                                </div>
-                            </div>
-                            <div class="inputDiv">
-                                <label for="">Last Name (Family):</label>
-                                <div class="inputSpan">
-                                    <input type="text" name="" id="">
-                                    <p>Please make sure your first, last and middle names begin with a capital letter and do not use all capital letters.  </p>
-                                </div>
-                            </div>
-                            <div class="inputDiv">
-                                <label for="">E-Mail Address:</label>
-                                <div class="inputSpan">
-                                    <input type="text" name="" id="">
-                                </div>
-                            </div>
-                            <div class="inputDiv">
-                                <label for="">Postal Code (Zip):</label>
-                                <div class="inputSpan">
-                                    <input type="text" name="" id="">
-                                </div>
-                            </div>
-                            <div class="inputDiv">
-                                <label for="">Address:</label>
-                                <div class="inputSpan">
-                                    <textarea name="" id="" cols="30" rows="4"></textarea>
-                                </div>
-                            </div>
-                            <div class="inputDiv">
-                                <label for="">City:</label>
-                                <div class="inputSpan">
-                                    <input type="text" name="" id="">
-                                </div>
-                            </div>
-                            <div class="inputDiv">
-                                <label for="">State/Region:</label>
-                                <div class="inputSpan">
-                                    <input type="text" name="" id="">
-                                </div>
-                            </div>
-                            <div class="inputDiv">
-                                <label for="">Country:</label>
-                                <div class="inputSpan">
-                                    <select name="" id="">
-                                        <option value="">Country</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="inputDiv">
-                                <label for="">Telephone:</label>
-                                <div class="inputSpan">
-                                    <input type="text" name="" id="">
-                                </div>
-                            </div>
-                            <div class="inputDiv">
-                                <label for="">Fax:</label>
-                                <div class="inputSpan">
-                                    <input type="text" name="" id="">
-                                </div>
-                            </div>
-                            <div class="inputDiv">
-                                <label for="">Mobile Phone:</label>
-                                <div class="inputSpan">
-                                    <input type="text" name="" id="">
-                                </div>
-                            </div>
-                            <div class="inputDiv">
-                                <label for="">Second Email:</label>
-                                <div class="inputSpan">
-                                    <input type="text" name="" id="">
-                                </div>
-                            </div>
-                            <div class="inputDiv">
-                                <label for="">Website:</label>
-                                <div class="inputSpan">
-                                    <input type="text" name="" id="">
-                                    <p>Please enter only one URL and check how it works after submitting. Please do not use this field for links to your profile in other directories — such links will not be shown.</p>
-                                </div>
-                            </div>
-                            <div class="inputDiv">
-                                <label for="">My Profile in social networks and other services </label>
-                                <div class="inputSpan">
-                                    <p class="notice">
-                                        Expand your contacts by adding links to your profiles in other social networks like Facebook or services like Skype or YouTube channels. Here we call them external profiles.
-                                    </p>
-                                    <div class="addProfile">
-                                        <button><i class="fa fa-plus-square" aria-hidden="true"></i></button>
-                                        <span>Add a networking profile</span>
+                            <p>Please select your status:</p>
+                            <fieldset>
+                                <div class="radioBtnDiv">
+                                    <input type="radio" value="value1" name="group1">
+ 
+                                    <div class="optionInfo">
+                                        <h4>Translator</h4>
+                                        <p>If you are a freelance translator, interpreter or other language professional and do not own an agency, please select translator.</p>
                                     </div>
                                 </div>
-                            </div>
-                            <hr>
-                            <div class="inputDiv">
-                                <label for="">Company Name:</label>
-                                <div class="inputSpan">
-                                    <input type="text" name="" id="">
+                                <div class="radioBtnDiv">
+                                    <input type="radio" value="value2" name="group1">
+                                    <div class="optionInfo">
+                                        <h4>Employer</h4>
+                                        <p>If yo are looking for a traslator, interpreter then select employer. The supplementary agency information form will be provided later.</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="inputDiv">
-                                <label for="">Position:</label>
-                                <div class="inputSpan">
-                                    <input type="text" name="" id="">
+                            </fieldset>
+                            <button class="commonBtn">Save</button>
+                        </form>
+                    </div>
+                </div>
+                <div id="general" class="container tab-pane fade">   
+                    <div id="profile" class="container tab-pane active">
+                        <div class="commonDiv">
+                            <h3>General</h3>
+                            <p class="notice"><b>Important:</b> Please fill in all fields marked with an asterisk (*) before you attempt to send this form. Please use plain text. You can use any language.</p>
+                            <p>Please note that the period of waiting for your input is limited on all Web sites. It is set to 30 minutes here. If you are not ready to fill out all fields, then first fill out only the required fields and save the form. After saving, enter your information in other fields or only in one field and save again. You can use this technique for completing any forms on the Internet. Because sometimes your session ends unexpectedly, sometimes errors happen. So to save your time, save often.</p>
+                            <h4 class="font-weight-600">General Information</h4>
+                            <div class="infoDiv">
+                                <span>User Name: <b>Honey</b></span>
+                                <span>Current Status: <b>Lingusit</b></span>
+                                <span>
+                                    <a href="">Click or tap to change</a>
+                                </span>
+                            </div>                            
+                            <h4 class="font-weight-600">Contact Information</h4>
+                            <form action="">
+                                <div class="inputDiv">
+                                    <label for="">Title:</label>
+                                    <div class="inputSpan">
+                                        <input type="text" name="" id="">
+                                        <p>Mr., Ms., Dr., etc.</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <hr>
-                            <h4 class="font-weight-600">Password Reset Question</h4>
+                                <div class="inputDiv">
+                                    <label for="">First Name (Given):</label>
+                                    <div class="inputSpan">
+                                        <input type="text" name="" id="">
+                                    </div>
+                                </div>
+                                <div class="inputDiv">
+                                    <label for="">Last Name (Family):</label>
+                                    <div class="inputSpan">
+                                        <input type="text" name="" id="">
+                                        <p>Please make sure your first, last and middle names begin with a capital letter and do not use all capital letters.  </p>
+                                    </div>
+                                </div>
+                                <div class="inputDiv">
+                                    <label for="">E-Mail Address:</label>
+                                    <div class="inputSpan">
+                                        <input type="text" name="" id="">
+                                    </div>
+                                </div>
+                                <div class="inputDiv">
+                                    <label for="">Postal Code (Zip):</label>
+                                    <div class="inputSpan">
+                                        <input type="text" name="" id="">
+                                    </div>
+                                </div>
+                                <div class="inputDiv">
+                                    <label for="">Address:</label>
+                                    <div class="inputSpan">
+                                        <textarea name="" id="" cols="30" rows="4"></textarea>
+                                    </div>
+                                </div>
+                                <div class="inputDiv">
+                                    <label for="">City:</label>
+                                    <div class="inputSpan">
+                                        <input type="text" name="" id="">
+                                    </div>
+                                </div>
+                                <div class="inputDiv">
+                                    <label for="">State/Region:</label>
+                                    <div class="inputSpan">
+                                        <input type="text" name="" id="">
+                                    </div>
+                                </div>
+                                <div class="inputDiv">
+                                    <label for="">Country:</label>
+                                    <div class="inputSpan">
+                                        <select name="" id="">
+                                            <option value="">Country</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="inputDiv">
+                                    <label for="">Telephone:</label>
+                                    <div class="inputSpan">
+                                        <input type="text" name="" id="">
+                                    </div>
+                                </div>
+                                <div class="inputDiv">
+                                    <label for="">Fax:</label>
+                                    <div class="inputSpan">
+                                        <input type="text" name="" id="">
+                                    </div>
+                                </div>
+                                <div class="inputDiv">
+                                    <label for="">Mobile Phone:</label>
+                                    <div class="inputSpan">
+                                        <input type="text" name="" id="">
+                                    </div>
+                                </div>
+                                <div class="inputDiv">
+                                    <label for="">Second Email:</label>
+                                    <div class="inputSpan">
+                                        <input type="text" name="" id="">
+                                    </div>
+                                </div>
+                                <div class="inputDiv">
+                                    <label for="">Website:</label>
+                                    <div class="inputSpan">
+                                        <input type="text" name="" id="">
+                                        <p>Please enter only one URL and check how it works after submitting. Please do not use this field for links to your profile in other directories — such links will not be shown.</p>
+                                    </div>
+                                </div>
+                                <div class="inputDiv">
+                                    <label for="">My Profile in social networks and other services </label>
+                                    <div class="inputSpan">
+                                        <p class="notice">
+                                            Expand your contacts by adding links to your profiles in other social networks like Facebook or services like Skype or YouTube channels. Here we call them external profiles.
+                                        </p>
+                                        <div class="addProfile">
+                                            <button><i class="fa fa-plus-square" aria-hidden="true"></i></button>
+                                            <span>Add a networking profile</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="inputDiv">
+                                    <label for="">Company Name:</label>
+                                    <div class="inputSpan">
+                                        <input type="text" name="" id="">
+                                    </div>
+                                </div>
+                                <div class="inputDiv">
+                                    <label for="">Position:</label>
+                                    <div class="inputSpan">
+                                        <input type="text" name="" id="">
+                                    </div>
+                                </div>
+                                <h4 class="font-weight-600">Password Reset Question</h4>
                             <div class="inputDiv">
                                 <label for="">Secret Question:</label>
                                 <div class="inputSpan">
@@ -376,168 +438,7 @@
                             </div> 
                             <p>When you have completed filling out this form, please click or tap the Save button. Please note that the recent changes made 
                                 in your profile will not appear immediately in the search results</p> 
-                            <button class="commonBtn">Save</button>        
-                        </form>
-                    </div>
-                </div>
-               <div id="status" class="container tab-pane fade">
-                    <div class="commonDiv">
-                        <h3>Select Status</h3>
-                        <span>User Name: <b>Honey King</b></span>
-                        <span>Current Status: <b>Lingusit</b></span>
-                        <form action="">
-                            <p>Please select your status:</p>
-                            <fieldset>
-                                <div class="radioBtnDiv">
-                                    <input type="radio" value="value1" name="group1">
- 
-                                    <div class="optionInfo">
-                                        <h4>Translator</h4>
-                                        <p>If you are a freelance translator, interpreter or other language professional and do not own an agency, please select translator.</p>
-                                    </div>
-                                </div>
-                                <div class="radioBtnDiv">
-                                    <input type="radio" value="value2" name="group1">
-                                    <div class="optionInfo">
-                                        <h4>Employer</h4>
-                                        <p>If yo are looking for a traslator, interpreter then select employer. The supplementary agency information form will be provided later.</p>
-                                    </div>
-                                </div>
-                            </fieldset>
-                            <button class="commonBtn">Save</button>
-                        </form>
-                    </div>
-                </div>
-                <div id="general" class="container tab-pane fade">   
-                    <div id="profile" class="container tab-pane active">
-                        <div class="commonDiv">
-                            <p>View Your Profile</p>
-                            <p class="notice"><b>Important:</b> Please fill in all fields marked with an asterisk (*) before you attempt to send this form. Please use plain text. You can use any language.</p>
-                            <p>Please note that the period of waiting for your input is limited on all Web sites. It is set to 30 minutes here. If you are not ready to fill out all fields, then first fill out only the required fields and save the form. After saving, enter your information in other fields or only in one field and save again. You can use this technique for completing any forms on the Internet. Because sometimes your session ends unexpectedly, sometimes errors happen. So to save your time, save often.</p>
-                            <h4 class="font-weight-600">General Information</h4>
-                            <div class="infoDiv">
-                                <span>User Name: <b>Honey</b></span>
-                                <span>Current Status: <b>Lingusit</b></span>
-                                <span>
-                                    <a href="">Click or tap to change</a>
-                                </span>
-                            </div>                            
-                            <h4 class="font-weight-600">Contact Information</h4>
-                            <form action="">
-                                <div class="inputDiv">
-                                    <label for="">Title:</label>
-                                    <div class="inputSpan">
-                                        <input type="text" name="" id="">
-                                        <p>Mr., Ms., Dr., etc.</p>
-                                    </div>
-                                </div>
-                                <div class="inputDiv">
-                                    <label for="">First Name (Given):</label>
-                                    <div class="inputSpan">
-                                        <input type="text" name="" id="">
-                                    </div>
-                                </div>
-                                <div class="inputDiv">
-                                    <label for="">Last Name (Family):</label>
-                                    <div class="inputSpan">
-                                        <input type="text" name="" id="">
-                                        <p>Please make sure your first, last and middle names begin with a capital letter and do not use all capital letters.  </p>
-                                    </div>
-                                </div>
-                                <div class="inputDiv">
-                                    <label for="">E-Mail Address:</label>
-                                    <div class="inputSpan">
-                                        <input type="text" name="" id="">
-                                    </div>
-                                </div>
-                                <div class="inputDiv">
-                                    <label for="">Postal Code (Zip):</label>
-                                    <div class="inputSpan">
-                                        <input type="text" name="" id="">
-                                    </div>
-                                </div>
-                                <div class="inputDiv">
-                                    <label for="">Address:</label>
-                                    <div class="inputSpan">
-                                        <textarea name="" id="" cols="30" rows="4"></textarea>
-                                    </div>
-                                </div>
-                                <div class="inputDiv">
-                                    <label for="">City:</label>
-                                    <div class="inputSpan">
-                                        <input type="text" name="" id="">
-                                    </div>
-                                </div>
-                                <div class="inputDiv">
-                                    <label for="">State/Region:</label>
-                                    <div class="inputSpan">
-                                        <input type="text" name="" id="">
-                                    </div>
-                                </div>
-                                <div class="inputDiv">
-                                    <label for="">Country:</label>
-                                    <div class="inputSpan">
-                                        <select name="" id="">
-                                            <option value="">Country</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="inputDiv">
-                                    <label for="">Telephone:</label>
-                                    <div class="inputSpan">
-                                        <input type="text" name="" id="">
-                                    </div>
-                                </div>
-                                <div class="inputDiv">
-                                    <label for="">Fax:</label>
-                                    <div class="inputSpan">
-                                        <input type="text" name="" id="">
-                                    </div>
-                                </div>
-                                <div class="inputDiv">
-                                    <label for="">Mobile Phone:</label>
-                                    <div class="inputSpan">
-                                        <input type="text" name="" id="">
-                                    </div>
-                                </div>
-                                <div class="inputDiv">
-                                    <label for="">Second Email:</label>
-                                    <div class="inputSpan">
-                                        <input type="text" name="" id="">
-                                    </div>
-                                </div>
-                                <div class="inputDiv">
-                                    <label for="">Website:</label>
-                                    <div class="inputSpan">
-                                        <input type="text" name="" id="">
-                                        <p>Please enter only one URL and check how it works after submitting. Please do not use this field for links to your profile in other directories — such links will not be shown.</p>
-                                    </div>
-                                </div>
-                                <div class="inputDiv">
-                                    <label for="">My Profile in social networks and other services </label>
-                                    <div class="inputSpan">
-                                        <p class="notice">
-                                            Expand your contacts by adding links to your profiles in other social networks like Facebook or services like Skype or YouTube channels. Here we call them external profiles.
-                                        </p>
-                                        <div class="addProfile">
-                                            <button><i class="fa fa-plus-square" aria-hidden="true"></i></button>
-                                            <span>Add a networking profile</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="inputDiv">
-                                    <label for="">Company Name:</label>
-                                    <div class="inputSpan">
-                                        <input type="text" name="" id="">
-                                    </div>
-                                </div>
-                                <div class="inputDiv">
-                                    <label for="">Position:</label>
-                                    <div class="inputSpan">
-                                        <input type="text" name="" id="">
-                                    </div>
-                                </div>
+                            <button class="commonBtn">Save</button>     
                             </form>
                         </div>
                     </div>
@@ -577,15 +478,9 @@
                                 <div class="col-lg-12">
                                     <div class="commonDiv">
                                         <h3>Self Promotion</h3>
-                                        <p class="warningself">For self promotion you have to become a pro-member</p>
-                                        <form action="">
-                                        
-                
-                                            <div class="multiBtn text-center pt-5">
-                                                <button class="commonBtn">Become A Pro Member</button>
-                                            </div>
-                                           
-                                        </form>
+                                       <p>You may use <b>Self Promotion</b> pages for placing any promotional materials that will be attached to your profile. For example you place <b>TC Master Only</b> here your translation, pieces of poetry and prose. You can also upload files, for example images on your resume in .doc or .zip or .pdf format and provide links to your uploaded files or show them on you personal pages.</p>
+                                       <p>The features available <b>Master Membership Only.</b></p>
+                                       <a href=""><b>Upgrade to Master Now !</b></a>
                                     </div>
                                 </div>
                             </div>
@@ -983,14 +878,55 @@
                                 <div class="col-lg-12">
                                     <div class="commonDiv">
                                         <h3>Services & Rates</h3>
-                                        <h4 class="warning pb-2">Services</h4>
-                                        <h5 class=" pb-2">Following services are being provided</h5>
+                                        <p>View Your Profile (Services & Rates)</p>
+                                        <p>The Service was added to your profile. Now you can add rates for this service.</p>
+                                        <p>Please enter your minimum <b>translation</b> rates here. They will be used to filter out job notifications having rate less than yours. You may 
+                                            makes rates invisible on your profile page if you clear the <b>Your rates are visible</b> check box.
+                                        </p>
+                                        <p>The services, click or tap the <b>Add Service</b> button; to add rates for your services, click the <b>Add Rates</b> button.</p>
+                                        <p><b>Note:</b> Job notifications will be sent according to the services selected  on this page. Please do not forget to complete <a href="">your Voice-Over profile</a> if you selected it here.</p>
+                                        <div class="box">
+                                            <div class="inputDiv">
+                                                <label for="">Preferred Currency</label>
+                                                <select name="" id="">
+                                                    <option value="">Pakistani ruppes (PKR)</option>
+                                                </select>
+                                                <label for=""><b>1 USD = 164.08 PKR</b></label>
+                                            </div>
+                                            <p><b>Note:</b> The exchange rate above is for reference only</p>
+                                            <div class="inputDiv">
+                                                <input type="checkbox">
+                                                <label for="">Notify about Jobs for non-profit or charitable organizations.</label><br>
+                                                <input type="checkbox">
+                                                <label for="">Your rates are visible on your profile page.</label>
+                                            </div>
+                                            <a href=""><b>Currency Converter</b></a>
+                                            <div class="text-center">
+                                                <button class="commonBtn">Save</button>
+                                                <button class="commonBtn">Cancel</button>
+                                            </div>
+                                        </div>
+                                        <div class="box" style="margin:20px 0px;">
+                                            <table class="table-responsive serviceTable" style="width: 100%;margin: 20px 0px;">
+                                            <tbody>
+                                                <tr>
+                                                    <td><b>Other</b></td>
+                                                    <td>Add Rates</td>
+                                                    <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Subtitling</b></td>
+                                                    <td>Add Rates</td>
+                                                    <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                                                </tr>
+                                                
+                                            </tbody>
+                                        </table>
                                         
-                                         <h5>1. Translation(audio/video)</h5>
-                                         <h5>2. voiceover</h5>
-                                         <h5></h5>
-                                         <h4 class="warning pb-1 pt-3">Rates</h4>
-                                         <h5>I work 5$ per hour</h5>
+                                        </div>
+                                        <div class="text-center">
+                                          <button class="commonBtn">Add Service</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1003,7 +939,24 @@
                             <div class="col-lg-12">
                                 <div class="commonDiv">
                                     <h3>Voice-Over</h3>
-                                    <p><b>Voice-Over Working Languages</b></p>
+                                    <label for="">Choose Language</label>
+                                    <div class="inputDiv">
+                                        
+                                        <select name="" id="">
+                                            <option value="">English</option>
+                                            <option value="">Urdu</option>
+                                        </select>
+                                        <button class="addLanguageBtn commonBtn">Add Language</button>
+                                    </div>
+                                    <table class="table-responsive voiceOverTable">
+                                        <thead>
+                                            <tr>
+                                                <th><b>Selected Language</b></th>
+                                                <th><b>Action</b></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -2263,7 +2216,7 @@
                                                 </div>
                                             </div>
                                             <p><b>Instruction :</b></p>
-                                            <ul>
+                                            <ul style="padding: 0px 30px;list-style: disc;">
                                                 <li>Files Must be less than <b>1,024</b> KB.</li>
                                                 <li>Non-Latin and accented character are not accepted in file names.</li>
                                                 <li>Please select the language of the file content. do not select the language if the content is language-neutral, for example for images files.</li>
@@ -2271,8 +2224,22 @@
                                                 <li>Link to your Uploaded resume files along with the title and comments will be automatically shown under your resume on your profile page (Background)
                                                     <b>only if you submitted your resume in HTML or text-only format. If your resume is absent, </b>
                                                 </li>
+                                                <li>Do not include common verification data such as <b>your or your mother's maiden name, date of birth and marital status.</b> Your potential client do not need it. At the same time, this information can be <b>used by someone to impersonate you.</b></li>
+                                                <li>If you made a mistake and want to edit you comments, language or purpose, click or tap the Edit link near the file name.</li>
+                                                <li>Links to your uploded voice-over flv, vp6, mp3 or mp4 files along with file titles
+                                                    will be automatically shown on your Voice-Over Profile page. Files are displayed according to the
+                                                    file title. If you want your files to be displayed in a particular order, start their titles with number.
+                                                </li>
+                                                <li>Links to the <b>TC Player</b>, which will play your uploaded flv, vp6, mp3 or mp4 video or audio files, can be posted on any Web page.</li>
+                                                <li>Links to your uploaded <b>General Purpose files</b> will not be automatically shown anywhere in your profile. However, you can insert
+                                                    links to these elsewhere in your profile, for example in your resume.
+                                                </li>
+                                                <li>If you encounter <b>too fast or too slow playback of an MP3 file</b>, your MP3 file contains variable bit rate according. Flash isn't very good at handling these, it's best to stick to constant bit 
+                                                    rate encoding. Also make sure to stick to a sampling frequency that is a multitude of 11.025 kHz (that is, use 11.025, 22,050, 44100 kHz do not use, for example, 48 kHz, which phose problems). The free <a href="">iTunes software</a>
+                                                    has a basic, decent MP3 encoder.
+                                                </li>
                                             </ul>
-                                           
+                                           <button class="deleteSelected">Upload</button>
                                         </form>
                                     </div>
                                 </div>
