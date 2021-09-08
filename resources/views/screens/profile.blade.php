@@ -110,6 +110,258 @@
                                 <button>Add Agency</button>
                             </div>
                         </div>
+                        <div class="box" style="margin-top:20px">
+                            <p>Use the <b>Profile Editing Menu</b> above to edit you profile and preference</p>
+                            <p>You are logged on and therefore you can see on your profile page alla availabel Information
+                                including your cover letter, full address, rates and the profile editing menu. Click
+                                or tap question marks <b>?</b> to get context sensitive help.
+                            </p>
+                        </div>
+                        <div class="box" style="margin-top:20px">
+                            <p><b>Link to your profile page:</b> <a href="">areeb1.TanslatorsCafe.com</a> (you may use it, for example
+                            on your business card; please note that it must be without <b>"www"</b>)</p>
+                            <p><b>TC membership:</b> Regular from Thrusday, August 26, 2021, <b>Upgrade now! | Payment History and Invoices</b>
+                            </p>
+                        </div>
+                        <div class="text-center" style="margin-top:20px">
+                            <p class="mainHeading">Availability</p>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <input type="radio" id="html" name="fav_language" value="HTML">
+                                <input type="radio" id="css" name="fav_language" value="CSS">
+                                <p>Available</p>
+                                <button>Disable</button>
+                            </div>
+                            <div class="col-lg-10">
+                                <div class="d-flex multipleItem">
+                                    <button>Change to Buy</button>
+                                    <label for=""><b>Until</b></label>
+                                    <select name="" id="">
+                                        <option value="">Aug</option>
+                                    </select>
+                                    <select name="" id="">
+                                        <option value="">26</option>
+                                    </select>
+                                    <select name="" id="">
+                                        <option value="">2021</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <p>Translator's Availability is displayed <a href="">at the top right corner of your profile page.</a>
+                            Busy members are shown at the end of the search results.
+                        </p>
+                        <p>Click or tap the <b>Disable</b> button to hide your availability status.</p>
+                        <p>You can use the following link to place your current busy status into another Website: <a href="">img src="https://www.translatorscafe.com/cafe/misc/GetBusy.asp?ID=449990"</a> </p>
+                        <div class="text-center" style="margin-top:20px">
+                            <p class="mainHeading">Availability</p>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="text-center privacy-box">
+                                    <h4><b>Profile</b></h4>
+                                    <p>Public</p>
+                                    <button>Make Private</button>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="text-center privacy-box">
+                                    <h4><b>Contact Info</b></h4>
+                                    <p>Invisible</p>
+                                    <button>Make Visible</button>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="text-center privacy-box">
+                                    <h4><b>Rates</b></h4>
+                                    <p>No rates</p>
+                                    <button>Make Visible</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="text-center privacy-box">
+                                    <p><b>TCTerms Q & A</b></p>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="text-center privacy-box">
+                                    <p><b>Your Ignore List</b></p>
+                                    <p><b>TC Forums</b></p>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="text-center privacy-box">
+                                    <p><b>TC Messaging System</b></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center" style="margin-top:20px">
+                            <p class="mainHeading">Email Notification</p>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="text-center privacy-box">
+                                    <h4><b>Job Notification</b></h4>
+                                    <p>Diabaled</p>
+                                    <button>Enable</button>
+                                    <p><b>Block Countries</b></p>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="text-center privacy-box">
+                                    <h4><b>News Notification</b></h4>
+                                    <p>Diabaled</p>
+                                    <button>Enable</button>
+                                </div>
+                            </div>
+                            <div
+                             class="col-lg-3">
+                                <div class="text-center privacy-box">
+                                    <h4><b>Forums Notification</b></h4>
+                                    <p>Diabaled</p>
+                                    <button>Subcribe</button>
+                                </div>
+                            </div>
+                            <div
+                             class="col-lg-3">
+                                <div class="text-center privacy-box">
+                                    <h4><b>TCTTerms Notification</b></h4>
+                                    <p>Enable</p>
+                                    <button>Diabaled</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="userInfo">
+                            <div class="row" style="margin-bottom:20px">
+                                <div class="col-lg-3">
+                                    <div class="important-note">
+                                        <p>If you want your profile to be
+                                            more exposed, consider submitting your photograph
+                                            or logo. The site statistics show that profiles with photos are viewed 6.1 times more
+                                            frequently (profiles with a photograph in average 1472 times, without a photograph
+                                            only 241 times). 
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-9">
+                                    <h4>Areeb middle name Hassan</h4>
+                                    <p>Advertising slogan</p>
+                                    <p>Company text field</p>
+                                    <p><b>Pakistan</b></p>
+                                    <p>Mother Tongues:</p>
+                                    <p>Abkhazian, Albanian</p>
+                                    <p>Time zone: not defined. Change</p>
+                                </div>
+                            </div>
+                            <a href=""><b>https://www.accrualgroup.com</b></a>
+                        </div>
+                        <p><b>TCTerms Score 0</b> [disable]</p>
+                        <p><b>Activity statistics of Areeb Hassan</b></p>
+                        <table class="activityStatusTable table-responsive"> 
+                            <thead>
+                                <tr>
+                                    <th>Services and Rates</th>
+                                    <th>Subject Areas</th>
+                                    <th>Voice</th>
+                                    <th>Soft & Platform</th>
+                                    <th>Accreditations</th>
+                                    <th>Membership</th>
+                                    <th>Credentials</th>
+                                </tr>
+                            </thead>
+                        </table>
+                        <div class="text-left" style="margin-top:20px">
+                            <p class="mainHeading">Contact Information (invisible)</p>
+                        </div>
+                        <p><b>Address:</b> House no 1182, Mangla road, G-9/4, Islamabad, Punjab 44000, Pakistan</p>
+                        <p><b>Phone:</b> 03245040502, <b>Fax:</b> fax number field, <b>Cell Phone:</b> 03245040502</p>
+                        <p>Joined: Thursday, August 26, 2021, last update Thursday, August 26, 2021 </p>
+                        <p><b>Preferred E-mail of Areeb Hassan: send a message</b></p>
+                        <p><b>Send a Private Message</b></p>
+                        <p><b>Facebook</b></p>
+                        <div class="text-left" style="margin-top:20px">
+                            <p class="mainHeading">Working Language Pairs</p>
+                        </div>
+                        <p>Aymara >> Basque, Basque » Brazilian Portuguese</p>
+                        <div class="text-left" style="margin-top:20px">
+                            <p class="mainHeading">Services and Rates</p>
+                        </div>
+                        <p>Rates are Invisible</p>
+                        <p>Other, Subtitling</p>
+                        <p>Preferred currency: <b>PKR</b></p>
+                        <p>Enter your rates and you will be able to click or tap the <b>Translation Rates Statistics</b> button below) to view the information that is valuable to any freelance translator (if there is enough information in the database to get the correct statistical results). You can also click or tap the <b>Enter Rates</b> button in the Control Panel above to enter your translation rates. </p>
+                        <button style="width:auto">Edit My Rates</button>
+                        <button style="width:auto">Translation Rates Statistics </button>
+                        <div class="text-left" style="margin-top:20px">
+                            <p class="mainHeading">Subject Areas</p>
+                        </div>
+                        <p>Acting and Directing, Advertising, Aerospace Engineering, Agriculture, Agronomy and Crop Science, Aircraft, Chemical Technology and Related Industries, Chemistry, Child Care, Civil Engineering, Ecology, Economics, Education, Electrical Engineering, Engineering, Entomology, Manufacturing (Metal Working and Products, Instruments, Furniture, Printing, Clothing, etc.), Marine and Aquatic Biology, Mathematics, Mechanical Engineering, Medicine – Acupuncture and Oriental Medicine, Medicine – Dentistry, Medicine - Ophthalmology, Medicine – Public Health Education and Promotion, Medicine – Social Psychology, Medicine – Toxicology, Medicine (General), Medieval and Renaissance Studies, Metallurgical Engineering, Sport and 
+                            Fitness, Transportation, Veterinary, Visual and Performing Arts, Women Studies</p>
+                            <div class="text-left" style="margin-top:20px">
+                            <p class="mainHeading">Voice-Over</p>
+                        </div>
+                        <p><b>Voice Languages:</b> Abkhazian, Urdu</p>
+                        <p><b>Voice Gender: </b>Female Voice</p>
+                        <p><b>Voice Ages:</b> Young Adult, Middle Age Adult</p>
+                        <p><b>Type of Recording: </b>Audio Books, Character Voices, Commercials, Documentaries, e-Learning, Imaging, Infomercials, Interactive Voice Response Telecom Applications (IVR), Narration, On
+                            Camera Recordings, Political, Promos</p>
+                        <div class="text-center">
+                            <p>
+                                <b>Detailed Description and Voice Samples</b>
+                            </p>
+                        </div>
+                        <div class="text-left" style="margin-top:20px">
+                            <p class="mainHeading">Cover Letter (not visible for everybody)</p>
+                        </div>
+                        <p>cover lettercover lettercover lettercover lettercover lettercover lettercover lettercover lettercover lettercover lettercover lettercover lettercover lettercover lettercover lettercover lettercover lettercover lettercover letter</p>
+                        <div class="text-left" style="margin-top:20px">
+                            <p class="mainHeading">Background (Your Presentation Page, Résumé or CV)</p>
+                        </div> 
+                        <div class="box" style="display: flex;justify-content: space-between;">
+                            <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                            <p><b>CV (42KB)</b></p>
+                        </div>  
+                        <div class="text-left" style="margin-top:20px">
+                            <p class="mainHeading">Software</p>
+                        </div> 
+                        <ul style="padding-left:30px; list-style:disc;">
+                            <li>Adobe Acrobat</li>
+                            <li>Adobe Captivate</li>
+                            <li>Adobe Photoshop</li>
+                            <li>AutoCAD</li>
+                            <li>Déjà Vu</li>
+                            <li>JCAT</li>
+                            <li>Memo</li>
+                            <li>Meta Texis</li>
+                            <li>MultiCorpora</li>
+                            <li>Open Language Tools</li>
+                            <li>PageMaker</li>
+                        </ul>
+                        <div class="text-left" style="margin-top:20px">
+                            <p class="mainHeading">Platform & hardware</p>
+                        </div> 
+                        <p>platform and hardware platform and hardware platform and hardware platform and hardware platform and hardware platform and hardware platform and hardware platform and hardware platform and hardware platform and hardware platform and hardware platform and hardware platform and hardware</p>
+                        <div class="text-left" style="margin-top:20px">
+                            <p class="mainHeading">Membership</p>
+                        </div>
+                        <p>Membership in professional associations Membership in professional associationsMembership in professional associations Membership in professional associations Membership in professional associations Membership in professional associations Membership in professional associations Membership in professional associations</p>
+                        <div class="text-left" style="margin-top:20px">
+                            <p class="mainHeading">Verified Credentials</p>
+                        </div>
+                        <p>No data</p>
+                        <p>Report your credentials</p>
+                        <div class="text-left" style="margin-top:20px">
+                            <p class="mainHeading">Translators and Agencies Rated by Areeb Hassan</p>
+                        </div>
+                        <p>None</p>
+                        <div class="text-left" style="margin-top:20px">
+                            <p class="mainHeading">Payment Options</p>
+                        </div>
+                        <p>If you accept payments through several payment processors, their logos can be shown on your profile page. If your clients click or tap a payment processor logo on your profile, they will be redirected to the site of this payment processor. If you want to show payment processors through which you accept payments on your profile page (in this place), click or tap the Edit button above and enter your email addresses for corresponding payment processors in the form.
+If you are not registered with any of the payment processors below, please click or tap the corresponding button below and sign up for PayPal or Skrill. After that you will enter your e-mail address on the profile form.</p>
                     </div>
                 </div>
                <div id="status" class="container tab-pane fade">

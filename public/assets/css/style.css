@@ -913,6 +913,9 @@ select:focus{
 #profileDiv form .commonBtn{
     background-color: #FF0202;
 }
+#profile{
+    overflow: auto;
+}
 #profile .notice,
 .notice{
     background: #BBE3B6;
@@ -1586,6 +1589,9 @@ tbody tr .tableData{
     }
 }
 @media screen and (max-width: 768px) {
+    .mainHeading{
+        font-size: 14px !important;
+    }
     #homeBanner .lookingFor{
         margin: auto !important;
     }
@@ -2572,7 +2578,7 @@ line-height: 30px;
 }
 .mainHeading{
     font-weight: 700 !important;
-    font-size: 22px !important;
+    font-size: 22px;
     background: #0e0d6b;
     padding: 5px;
     color: #fff;
@@ -2582,4 +2588,40 @@ line-height: 30px;
     padding: 5px;
     border: 1.5px solid #0000002b;
     border-radius: 5px;
+    margin-bottom: 20px;
+}
+#profile .box p{
+    margin-bottom: 0px;
+}
+#profile .multipleItem{
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+#profile .multipleItem button{
+    width: auto;
+}
+#profile .multipleItem button,
+#profile .multipleItem label,
+#profile .multipleItem select{
+    margin: 0px 10px;
+}
+.privacy-box h4{
+    margin: 0px !important;
+    font-size: 18px;
+}
+.important-note{
+    background: #0e0d6b38;
+    border: 1px solid #0e0d6b;
+    padding: 10px;
+    border-radius: 5px;
+}
+.userInfo h4{
+    margin: 0px !important;
+}
+.activityStatusTable{
+    width: 100%;
+}
+.activityStatusTable th{
+    padding: 10px;
 }
