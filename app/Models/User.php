@@ -64,7 +64,7 @@ class User extends Authenticatable implements MustVerifyEmail
      }
      public function usersevices()//relation with services model
      {
-
+        //pending due to incomplete structure
      }
      public function usersoftwares()//relation with software models
      {
