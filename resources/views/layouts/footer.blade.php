@@ -71,3 +71,10 @@
             window.location = url;
         });
     </script>
+    <script>
+    $(".addLanguageBtn").click(function(){
+        var val=$('#voice-Over select').find(":selected").text();
+        $(".voiceOverTable tbody").append("<tr><td>"+val+"</td><td><a>Remove</a></td></tr>");
+        val="";
+    })
+</script>
