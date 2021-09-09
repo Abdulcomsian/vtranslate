@@ -25,8 +25,12 @@ class CreateUsersTable extends Migration
             $table->timestamp('last_login_at')->nullable();
             $table->tinyInteger('job_notification')->default(0);
             $table->unsignedBigInteger('country_id')->nullable();
+            $table->boolean('status')->nullable();
+            $table->string('user_status')->nullable();
+            $table->string('resume')->nullable()->comments= 'Pdf or Docs File';
             $table->foreign('country_id')->references('id')->on('countries');
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

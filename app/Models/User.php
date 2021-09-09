@@ -26,6 +26,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'zipcode',
         'username',
         'job_notification',
+        'user_status',
+        'status',
+        'resume',
     ];
 
     /**
@@ -47,7 +50,32 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-     public function country(){
+     public function country()//relation with country model
+     {
         return $this->belongsTo(Country::class);
-    }
+     }
+     public function usergeneralinfo()//relation with general info model
+     {
+        return $this->belongsTo(UserGeneralInformation::class);
+     }
+     public function userlanguages()//relation with user languages model
+     {
+       return $this->hasMany(UserLanguages::class);
+     }
+     public function usersevices()//relation with services model
+     {
+
+     }
+     public function usersoftwares()//relation with software models
+     {
+        return $this->belongsTo(UserSoftware::class);
+     }
+     public function userspicialize()//relation with user specialization
+     {
+        return $this->belongsTo(UserSpecializations::class);
+     }
+     public function uservoicover()//relation with voice overmodel
+     {
+        return $this->belongsTo(UserVoiceOver::class);
+     }
 }

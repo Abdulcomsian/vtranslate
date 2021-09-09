@@ -71,25 +71,30 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        
-        if(isset($data['job_notification']))
-        {
-            $job_notification_status=1;
+     try {
+            if(isset($data['job_notification']))
+            {
+                $job_notification_status=1;
+            }
+            else
+            {
+                $job_notification_status=0;
+            }
+            return User::create([
+                'fname' => $data['fname'],
+                'lname' => $data['lname'],
+                'country_id' => $data['country'],
+                'zipcode' => $data['zipcode'],
+                'email' => $data['email'],
+                'username' => $data['username'],
+                'job_notification'=>$job_notification_status,
+                'password' => Hash::make($data['password']),
+            ]);
         }
-        else
-        {
-            $job_notification_status=0;
+        catch (\Exception $exception){
+            toastr()->error('Something went wrong, try again');
+            return back();
         }
-        return User::create([
-            'fname' => $data['fname'],
-            'lname' => $data['lname'],
-            'country_id' => $data['country'],
-            'zipcode' => $data['zipcode'],
-            'email' => $data['email'],
-            'username' => $data['username'],
-            'job_notification'=>$job_notification_status,
-            'password' => Hash::make($data['password']),
-        ]);
     }
 
     //override this function 
@@ -111,15 +116,11 @@ class RegisterController extends Controller
     public function register(Request $request)
     {
         $this->validator($request->all())->validate();
-
         event(new Registered($user = $this->create($request->all())));
-
 //        $this->guard()->login($user);
-
         if ($response = $this->registered($request, $user)) {
             return $response;
         }
-
         return $request->wantsJson()
             ? new Response('', 201)
             : redirect($this->redirectPath());

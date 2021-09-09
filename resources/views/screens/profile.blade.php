@@ -4,19 +4,6 @@
         <div class="text-center">
             <h3>Complete Profile</h3>
         </div>
-
-        <!-- <div id="breadcrumb">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 ">
-                    <nav>
-                        <ol class="breadcrumb justi" style="max-width: 15%; float: right; background: none;">
-                            <li class="breadcrumb-item"><a href="home.html" style=" color: #fff;">Home</a></li>
-                            <li class="breadcrumb-item active" style="color: #fff;;">Profile</li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
-        </div>    -->
     </section>
     <section id="profileDiv">
         <div class="container">
@@ -367,13 +354,14 @@ If you are not registered with any of the payment processors below, please click
                <div id="status" class="container tab-pane fade">
                     <div class="commonDiv">
                         <h3>Select Status</h3>
-                        <span>User Name: <b>Honey King</b></span>
-                        <span>Current Status: <b>Lingusit</b></span>
-                        <form action="">
+                        <span>User Name: <b>{{auth::user()->username}}</b></span>
+                        <span>Current Status: <b>{{auth::user()->user_status}}</b></span>
+                        <form action="{{route('user-change-status')}}" method="post">
+                            @csrf
                             <p>Please select your status:</p>
                             <fieldset>
                                 <div class="radioBtnDiv">
-                                    <input type="radio" value="value1" name="group1">
+                                    <input type="radio" value="Translator" name="user_status" required="required" @if(auth::user()->user_status=='Translator'){{'checked'}}@endif>
  
                                     <div class="optionInfo">
                                         <h4>Translator</h4>
@@ -381,7 +369,7 @@ If you are not registered with any of the payment processors below, please click
                                     </div>
                                 </div>
                                 <div class="radioBtnDiv">
-                                    <input type="radio" value="value2" name="group1">
+                                    <input type="radio" value="Employer" name="user_status" @if(auth::user()->user_status=='Employer'){{'checked'}}@endif>
                                     <div class="optionInfo">
                                         <h4>Employer</h4>
                                         <p>If yo are looking for a traslator, interpreter then select employer. The supplementary agency information form will be provided later.</p>
@@ -400,104 +388,108 @@ If you are not registered with any of the payment processors below, please click
                             <p>Please note that the period of waiting for your input is limited on all Web sites. It is set to 30 minutes here. If you are not ready to fill out all fields, then first fill out only the required fields and save the form. After saving, enter your information in other fields or only in one field and save again. You can use this technique for completing any forms on the Internet. Because sometimes your session ends unexpectedly, sometimes errors happen. So to save your time, save often.</p>
                             <h4 class="font-weight-600">General Information</h4>
                             <div class="infoDiv">
-                                <span>User Name: <b>Honey</b></span>
-                                <span>Current Status: <b>Lingusit</b></span>
+                                <span>User Name: <b>{{auth::user()->username}}</b></span>
+                                <span>Current Status: <b>{{auth::user()->user_status}}</b></span>
                                 <span>
                                     <a href="">Click or tap to change</a>
                                 </span>
                             </div>                            
                             <h4 class="font-weight-600">Contact Information</h4>
-                            <form action="">
+                            <form action="{{route('user-save-general-info')}}" method="post">
+                                @csrf
                                 <div class="inputDiv">
                                     <label for="">Title:</label>
                                     <div class="inputSpan">
-                                        <input type="text" name="" id="">
+                                        <input type="text" name="title" id="title">
                                         <p>Mr., Ms., Dr., etc.</p>
                                     </div>
                                 </div>
                                 <div class="inputDiv">
                                     <label for="">First Name (Given):</label>
                                     <div class="inputSpan">
-                                        <input type="text" name="" id="">
+                                        <input type="text" name="first_name" id="first_name">
                                     </div>
                                 </div>
                                 <div class="inputDiv">
                                     <label for="">Last Name (Family):</label>
                                     <div class="inputSpan">
-                                        <input type="text" name="" id="">
+                                        <input type="text" name="last_name" id="last_name">
                                         <p>Please make sure your first, last and middle names begin with a capital letter and do not use all capital letters.  </p>
                                     </div>
                                 </div>
                                 <div class="inputDiv">
                                     <label for="">E-Mail Address:</label>
                                     <div class="inputSpan">
-                                        <input type="text" name="" id="">
+                                        <input type="email" name="gemail" id="gemail">
                                     </div>
                                 </div>
                                 <div class="inputDiv">
                                     <label for="">Postal Code (Zip):</label>
                                     <div class="inputSpan">
-                                        <input type="text" name="" id="">
+                                        <input type="text" name="postal_code" id="postal_code">
                                     </div>
                                 </div>
                                 <div class="inputDiv">
                                     <label for="">Address:</label>
                                     <div class="inputSpan">
-                                        <textarea name="" id="" cols="30" rows="4"></textarea>
+                                        <textarea name="address" id="address" cols="30" rows="4"></textarea>
                                     </div>
                                 </div>
                                 <div class="inputDiv">
                                     <label for="">City:</label>
                                     <div class="inputSpan">
-                                        <input type="text" name="" id="">
+                                        <input type="text" name="city" id="city">
                                     </div>
                                 </div>
                                 <div class="inputDiv">
                                     <label for="">State/Region:</label>
                                     <div class="inputSpan">
-                                        <input type="text" name="" id="">
+                                        <input type="text" name="state" id="state">
                                     </div>
                                 </div>
                                 <div class="inputDiv">
                                     <label for="">Country:</label>
                                     <div class="inputSpan">
-                                        <select name="" id="">
-                                            <option value="">Country</option>
+                                        <select name="country" id="country">
+                                            <option value="">Select Country</option>
+                                            @foreach( $countries as $country)
+                                                <option value="{{$country->id}}">{{$country->country_name}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
                                 <div class="inputDiv">
                                     <label for="">Telephone:</label>
                                     <div class="inputSpan">
-                                        <input type="text" name="" id="">
+                                        <input type="text" name="telephone" id="telephone">
                                     </div>
                                 </div>
                                 <div class="inputDiv">
                                     <label for="">Fax:</label>
                                     <div class="inputSpan">
-                                        <input type="text" name="" id="">
+                                        <input type="text" name="fax" id="fax">
                                     </div>
                                 </div>
                                 <div class="inputDiv">
                                     <label for="">Mobile Phone:</label>
                                     <div class="inputSpan">
-                                        <input type="text" name="" id="">
+                                        <input type="text" name="mobile_phone" id="mobile_phone">
                                     </div>
                                 </div>
                                 <div class="inputDiv">
                                     <label for="">Second Email:</label>
                                     <div class="inputSpan">
-                                        <input type="text" name="" id="">
+                                        <input type="email" name="second_email" id="second_email">
                                     </div>
                                 </div>
                                 <div class="inputDiv">
                                     <label for="">Website:</label>
                                     <div class="inputSpan">
-                                        <input type="text" name="" id="">
+                                        <input type="text" name="website" id="website">
                                         <p>Please enter only one URL and check how it works after submitting. Please do not use this field for links to your profile in other directories — such links will not be shown.</p>
                                     </div>
                                 </div>
-                                <div class="inputDiv">
+                                <!-- <div class="inputDiv">
                                     <label for="">My Profile in social networks and other services </label>
                                     <div class="inputSpan">
                                         <p class="notice">
@@ -508,32 +500,32 @@ If you are not registered with any of the payment processors below, please click
                                             <span>Add a networking profile</span>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <hr>
                                 <div class="inputDiv">
                                     <label for="">Company Name:</label>
                                     <div class="inputSpan">
-                                        <input type="text" name="" id="">
+                                        <input type="text" name="company_name" id="company_name">
                                     </div>
                                 </div>
                                 <div class="inputDiv">
                                     <label for="">Position:</label>
                                     <div class="inputSpan">
-                                        <input type="text" name="" id="">
+                                        <input type="text" name="position" id="position">
                                     </div>
                                 </div>
                                 <h4 class="font-weight-600">Password Reset Question</h4>
                             <div class="inputDiv">
                                 <label for="">Secret Question:</label>
                                 <div class="inputSpan">
-                                    <input type="text" name="" id="">
+                                    <input type="text" name="secret_question" id="secret_question">
                                 </div>
                             </div>
                              <div class="inputDiv">
                                 <label for="">Answer To Your 
                                     Secret Question</label>
                                 <div class="inputSpan">
-                                    <input type="text" name="" id="">
+                                    <input type="text" name="secret_answer" id="secret_answer">
                                     <p>Please enter a question and a one-word answer that is easy for you to remember (e.g., What is the name of your cat?). If you forget your password, click or tap Forgot Your Password? on the Member Log On screen. You will see this question and may enter your answer. These fields are not required.</p>
                                     <p>Your secret question and answer allow to change your password in case you forget it.
                                         Tip. Choose a question that:</p>
@@ -545,7 +537,7 @@ If you are not registered with any of the payment processors below, please click
                                     <a href="" class="font-weight-600">Change Password</a>
                                 </div>
                             </div>
-                            <hr>
+                           <!--  <hr>
                             <h4 class="font-weight-600">Password Reset Question</h4>
                             <div class="inputDiv">
                                 <label for="">Payment Processors:</label>
@@ -557,13 +549,13 @@ If you are not registered with any of the payment processors below, please click
                                     <p>To remove a payment processor logo from your profile, clear the corresponding check 
                                         boxes and click or tap the Save button at the bottom of this page.</p>
                                 </div>
-                            </div>
+                            </div> -->
                             <hr>
                             <div class="inputDiv">
                                 <label for="">Specialization 
                                     Keywords:</label>
                                 <div class="inputSpan">
-                                    <textarea name="" id="" cols="30" rows="4"></textarea>
+                                    <textarea name="special_keywords" id="special_keywords" cols="30" rows="4"></textarea>
                                     <p>Used in addition to the subject areas selected on the Specialization page.
                                         Max. 500 characters, including spaces.</p>
                                 </div>
@@ -571,7 +563,7 @@ If you are not registered with any of the payment processors below, please click
                             <div class="inputDiv">
                                 <label for="">Accreditations:</label>
                                 <div class="inputSpan">
-                                    <textarea name="" id="" cols="30" rows="4"></textarea>
+                                    <textarea name="accreditations" id="accreditations" cols="30" rows="4"></textarea>
                                     <p>For example, accreditation in courts.
                                         Max. 500 characters, including spaces.</p>
                                 </div>
@@ -581,7 +573,7 @@ If you are not registered with any of the payment processors below, please click
                                     professional 
                                     associations:</label>
                                 <div class="inputSpan">
-                                    <textarea name="" id="" cols="30" rows="4"></textarea>
+                                    <textarea name="membership_professional_associations" id="membership_professional_associations" cols="30" rows="4"></textarea>
                                     <p>Only professional translator associations like ATA or ITI.
                                         Max. 500 characters, including spaces.</p>
                                 </div>
@@ -589,14 +581,14 @@ If you are not registered with any of the payment processors below, please click
                             <div class="inputDiv">
                                 <label for="">Platform & hardware:</label>
                                 <div class="inputSpan">
-                                    <textarea name="" id="" cols="30" rows="4"></textarea>
+                                    <textarea name="platform_hardware" id="platform_hardware" cols="30" rows="4"></textarea>
                                     <p>Max. 500 characters, including spaces.</p>
                                 </div>
                             </div>
                             <div class="inputDiv">
                                 <label for="">Cover Letter:</label>
                                 <div class="inputSpan">
-                                    <textarea name="" id="" cols="30" rows="4"></textarea>
+                                    <textarea name="cover_letter" id="cover_letter" cols="30" rows="4"></textarea>
                                     <p>Please use plain text. You may copy text from your word processor and paste it. You will use this cover letter only when sending e-mail to your potential clients. No one except you will be able to see it. Max. 2000 characters, including spaces, any language.</p>
                                 </div>
                             </div>
@@ -609,7 +601,7 @@ If you are not registered with any of the payment processors below, please click
                             <div class="inputDiv">
                                 <label for="">Advertisong Slogan:</label>
                                 <div class="inputSpan">
-                                    <textarea name="" id="" cols="30" rows="4"></textarea>
+                                    <textarea name="advertising_slogan" id="advertising_slogan" cols="30" rows="4"></textarea>
                                     <p>For example, “Reliable, high-quality translation and subtitling”,
                                         Max. 150 characters, including spaces. HTML is not allowed.</p>
                                 </div>
@@ -619,7 +611,7 @@ If you are not registered with any of the payment processors below, please click
                                 <label for="">Private Information:</label>
                                 <div class="inputSpan">
                                     <div class="checkBox">
-                                        <input type="checkbox" name="" id="">
+                                        <input type="checkbox" name="private_information" id="private_information">
                                         <label for="">Make All Your Information Private</label>
                                     </div>
                                     <p>If you select this check box, your profile will not be shown to the site users and search engines. Your name will not appear in the search results. However, your name will always be shown if you decide to post messages in TranslatorsCafe.com forums or ask questions in TCTerms. Another exception is job posting. If you consider posting a job on the Job Board, your profile will be accessible from the Selected Job page to members having a full profile.</p>
@@ -629,7 +621,7 @@ If you are not registered with any of the payment processors below, please click
                                 <label for="">Disallow Indexing:</label>
                                 <div class="inputSpan">
                                     <div class="checkBox">
-                                        <input type="checkbox" name="" id="">
+                                        <input type="checkbox" name="disallow_indexing" id="disallow_indexing">
                                         <label for="">Disallow search engines to index your profile</label>
                                     </div>
                                     <p>If you select this check box and your profile is public, the meta tag on your profile page will tell search engines not to index this page. Well-behaved search engines will obey, others will not. Therefore, if you want to keep a secret, do not publish it! See Disallow Search Engines to Index Your Profile for more information.</p>
@@ -639,7 +631,7 @@ If you are not registered with any of the payment processors below, please click
                                 <label for="">Display Contact Info:</label>
                                 <div class="inputSpan">
                                     <div class="checkBox">
-                                        <input type="checkbox" name="" id="">
+                                        <input type="checkbox" name="display_contact_info" id="display_contact_info">
                                         <label for="">Display your contact information on your Profile Page.                                        </label>
                                     </div>
                                     <p>If you select this check box and your profile is public, the meta tag on your profile page will tell search engines not to index this page. Well-behaved search engines will obey, others will not. Therefore, if you want to keep a secret, do not publish it! See Disallow Search Engines to Index Your Profile for more information.</p>
@@ -649,7 +641,7 @@ If you are not registered with any of the payment processors below, please click
                                 <label for="">News notification:</label>
                                 <div class="inputSpan">
                                     <div class="checkBox">
-                                        <input type="checkbox" name="" id="">
+                                        <input type="checkbox" name="news_notification" id="news_notification">
                                         <label for="">Can we send you news and updates about Ve Translate.com? 
                                             Please check if Yes.</label>
                                     </div>
@@ -659,7 +651,7 @@ If you are not registered with any of the payment processors below, please click
                                 <label for="">Jobs notification:</label>
                                 <div class="inputSpan">
                                     <div class="checkBox">
-                                        <input type="checkbox" name="" id="">
+                                        <input type="checkbox" name="jobsnotification" id="jobsnotification">
                                         <label for="">Can we send you new jobs from the Job Board? Please check if Yes.
                                         </label>
                                     </div>
@@ -669,28 +661,17 @@ If you are not registered with any of the payment processors below, please click
                                 <label for="">Show rated users:</label>
                                 <div class="inputSpan">
                                     <div class="checkBox">
-                                        <input type="checkbox" name="" id="">
+                                        <input type="checkbox" name="show_rated_users" id="show_rated_users">
                                         <label for="">Show the list of all outsourcers and service providers rated by you 
                                             on your profile page.
                                             
                                         </label>
                                     </div>
                                 </div>
-                            </div> 
-                            <div class="inputDiv">
-                                <label for="">Show rated users:</label>
-                                <div class="inputSpan">
-                                    <div class="checkBox">
-                                        <input type="checkbox" name="" id="">
-                                        <label for="">Show feedback from outsourcers and/or service providers on your 
-                                            profile page.                                            
-                                        </label>
-                                    </div>
-                                </div>
-                            </div> 
+                            </div>  
                             <p>When you have completed filling out this form, please click or tap the Save button. Please note that the recent changes made 
                                 in your profile will not appear immediately in the search results</p> 
-                            <button class="commonBtn">Save</button>     
+                            <button type="submit" class="commonBtn">Save</button>     
                             </form>
                         </div>
                     </div>
@@ -703,12 +684,12 @@ If you are not registered with any of the payment processors below, please click
                                     <div id="resumeContent" class="commonDiv">
                                         <h3>Resume</h3>
                                         <p class="warning">Upload Your Resume</p>
-                                        <form action="">
-                                            
+                                        <form action="{{route('user-upload-resume')}}" method="post">
+                                            @csrf
                                             <div class="control-group">
                                                 <div class="controls bootstrap-timepicker">
                                                     <label class="form-label" for="customFile">Upload Your Resume</label>
-                                                    <input type="file" accept="application/pdf,application/ms-word" class="control " id="customFile" />
+                                                    <input type="file" name="resume" accept="application/pdf,application/ms-word" class="control " id="customFile" required="required" />
                                                 </div>
                                             </div>
                 
@@ -760,8 +741,8 @@ If you are not registered with any of the payment processors below, please click
                                     <div class="commonDiv">
                                         <h3>Language</h3>
                                         <p class="warningself">You can select languages from below</p>
-                                        <form action="">
-                                        
+                                        <form action="{{route('user-save-languages')}}" method="post">
+                                            @csrf
                                             <div class="row">
                                                 <div class="col-md-6 ">
                                                     <table>
@@ -770,7 +751,7 @@ If you are not registered with any of the payment processors below, please click
                                                         </thead>
                                                         <tbody>
                                                            <td class="text-center ml-5">
-                                                            <select id="languages" name="languages">
+                                                            <select id="mother_language" name="mother_language">
                                                                 <option value="af">Afrikaans</option>
                                                                 <option value="sq">Albanian - shqip</option>
                                                                 <option value="am">Amharic - አማርኛ</option>
@@ -914,7 +895,6 @@ If you are not registered with any of the payment processors below, please click
                                                                 <option value="yo">Yoruba - Èdè Yorùbá</option>
                                                                 <option value="zu">Zulu - isiZulu</option>
                                                             </select>
-                    
                                                            </td>
                                                         </tbody>
                                                     </table>
@@ -926,7 +906,7 @@ If you are not registered with any of the payment processors below, please click
                                                         </thead>
                                                         <tbody>
                                                            <td class="text-center ml-5">
-                                                            <select id="languages" name="languages">
+                                                            <select id="other_languages" name="other_languages">
                                                                 <option value="af">Afrikaans</option>
                                                                 <option value="sq">Albanian - shqip</option>
                                                                 <option value="am">Amharic - አማርኛ</option>
@@ -1073,27 +1053,20 @@ If you are not registered with any of the payment processors below, please click
                     
                                                            </td>
                                                         </tbody>
-                
-                
                                                     </table>
                                                 </div>  
                                             </div>
-                
                                             <div class="multiBtn text-center pt-5">
-                                                <button class="commonBtn">Submit</button>
+                                                <button type="submit" class="commonBtn">Submit</button>
                                             </div>
-                                           
                                         </form>
-                
                                         <div class="pt-5">
                                             <table class="table table-responsive">
-                                         
                                                 <thead>
                                                   <tr>
                                                     <th scope="col-2">No:</th>
                                                     <th scope="col-5">Mother Language</th>
                                                      <th scope="col-5">Other language</th>
-                                                    
                                                   </tr>
                                                 </thead>
                                                 <tbody>
@@ -1112,8 +1085,6 @@ If you are not registered with any of the payment processors below, please click
                                                     <td class="col-2">English</td>
                                                     <td class="col"> Urdu</td>
                                                   </tr>
-                                                  
-                                                  
                                                 </tbody>
                                               </table>
                                 </div>
@@ -1137,26 +1108,27 @@ If you are not registered with any of the payment processors below, please click
                                         </p>
                                         <p>The services, click or tap the <b>Add Service</b> button; to add rates for your services, click the <b>Add Rates</b> button.</p>
                                         <p><b>Note:</b> Job notifications will be sent according to the services selected  on this page. Please do not forget to complete <a href="">your Voice-Over profile</a> if you selected it here.</p>
+                                        
                                         <div class="box">
-                                            <div class="inputDiv">
-                                                <label for="">Preferred Currency</label>
-                                                <select name="" id="">
-                                                    <option value="">Pakistani ruppes (PKR)</option>
-                                                </select>
-                                                <label for=""><b>1 USD = 164.08 PKR</b></label>
-                                            </div>
-                                            <p><b>Note:</b> The exchange rate above is for reference only</p>
-                                            <div class="inputDiv">
-                                                <input type="checkbox">
-                                                <label for="">Notify about Jobs for non-profit or charitable organizations.</label><br>
-                                                <input type="checkbox">
-                                                <label for="">Your rates are visible on your profile page.</label>
-                                            </div>
-                                            <a href=""><b>Currency Converter</b></a>
-                                            <div class="text-center">
-                                                <button class="commonBtn">Save</button>
-                                                <button class="commonBtn">Cancel</button>
-                                            </div>
+                                                <div class="inputDiv">
+                                                    <label for="">Preferred Currency</label>
+                                                    <select name="preferred_currency" id="preferred_currency">
+                                                        <option value="PKR">Pakistani ruppes (PKR)</option>
+                                                    </select>
+                                                    <label for=""><b>1 USD = 164.08 PKR</b></label>
+                                                </div>
+                                                <p><b>Note:</b> The exchange rate above is for reference only</p>
+                                                <div class="inputDiv">
+                                                    <input type="checkbox" name="notify" id="notify">
+                                                    <label for="">Notify about Jobs for non-profit or charitable organizations.</label><br>
+                                                    <input type="checkbox" name="rates_visible" id="rates_visible">
+                                                    <label for="">Your rates are visible on your profile page.</label>
+                                                </div>
+                                                <a href="#"><b>Currency Converter</b></a>
+                                                <div class="text-center">
+                                                    <button type="submit" class="commonBtn">Save</button>
+                                                    <button class="commonBtn">Cancel</button>
+                                                </div>
                                         </div>
                                         <div class="box" style="margin:20px 0px;">
                                             <table class="table-responsive serviceTable" style="width: 100%;margin: 20px 0px;">
@@ -1193,12 +1165,15 @@ If you are not registered with any of the payment processors below, please click
                                     <h3>Voice-Over</h3>
                                     <label for="">Choose Language</label>
                                     <div class="inputDiv">
-                                        
-                                        <select name="" id="">
-                                            <option value="">English</option>
-                                            <option value="">Urdu</option>
-                                        </select>
-                                        <button class="addLanguageBtn commonBtn">Add Language</button>
+                                        <form action="{{route('user-save-voice-over')}}" method="post">
+                                            @csrf
+                                            <select name="language" id="language">
+                                                <option value="">English</option>
+                                                <option value="">Urdu</option>
+                                            </select>
+                                            <button type="submit" class="addLanguageBtn commonBtn">Add Language</button>
+                                            <br>
+                                        </form>
                                     </div>
                                     <table class="table-responsive voiceOverTable">
                                         <thead>
@@ -1220,820 +1195,820 @@ If you are not registered with any of the payment processors below, please click
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="commonDiv">
-                                        <h3>Specialized Language</h3>
+                                        <h3>Specialization</h3>
                                         <p>View Your Profile (Specialization)</p>
                                         <p>Please select your subject areas adn click ot tab to <b>Save</b> Button</p>
-                                        <form action="">
-                                        
+                                        <form action="{{route('user-save-specilizations')}}" method="post">
+                                            @csrf
                                             <div class="row">
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Acting and Directing</label>
                                                     </div>
                                                 </div>  
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]" name="spicializations[]">
                                                         <label for="">Ecology</label>
                                                     </div>
                                                 </div> 
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Medicine - Public Health Education & Poromotion</label>
                                                     </div>
                                                 </div> 
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Advertising</label>
                                                     </div>
                                                 </div>  
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Economics</label>
                                                     </div>
                                                 </div>  
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Medicine - Social Psychology</label>
                                                     </div>
                                                 </div> 
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Arespace Engineering</label>
                                                     </div>
                                                 </div> 
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Education</label>
                                                     </div>
                                                 </div> 
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Medicine - Taxicology</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Agriculture</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Electrical Engineering</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Medicine (General)</label>
                                                     </div>
                                                 </div> 
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Agronomy and Crop Science</label>
                                                     </div>
                                                 </div> 
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Engineering</label>
                                                     </div>
                                                 </div> 
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Medieval and Renaissance Studies</label>
                                                     </div>
                                                 </div> 
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Aircraft</label>
                                                     </div>
                                                 </div> 
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Entomology</label>
                                                     </div>
                                                 </div> 
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Metallurgical Engineering</label>
                                                     </div>
                                                 </div>  
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Antomy</label>
                                                     </div>
                                                 </div>  
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Enterpreneurship</label>
                                                     </div>
                                                 </div>  
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Military Technologies</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Animal Sciences</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Enviornmental Sciences</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Mining & Mineral Engineering</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Antropology</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Ethnic and Culture Studies</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Mining & Petrolium Technology</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Applied Mathematics</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Fibre, Textile and Weaving</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Molecular Biology</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Aquaculture</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Film & Cinema Studies</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Music</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Archaeology</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Finance</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Music History & Literature</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Architecture</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Fire Protection</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Naval Architecture And Marine Engineering</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Art</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Fishing & Fisheries Sciences</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Nuclear Engineering</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Astronomy</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Food Sciences</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Oceanography</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Astrophysics</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Fornsics Science</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Oil & Gas Engineering</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Atmospheric Sciences and Meterology</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Foresty</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Optics</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Automotive</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Genealogy/Family History Research</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Organic Chemistry</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Aviation</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">General</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Patent Translaion</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Banking & Financial</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Genetics</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Petrochemistry</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Bible and Biblical Studies</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Geochemistry</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Petrolium Engineering</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Bio Chemistry</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Geography</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Philosophy</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Bioengineering and Biomedical Engineering</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Geology</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Photographic Art</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Biology</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Geophysics and Seismology</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Photography</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Biomedical</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Gerontology</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Physical and Theoretical Chemistry</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Biometrics</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Health</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Physical Education Teaching and Coaching</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Biophysics</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Heating, Air Condition and Refrigeration</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Physics</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Biopsycology</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">History</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Political Science</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Biostatistics</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Hospitality</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Polymer Chemistry</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Biotechnology</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Humanities and Humanistics Studies</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Psychology</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Botany</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Information Science and Systems</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Raditions Biology</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Broadcast Jouralism</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Internet</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Radio Television Broadcasting</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Buildings</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Islamic Studies</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Religion</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Business Adminitration and Management</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Journalism and Mass Communication</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Religion and Religious Studies</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Busines General</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Law and Legal</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Science (General)</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Business Marketing</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Liguistics</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Sociology</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Cartography</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Literature</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Software Engineering</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Ceramics Arts and Ceramics</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Manufacturing (Metal Working and Product, Instruments, Funiture, Printing, Clothing, etc)</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Sport and Fitness</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Chemical Technology and Related Industries</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Marine and Aquatics Biology</label>
                                                     </div>
                                                 </div>
                                             
                                             <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Taxation</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Chemistry</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Mathematics</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Telecommuincations</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Child Care</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Mechanical Engineering</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Textiles Sciences and Engineering</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Civil Engineering</label>
                                                     </div>
                                                 </div>
                                                  <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Medicine - Acupuncture and Oriental Medicine</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Theatre</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Computer and Information Science</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Medicine - Dentistry</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Theology and Theological Studies</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Computer Engineering</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Medicine - Medical Technology</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Theology and Methematical Studies</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Computer Games and Gambling, Electronic Games, Games of Chance</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Medicine - Microbology and Bacterioloy</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="spicializations[]">
                                                         <label for="">Tourism and Travel</label>
                                                     </div>
                                                 </div>
@@ -2142,7 +2117,7 @@ If you are not registered with any of the payment processors below, please click
                                                 </div>
                 
                                             <div class="multiBtn pt-5">
-                                                <button class="commonBtn">Submit</button>
+                                                <button type="submit" class="commonBtn">Submit</button>
                                             </div>
                                            
                                         </form>
@@ -2163,8 +2138,8 @@ If you are not registered with any of the payment processors below, please click
                                         <h3>Software</h3>
                                         <p>View Your Profile (Specialization)</p>
                                         <p>Please select your subject areas adn click ot tab to <b>Save</b> Button</p>
-                                        <form action="">
-                                        
+                                        <form action="{{route('user-save-software-tools')}}" method="post">
+                                            @csrf
                                             <div class="row">
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
@@ -2407,48 +2382,52 @@ If you are not registered with any of the payment processors below, please click
                                         </ul>
                                         <p>Using HTML images tags and link to files.</p>
                                         <p>You have total 42,42 Kb Uploaded and <b>2,005.76</b> KB for free space. The limit is 2,048 KB.</p>
-                                        <table>
-                                            <thead>
-                                                <th>File Name and Link</th>
-                                                <th>File Size</th>
-                                                <th>Download Count</th>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <div class="checkBoxDiv">
-                                                            <input type="checkbox">
-                                                            <div class="contentDiv">
-                                                                <p><b>Areeb's_Resume.pdf</b></p>
-                                                                <p>CV</p>
-                                                                <p><b>Link to File:</b> /cafe/file/?id=188175</p>
+                                        <form action="{{route('delete.user.files')}}" method="post">
+                                            @csrf
+                                            <table>
+                                                <thead>
+                                                    <th>File Name and Link</th>
+                                                    <th>File Size</th>
+                                                    <th>Download Count</th>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <div class="checkBoxDiv">
+                                                                <input type="checkbox" name="user_files[]" value="">
+                                                                <div class="contentDiv">
+                                                                    <p><b>Areeb's_Resume.pdf</b></p>
+                                                                    <p>CV</p>
+                                                                    <p><b>Link to File:</b> /cafe/file/?id=188175</p>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </td>
-                                                    <td>42.24 KB</td>
-                                                    <td>0</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                        <button class="deleteSelected">Delete Selected</button>
-                                        <form action="">
+                                                        </td>
+                                                        <td>42.24 KB</td>
+                                                        <td>0</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <button class="deleteSelected">Delete Selected</button>
+                                        </form>
+                                        <form action="{{route('user.save.files')}}" method="post">
+                                            @csrf
                                             <p><b>Upload File</b></p>
                                             <div class="inputDiv">
                                                 <label for="">File Title:</label>
                                                 <div class="inputSpan">
-                                                    <input type="text" name="" id="">
+                                                    <input type="text" name="file_title" id="file_title">
                                                 </div>
                                             </div>
                                             <div class="inputDiv">
                                                 <label for="">File:</label>
                                                 <div class="inputSpan">
-                                                    <input type="file" name="" id="">
+                                                    <input type="file" name="file" id="file">
                                                 </div>
                                             </div>
                                             <div class="inputDiv">
                                                 <label for="">Purpose:</label>
                                                 <div class="inputSpan">
-                                                    <select name="" id="">
+                                                    <select name="purpose" id="purpose">
                                                         <option value="Resumes File">Resumes File</option>
                                                     </select>
                                                 </div>
@@ -2456,7 +2435,7 @@ If you are not registered with any of the payment processors below, please click
                                             <div class="inputDiv">
                                                 <label for="">Language:</label>
                                                 <div class="inputSpan">
-                                                    <select name="" id="">
+                                                    <select name="language" id="language">
                                                         <option value="Resumes File">Language</option>
                                                     </select>
                                                 </div>
@@ -2464,7 +2443,7 @@ If you are not registered with any of the payment processors below, please click
                                             <div class="inputDiv">
                                                 <label for="">Comments:</label>
                                                 <div class="inputSpan">
-                                                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                                                    <textarea name="comments" id="comments" cols="30" rows="10"></textarea>
                                                 </div>
                                             </div>
                                             <p><b>Instruction :</b></p>
@@ -2491,7 +2470,7 @@ If you are not registered with any of the payment processors below, please click
                                                     has a basic, decent MP3 encoder.
                                                 </li>
                                             </ul>
-                                           <button class="deleteSelected">Upload</button>
+                                           <button  type="submit" class="deleteSelected">Upload</button>
                                         </form>
                                     </div>
                                 </div>
@@ -2499,12 +2478,12 @@ If you are not registered with any of the payment processors below, please click
                         </div>
                     </div>
                 </div>
-
-
-
-
-                
             </div>
         </div>
     </section>
+@endsection
+@section('script')
+<script type="text/javascript">
+    
+</script>
 @endsection
