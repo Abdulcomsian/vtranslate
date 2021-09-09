@@ -65,9 +65,17 @@ Route::get('email/verify', [App\Http\Controllers\Auth\VerificationController::cl
 
 Route::middleware(['verified','auth'])->group(function()
     {
-        Route::get('/profile', function () {
-            return view('screens.profile');
-        });
+        Route::get('/profile','UserController@profile')->name('profile');
+        Route::post('/user-change-status','UserController@change_status')->name('user-change-status');
+        Route::post('/user-save-general-info','UserController@save_general_info')->name('user-save-general-info');
+        Route::post('/user-upload-resume','UserController@upload_resume')->name('user-upload-resume');
+        Route::post('/user-save-languages','UserController@user_save_languages')->name('user-save-languages');
+        Route::post('/user-save-services-rates','UserController@save_services_rates')->name('save-services-rates');
+        Route::post('/user-save-voice-over','UserController@save_voice_over')->name('user-save-voice-over');
+        Route::post('/user-save-specilizations','UserController@save_specializations')->name('user-save-specilizations');
+        Route::post('/user-save-software-tools','UserController@save_software_tools')->name('user-save-software-tools');
+        Route::post('/user-save-files','UserController@user_save_files')->name('user.save.files');
+        Route::post('/delete-user-files','UserController@delete_user_files')->name('delete.user.files');
     });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
