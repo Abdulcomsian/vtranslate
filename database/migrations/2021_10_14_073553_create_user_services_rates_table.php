@@ -19,7 +19,7 @@ class CreateUserServicesRatesTable extends Migration
             $table->boolean('notify')->default('0')->comments= '1 for Notify about Jobs for non-profit or charitable organizations.';
             $table->boolean('rates_visible')->default('0')->comments= '1 Your rates are visible on your profile page.';
             $table->bigInteger('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
