@@ -146,7 +146,7 @@
                                             <option value="Language">Language</option>
                                         </select>
                                     </div>
-                                    <a class="commonBtn" href="search.html">Search</a>
+                                    <a class="commonBtn" href="{{ url('search-job') }}">Search</a>
                                     <!-- <button class="commonBtn">Search</button> -->
                                 </form>
                             </div>
@@ -177,7 +177,7 @@
                                                     <span>10 Day Left</span>
                                                 </p>
                                             </div>
-                                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                            <i class="fa fa-heart-o favoriteIcon" aria-hidden="true"></i>
                                             <button class="commonBtn">Apply Now</button>
                                         </div>
                                     </div>
@@ -205,7 +205,7 @@
                                                     <span>10 Day Left</span>
                                                 </p>
                                             </div>
-                                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                            <i class="fa fa-heart-o favoriteIcon" aria-hidden="true"></i>
                                             <button class="commonBtn">Apply Now</button>
                                         </div>
                                     </div>
@@ -233,7 +233,7 @@
                                                     <span>10 Day Left</span>
                                                 </p>
                                             </div>
-                                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                            <i class="fa fa-heart-o favoriteIcon" aria-hidden="true"></i>
                                             <button class="commonBtn">Apply Now</button>
                                         </div>
                                     </div>
@@ -261,7 +261,7 @@
                                                     <span>10 Day Left</span>
                                                 </p>
                                             </div>
-                                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                            <i class="fa fa-heart-o favoriteIcon" aria-hidden="true"></i>
                                             <button class="commonBtn">Apply Now</button>
                                         </div>
                                     </div>
@@ -289,7 +289,7 @@
                                                     <span>10 Day Left</span>
                                                 </p>
                                             </div>
-                                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                            <i class="fa fa-heart-o favoriteIcon" aria-hidden="true"></i>
                                             <button class="commonBtn">Apply Now</button>
                                         </div>
                                     </div>
@@ -317,7 +317,7 @@
                                                     <span>10 Day Left</span>
                                                 </p>
                                             </div>
-                                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                            <i class="fa fa-heart-o favoriteIcon" aria-hidden="true"></i>
                                             <button class="commonBtn">Apply Now</button>
                                         </div>
                                     </div>
@@ -345,7 +345,7 @@
                                                     <span>10 Day Left</span>
                                                 </p>
                                             </div>
-                                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                            <i class="fa fa-heart-o favoriteIcon" aria-hidden="true"></i>
                                             <button class="commonBtn">Apply Now</button>
                                         </div>
                                     </div>
@@ -373,7 +373,7 @@
                                                     <span>10 Day Left</span>
                                                 </p>
                                             </div>
-                                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                            <i class="fa fa-heart-o favoriteIcon" aria-hidden="true"></i>
                                             <button class="commonBtn">Apply Now</button>
                                         </div>
                                     </div>
