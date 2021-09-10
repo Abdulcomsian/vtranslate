@@ -421,6 +421,126 @@ select:focus{
     background: #ff0202 !important; 
    
 }
+/* ************************* Pro Member css *************/
+#proMemberInfo,
+#agencyInfo,
+#freelancerSection,
+#agencySection,
+#email-verification{
+    padding: 100px 0px;
+}
+#proMemberInfo ul{
+    padding: 0px 30px;
+    list-style: disc;
+}
+#proMemberInfo ul li{
+    padding: 10px;
+    font-size: 18px;
+}
+#proMemberInfo button{
+    float: right;
+}
+/* ************************* Agency Info css *************/
+#agencyInfo .infoDiv b {
+    margin-left: 16%;
+}
+.historyBox .titleDate{
+    display: flex;
+    justify-content: space-between;
+}
+.historyBox p{
+    font-size: 16px;
+    margin: 0px;
+    padding: 10px 0px;
+}
+.historyBox .reviewBox i{
+    color: #0E0D6B;
+}
+.historyBox .titleReview p{
+    font-weight: 700;
+}
+.historyBox{
+    border-bottom: 2px solid #D0CECE;
+    padding-bottom: 20px;
+}
+
+.profileInfo img{
+    width: 100%;
+    max-width: 50%;
+    margin: auto;
+    display: flex;
+}
+#freelancerSection .commonDiv:nth-child(1) h3{
+    left: 105px;
+}
+.profileInfo{
+    text-align: center;
+}
+.profileInfo h4 i{
+    background: #ff0202;
+    padding: 3px;
+    font-size: 10px;
+    border-radius: 100%;
+    color: #fff;
+    position: absolute;
+}
+.profileInfo h4{
+    font-weight: 600;
+    position: relative;
+    margin: 30px 0px 10px;
+}
+.profileInfo .locationTime span{
+    margin-right: 0px;
+}
+.profileInfo .jobPosted{
+    margin: 20px 0px;
+}
+.profileInfo .jobPosted p {
+    margin: 0px;
+}
+.profileInfo .jobPosted p:nth-child(1){
+    font-size: 22px;
+    font-weight: 700;
+}
+#freelancerSection ul li,
+#agencySection ul li{
+    font-size: 18px;
+}
+svg path {
+    fill: red;
+}
+svg{
+    width: 15px;
+    height: 18px;
+}
+/* ************************* Email Verification css *************/
+.verificationBox{
+    text-align: center;
+}
+.verificationBox .iconBox{
+    font-size: 50px;
+    width: 100%;
+    max-width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    margin: auto;
+    justify-content: center;
+    background: #0e0d6b;
+    border-radius: 100%;
+    color: #fff;
+}
+.verificationBox h4{
+    margin: 40px 0px;
+    font-size: 45px;
+    font-weight: 600;
+}
+.verificationBox p{
+    margin-bottom: 30px;
+    font-size: 22px;
+}
+
+
 
 
 @media screen and (min-width: 1500px) {
@@ -913,9 +1033,6 @@ select:focus{
 #profileDiv form .commonBtn{
     background-color: #FF0202;
 }
-#profile{
-    overflow: auto;
-}
 #profile .notice,
 .notice{
     background: #BBE3B6;
@@ -924,17 +1041,21 @@ select:focus{
     font-size: 14px;
     font-weight: 500;
 }
-#profile p{
+#profile p,
+#agencyInfo p{
     font-size: 14px;
     font-weight: 500;
 }
-#profile h4{
+#profile h4,
+#agencyInfo h4{
     margin: 30px 0px;
 }
-#profile .infoDiv span:nth-child(3){
+#profile .infoDiv span:nth-child(3),
+#agencyInfo .infoDiv span:nth-child(3){
     float: right;
 }
-#profile .infoDiv span:nth-child(3) a{
+#profile .infoDiv span:nth-child(3) a,
+#agencyInfo .infoDiv span:nth-child(3) a{
     color: rgba(44, 40, 135, 1);
 }
 #profile .infoDiv b {
@@ -942,27 +1063,34 @@ select:focus{
 }
 
 #profile .inputDiv,
-#files .inputDiv{
+#files .inputDiv,
+#agencyInfo .inputDiv{
     display: flex;
     margin-bottom: 20px;
 }
 #profile .inputDiv label,
-#files .inputDiv label{
+#files .inputDiv label,
+#agencyInfo .inputDiv label{
     width: 25%;
     font-size: 14px;
     font-weight: 500;
 }
-#profile .inputDiv .inputSpan{
+#profile .inputDiv .inputSpan,
+#agencyInfo .inputDiv .inputSpan{
     width: 75%;
 }
-#profile .inputDiv .inputSpan a{
+#profile .inputDiv .inputSpan a,
+#agencyInfo .inputDiv .inputSpan a{
     color: #000;
 }
-#profile .inputDiv input,
+#profile .inputDiv ,
 #profile .inputDiv textarea,
 #profile .inputDiv select,
 #files .inputDiv input,
-#files .inputDiv textarea{
+#files .inputDiv textarea,
+#agencyInfo .inputDiv input,
+#agencyInfo .inputDiv select,
+#agencyInfo .inputDiv textarea{
     width: 100%;
     background: #F3F3F3;
     border: 1.5px solid #0000002b;
@@ -2624,4 +2752,7 @@ line-height: 30px;
 }
 .activityStatusTable th{
     padding: 10px;
+}
+.favoriteIcon{
+    cursor: pointer;
 }

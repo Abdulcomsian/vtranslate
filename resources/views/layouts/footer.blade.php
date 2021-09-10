@@ -77,4 +77,17 @@
         $(".voiceOverTable tbody").append("<tr><td>"+val+"</td><td><a>Remove</a></td></tr>");
         val="";
     })
+    $(".favoriteIcon").click(function(){
+        console.log($(this).prop('class'))
+        if($(this).prop('class')=="fa fa-heart-o favoriteIcon"){
+            $(this).removeClass("fa-heart-o")
+            $(this).addClass("fa-heart")
+        } else if($(this).prop('class')=="fa favoriteIcon fa-heart-o"){
+            $(this).removeClass("fa-heart-o")
+            $(this).addClass("fa-heart")
+        } else{
+            $(this).removeClass("fa-heart")
+            $(this).addClass("fa fa-heart-o favoriteIcon")
+        }
+    })
 </script>

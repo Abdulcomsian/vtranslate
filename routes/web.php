@@ -62,6 +62,27 @@ Route::get('email/verify', [App\Http\Controllers\Auth\VerificationController::cl
     Route::get('/faq', function () {
         return view('screens.faq');
     });
+    Route::get('/favourite-job', function () {
+        return view('screens.favourite-job');
+    });
+    Route::get('/search-job', function () {
+        return view('screens.search-job');
+    });
+    Route::get('/pro-member', function () {
+        return view('screens.pro-membership');
+    });
+    Route::get('/agency', function () {
+        return view('screens.agencies.agency');
+    });
+    Route::get('/freelancer', function () {
+        return view('screens.freelancer.freelancer');
+    });
+    Route::get('/email-verification', function () {
+        return view('screens.verification.email-verification');
+    });
+    Route::get('/signup-verification', function () {
+        return view('screens.verification.signup-verification');
+    });
 
 Route::middleware(['verified','auth'])->group(function()
     {
