@@ -35,6 +35,7 @@ class UserController extends Controller
         $countries=Country::get();
         return view('screens.profile',compact('countries'));
     }
+
     //user chagne status translater or employer
     public function change_status(Request $request)
     {
@@ -54,6 +55,7 @@ class UserController extends Controller
         }
 
     }
+
     //save general info of user
     public function save_general_info(Request $request)
     {
@@ -73,26 +75,31 @@ class UserController extends Controller
     {
 
     }
+
     //save languages
     public function user_save_languages(Request $request)
     {
 
     }
+
     //save user services rates
     public function save_services_rates()
     {
 
     }
+
     //save voice over languages
     public function save_voice_over(Request $request)
     {
 
     }
+
     //save software tools
     public function save_software_tools(Request $request)
     {
 
     }
+    
     //save user files
     public function user_save_files(Request $request)
     {

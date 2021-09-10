@@ -56,7 +56,7 @@ class User extends Authenticatable implements MustVerifyEmail
      }
      public function usergeneralinfo()//relation with general info model
      {
-        return $this->belongsTo(UserGeneralInformation::class);
+        return $this->hasOne(UserGeneralInformation::class);
      }
      public function userlanguages()//relation with user languages model
      {
@@ -64,18 +64,18 @@ class User extends Authenticatable implements MustVerifyEmail
      }
      public function usersevices()//relation with services model
      {
-
+        //pending due to incomplete structure
      }
      public function usersoftwares()//relation with software models
      {
-        return $this->belongsTo(UserSoftware::class);
+        return $this->hasOne(UserSoftware::class);
      }
      public function userspicialize()//relation with user specialization
      {
-        return $this->belongsTo(UserSpecializations::class);
+        return $this->hasOne(UserSpecializations::class);
      }
      public function uservoicover()//relation with voice overmodel
      {
-        return $this->belongsTo(UserVoiceOver::class);
+        return $this->hasOne(UserVoiceOver::class);
      }
 }

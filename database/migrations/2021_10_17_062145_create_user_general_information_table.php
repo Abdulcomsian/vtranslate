@@ -47,7 +47,7 @@ class CreateUserGeneralInformationTable extends Migration
             $table->boolean('show_rated_users')->default('0')->comment=' 1 for Show the list of all outsourcers and service providers rated by you on your profile page';
             $table->foreign('country')->references('id')->on('countries');
             $table->bigInteger('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

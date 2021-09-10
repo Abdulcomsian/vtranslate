@@ -21,6 +21,8 @@ class CreateUserFilesTable extends Migration
             $table->unsignedBigInteger('language')->nullable();
             $table->longText('comments')->nullable();
             $table->foreign('language')->references('id')->on('user_languages');
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
