@@ -770,10 +770,12 @@ If you are not registered with any of the payment processors below, please click
                     <div id="contactDiv" class="padd-100">
                         <div class="container">
                             <div class="row">
+
                                 <div class="col-lg-12">
                                     <div id="resumeContent" class="commonDiv">
                                         <h3>Resume</h3>
                                         <p class="warning">Upload Your Resume</p>
+                                        <p><a href="{{asset('files/resume/'.auth::user()->resume ?? '')}}" target="_blank">{{auth::user()->resume ?? ''}}</a></p>
                                         <form action="{{route('user-upload-resume')}}" method="post" enctype="multipart/form-data">
                                             @csrf
                                             <div class="control-group">
@@ -1159,16 +1161,28 @@ If you are not registered with any of the payment processors below, please click
                                                 <thead>
                                                   <tr>
                                                     <th scope="col-2">No:</th>
-                                                    <th scope="col-5">Mother Language</th>
+                                                    <th scope="col-3">Mother Language</th>
                                                      <th scope="col-5">Other language</th>
+                                                     <th scope="col-3">Actions</th>
                                                   </tr>
                                                 </thead>
                                                 <tbody>
+                                                  @foreach($userData[0]->userlanguages as $lang)
                                                   <tr>
-                                                    <th scope="row">1</th>
-                                                    <td class="col-2">English</td>
-                                                    <td class="col"> Urdu</td>
+                                                    <th scope="col-2">{{$loop->iteration}}</th>
+                                                    <td class="col-2">{{$lang->mother_language}}</td>
+                                                    <td class="col-2">{{$lang->other_languages}}</td>
+                                                    <td class="col-3">
+                                                        <button class="btn">
+                                                        <span class="fa fa-trash"></span>
+                                                        </button>
+                                                        <button class="btn">
+                                                        <span class="fa fa-pencil"></span>
+                                                        </button>
+                                                    </td>
                                                   </tr>
+                                                  @endforeach
+                                                
                                                 </tbody>
                                               </table>
                                         </div>

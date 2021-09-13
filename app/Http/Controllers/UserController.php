@@ -41,7 +41,7 @@ class UserController extends Controller
     {
         $countries=Country::get();
         $userData=User::with('usergeneralinfo','userlanguages','usersoftwares','userspicialize','uservoicover')->where('id',Auth::user()->id)->get();
-        //dd($userData[0]->usergeneralinfo->title);
+        //dd($userData[0]->userlanguages[0]->id);
         return view('screens.profile',compact('countries','userData'));
     }
 
@@ -55,7 +55,8 @@ class UserController extends Controller
                  'user_status'=>$request->user_status,
             ]);
             toastr()->success('User Status Changed Successfull!');
-            return back()->with('currtab',$request->currtab);
+            return \Redirect::route('profile')->with('currtab',$request->currtab);
+            //return back()->with('currtab',$request->currtab);
         }
         catch (\Exception $exception)
         {
@@ -71,7 +72,8 @@ class UserController extends Controller
         
         $input=$request->except('_token','currtab');
         try
-        {
+        { 
+           $record=UserGeneralInformation::where('user_id',Auth::user()->id)->first();
            $input['user_id']=Auth::user()->id;
            $input['private_information']=isset($input['private_information']) ? 1 : 0;
            $input['disallow_indexing']=isset($input['disallow_indexing']) ? 1 : 0;
@@ -79,7 +81,14 @@ class UserController extends Controller
            $input['news_notification']=isset($input['news_notification']) ? 1 : 0;
            $input['jobsnotification']=isset($input['jobsnotification']) ? 1 : 0;
            $input['show_rated_users']=isset($input['show_rated_users']) ? 1 : 0;
+           if(!$record)
+           {
            UserGeneralInformation::create($input);
+           }
+           else
+           {
+            UserGeneralInformation::where('user_id',Auth::user()->id)->update($input);
+           }
            //toaster message
            toastr()->success('User Gneral Info Saved Successfull!');
            return back()->with('currtab',$request->currtab); 
