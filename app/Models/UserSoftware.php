@@ -12,4 +12,5 @@ class UserSoftware extends Model
      protected $casts = [
         'software_tools' => 'array',
     ];
+    protected $guarded = []; 
 }

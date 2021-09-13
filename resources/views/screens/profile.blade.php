@@ -10,18 +10,59 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="tabDiv">
+                        <!-- active inactive cuttent tab -->
+                        @php
+                            $factive='';
+                            $statusactive='';
+                            $generaltab='';
+                            $resumetab='';
+                            $languages='';
+                            $voiceover='';
+                            $softwarestab='';
+                            $specializationtab='';
+                            if(session()->get('currtab')=='status'){
+                             $statusactive='active';
+                            }
+                            elseif(session()->get('currtab')=='generaltab'){
+                             $generaltab='active';
+                            }
+                            elseif(session()->get('currtab')=='resume')
+                            {
+                               $resumetab='active';
+                            }
+                            elseif(session()->get('currtab')=='languages')
+                            {
+                                $languages='active';
+                            }
+                            elseif(session()->get('currtab')=='voiceover')
+                            {
+                                $voiceover='active';
+                            }
+                            elseif(session()->get('currtab')=='specialization')
+                            {
+                                $specializationtab='active';
+                            }
+                            elseif(session()->get('currtab')=='softwares')
+                            {
+                                $softwarestab='active';
+                            }
+                            else
+                            {
+                                $factive='active';
+                            }
+                        @endphp
                         <ul class="nav nav-pills" role="tablist">
                             <li class="nav-item">
-                               <a class="nav-link active" data-toggle="pill" href="#profile"><span>My Profile</span> </a>
+                               <a class="nav-link {{$factive}}" data-toggle="pill" href="#profile"><span>My Profile</span> </a>
                             </li>
                             <li class="nav-item">
-                               <a href="#status" class="nav-link" data-toggle="pill"><span>Status</span> </a>
+                               <a href="#status" class="nav-link {{$statusactive}}" data-toggle="pill"><span>Status</span> </a>
                             </li>
                             <li class="nav-item">
-                               <a href="#general" class="nav-link" data-toggle="pill"><span>General</span> </a>
+                               <a href="#general" class="nav-link {{$generaltab}}" data-toggle="pill"><span>General</span> </a>
                             </li>
                             <li class="nav-item">
-                               <a href="#resume" class="nav-link" data-toggle="pill"><span>Resume</span> </a>
+                               <a href="#resume" class="nav-link {{$resumetab}}" data-toggle="pill"><span>Resume</span> </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="pill" href="#self-promotion"><span>Self Promotion</span> </a>
@@ -30,19 +71,19 @@
                                 <a href="#agency" class="nav-link" data-toggle="pill"><span>Agency</span> </a>
                              </li>
                              <li class="nav-item">
-                                <a href="#language" class="nav-link" data-toggle="pill"><span>Languages</span> </a>
+                                <a href="#language" class="nav-link {{$languages}}" data-toggle="pill"><span>Languages</span> </a>
                              </li>
                              <li class="nav-item">
                                 <a href="#service" class="nav-link" data-toggle="pill"><span>Services & Rates</span> </a>
                              </li>
                              <li class="nav-item">
-                                <a href="#voice-Over" class="nav-link" data-toggle="pill"><span>Voice-Over</span> </a>
+                                <a href="#voice-Over" class="nav-link {{$voiceover}}" data-toggle="pill"><span>Voice-Over</span> </a>
                              </li>
                              <li class="nav-item">
-                                 <a class="nav-link" data-toggle="pill" href="#specialization"><span>Specialization</span> </a>
+                                 <a class="nav-link {{$specializationtab}}" data-toggle="pill" href="#specialization"><span>Specialization</span> </a>
                               </li>
                               <li class="nav-item">
-                                 <a href="#software" class="nav-link" data-toggle="pill"><span>Software</span> </a>
+                                 <a href="#software" class="nav-link {{$softwarestab}}" data-toggle="pill"><span>Software</span> </a>
                               </li>
                               <li class="nav-item">
                                  <a href="#files" class="nav-link" data-toggle="pill"><span>Files</span> </a>
@@ -65,7 +106,7 @@
                 </div>
             </div>
             <div class="tab-content">
-                <div id="profile" class="container tab-pane active">
+                <div id="profile" class="container tab-pane {{$factive}}">
                     <div class="commonDiv">
                         <h3>My Profile</h3>
                         <div class="text-center">
@@ -351,7 +392,7 @@
 If you are not registered with any of the payment processors below, please click or tap the corresponding button below and sign up for PayPal or Skrill. After that you will enter your e-mail address on the profile form.</p>
                     </div>
                 </div>
-               <div id="status" class="container tab-pane fade">
+               <div id="status" class="container tab-pane {{$statusactive}}">
                     <div class="commonDiv">
                         <h3>Select Status</h3>
                         <span>User Name: <b>{{auth::user()->username}}</b></span>
@@ -376,11 +417,12 @@ If you are not registered with any of the payment processors below, please click
                                     </div>
                                 </div>
                             </fieldset>
+                            <input type="hidden" name="currtab" value="status">
                             <button class="commonBtn">Save</button>
                         </form>
                     </div>
                 </div>
-                <div id="general" class="container tab-pane fade">   
+                <div id="general" class="container tab-pane {{$generaltab}}">   
                     <div id="profile" class="container tab-pane active">
                         <div class="commonDiv">
                             <h3>General</h3>
@@ -400,60 +442,67 @@ If you are not registered with any of the payment processors below, please click
                                 <div class="inputDiv">
                                     <label for="">Title:</label>
                                     <div class="inputSpan">
-                                        <input type="text" name="title" id="title">
+                                        <input type="text" name="title" id="title" required="required" value="{{ $userData[0]->usergeneralinfo->title ?? '' }}">
                                         <p>Mr., Ms., Dr., etc.</p>
                                     </div>
                                 </div>
                                 <div class="inputDiv">
                                     <label for="">First Name (Given):</label>
                                     <div class="inputSpan">
-                                        <input type="text" name="first_name" id="first_name">
+                                        <input type="text" name="first_name" id="first_name" required="required" value="{{$userData[0]->usergeneralinfo->first_name ?? '' }}">
                                     </div>
                                 </div>
                                 <div class="inputDiv">
                                     <label for="">Last Name (Family):</label>
                                     <div class="inputSpan">
-                                        <input type="text" name="last_name" id="last_name">
+                                        <input type="text" name="last_name" id="last_name" required="required" value="{{$userData[0]->usergeneralinfo->last_name ?? '' }}">
                                         <p>Please make sure your first, last and middle names begin with a capital letter and do not use all capital letters.  </p>
                                     </div>
                                 </div>
                                 <div class="inputDiv">
                                     <label for="">E-Mail Address:</label>
                                     <div class="inputSpan">
-                                        <input type="email" name="gemail" id="gemail">
+                                        <input type="email" name="gemail" id="gemail" required="required" value="{{$userData[0]->usergeneralinfo->gemail ?? '' }}">
                                     </div>
                                 </div>
                                 <div class="inputDiv">
                                     <label for="">Postal Code (Zip):</label>
                                     <div class="inputSpan">
-                                        <input type="text" name="postal_code" id="postal_code">
+                                        <input type="text" name="postal_code" id="postal_code" value="{{$userData[0]->usergeneralinfo->postal_code ?? '' }}">
                                     </div>
                                 </div>
                                 <div class="inputDiv">
                                     <label for="">Address:</label>
                                     <div class="inputSpan">
-                                        <textarea name="address" id="address" cols="30" rows="4"></textarea>
+                                        <textarea name="address" id="address" cols="30" rows="4" required="required">{{$userData[0]->usergeneralinfo->address ?? '' }}</textarea>
                                     </div>
                                 </div>
                                 <div class="inputDiv">
                                     <label for="">City:</label>
                                     <div class="inputSpan">
-                                        <input type="text" name="city" id="city">
+                                        <input type="text" name="city" id="city" required="required" value="{{$userData[0]->usergeneralinfo->city ?? '' }}">
                                     </div>
                                 </div>
                                 <div class="inputDiv">
                                     <label for="">State/Region:</label>
                                     <div class="inputSpan">
-                                        <input type="text" name="state" id="state">
+                                        <input type="text" name="state" id="state" required="required" value="{{$userData[0]->usergeneralinfo->state ?? '' }}">
                                     </div>
                                 </div>
                                 <div class="inputDiv">
                                     <label for="">Country:</label>
                                     <div class="inputSpan">
-                                        <select name="country" id="country">
+                                        <select name="country" id="country" required="required">
                                             <option value="">Select Country</option>
                                             @foreach( $countries as $country)
-                                                <option value="{{$country->id}}">{{$country->country_name}}</option>
+                                                @php
+                                                 $selected='';
+                                                 if(isset($userData[0]->usergeneralinfo->country) && $userData[0]->usergeneralinfo->country == $country->id)
+                                                 {
+                                                    $selected='selected';
+                                                 }
+                                                @endphp
+                                                <option value="{{$country->id}}" {{$selected}}>{{$country->country_name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -461,31 +510,31 @@ If you are not registered with any of the payment processors below, please click
                                 <div class="inputDiv">
                                     <label for="">Telephone:</label>
                                     <div class="inputSpan">
-                                        <input type="text" name="telephone" id="telephone">
+                                        <input type="text" name="telephone" id="telephone" value="{{$userData[0]->usergeneralinfo->telephone ?? '' }}">
                                     </div>
                                 </div>
                                 <div class="inputDiv">
                                     <label for="">Fax:</label>
                                     <div class="inputSpan">
-                                        <input type="text" name="fax" id="fax">
+                                        <input type="text" name="fax" id="fax" value="{{$userData[0]->usergeneralinfo->fax ?? '' }}">
                                     </div>
                                 </div>
                                 <div class="inputDiv">
                                     <label for="">Mobile Phone:</label>
                                     <div class="inputSpan">
-                                        <input type="text" name="mobile_phone" id="mobile_phone">
+                                        <input type="text" name="mobile_phone" id="mobile_phone" required="required" value="{{$userData[0]->usergeneralinfo->mobile_phone ?? '' }}">
                                     </div>
                                 </div>
                                 <div class="inputDiv">
                                     <label for="">Second Email:</label>
                                     <div class="inputSpan">
-                                        <input type="email" name="second_email" id="second_email">
+                                        <input type="email" name="second_email" id="second_email" value="{{$userData[0]->usergeneralinfo->second_email ?? '' }}">
                                     </div>
                                 </div>
                                 <div class="inputDiv">
                                     <label for="">Website:</label>
                                     <div class="inputSpan">
-                                        <input type="text" name="website" id="website">
+                                        <input type="text" name="website" id="website" value="{{$userData[0]->usergeneralinfo->website ?? '' }}">
                                         <p>Please enter only one URL and check how it works after submitting. Please do not use this field for links to your profile in other directories — such links will not be shown.</p>
                                     </div>
                                 </div>
@@ -505,27 +554,27 @@ If you are not registered with any of the payment processors below, please click
                                 <div class="inputDiv">
                                     <label for="">Company Name:</label>
                                     <div class="inputSpan">
-                                        <input type="text" name="company_name" id="company_name">
+                                        <input type="text" name="company_name" id="company_name" value="{{$userData[0]->usergeneralinfo->company_name ?? '' }}">
                                     </div>
                                 </div>
                                 <div class="inputDiv">
                                     <label for="">Position:</label>
                                     <div class="inputSpan">
-                                        <input type="text" name="position" id="position">
+                                        <input type="text" name="position" id="position" value="{{$userData[0]->usergeneralinfo->position ?? '' }}">
                                     </div>
                                 </div>
                                 <h4 class="font-weight-600">Password Reset Question</h4>
                             <div class="inputDiv">
                                 <label for="">Secret Question:</label>
                                 <div class="inputSpan">
-                                    <input type="text" name="secret_question" id="secret_question">
+                                    <input type="text" name="secret_question" id="secret_question" value="{{$userData[0]->usergeneralinfo->secret_question ?? '' }}">
                                 </div>
                             </div>
                              <div class="inputDiv">
                                 <label for="">Answer To Your 
                                     Secret Question</label>
                                 <div class="inputSpan">
-                                    <input type="text" name="secret_answer" id="secret_answer">
+                                    <input type="text" name="secret_answer" id="secret_answer" value="{{$userData[0]->usergeneralinfo->secret_answer ?? '' }}">
                                     <p>Please enter a question and a one-word answer that is easy for you to remember (e.g., What is the name of your cat?). If you forget your password, click or tap Forgot Your Password? on the Member Log On screen. You will see this question and may enter your answer. These fields are not required.</p>
                                     <p>Your secret question and answer allow to change your password in case you forget it.
                                         Tip. Choose a question that:</p>
@@ -555,7 +604,7 @@ If you are not registered with any of the payment processors below, please click
                                 <label for="">Specialization 
                                     Keywords:</label>
                                 <div class="inputSpan">
-                                    <textarea name="special_keywords" id="special_keywords" cols="30" rows="4"></textarea>
+                                    <textarea name="special_keywords" id="special_keywords" cols="30" rows="4">{{$userData[0]->usergeneralinfo->special_keywords ?? '' }}</textarea>
                                     <p>Used in addition to the subject areas selected on the Specialization page.
                                         Max. 500 characters, including spaces.</p>
                                 </div>
@@ -563,7 +612,7 @@ If you are not registered with any of the payment processors below, please click
                             <div class="inputDiv">
                                 <label for="">Accreditations:</label>
                                 <div class="inputSpan">
-                                    <textarea name="accreditations" id="accreditations" cols="30" rows="4"></textarea>
+                                    <textarea name="accreditations" id="accreditations" cols="30" rows="4">{{$userData[0]->usergeneralinfo->accreditations ?? '' }}</textarea>
                                     <p>For example, accreditation in courts.
                                         Max. 500 characters, including spaces.</p>
                                 </div>
@@ -573,7 +622,9 @@ If you are not registered with any of the payment processors below, please click
                                     professional 
                                     associations:</label>
                                 <div class="inputSpan">
-                                    <textarea name="membership_professional_associations" id="membership_professional_associations" cols="30" rows="4"></textarea>
+                                    <textarea name="membership_professional_associations" id="membership_professional_associations" cols="30" rows="4">
+                                        {{$userData[0]->usergeneralinfo->membership_professional_associations ?? '' }}
+                                    </textarea>
                                     <p>Only professional translator associations like ATA or ITI.
                                         Max. 500 characters, including spaces.</p>
                                 </div>
@@ -581,14 +632,18 @@ If you are not registered with any of the payment processors below, please click
                             <div class="inputDiv">
                                 <label for="">Platform & hardware:</label>
                                 <div class="inputSpan">
-                                    <textarea name="platform_hardware" id="platform_hardware" cols="30" rows="4"></textarea>
+                                    <textarea name="platform_hardware" id="platform_hardware" cols="30" rows="4">
+                                        {{$userData[0]->usergeneralinfo->platform_hardware ?? '' }}
+                                    </textarea>
                                     <p>Max. 500 characters, including spaces.</p>
                                 </div>
                             </div>
                             <div class="inputDiv">
                                 <label for="">Cover Letter:</label>
                                 <div class="inputSpan">
-                                    <textarea name="cover_letter" id="cover_letter" cols="30" rows="4"></textarea>
+                                    <textarea name="cover_letter" id="cover_letter" cols="30" rows="4">
+                                       {{$userData[0]->usergeneralinfo->cover_letter ?? '' }}  
+                                    </textarea>
                                     <p>Please use plain text. You may copy text from your word processor and paste it. You will use this cover letter only when sending e-mail to your potential clients. No one except you will be able to see it. Max. 2000 characters, including spaces, any language.</p>
                                 </div>
                             </div>
@@ -601,7 +656,9 @@ If you are not registered with any of the payment processors below, please click
                             <div class="inputDiv">
                                 <label for="">Advertisong Slogan:</label>
                                 <div class="inputSpan">
-                                    <textarea name="advertising_slogan" id="advertising_slogan" cols="30" rows="4"></textarea>
+                                    <textarea name="advertising_slogan" id="advertising_slogan" cols="30" rows="4">
+                                        {{$userData[0]->usergeneralinfo->advertising_slogan ?? '' }}
+                                    </textarea>
                                     <p>For example, “Reliable, high-quality translation and subtitling”,
                                         Max. 150 characters, including spaces. HTML is not allowed.</p>
                                 </div>
@@ -611,7 +668,39 @@ If you are not registered with any of the payment processors below, please click
                                 <label for="">Private Information:</label>
                                 <div class="inputSpan">
                                     <div class="checkBox">
-                                        <input type="checkbox" name="private_information" id="private_information">
+                                        @php
+                                         $privatechecked='';
+                                         $disallowchecked='';
+                                         $displaycontchecked='';
+                                         $news_notificationchecked='';
+                                         $jobsnotification_checked='';
+                                         $show_rated_users_checked='';
+                                         if(isset($userData[0]->usergeneralinfo->private_information)==1)
+                                         {
+                                            $privatechecked='checked';
+                                         }
+                                         if(isset($userData[0]->usergeneralinfo->disallow_indexing)==1)
+                                         {
+                                            $disallowchecked='checked';
+                                         }
+                                         if(isset($userData[0]->usergeneralinfo->display_contact_info)==1)
+                                         {
+                                            $displaycontchecked='checked';
+                                         }
+                                         if(isset($userData[0]->usergeneralinfo->news_notification)==1)
+                                         {
+                                            $news_notificationchecked='checked';
+                                         }
+                                         if(isset($userData[0]->usergeneralinfo->jobsnotification)==1)
+                                         {
+                                            $jobsnotification_checked='checked';
+                                         }
+                                         if(isset($userData[0]->usergeneralinfo->show_rated_users)==1)
+                                         {
+                                            $show_rated_users_checked='checked';
+                                         }
+                                        @endphp
+                                        <input type="checkbox" name="private_information" id="private_information" {{$privatechecked}}>
                                         <label for="">Make All Your Information Private</label>
                                     </div>
                                     <p>If you select this check box, your profile will not be shown to the site users and search engines. Your name will not appear in the search results. However, your name will always be shown if you decide to post messages in TranslatorsCafe.com forums or ask questions in TCTerms. Another exception is job posting. If you consider posting a job on the Job Board, your profile will be accessible from the Selected Job page to members having a full profile.</p>
@@ -621,7 +710,7 @@ If you are not registered with any of the payment processors below, please click
                                 <label for="">Disallow Indexing:</label>
                                 <div class="inputSpan">
                                     <div class="checkBox">
-                                        <input type="checkbox" name="disallow_indexing" id="disallow_indexing">
+                                        <input type="checkbox" name="disallow_indexing" id="disallow_indexing" {{$disallowchecked}}>
                                         <label for="">Disallow search engines to index your profile</label>
                                     </div>
                                     <p>If you select this check box and your profile is public, the meta tag on your profile page will tell search engines not to index this page. Well-behaved search engines will obey, others will not. Therefore, if you want to keep a secret, do not publish it! See Disallow Search Engines to Index Your Profile for more information.</p>
@@ -631,7 +720,7 @@ If you are not registered with any of the payment processors below, please click
                                 <label for="">Display Contact Info:</label>
                                 <div class="inputSpan">
                                     <div class="checkBox">
-                                        <input type="checkbox" name="display_contact_info" id="display_contact_info">
+                                        <input type="checkbox" name="display_contact_info" id="display_contact_info" {{$displaycontchecked}}>
                                         <label for="">Display your contact information on your Profile Page.                                        </label>
                                     </div>
                                     <p>If you select this check box and your profile is public, the meta tag on your profile page will tell search engines not to index this page. Well-behaved search engines will obey, others will not. Therefore, if you want to keep a secret, do not publish it! See Disallow Search Engines to Index Your Profile for more information.</p>
@@ -641,7 +730,7 @@ If you are not registered with any of the payment processors below, please click
                                 <label for="">News notification:</label>
                                 <div class="inputSpan">
                                     <div class="checkBox">
-                                        <input type="checkbox" name="news_notification" id="news_notification">
+                                        <input type="checkbox" name="news_notification" id="news_notification" {{$news_notificationchecked}}>
                                         <label for="">Can we send you news and updates about Ve Translate.com? 
                                             Please check if Yes.</label>
                                     </div>
@@ -651,7 +740,7 @@ If you are not registered with any of the payment processors below, please click
                                 <label for="">Jobs notification:</label>
                                 <div class="inputSpan">
                                     <div class="checkBox">
-                                        <input type="checkbox" name="jobsnotification" id="jobsnotification">
+                                        <input type="checkbox" name="jobsnotification" id="jobsnotification" {{$jobsnotification_checked}}>
                                         <label for="">Can we send you new jobs from the Job Board? Please check if Yes.
                                         </label>
                                     </div>
@@ -661,7 +750,7 @@ If you are not registered with any of the payment processors below, please click
                                 <label for="">Show rated users:</label>
                                 <div class="inputSpan">
                                     <div class="checkBox">
-                                        <input type="checkbox" name="show_rated_users" id="show_rated_users">
+                                        <input type="checkbox" name="show_rated_users" id="show_rated_users" {{$show_rated_users_checked}}>
                                         <label for="">Show the list of all outsourcers and service providers rated by you 
                                             on your profile page.
                                             
@@ -671,12 +760,13 @@ If you are not registered with any of the payment processors below, please click
                             </div>  
                             <p>When you have completed filling out this form, please click or tap the Save button. Please note that the recent changes made 
                                 in your profile will not appear immediately in the search results</p> 
+                             <input type="hidden" name="currtab" value="generaltab">
                             <button type="submit" class="commonBtn">Save</button>     
                             </form>
                         </div>
                     </div>
                 </div>
-                <div id="resume" class="container tab-pane fade">
+                <div id="resume" class="container tab-pane {{$resumetab}}">
                     <div id="contactDiv" class="padd-100">
                         <div class="container">
                             <div class="row">
@@ -684,7 +774,7 @@ If you are not registered with any of the payment processors below, please click
                                     <div id="resumeContent" class="commonDiv">
                                         <h3>Resume</h3>
                                         <p class="warning">Upload Your Resume</p>
-                                        <form action="{{route('user-upload-resume')}}" method="post">
+                                        <form action="{{route('user-upload-resume')}}" method="post" enctype="multipart/form-data">
                                             @csrf
                                             <div class="control-group">
                                                 <div class="controls bootstrap-timepicker">
@@ -694,6 +784,7 @@ If you are not registered with any of the payment processors below, please click
                                             </div>
                 
                                             <div class="multiBtn text-center">
+                                                <input type="hidden" name="currtab" value="resume">
                                                 <button class="commonBtn">Submit</button>
                                             </div>
                                            
@@ -733,7 +824,7 @@ If you are not registered with any of the payment processors below, please click
                         </div>
                     </div>
                 </div>
-                <div id="language" class="container tab-pane fade">
+                <div id="language" class="container tab-pane {{$languages}}">
                     <div id="contactDiv" class="padd-100">
                         <div class="container">
                             <div class="row">
@@ -751,7 +842,8 @@ If you are not registered with any of the payment processors below, please click
                                                         </thead>
                                                         <tbody>
                                                            <td class="text-center ml-5">
-                                                            <select id="mother_language" name="mother_language">
+                                                            <select id="mother_language" name="mother_language" required="required">
+                                                                <option value="">Select Country</option>
                                                                 <option value="af">Afrikaans</option>
                                                                 <option value="sq">Albanian - shqip</option>
                                                                 <option value="am">Amharic - አማርኛ</option>
@@ -907,6 +999,7 @@ If you are not registered with any of the payment processors below, please click
                                                         <tbody>
                                                            <td class="text-center ml-5">
                                                             <select id="other_languages" name="other_languages">
+                                                                <option value="">Select Country</option>
                                                                 <option value="af">Afrikaans</option>
                                                                 <option value="sq">Albanian - shqip</option>
                                                                 <option value="am">Amharic - አማርኛ</option>
@@ -1057,6 +1150,7 @@ If you are not registered with any of the payment processors below, please click
                                                 </div>  
                                             </div>
                                             <div class="multiBtn text-center pt-5">
+                                                <input type="hidden" name="currtab" value="languages">
                                                 <button type="submit" class="commonBtn">Submit</button>
                                             </div>
                                         </form>
@@ -1075,20 +1169,10 @@ If you are not registered with any of the payment processors below, please click
                                                     <td class="col-2">English</td>
                                                     <td class="col"> Urdu</td>
                                                   </tr>
-                                                  <tr>
-                                                    <th scope="row">2</th>
-                                                    <td class="col-2">English</td>
-                                                    <td class="col-2">English</td>
-                                                  </tr>
-                                                  <tr>
-                                                    <th scope="row">3</th>
-                                                    <td class="col-2">English</td>
-                                                    <td class="col"> Urdu</td>
-                                                  </tr>
                                                 </tbody>
                                               </table>
-                                </div>
-                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1157,7 +1241,7 @@ If you are not registered with any of the payment processors below, please click
                         </div>
                     </div>
                 </div>
-                <div id="voice-Over" class="container tab-pane fade">   
+                <div id="voice-Over" class="container tab-pane {{$voiceover}}">   
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-12">
@@ -1167,10 +1251,12 @@ If you are not registered with any of the payment processors below, please click
                                     <div class="inputDiv">
                                         <form action="{{route('user-save-voice-over')}}" method="post">
                                             @csrf
-                                            <select name="language" id="language">
-                                                <option value="">English</option>
-                                                <option value="">Urdu</option>
+                                            <select name="language" id="language" required="required">
+                                                <option value="">Select Language</option>
+                                                <option value="en">English</option>
+                                                <option value="ud">Urdu</option>
                                             </select>
+                                            <input type="hidden" name="currtab" value="voiceover">
                                             <button type="submit" class="addLanguageBtn commonBtn">Add Language</button>
                                             <br>
                                         </form>
@@ -1182,14 +1268,16 @@ If you are not registered with any of the payment processors below, please click
                                                 <th><b>Action</b></th>
                                             </tr>
                                         </thead>
-                                        <tbody></tbody>
+                                        <tbody>
+                                            
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div id="specialization" class="container tab-pane fade">   
+                <div id="specialization" class="container tab-pane {{$specializationtab}}">   
                     <div id="contactDiv" class="padd-100">
                         <div class="container">
                             <div class="row">
@@ -1203,67 +1291,67 @@ If you are not registered with any of the payment processors below, please click
                                             <div class="row">
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
+                                                        <input type="checkbox" name="spicializations[]" value="Acting and Directing">
                                                         <label for="">Acting and Directing</label>
                                                     </div>
                                                 </div>  
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]" name="spicializations[]">
+                                                        <input type="checkbox" name="spicializations[]" name="spicializations[]" value="Ecology">
                                                         <label for="">Ecology</label>
                                                     </div>
                                                 </div> 
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
+                                                        <input type="checkbox" name="spicializations[]" value="Medicine - Public Health Education & Poromotion">
                                                         <label for="">Medicine - Public Health Education & Poromotion</label>
                                                     </div>
                                                 </div> 
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
+                                                        <input type="checkbox" name="spicializations[]" value="Advertising">
                                                         <label for="">Advertising</label>
                                                     </div>
                                                 </div>  
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
+                                                        <input type="checkbox" name="spicializations[]" value="Economics">
                                                         <label for="">Economics</label>
                                                     </div>
                                                 </div>  
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
+                                                        <input type="checkbox" name="spicializations[]" value="Medicine - Social Psychology">
                                                         <label for="">Medicine - Social Psychology</label>
                                                     </div>
                                                 </div> 
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
+                                                        <input type="checkbox" name="spicializations[]" value="Arespace Engineering">
                                                         <label for="">Arespace Engineering</label>
                                                     </div>
                                                 </div> 
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
+                                                        <input type="checkbox" name="spicializations[]" value="Education">
                                                         <label for="">Education</label>
                                                     </div>
                                                 </div> 
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
+                                                        <input type="checkbox" name="spicializations[]" value="Medicine - Taxicology">
                                                         <label for="">Medicine - Taxicology</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
+                                                        <input type="checkbox" name="spicializations[]" value="Agriculture">
                                                         <label for="">Agriculture</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
+                                                        <input type="checkbox" name="spicializations[]" value="Electrical Engineering">
                                                         <label for="">Electrical Engineering</label>
                                                     </div>
                                                 </div>
@@ -2117,6 +2205,7 @@ If you are not registered with any of the payment processors below, please click
                                                 </div>
                 
                                             <div class="multiBtn pt-5">
+                                                <input type="hidden" name="currtab" value="specialization">
                                                 <button type="submit" class="commonBtn">Submit</button>
                                             </div>
                                            
@@ -2129,7 +2218,7 @@ If you are not registered with any of the payment processors below, please click
                         </div>
                     </div>
                 </div>
-                 <div id="software" class="container tab-pane fade">   
+                 <div id="software" class="container tab-pane {{$softwarestab}}">   
                     <div id="contactDiv" class="padd-100">
                         <div class="container">
                             <div class="row">
@@ -2143,31 +2232,31 @@ If you are not registered with any of the payment processors below, please click
                                             <div class="row">
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="softwares[]" value="Across">
                                                         <label for="">Across</label>
                                                     </div>
                                                 </div>  
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="softwares[]" value="IBM TranslationManager">
                                                         <label for="">IBM TranslationManager</label>
                                                     </div>
                                                 </div> 
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="softwares[]" value="PASSOLO">
                                                         <label for="">PASSOLO</label>
                                                     </div>
                                                 </div> 
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="softwares[]" value="Adobe Acrobt">
                                                         <label for="">Adobe Acrobt</label>
                                                     </div>
                                                 </div>  
                                                 <div class="col-md-4 ">
                                                     <div class="checkBox-Div">
-                                                        <input type="checkbox">
+                                                        <input type="checkbox" name="softwares[]" value="Idiom WorldServer">
                                                         <label for="">Idiom WorldServer</label>
                                                     </div>
                                                 </div>  
@@ -2349,6 +2438,7 @@ If you are not registered with any of the payment processors below, please click
                                                     </div>
                                                 </div>
                                             <div class="multiBtn pt-5">
+                                                <input type="hidden" name="currtab" value="softwares">
                                                 <button class="commonBtn">Submit</button>
                                             </div>
                                            
@@ -2409,34 +2499,37 @@ If you are not registered with any of the payment processors below, please click
                                             </table>
                                             <button class="deleteSelected">Delete Selected</button>
                                         </form>
-                                        <form action="{{route('user.save.files')}}" method="post">
+                                        <form action="{{route('user.save.files')}}" method="post" enctype="multipart/form-data">
                                             @csrf
                                             <p><b>Upload File</b></p>
                                             <div class="inputDiv">
                                                 <label for="">File Title:</label>
                                                 <div class="inputSpan">
-                                                    <input type="text" name="file_title" id="file_title">
+                                                    <input type="text" name="file_title" id="file_title" required="required">
                                                 </div>
                                             </div>
                                             <div class="inputDiv">
                                                 <label for="">File:</label>
                                                 <div class="inputSpan">
-                                                    <input type="file" name="file" id="file">
+                                                    <input type="file" name="file" id="file" required="required">
                                                 </div>
                                             </div>
                                             <div class="inputDiv">
                                                 <label for="">Purpose:</label>
                                                 <div class="inputSpan">
-                                                    <select name="purpose" id="purpose">
+                                                    <select name="purpose" id="purpose" required="required">
+                                                        <option value="">Select File Type</option>
                                                         <option value="Resumes File">Resumes File</option>
+                                                        <option value="Project File">Project File</option>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="inputDiv">
                                                 <label for="">Language:</label>
                                                 <div class="inputSpan">
-                                                    <select name="language" id="language">
-                                                        <option value="Resumes File">Language</option>
+                                                    <select name="language" id="language" required="required">
+                                                        <option value="">Select Language</option>
+                                                        <option value="1">English</option>
                                                     </select>
                                                 </div>
                                             </div>
