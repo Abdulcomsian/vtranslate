@@ -77,13 +77,6 @@ Route::get('email/verify', [App\Http\Controllers\Auth\VerificationController::cl
     Route::get('/freelancer', function () {
         return view('screens.freelancer.freelancer');
     });
-    Route::get('/email-verification', function () {
-        return view('screens.verification.email-verification');
-    });
-    Route::get('/signup-verification', function () {
-        return view('screens.verification.signup-verification');
-    });
-
 Route::middleware(['verified','auth'])->group(function()
     {
         Route::get('/profile','UserController@profile')->name('profile');
@@ -91,12 +84,19 @@ Route::middleware(['verified','auth'])->group(function()
         Route::post('/user-save-general-info','UserController@save_general_info')->name('user-save-general-info');
         Route::post('/user-upload-resume','UserController@upload_resume')->name('user-upload-resume');
         Route::post('/user-save-languages','UserController@user_save_languages')->name('user-save-languages');
+         Route::post('/user-mother-languages','UserController@user_mother_languages')->name('user-mother-languages');
         Route::post('/user-save-services-rates','UserController@save_services_rates')->name('save-services-rates');
         Route::post('/user-save-voice-over','UserController@save_voice_over')->name('user-save-voice-over');
         Route::post('/user-save-specilizations','UserController@save_specializations')->name('user-save-specilizations');
         Route::post('/user-save-software-tools','UserController@save_software_tools')->name('user-save-software-tools');
         Route::post('/user-save-files','UserController@user_save_files')->name('user.save.files');
         Route::post('/delete-user-files','UserController@delete_user_files')->name('delete.user.files');
+        //delete user language
+        Route::post('/delete-user-languages','UserController@delete_user_languages')->name('delete.user.languages');
+         Route::post('/delete-mother-languages','UserController@delete_mother_languages')->name('delete.mother.languages');
+        Route::post('/delete-voiceover-language','UserController@delete_voiceover_language')->name('delete.voiceover.languages');
+        Route::post('/delete-service-rates','UserController@delete_service_rates')->name('delete.service.rates');
+        
     });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

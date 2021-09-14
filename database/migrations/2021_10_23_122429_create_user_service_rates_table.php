@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserServicesRatesTable extends Migration
+class CreateUserServiceRatesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,15 @@ class CreateUserServicesRatesTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_services_rates', function (Blueprint $table) {
+        Schema::create('user_service_rates', function (Blueprint $table) {
             $table->id();
-            $table->string('preferred_currency')->nullable();
-            $table->boolean('notify')->default('0')->comments= '1 for Notify about Jobs for non-profit or charitable organizations.';
-            $table->boolean('rates_visible')->default('0')->comments= '1 Your rates are visible on your profile page.';
+            $table->string('service')->nullable();
+            $table->bigInteger('pair_language')->unsigned();
+            $table->string('min_rate_per_word')->nullable();
+            $table->string('min_rate_per_minute')->nullable();
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('pair_language')->references('id')->on('user_languages')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +33,6 @@ class CreateUserServicesRatesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_services_rates');
+        Schema::dropIfExists('user_service_rates');
     }
 }

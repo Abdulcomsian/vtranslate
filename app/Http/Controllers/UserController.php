@@ -11,6 +11,8 @@ use App\Models\UserVoiceOver;
 use App\Models\UserSpecializations;
 use App\Models\UserSoftware;
 use App\Models\UserFiles;
+use App\Models\UserMotherLanguages;
+use App\Models\UserServicesRates;
 use Auth;
 use File;
 class UserController extends Controller
@@ -40,8 +42,8 @@ class UserController extends Controller
     public function profile()
     {
         $countries=Country::get();
-        $userData=User::with('usergeneralinfo','userlanguages','usersoftwares','userspicialize','uservoicover')->where('id',Auth::user()->id)->get();
-        //dd($userData[0]->userlanguages[0]->id);
+        $userData=User::with('usergeneralinfo','userlanguages','usersoftwares','userspicialize','uservoicover','userfiles','usermotherlanguages','usersevices')->where('id',Auth::user()->id)->get();
+        //dd($userData[0]->userspicialize->spicializations);
         return view('screens.profile',compact('countries','userData'));
     }
 
@@ -56,12 +58,11 @@ class UserController extends Controller
             ]);
             toastr()->success('User Status Changed Successfull!');
             return \Redirect::route('profile')->with('currtab',$request->currtab);
-            //return back()->with('currtab',$request->currtab);
         }
         catch (\Exception $exception)
         {
             toastr()->error('Something went wrong, try again');
-            return back();
+            return back()->with('currtab',$request->currtab);
         }
 
     }
@@ -91,12 +92,12 @@ class UserController extends Controller
            }
            //toaster message
            toastr()->success('User Gneral Info Saved Successfull!');
-           return back()->with('currtab',$request->currtab); 
+           return \Redirect::route('profile')->with('currtab',$request->currtab); 
         }
         catch (\Exception $exception)
         {
             toastr()->error('Something went wrong, try again');
-            return back();
+            return back()->with('currtab',$request->currtab); 
         }
     }
     //upload resume
@@ -124,13 +125,13 @@ class UserController extends Controller
                 $userModel->save();
                 //toaster message
                 toastr()->success('User Resume Saved Successfull!');
-                return back()->with('currtab',$request->currtab);
+                return \Redirect::route('profile')->with('currtab',$request->currtab);
             }
         }
         catch (\Exception $exception)
         {
             toastr()->error('Something went wrong, try again');
-            return back();
+            return back()->with('currtab',$request->currtab);
         }
 
     }
@@ -141,25 +142,60 @@ class UserController extends Controller
         try
         {
             $UserLanguages= new UserLanguages();
-            $UserLanguages->mother_language=$request->mother_language;
-            $UserLanguages->other_languages=$request->other_languages;
+            $UserLanguages->from_languages=$request->from_languages;
+            $UserLanguages->to_languages=$request->to_languages;
             $UserLanguages->user_id=Auth::user()->id;
             $UserLanguages->save();
             toastr()->success('User Language Saved Successfull!');
-            return back()->with('currtab',$request->currtab);
+            return \Redirect::route('profile')->with('currtab',$request->currtab);
         }
         catch (\Exception $exception)
         {
             toastr()->error('Something went wrong, try again');
-            return back();
+            return back()->with('currtab',$request->currtab);
         }
 
     }
+    //save mother languages
+    public function user_mother_languages(Request $request)
+    {
+        try
+        {
+            $MotherLanguages = new UserMotherLanguages();
+            $MotherLanguages->mother_language=$request->mother_language;
+            $MotherLanguages->user_id=Auth::user()->id;
+            $MotherLanguages->save();
+            toastr()->success('User Mother Language Saved Successfull!');
+            return \Redirect::route('profile')->with('currtab',$request->currtab);
+        }
+        catch (\Exception $exception)
+        {
+            toastr()->error('Something went wrong, try again');
+            return back()->with('currtab',$request->currtab);
+        }
+        
+    }
 
     //save user services rates
-    public function save_services_rates()
-    {
-
+    public function save_services_rates(Request $request)
+     {
+      try
+      {
+            $UserServicesRates = new UserServicesRates();
+            $UserServicesRates->service=$request->service;
+            $UserServicesRates->pair_language=$request->pair_language;
+            $UserServicesRates->min_rate_per_word=$request->min_rate_per_word;
+            $UserServicesRates->min_rate_per_minute=$request->min_rate_per_minute;
+            $UserServicesRates->user_id=Auth::user()->id;
+            $UserServicesRates->save();
+            toastr()->success('User Services Saved Successfull!');
+            return \Redirect::route('profile')->with('currtab',$request->currtab);
+      }
+      catch (\Exception $exception)
+        {
+            toastr()->error('Something went wrong, try again');
+            return back()->with('currtab',$request->currtab);
+        }
     }
 
     //save voice over languages
@@ -167,17 +203,26 @@ class UserController extends Controller
     {
         try
         {
-            $UserVoiceOver= new UserVoiceOver();
-            $UserVoiceOver->language=$request->language;
-            $UserVoiceOver->user_id=Auth::user()->id;
-            $UserVoiceOver->save();
-            toastr()->success('User VoiceOver Language Saved Successfull!');
-            return back()->with('currtab',$request->currtab);
+            //check if language alreayd exist
+            $exist=UserVoiceOver::where('language',$request->language)->where('user_id',Auth::user()->id)->first();
+            if(!$exist)
+            {
+                $UserVoiceOver= new UserVoiceOver();
+                $UserVoiceOver->language=$request->language;
+                $UserVoiceOver->user_id=Auth::user()->id;
+                $UserVoiceOver->save();
+                 toastr()->success('User VoiceOver Language Saved Successfull!');
+            }
+            else
+            {
+                 toastr()->error('User VoiceOver Language Already Added');
+            }
+            return \Redirect::route('profile')->with('currtab',$request->currtab);
         }
         catch (\Exception $exception)
         {
             toastr()->error('Something went wrong, try again');
-            return back();
+            return back()->with('currtab',$request->currtab);
         }
     }
 
@@ -202,12 +247,12 @@ class UserController extends Controller
         $UserSpecializations->save();
         }
         toastr()->success('User specializtions Saved Successfull!');
-        return back()->with('currtab',$request->currtab);
+        return \Redirect::route('profile')->with('currtab',$request->currtab);
       }
       catch (\Exception $exception)
         {
             toastr()->error('Something went wrong, try again');
-            return back();
+            return back()->with('currtab',$request->currtab);
         }
     }
 
@@ -231,12 +276,12 @@ class UserController extends Controller
             $UserSoftware->save();
           }
           toastr()->success('User Softwares Saved Successfull!');
-          return back()->with('currtab',$request->currtab);
+          return \Redirect::route('profile')->with('currtab',$request->currtab);
         }
         catch (\Exception $exception)
         {
             toastr()->error('Something went wrong, try again');
-            return back();
+            return back()->with('currtab',$request->currtab);
         }
 
     }
@@ -255,18 +300,101 @@ class UserController extends Controller
                    File::makeDirectory(public_path().'/'.$path,0777,true);
                 } 
                 $name = time().$file->getClientOriginalName();
+                $size=$file->getSize();
                 $file->move('files/userfiles/',$name); 
             }
             $UserFiles = new UserFiles();
             $UserFiles->file_title=$request->file_title;
-            $UserFiles->file=$request->file;
+            $UserFiles->file=$name;
+            $UserFiles->file_size=$size;
             $UserFiles->purpose=$request->purpose;
             $UserFiles->language=$request->language;
             $UserFiles->comments=$request->comments;
             $UserFiles->user_id=Auth::user()->id;
             $UserFiles->save();
             toastr()->success('User Files Saved Successfully!!');
+            return \Redirect::route('profile');
+        }
+        catch (\Exception $exception)
+        {
+            toastr()->error('Something went wrong, try again');
             return back();
+        }
+    }
+
+    //delete user language
+    public function delete_user_languages(Request $request)
+    {
+        try
+        {
+            UserLanguages::find($request->id)->delete();
+            toastr()->success('User Language Deleted Successfull!');
+            return \Redirect::route('profile')->with('currtab','languages');
+        }
+        catch (\Exception $exception)
+        {
+            toastr()->error('Something went wrong, try again');
+            return back()->with('currtab','languages');
+        }
+        
+    }
+    //delte mother langugaes
+    public function delete_mother_languages(Request $request)
+    {
+        try
+        {
+             UserMotherLanguages::find($request->id)->delete();
+             toastr()->success('Mother Language Deleted Successfull!');
+             return \Redirect::route('profile')->with('currtab','languages');
+        }
+        catch (\Exception $exception)
+        {
+            toastr()->error('Something went wrong, try again');
+            return back()->with('currtab','languages');
+        }
+    }
+    //delete voiceover language
+    public function delete_voiceover_language(Request $request)
+    {
+        try
+        {
+            UserVoiceOver::find($request->id)->delete();
+            toastr()->success('VoiceOver Language Deleted Successfull!');
+            return \Redirect::route('profile')->with('currtab','voiceover');
+        }
+        catch (\Exception $exception)
+        {
+            toastr()->error('Something went wrong, try again');
+            return back()->with('currtab','voiceover');
+        }
+    }
+    //delete user files
+    public function delete_user_files(Request $request)
+    {
+        
+        try
+        {
+            foreach ($request->user_files as $key => $file) {
+               UserFiles::find($file)->delete();
+            }
+            toastr()->success('Files  Deleted Successfull!');
+            return \Redirect::route('profile');
+        }
+        catch (\Exception $exception)
+        {
+            toastr()->error('Something went wrong, try again');
+            return back();
+        }
+    }
+
+    //delete service rates
+    public function delete_service_rates(Request $request)
+    {
+        try
+        {
+            UserServicesRates::find($request->id)->delete();
+            toastr()->success('Service  Deleted Successfull!');
+            return \Redirect::route('profile')->with('currtab','service_rates');
         }
         catch (\Exception $exception)
         {

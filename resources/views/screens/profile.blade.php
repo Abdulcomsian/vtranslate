@@ -20,6 +20,7 @@
                             $voiceover='';
                             $softwarestab='';
                             $specializationtab='';
+                            $service_rate_tab='';
                             if(session()->get('currtab')=='status'){
                              $statusactive='active';
                             }
@@ -46,6 +47,10 @@
                             {
                                 $softwarestab='active';
                             }
+                            elseif(session()->get('currtab')=='service_rates')
+                            {
+                                $service_rate_tab='active';
+                            }
                             else
                             {
                                 $factive='active';
@@ -68,13 +73,10 @@
                                 <a class="nav-link" data-toggle="pill" href="#self-promotion"><span>Self Promotion</span> </a>
                              </li>
                              <li class="nav-item">
-                                <a href="#agency" class="nav-link" data-toggle="pill"><span>Agency</span> </a>
-                             </li>
-                             <li class="nav-item">
                                 <a href="#language" class="nav-link {{$languages}}" data-toggle="pill"><span>Languages</span> </a>
                              </li>
                              <li class="nav-item">
-                                <a href="#service" class="nav-link" data-toggle="pill"><span>Services & Rates</span> </a>
+                                <a href="#service" class="nav-link {{$service_rate_tab}}" data-toggle="pill"><span>Services & Rates</span> </a>
                              </li>
                              <li class="nav-item">
                                 <a href="#voice-Over" class="nav-link {{$voiceover}}" data-toggle="pill"><span>Voice-Over</span> </a>
@@ -813,19 +815,6 @@ If you are not registered with any of the payment processors below, please click
                         </div>
                     </section>
                 </div>
-                <div id="agency" class="container tab-pane fade">   
-                    <div id="contactDiv" class="padd-100">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="commonDiv">
-                                        <h3>Agency</h3>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div id="language" class="container tab-pane {{$languages}}">
                     <div id="contactDiv" class="padd-100">
                         <div class="container">
@@ -834,174 +823,220 @@ If you are not registered with any of the payment processors below, please click
                                     <div class="commonDiv">
                                         <h3>Language</h3>
                                         <p class="warningself">You can select languages from below</p>
-                                        <form action="{{route('user-save-languages')}}" method="post">
-                                            @csrf
+                                       
                                             <div class="row">
-                                                <div class="col-md-6 ">
+                                                <div class="col-md-12">
+                                                    <form action="{{route('user-mother-languages')}}" method="post">
+                                                    @csrf
                                                     <table>
                                                         <thead>
                                                             <th>Mother languages</th>
                                                         </thead>
                                                         <tbody>
-                                                           <td class="text-center ml-5">
-                                                            <select id="mother_language" name="mother_language" required="required">
-                                                                <option value="">Select Country</option>
-                                                                <option value="af">Afrikaans</option>
-                                                                <option value="sq">Albanian - shqip</option>
-                                                                <option value="am">Amharic - አማርኛ</option>
-                                                                <option value="ar">Arabic - العربية</option>
-                                                                <option value="an">Aragonese - aragonés</option>
-                                                                <option value="hy">Armenian - հայերեն</option>
-                                                                <option value="ast">Asturian - asturianu</option>
-                                                                <option value="az">Azerbaijani - azərbaycan dili</option>
-                                                                <option value="eu">Basque - euskara</option>
-                                                                <option value="be">Belarusian - беларуская</option>
-                                                                <option value="bn">Bengali - বাংলা</option>
-                                                                <option value="bs">Bosnian - bosanski</option>
-                                                                <option value="br">Breton - brezhoneg</option>
-                                                                <option value="bg">Bulgarian - български</option>
-                                                                <option value="ca">Catalan - català</option>
-                                                                <option value="ckb">Central Kurdish - کوردی (دەستنوسی عەرەبی)</option>
-                                                                <option value="zh">Chinese - 中文</option>
-                                                                <option value="zh-HK">Chinese (Hong Kong) - 中文（香港）</option>
-                                                                <option value="zh-CN">Chinese (Simplified) - 中文（简体）</option>
-                                                                <option value="zh-TW">Chinese (Traditional) - 中文（繁體）</option>
-                                                                <option value="co">Corsican</option>
-                                                                <option value="hr">Croatian - hrvatski</option>
-                                                                <option value="cs">Czech - čeština</option>
-                                                                <option value="da">Danish - dansk</option>
-                                                                <option value="nl">Dutch - Nederlands</option>
-                                                                <option value="en">English</option>
-                                                                <option value="en-AU">English (Australia)</option>
-                                                                <option value="en-CA">English (Canada)</option>
-                                                                <option value="en-IN">English (India)</option>
-                                                                <option value="en-NZ">English (New Zealand)</option>
-                                                                <option value="en-ZA">English (South Africa)</option>
-                                                                <option value="en-GB">English (United Kingdom)</option>
-                                                                <option value="en-US">English (United States)</option>
-                                                                <option value="eo">Esperanto - esperanto</option>
-                                                                <option value="et">Estonian - eesti</option>
-                                                                <option value="fo">Faroese - føroyskt</option>
-                                                                <option value="fil">Filipino</option>
-                                                                <option value="fi">Finnish - suomi</option>
-                                                                <option value="fr">French - français</option>
-                                                                <option value="fr-CA">French (Canada) - français (Canada)</option>
-                                                                <option value="fr-FR">French (France) - français (France)</option>
-                                                                <option value="fr-CH">French (Switzerland) - français (Suisse)</option>
-                                                                <option value="gl">Galician - galego</option>
-                                                                <option value="ka">Georgian - ქართული</option>
-                                                                <option value="de">German - Deutsch</option>
-                                                                <option value="de-AT">German (Austria) - Deutsch (Österreich)</option>
-                                                                <option value="de-DE">German (Germany) - Deutsch (Deutschland)</option>
-                                                                <option value="de-LI">German (Liechtenstein) - Deutsch (Liechtenstein)</option>
-                                                                <option value="de-CH">German (Switzerland) - Deutsch (Schweiz)</option>
-                                                                <option value="el">Greek - Ελληνικά</option>
-                                                                <option value="gn">Guarani</option>
-                                                                <option value="gu">Gujarati - ગુજરાતી</option>
-                                                                <option value="ha">Hausa</option>
-                                                                <option value="haw">Hawaiian - ʻŌlelo Hawaiʻi</option>
-                                                                <option value="he">Hebrew - עברית</option>
-                                                                <option value="hi">Hindi - हिन्दी</option>
-                                                                <option value="hu">Hungarian - magyar</option>
-                                                                <option value="is">Icelandic - íslenska</option>
-                                                                <option value="id">Indonesian - Indonesia</option>
-                                                                <option value="ia">Interlingua</option>
-                                                                <option value="ga">Irish - Gaeilge</option>
-                                                                <option value="it">Italian - italiano</option>
-                                                                <option value="it-IT">Italian (Italy) - italiano (Italia)</option>
-                                                                <option value="it-CH">Italian (Switzerland) - italiano (Svizzera)</option>
-                                                                <option value="ja">Japanese - 日本語</option>
-                                                                <option value="kn">Kannada - ಕನ್ನಡ</option>
-                                                                <option value="kk">Kazakh - қазақ тілі</option>
-                                                                <option value="km">Khmer - ខ្មែរ</option>
-                                                                <option value="ko">Korean - 한국어</option>
-                                                                <option value="ku">Kurdish - Kurdî</option>
-                                                                <option value="ky">Kyrgyz - кыргызча</option>
-                                                                <option value="lo">Lao - ລາວ</option>
-                                                                <option value="la">Latin</option>
-                                                                <option value="lv">Latvian - latviešu</option>
-                                                                <option value="ln">Lingala - lingála</option>
-                                                                <option value="lt">Lithuanian - lietuvių</option>
-                                                                <option value="mk">Macedonian - македонски</option>
-                                                                <option value="ms">Malay - Bahasa Melayu</option>
-                                                                <option value="ml">Malayalam - മലയാളം</option>
-                                                                <option value="mt">Maltese - Malti</option>
-                                                                <option value="mr">Marathi - मराठी</option>
-                                                                <option value="mn">Mongolian - монгол</option>
-                                                                <option value="ne">Nepali - नेपाली</option>
-                                                                <option value="no">Norwegian - norsk</option>
-                                                                <option value="nb">Norwegian Bokmål - norsk bokmål</option>
-                                                                <option value="nn">Norwegian Nynorsk - nynorsk</option>
-                                                                <option value="oc">Occitan</option>
-                                                                <option value="or">Oriya - ଓଡ଼ିଆ</option>
-                                                                <option value="om">Oromo - Oromoo</option>
-                                                                <option value="ps">Pashto - پښتو</option>
-                                                                <option value="fa">Persian - فارسی</option>
-                                                                <option value="pl">Polish - polski</option>
-                                                                <option value="pt">Portuguese - português</option>
-                                                                <option value="pt-BR">Portuguese (Brazil) - português (Brasil)</option>
-                                                                <option value="pt-PT">Portuguese (Portugal) - português (Portugal)</option>
-                                                                <option value="pa">Punjabi - ਪੰਜਾਬੀ</option>
-                                                                <option value="qu">Quechua</option>
-                                                                <option value="ro">Romanian - română</option>
-                                                                <option value="mo">Romanian (Moldova) - română (Moldova)</option>
-                                                                <option value="rm">Romansh - rumantsch</option>
-                                                                <option value="ru">Russian - русский</option>
-                                                                <option value="gd">Scottish Gaelic</option>
-                                                                <option value="sr">Serbian - српски</option>
-                                                                <option value="sh">Serbo-Croatian - Srpskohrvatski</option>
-                                                                <option value="sn">Shona - chiShona</option>
-                                                                <option value="sd">Sindhi</option>
-                                                                <option value="si">Sinhala - සිංහල</option>
-                                                                <option value="sk">Slovak - slovenčina</option>
-                                                                <option value="sl">Slovenian - slovenščina</option>
-                                                                <option value="so">Somali - Soomaali</option>
-                                                                <option value="st">Southern Sotho</option>
-                                                                <option value="es">Spanish - español</option>
-                                                                <option value="es-AR">Spanish (Argentina) - español (Argentina)</option>
-                                                                <option value="es-419">Spanish (Latin America) - español (Latinoamérica)</option>
-                                                                <option value="es-MX">Spanish (Mexico) - español (México)</option>
-                                                                <option value="es-ES">Spanish (Spain) - español (España)</option>
-                                                                <option value="es-US">Spanish (United States) - español (Estados Unidos)</option>
-                                                                <option value="su">Sundanese</option>
-                                                                <option value="sw">Swahili - Kiswahili</option>
-                                                                <option value="sv">Swedish - svenska</option>
-                                                                <option value="tg">Tajik - тоҷикӣ</option>
-                                                                <option value="ta">Tamil - தமிழ்</option>
-                                                                <option value="tt">Tatar</option>
-                                                                <option value="te">Telugu - తెలుగు</option>
-                                                                <option value="th">Thai - ไทย</option>
-                                                                <option value="ti">Tigrinya - ትግርኛ</option>
-                                                                <option value="to">Tongan - lea fakatonga</option>
-                                                                <option value="tr">Turkish - Türkçe</option>
-                                                                <option value="tk">Turkmen</option>
-                                                                <option value="tw">Twi</option>
-                                                                <option value="uk">Ukrainian - українська</option>
-                                                                <option value="ur">Urdu - اردو</option>
-                                                                <option value="ug">Uyghur</option>
-                                                                <option value="uz">Uzbek - o‘zbek</option>
-                                                                <option value="vi">Vietnamese - Tiếng Việt</option>
-                                                                <option value="wa">Walloon - wa</option>
-                                                                <option value="cy">Welsh - Cymraeg</option>
-                                                                <option value="fy">Western Frisian</option>
-                                                                <option value="xh">Xhosa</option>
-                                                                <option value="yi">Yiddish</option>
-                                                                <option value="yo">Yoruba - Èdè Yorùbá</option>
-                                                                <option value="zu">Zulu - isiZulu</option>
-                                                            </select>
-                                                           </td>
+                                                            
+                                                               <td class="text-center ml-5">
+                                                                <select id="mother_language" name="mother_language" required="required">
+                                                                    <option value="">Select Language</option>
+                                                                    <option value="af">Afrikaans</option>
+                                                                    <option value="sq">Albanian - shqip</option>
+                                                                    <option value="am">Amharic - አማርኛ</option>
+                                                                    <option value="ar">Arabic - العربية</option>
+                                                                    <option value="an">Aragonese - aragonés</option>
+                                                                    <option value="hy">Armenian - հայերեն</option>
+                                                                    <option value="ast">Asturian - asturianu</option>
+                                                                    <option value="az">Azerbaijani - azərbaycan dili</option>
+                                                                    <option value="eu">Basque - euskara</option>
+                                                                    <option value="be">Belarusian - беларуская</option>
+                                                                    <option value="bn">Bengali - বাংলা</option>
+                                                                    <option value="bs">Bosnian - bosanski</option>
+                                                                    <option value="br">Breton - brezhoneg</option>
+                                                                    <option value="bg">Bulgarian - български</option>
+                                                                    <option value="ca">Catalan - català</option>
+                                                                    <option value="ckb">Central Kurdish - کوردی (دەستنوسی عەرەبی)</option>
+                                                                    <option value="zh">Chinese - 中文</option>
+                                                                    <option value="zh-HK">Chinese (Hong Kong) - 中文（香港）</option>
+                                                                    <option value="zh-CN">Chinese (Simplified) - 中文（简体）</option>
+                                                                    <option value="zh-TW">Chinese (Traditional) - 中文（繁體）</option>
+                                                                    <option value="co">Corsican</option>
+                                                                    <option value="hr">Croatian - hrvatski</option>
+                                                                    <option value="cs">Czech - čeština</option>
+                                                                    <option value="da">Danish - dansk</option>
+                                                                    <option value="nl">Dutch - Nederlands</option>
+                                                                    <option value="en">English</option>
+                                                                    <option value="en-AU">English (Australia)</option>
+                                                                    <option value="en-CA">English (Canada)</option>
+                                                                    <option value="en-IN">English (India)</option>
+                                                                    <option value="en-NZ">English (New Zealand)</option>
+                                                                    <option value="en-ZA">English (South Africa)</option>
+                                                                    <option value="en-GB">English (United Kingdom)</option>
+                                                                    <option value="en-US">English (United States)</option>
+                                                                    <option value="eo">Esperanto - esperanto</option>
+                                                                    <option value="et">Estonian - eesti</option>
+                                                                    <option value="fo">Faroese - føroyskt</option>
+                                                                    <option value="fil">Filipino</option>
+                                                                    <option value="fi">Finnish - suomi</option>
+                                                                    <option value="fr">French - français</option>
+                                                                    <option value="fr-CA">French (Canada) - français (Canada)</option>
+                                                                    <option value="fr-FR">French (France) - français (France)</option>
+                                                                    <option value="fr-CH">French (Switzerland) - français (Suisse)</option>
+                                                                    <option value="gl">Galician - galego</option>
+                                                                    <option value="ka">Georgian - ქართული</option>
+                                                                    <option value="de">German - Deutsch</option>
+                                                                    <option value="de-AT">German (Austria) - Deutsch (Österreich)</option>
+                                                                    <option value="de-DE">German (Germany) - Deutsch (Deutschland)</option>
+                                                                    <option value="de-LI">German (Liechtenstein) - Deutsch (Liechtenstein)</option>
+                                                                    <option value="de-CH">German (Switzerland) - Deutsch (Schweiz)</option>
+                                                                    <option value="el">Greek - Ελληνικά</option>
+                                                                    <option value="gn">Guarani</option>
+                                                                    <option value="gu">Gujarati - ગુજરાતી</option>
+                                                                    <option value="ha">Hausa</option>
+                                                                    <option value="haw">Hawaiian - ʻŌlelo Hawaiʻi</option>
+                                                                    <option value="he">Hebrew - עברית</option>
+                                                                    <option value="hi">Hindi - हिन्दी</option>
+                                                                    <option value="hu">Hungarian - magyar</option>
+                                                                    <option value="is">Icelandic - íslenska</option>
+                                                                    <option value="id">Indonesian - Indonesia</option>
+                                                                    <option value="ia">Interlingua</option>
+                                                                    <option value="ga">Irish - Gaeilge</option>
+                                                                    <option value="it">Italian - italiano</option>
+                                                                    <option value="it-IT">Italian (Italy) - italiano (Italia)</option>
+                                                                    <option value="it-CH">Italian (Switzerland) - italiano (Svizzera)</option>
+                                                                    <option value="ja">Japanese - 日本語</option>
+                                                                    <option value="kn">Kannada - ಕನ್ನಡ</option>
+                                                                    <option value="kk">Kazakh - қазақ тілі</option>
+                                                                    <option value="km">Khmer - ខ្មែរ</option>
+                                                                    <option value="ko">Korean - 한국어</option>
+                                                                    <option value="ku">Kurdish - Kurdî</option>
+                                                                    <option value="ky">Kyrgyz - кыргызча</option>
+                                                                    <option value="lo">Lao - ລາວ</option>
+                                                                    <option value="la">Latin</option>
+                                                                    <option value="lv">Latvian - latviešu</option>
+                                                                    <option value="ln">Lingala - lingála</option>
+                                                                    <option value="lt">Lithuanian - lietuvių</option>
+                                                                    <option value="mk">Macedonian - македонски</option>
+                                                                    <option value="ms">Malay - Bahasa Melayu</option>
+                                                                    <option value="ml">Malayalam - മലയാളം</option>
+                                                                    <option value="mt">Maltese - Malti</option>
+                                                                    <option value="mr">Marathi - मराठी</option>
+                                                                    <option value="mn">Mongolian - монгол</option>
+                                                                    <option value="ne">Nepali - नेपाली</option>
+                                                                    <option value="no">Norwegian - norsk</option>
+                                                                    <option value="nb">Norwegian Bokmål - norsk bokmål</option>
+                                                                    <option value="nn">Norwegian Nynorsk - nynorsk</option>
+                                                                    <option value="oc">Occitan</option>
+                                                                    <option value="or">Oriya - ଓଡ଼ିଆ</option>
+                                                                    <option value="om">Oromo - Oromoo</option>
+                                                                    <option value="ps">Pashto - پښتو</option>
+                                                                    <option value="fa">Persian - فارسی</option>
+                                                                    <option value="pl">Polish - polski</option>
+                                                                    <option value="pt">Portuguese - português</option>
+                                                                    <option value="pt-BR">Portuguese (Brazil) - português (Brasil)</option>
+                                                                    <option value="pt-PT">Portuguese (Portugal) - português (Portugal)</option>
+                                                                    <option value="pa">Punjabi - ਪੰਜਾਬੀ</option>
+                                                                    <option value="qu">Quechua</option>
+                                                                    <option value="ro">Romanian - română</option>
+                                                                    <option value="mo">Romanian (Moldova) - română (Moldova)</option>
+                                                                    <option value="rm">Romansh - rumantsch</option>
+                                                                    <option value="ru">Russian - русский</option>
+                                                                    <option value="gd">Scottish Gaelic</option>
+                                                                    <option value="sr">Serbian - српски</option>
+                                                                    <option value="sh">Serbo-Croatian - Srpskohrvatski</option>
+                                                                    <option value="sn">Shona - chiShona</option>
+                                                                    <option value="sd">Sindhi</option>
+                                                                    <option value="si">Sinhala - සිංහල</option>
+                                                                    <option value="sk">Slovak - slovenčina</option>
+                                                                    <option value="sl">Slovenian - slovenščina</option>
+                                                                    <option value="so">Somali - Soomaali</option>
+                                                                    <option value="st">Southern Sotho</option>
+                                                                    <option value="es">Spanish - español</option>
+                                                                    <option value="es-AR">Spanish (Argentina) - español (Argentina)</option>
+                                                                    <option value="es-419">Spanish (Latin America) - español (Latinoamérica)</option>
+                                                                    <option value="es-MX">Spanish (Mexico) - español (México)</option>
+                                                                    <option value="es-ES">Spanish (Spain) - español (España)</option>
+                                                                    <option value="es-US">Spanish (United States) - español (Estados Unidos)</option>
+                                                                    <option value="su">Sundanese</option>
+                                                                    <option value="sw">Swahili - Kiswahili</option>
+                                                                    <option value="sv">Swedish - svenska</option>
+                                                                    <option value="tg">Tajik - тоҷикӣ</option>
+                                                                    <option value="ta">Tamil - தமிழ்</option>
+                                                                    <option value="tt">Tatar</option>
+                                                                    <option value="te">Telugu - తెలుగు</option>
+                                                                    <option value="th">Thai - ไทย</option>
+                                                                    <option value="ti">Tigrinya - ትግርኛ</option>
+                                                                    <option value="to">Tongan - lea fakatonga</option>
+                                                                    <option value="tr">Turkish - Türkçe</option>
+                                                                    <option value="tk">Turkmen</option>
+                                                                    <option value="tw">Twi</option>
+                                                                    <option value="uk">Ukrainian - українська</option>
+                                                                    <option value="ur">Urdu - اردو</option>
+                                                                    <option value="ug">Uyghur</option>
+                                                                    <option value="uz">Uzbek - o‘zbek</option>
+                                                                    <option value="vi">Vietnamese - Tiếng Việt</option>
+                                                                    <option value="wa">Walloon - wa</option>
+                                                                    <option value="cy">Welsh - Cymraeg</option>
+                                                                    <option value="fy">Western Frisian</option>
+                                                                    <option value="xh">Xhosa</option>
+                                                                    <option value="yi">Yiddish</option>
+                                                                    <option value="yo">Yoruba - Èdè Yorùbá</option>
+                                                                    <option value="zu">Zulu - isiZulu</option>
+                                                                </select>
+
+                                                               </td>
+                                                               
+                                                          
                                                         </tbody>
                                                     </table>
-                                                </div>  
-                                                <div class="col-md-6 ">
+                                                    <div class="multiBtn text-center pt-5">
+                                                                <input type="hidden" name="currtab" value="languages">
+                                                                <button type="submit" class="commonBtn">Save Mother Language</button>
+                                                            </div>
+                                                     </form>
+                                                    <br>
+                                                    <div class="pt-5">
+                                            <table class="table table-responsive">
+                                                <thead>
+                                                  <tr>
+                                                    <th style="width:30%">No:</th>
+                                                     <th style="width:60%">Mother Languages</th>
+                                                     <th>Actions</th>
+                                                  </tr>
+                                                </thead>
+                                                <tbody>
+                                                  @foreach($userData[0]->usermotherlanguages as $lang)
+                                                  <tr>
+                                                    <td>{{$loop->iteration}}</td>
+                                                    <td >{{$lang->mother_language}}</td>
+                                                    <td >
+                                                      <form action="{{route('delete.mother.languages')}}" method="post" id="delete-mlanguage-form">
+                                                        @csrf
+                                                        <input type="hidden" name="id" value="{{$lang->id}}">
+                                                      <button type="button" class="btn delete-mother-language">
+                                                        <span class="fa fa-trash"></span>
+                                                      </button>
+                                                     </form>
+                                                     
+                                                    </td>
+                                                  </tr>
+                                                  @endforeach
+                                                
+                                                </tbody>
+                                              </table>
+                                        </div>
+                                                </div> 
+                                            </div>
+                                                <br> 
+                                                 <form action="{{route('user-save-languages')}}" method="post">
+                                                  @csrf
+                                                  <div class="row">
+                                                <div class="col-md-5">
                                                     <table class="table-responsive">
                                                         <thead>
-                                                            <th>Other languages</th>
+                                                            <th>languages</th>
                                                         </thead>
                                                         <tbody>
                                                            <td class="text-center ml-5">
-                                                            <select id="other_languages" name="other_languages">
-                                                                <option value="">Select Country</option>
+                                                            <select id="from_languages" name="from_languages">
+                                                                <option value="">Select Language</option>
                                                                 <option value="af">Afrikaans</option>
                                                                 <option value="sq">Albanian - shqip</option>
                                                                 <option value="am">Amharic - አማርኛ</option>
@@ -1150,6 +1185,164 @@ If you are not registered with any of the payment processors below, please click
                                                         </tbody>
                                                     </table>
                                                 </div>  
+                                                <span>===></span>
+                                                <div class="col-md-5 ">
+                                                    <table class="table-responsive">
+                                                        <thead>
+                                                            <th>languages</th>
+                                                        </thead>
+                                                        <tbody>
+                                                           <td class="text-center ml-5">
+                                                            <select id="to_languages" name="to_languages">
+                                                                <option value="">Select Language</option>
+                                                                <option value="af">Afrikaans</option>
+                                                                <option value="sq">Albanian - shqip</option>
+                                                                <option value="am">Amharic - አማርኛ</option>
+                                                                <option value="ar">Arabic - العربية</option>
+                                                                <option value="an">Aragonese - aragonés</option>
+                                                                <option value="hy">Armenian - հայերեն</option>
+                                                                <option value="ast">Asturian - asturianu</option>
+                                                                <option value="az">Azerbaijani - azərbaycan dili</option>
+                                                                <option value="eu">Basque - euskara</option>
+                                                                <option value="be">Belarusian - беларуская</option>
+                                                                <option value="bn">Bengali - বাংলা</option>
+                                                                <option value="bs">Bosnian - bosanski</option>
+                                                                <option value="br">Breton - brezhoneg</option>
+                                                                <option value="bg">Bulgarian - български</option>
+                                                                <option value="ca">Catalan - català</option>
+                                                                <option value="ckb">Central Kurdish - کوردی (دەستنوسی عەرەبی)</option>
+                                                                <option value="zh">Chinese - 中文</option>
+                                                                <option value="zh-HK">Chinese (Hong Kong) - 中文（香港）</option>
+                                                                <option value="zh-CN">Chinese (Simplified) - 中文（简体）</option>
+                                                                <option value="zh-TW">Chinese (Traditional) - 中文（繁體）</option>
+                                                                <option value="co">Corsican</option>
+                                                                <option value="hr">Croatian - hrvatski</option>
+                                                                <option value="cs">Czech - čeština</option>
+                                                                <option value="da">Danish - dansk</option>
+                                                                <option value="nl">Dutch - Nederlands</option>
+                                                                <option value="en">English</option>
+                                                                <option value="en-AU">English (Australia)</option>
+                                                                <option value="en-CA">English (Canada)</option>
+                                                                <option value="en-IN">English (India)</option>
+                                                                <option value="en-NZ">English (New Zealand)</option>
+                                                                <option value="en-ZA">English (South Africa)</option>
+                                                                <option value="en-GB">English (United Kingdom)</option>
+                                                                <option value="en-US">English (United States)</option>
+                                                                <option value="eo">Esperanto - esperanto</option>
+                                                                <option value="et">Estonian - eesti</option>
+                                                                <option value="fo">Faroese - føroyskt</option>
+                                                                <option value="fil">Filipino</option>
+                                                                <option value="fi">Finnish - suomi</option>
+                                                                <option value="fr">French - français</option>
+                                                                <option value="fr-CA">French (Canada) - français (Canada)</option>
+                                                                <option value="fr-FR">French (France) - français (France)</option>
+                                                                <option value="fr-CH">French (Switzerland) - français (Suisse)</option>
+                                                                <option value="gl">Galician - galego</option>
+                                                                <option value="ka">Georgian - ქართული</option>
+                                                                <option value="de">German - Deutsch</option>
+                                                                <option value="de-AT">German (Austria) - Deutsch (Österreich)</option>
+                                                                <option value="de-DE">German (Germany) - Deutsch (Deutschland)</option>
+                                                                <option value="de-LI">German (Liechtenstein) - Deutsch (Liechtenstein)</option>
+                                                                <option value="de-CH">German (Switzerland) - Deutsch (Schweiz)</option>
+                                                                <option value="el">Greek - Ελληνικά</option>
+                                                                <option value="gn">Guarani</option>
+                                                                <option value="gu">Gujarati - ગુજરાતી</option>
+                                                                <option value="ha">Hausa</option>
+                                                                <option value="haw">Hawaiian - ʻŌlelo Hawaiʻi</option>
+                                                                <option value="he">Hebrew - עברית</option>
+                                                                <option value="hi">Hindi - हिन्दी</option>
+                                                                <option value="hu">Hungarian - magyar</option>
+                                                                <option value="is">Icelandic - íslenska</option>
+                                                                <option value="id">Indonesian - Indonesia</option>
+                                                                <option value="ia">Interlingua</option>
+                                                                <option value="ga">Irish - Gaeilge</option>
+                                                                <option value="it">Italian - italiano</option>
+                                                                <option value="it-IT">Italian (Italy) - italiano (Italia)</option>
+                                                                <option value="it-CH">Italian (Switzerland) - italiano (Svizzera)</option>
+                                                                <option value="ja">Japanese - 日本語</option>
+                                                                <option value="kn">Kannada - ಕನ್ನಡ</option>
+                                                                <option value="kk">Kazakh - қазақ тілі</option>
+                                                                <option value="km">Khmer - ខ្មែរ</option>
+                                                                <option value="ko">Korean - 한국어</option>
+                                                                <option value="ku">Kurdish - Kurdî</option>
+                                                                <option value="ky">Kyrgyz - кыргызча</option>
+                                                                <option value="lo">Lao - ລາວ</option>
+                                                                <option value="la">Latin</option>
+                                                                <option value="lv">Latvian - latviešu</option>
+                                                                <option value="ln">Lingala - lingála</option>
+                                                                <option value="lt">Lithuanian - lietuvių</option>
+                                                                <option value="mk">Macedonian - македонски</option>
+                                                                <option value="ms">Malay - Bahasa Melayu</option>
+                                                                <option value="ml">Malayalam - മലയാളം</option>
+                                                                <option value="mt">Maltese - Malti</option>
+                                                                <option value="mr">Marathi - मराठी</option>
+                                                                <option value="mn">Mongolian - монгол</option>
+                                                                <option value="ne">Nepali - नेपाली</option>
+                                                                <option value="no">Norwegian - norsk</option>
+                                                                <option value="nb">Norwegian Bokmål - norsk bokmål</option>
+                                                                <option value="nn">Norwegian Nynorsk - nynorsk</option>
+                                                                <option value="oc">Occitan</option>
+                                                                <option value="or">Oriya - ଓଡ଼ିଆ</option>
+                                                                <option value="om">Oromo - Oromoo</option>
+                                                                <option value="ps">Pashto - پښتو</option>
+                                                                <option value="fa">Persian - فارسی</option>
+                                                                <option value="pl">Polish - polski</option>
+                                                                <option value="pt">Portuguese - português</option>
+                                                                <option value="pt-BR">Portuguese (Brazil) - português (Brasil)</option>
+                                                                <option value="pt-PT">Portuguese (Portugal) - português (Portugal)</option>
+                                                                <option value="pa">Punjabi - ਪੰਜਾਬੀ</option>
+                                                                <option value="qu">Quechua</option>
+                                                                <option value="ro">Romanian - română</option>
+                                                                <option value="mo">Romanian (Moldova) - română (Moldova)</option>
+                                                                <option value="rm">Romansh - rumantsch</option>
+                                                                <option value="ru">Russian - русский</option>
+                                                                <option value="gd">Scottish Gaelic</option>
+                                                                <option value="sr">Serbian - српски</option>
+                                                                <option value="sh">Serbo-Croatian - Srpskohrvatski</option>
+                                                                <option value="sn">Shona - chiShona</option>
+                                                                <option value="sd">Sindhi</option>
+                                                                <option value="si">Sinhala - සිංහල</option>
+                                                                <option value="sk">Slovak - slovenčina</option>
+                                                                <option value="sl">Slovenian - slovenščina</option>
+                                                                <option value="so">Somali - Soomaali</option>
+                                                                <option value="st">Southern Sotho</option>
+                                                                <option value="es">Spanish - español</option>
+                                                                <option value="es-AR">Spanish (Argentina) - español (Argentina)</option>
+                                                                <option value="es-419">Spanish (Latin America) - español (Latinoamérica)</option>
+                                                                <option value="es-MX">Spanish (Mexico) - español (México)</option>
+                                                                <option value="es-ES">Spanish (Spain) - español (España)</option>
+                                                                <option value="es-US">Spanish (United States) - español (Estados Unidos)</option>
+                                                                <option value="su">Sundanese</option>
+                                                                <option value="sw">Swahili - Kiswahili</option>
+                                                                <option value="sv">Swedish - svenska</option>
+                                                                <option value="tg">Tajik - тоҷикӣ</option>
+                                                                <option value="ta">Tamil - தமிழ்</option>
+                                                                <option value="tt">Tatar</option>
+                                                                <option value="te">Telugu - తెలుగు</option>
+                                                                <option value="th">Thai - ไทย</option>
+                                                                <option value="ti">Tigrinya - ትግርኛ</option>
+                                                                <option value="to">Tongan - lea fakatonga</option>
+                                                                <option value="tr">Turkish - Türkçe</option>
+                                                                <option value="tk">Turkmen</option>
+                                                                <option value="tw">Twi</option>
+                                                                <option value="uk">Ukrainian - українська</option>
+                                                                <option value="ur">Urdu - اردو</option>
+                                                                <option value="ug">Uyghur</option>
+                                                                <option value="uz">Uzbek - o‘zbek</option>
+                                                                <option value="vi">Vietnamese - Tiếng Việt</option>
+                                                                <option value="wa">Walloon - wa</option>
+                                                                <option value="cy">Welsh - Cymraeg</option>
+                                                                <option value="fy">Western Frisian</option>
+                                                                <option value="xh">Xhosa</option>
+                                                                <option value="yi">Yiddish</option>
+                                                                <option value="yo">Yoruba - Èdè Yorùbá</option>
+                                                                <option value="zu">Zulu - isiZulu</option>
+                                                            </select>
+                    
+                                                           </td>
+                                                        </tbody>
+                                                    </table>
+                                                </div> 
                                             </div>
                                             <div class="multiBtn text-center pt-5">
                                                 <input type="hidden" name="currtab" value="languages">
@@ -1160,25 +1353,25 @@ If you are not registered with any of the payment processors below, please click
                                             <table class="table table-responsive">
                                                 <thead>
                                                   <tr>
-                                                    <th scope="col-2">No:</th>
-                                                    <th scope="col-3">Mother Language</th>
-                                                     <th scope="col-5">Other language</th>
-                                                     <th scope="col-3">Actions</th>
+                                                    <th style="width:10%">No:</th>
+                                                     <th style="width:10%">Language ==> Language</th>
+                                                     <th style="width:10%">Actions</th>
                                                   </tr>
                                                 </thead>
                                                 <tbody>
                                                   @foreach($userData[0]->userlanguages as $lang)
                                                   <tr>
-                                                    <th scope="col-2">{{$loop->iteration}}</th>
-                                                    <td class="col-2">{{$lang->mother_language}}</td>
-                                                    <td class="col-2">{{$lang->other_languages}}</td>
-                                                    <td class="col-3">
-                                                        <button class="btn">
+                                                    <td>{{$loop->iteration}}</td>
+                                                    <td >{{$lang->from_languages."==>".$lang->to_languages}}</td>
+                                                    <td >
+                                                      <form action="{{route('delete.user.languages')}}" method="post" id="delete-language-form">
+                                                        @csrf
+                                                        <input type="hidden" name="id" value="{{$lang->id}}">
+                                                      <button type="button" class="btn delete-language">
                                                         <span class="fa fa-trash"></span>
-                                                        </button>
-                                                        <button class="btn">
-                                                        <span class="fa fa-pencil"></span>
-                                                        </button>
+                                                      </button>
+                                                     </form>
+                                                     
                                                     </td>
                                                   </tr>
                                                   @endforeach
@@ -1192,7 +1385,7 @@ If you are not registered with any of the payment processors below, please click
                         </div>
                     </div>
                 </div>
-                <div id="service" class="container tab-pane fade">   
+                <div id="service" class="container tab-pane {{$service_rate_tab}}">   
                     <div id="contactDiv" class="padd-100">
                         <div class="container">
                             <div class="row">
@@ -1207,7 +1400,7 @@ If you are not registered with any of the payment processors below, please click
                                         <p>The services, click or tap the <b>Add Service</b> button; to add rates for your services, click the <b>Add Rates</b> button.</p>
                                         <p><b>Note:</b> Job notifications will be sent according to the services selected  on this page. Please do not forget to complete <a href="">your Voice-Over profile</a> if you selected it here.</p>
                                         
-                                        <div class="box">
+                                     <!--    <div class="box">
                                                 <div class="inputDiv">
                                                     <label for="">Preferred Currency</label>
                                                     <select name="preferred_currency" id="preferred_currency">
@@ -1227,28 +1420,95 @@ If you are not registered with any of the payment processors below, please click
                                                     <button type="submit" class="commonBtn">Save</button>
                                                     <button class="commonBtn">Cancel</button>
                                                 </div>
-                                        </div>
+                                        </div> -->
                                         <div class="box" style="margin:20px 0px;">
-                                            <table class="table-responsive serviceTable" style="width: 100%;margin: 20px 0px;">
-                                            <tbody>
-                                                <tr>
-                                                    <td><b>Other</b></td>
-                                                    <td>Add Rates</td>
-                                                    <td><i class="fa fa-times" aria-hidden="true"></i></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><b>Subtitling</b></td>
-                                                    <td>Add Rates</td>
-                                                    <td><i class="fa fa-times" aria-hidden="true"></i></td>
-                                                </tr>
-                                                
-                                            </tbody>
-                                        </table>
-                                        
+                                            <form action="{{route('save-services-rates')}}" method="post" class="form-inline">
+                                                @csrf
+                                                <div class="row">
+                                                  <div class="form-group ">
+                                                    <select name="service" class="form-control p-0" required="required">
+                                                        <option value="">Select Service</option>
+                                                            <option value='Closed captioning'>Closed captioning</option>
+                                                            <option value='Copywriting'>Copywriting</option>
+                                                            <option value='Desktop publishing'>Desktop publishing</option>
+                                                            <option value='Editing'>Editing</option>
+                                                            <option value='Interpreting'>Interpreting</option>
+                                                            <option value='Interpreting – conference'>Interpreting – conference</option>
+                                                            <option value='Interpreting – court/legal'>Interpreting – court/legal</option>
+                                                            <option value='Interpreting – medical'>Interpreting – medical</option>
+                                                            <option value='Interpreting – phone'>Interpreting – phone</option>
+                                                            <option value='Interpreting – sign language'>Interpreting – sign language</option>
+                                                            <option value='Localization'>Localization</option>
+                                                            <option value='Other'>Other</option>
+                                                            <option value='Project management'>Project management</option>
+                                                            <option value='Proofreading'>Proofreading</option>
+                                                            <option value='Research'>Research</option>
+                                                            <option value='Subtitling'>Subtitling</option>
+                                                            <option value='Teaching'>Teaching</option>
+                                                            <option value='Technical Review'>Technical Review</option>
+                                                            <option value='Technical writing'>Technical writing</option>
+                                                            <option value='Terminology research'>Terminology research</option>
+                                                            <option value='Transcription'>Transcription</option>
+                                                            <option value='Translation'>Translation</option>
+                                                            <option value='Typesetting'></option>
+                                                            <option value='Voice-over'>Voice-over</option>
+                                                    </select>
+                                                  </div>
+                                                  <div class="form-group ">
+                                                    <select class="form-control p-0" name="pair_language" required="required">
+                                                     <option value="">Select Language Pair</option>
+                                                      @foreach($userData[0]->userlanguages as $lng)
+                                                      <option value="{{$lng->id}}">{{$lng->from_languages."==>".$lng->to_languages}}</option>
+                                                      @endforeach
+                                                    </select>
+                                                  </div>
+                                                  <div class="form-group">
+                                                   <input class="form-control" type="text" name="min_rate_per_word" placeholder="Min rate Per Word $" required="required">
+                                                  </div>
+                                                  <div class="form-group ">
+                                                   <input class="form-control" type="text" name="min_rate_per_minute" placeholder="Minrate Per minute $" required="required">
+                                                  </div>
+                                                </div>
                                         </div>
-                                        <div class="text-center">
-                                          <button class="commonBtn">Add Service</button>
-                                        </div>
+                                                <div class="text-center">
+                                                  <input type="hidden" name="currtab" value="service_rates">
+                                                  <button type="submit" class="commonBtn addservicebtn">Add Service</button>
+                                                </div>
+                                        </form>
+                                        <br>
+                                          <table class="table-responsive voiceOverTable">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th><b>Service</b></th>
+                                                <th><b>Pair Language</b></th>
+                                                <th><b>Min rate per word</b></th>
+                                                <th><b>Min rate per minte</b></th>
+                                                <th><b>Actions</b></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($userData[0]->usersevices as $service)
+                                            <tr>
+                                                <td>{{$loop->iteration}}</td>
+                                                <td>{{$service->service}}</td>
+                                                @php
+                                                $pairlanguage=\App\Models\UserLanguages::where('id',$service->id)->first();
+                                                @endphp
+                                                <td>{{$pairlanguage->from_languages."==>".$pairlanguage->to_languages}}</td>
+                                                <td>{{$service->min_rate_per_word." $"}}</td>
+                                                <td>{{$service->min_rate_per_minute." $"}}</td>
+                                                <td>
+                                                    <form action="{{route('delete.service.rates')}}" method="post" id="delete-servicerates-form">
+                                                        @csrf
+                                                        <input type="hidden" name="id" value="{{$service->id}}">
+                                                        <span class="btn delete-service-rate fa fa-trash"></span>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
                                     </div>
                                 </div>
                             </div>
@@ -1265,10 +1525,150 @@ If you are not registered with any of the payment processors below, please click
                                     <div class="inputDiv">
                                         <form action="{{route('user-save-voice-over')}}" method="post">
                                             @csrf
-                                            <select name="language" id="language" required="required">
+                                            <select  name="language" id="language" required="required">
                                                 <option value="">Select Language</option>
+                                                <option value="af">Afrikaans</option>
+                                                <option value="sq">Albanian - shqip</option>
+                                                <option value="am">Amharic - አማርኛ</option>
+                                                <option value="ar">Arabic - العربية</option>
+                                                <option value="an">Aragonese - aragonés</option>
+                                                <option value="hy">Armenian - հայերեն</option>
+                                                <option value="ast">Asturian - asturianu</option>
+                                                <option value="az">Azerbaijani - azərbaycan dili</option>
+                                                <option value="eu">Basque - euskara</option>
+                                                <option value="be">Belarusian - беларуская</option>
+                                                <option value="bn">Bengali - বাংলা</option>
+                                                <option value="bs">Bosnian - bosanski</option>
+                                                <option value="br">Breton - brezhoneg</option>
+                                                <option value="bg">Bulgarian - български</option>
+                                                <option value="ca">Catalan - català</option>
+                                                <option value="ckb">Central Kurdish - کوردی (دەستنوسی عەرەبی)</option>
+                                                <option value="zh">Chinese - 中文</option>
+                                                <option value="zh-HK">Chinese (Hong Kong) - 中文（香港）</option>
+                                                <option value="zh-CN">Chinese (Simplified) - 中文（简体）</option>
+                                                <option value="zh-TW">Chinese (Traditional) - 中文（繁體）</option>
+                                                <option value="co">Corsican</option>
+                                                <option value="hr">Croatian - hrvatski</option>
+                                                <option value="cs">Czech - čeština</option>
+                                                <option value="da">Danish - dansk</option>
+                                                <option value="nl">Dutch - Nederlands</option>
                                                 <option value="en">English</option>
-                                                <option value="ud">Urdu</option>
+                                                <option value="en-AU">English (Australia)</option>
+                                                <option value="en-CA">English (Canada)</option>
+                                                <option value="en-IN">English (India)</option>
+                                                <option value="en-NZ">English (New Zealand)</option>
+                                                <option value="en-ZA">English (South Africa)</option>
+                                                <option value="en-GB">English (United Kingdom)</option>
+                                                <option value="en-US">English (United States)</option>
+                                                <option value="eo">Esperanto - esperanto</option>
+                                                <option value="et">Estonian - eesti</option>
+                                                <option value="fo">Faroese - føroyskt</option>
+                                                <option value="fil">Filipino</option>
+                                                <option value="fi">Finnish - suomi</option>
+                                                <option value="fr">French - français</option>
+                                                <option value="fr-CA">French (Canada) - français (Canada)</option>
+                                                <option value="fr-FR">French (France) - français (France)</option>
+                                                <option value="fr-CH">French (Switzerland) - français (Suisse)</option>
+                                                <option value="gl">Galician - galego</option>
+                                                <option value="ka">Georgian - ქართული</option>
+                                                <option value="de">German - Deutsch</option>
+                                                <option value="de-AT">German (Austria) - Deutsch (Österreich)</option>
+                                                <option value="de-DE">German (Germany) - Deutsch (Deutschland)</option>
+                                                <option value="de-LI">German (Liechtenstein) - Deutsch (Liechtenstein)</option>
+                                                <option value="de-CH">German (Switzerland) - Deutsch (Schweiz)</option>
+                                                <option value="el">Greek - Ελληνικά</option>
+                                                <option value="gn">Guarani</option>
+                                                <option value="gu">Gujarati - ગુજરાતી</option>
+                                                <option value="ha">Hausa</option>
+                                                <option value="haw">Hawaiian - ʻŌlelo Hawaiʻi</option>
+                                                <option value="he">Hebrew - עברית</option>
+                                                <option value="hi">Hindi - हिन्दी</option>
+                                                <option value="hu">Hungarian - magyar</option>
+                                                <option value="is">Icelandic - íslenska</option>
+                                                <option value="id">Indonesian - Indonesia</option>
+                                                <option value="ia">Interlingua</option>
+                                                <option value="ga">Irish - Gaeilge</option>
+                                                <option value="it">Italian - italiano</option>
+                                                <option value="it-IT">Italian (Italy) - italiano (Italia)</option>
+                                                <option value="it-CH">Italian (Switzerland) - italiano (Svizzera)</option>
+                                                <option value="ja">Japanese - 日本語</option>
+                                                <option value="kn">Kannada - ಕನ್ನಡ</option>
+                                                <option value="kk">Kazakh - қазақ тілі</option>
+                                                <option value="km">Khmer - ខ្មែរ</option>
+                                                <option value="ko">Korean - 한국어</option>
+                                                <option value="ku">Kurdish - Kurdî</option>
+                                                <option value="ky">Kyrgyz - кыргызча</option>
+                                                <option value="lo">Lao - ລາວ</option>
+                                                <option value="la">Latin</option>
+                                                <option value="lv">Latvian - latviešu</option>
+                                                <option value="ln">Lingala - lingála</option>
+                                                <option value="lt">Lithuanian - lietuvių</option>
+                                                <option value="mk">Macedonian - македонски</option>
+                                                <option value="ms">Malay - Bahasa Melayu</option>
+                                                <option value="ml">Malayalam - മലയാളം</option>
+                                                <option value="mt">Maltese - Malti</option>
+                                                <option value="mr">Marathi - मराठी</option>
+                                                <option value="mn">Mongolian - монгол</option>
+                                                <option value="ne">Nepali - नेपाली</option>
+                                                <option value="no">Norwegian - norsk</option>
+                                                <option value="nb">Norwegian Bokmål - norsk bokmål</option>
+                                                <option value="nn">Norwegian Nynorsk - nynorsk</option>
+                                                <option value="oc">Occitan</option>
+                                                <option value="or">Oriya - ଓଡ଼ିଆ</option>
+                                                <option value="om">Oromo - Oromoo</option>
+                                                <option value="ps">Pashto - پښتو</option>
+                                                <option value="fa">Persian - فارسی</option>
+                                                <option value="pl">Polish - polski</option>
+                                                <option value="pt">Portuguese - português</option>
+                                                <option value="pt-BR">Portuguese (Brazil) - português (Brasil)</option>
+                                                <option value="pt-PT">Portuguese (Portugal) - português (Portugal)</option>
+                                                <option value="pa">Punjabi - ਪੰਜਾਬੀ</option>
+                                                <option value="qu">Quechua</option>
+                                                <option value="ro">Romanian - română</option>
+                                                <option value="mo">Romanian (Moldova) - română (Moldova)</option>
+                                                <option value="rm">Romansh - rumantsch</option>
+                                                <option value="ru">Russian - русский</option>
+                                                <option value="gd">Scottish Gaelic</option>
+                                                <option value="sr">Serbian - српски</option>
+                                                <option value="sh">Serbo-Croatian - Srpskohrvatski</option>
+                                                <option value="sn">Shona - chiShona</option>
+                                                <option value="sd">Sindhi</option>
+                                                <option value="si">Sinhala - සිංහල</option>
+                                                <option value="sk">Slovak - slovenčina</option>
+                                                <option value="sl">Slovenian - slovenščina</option>
+                                                <option value="so">Somali - Soomaali</option>
+                                                <option value="st">Southern Sotho</option>
+                                                <option value="es">Spanish - español</option>
+                                                <option value="es-AR">Spanish (Argentina) - español (Argentina)</option>
+                                                <option value="es-419">Spanish (Latin America) - español (Latinoamérica)</option>
+                                                <option value="es-MX">Spanish (Mexico) - español (México)</option>
+                                                <option value="es-ES">Spanish (Spain) - español (España)</option>
+                                                <option value="es-US">Spanish (United States) - español (Estados Unidos)</option>
+                                                <option value="su">Sundanese</option>
+                                                <option value="sw">Swahili - Kiswahili</option>
+                                                <option value="sv">Swedish - svenska</option>
+                                                <option value="tg">Tajik - тоҷикӣ</option>
+                                                <option value="ta">Tamil - தமிழ்</option>
+                                                <option value="tt">Tatar</option>
+                                                <option value="te">Telugu - తెలుగు</option>
+                                                <option value="th">Thai - ไทย</option>
+                                                <option value="ti">Tigrinya - ትግርኛ</option>
+                                                <option value="to">Tongan - lea fakatonga</option>
+                                                <option value="tr">Turkish - Türkçe</option>
+                                                <option value="tk">Turkmen</option>
+                                                <option value="tw">Twi</option>
+                                                <option value="uk">Ukrainian - українська</option>
+                                                <option value="ur">Urdu - اردو</option>
+                                                <option value="ug">Uyghur</option>
+                                                <option value="uz">Uzbek - o‘zbek</option>
+                                                <option value="vi">Vietnamese - Tiếng Việt</option>
+                                                <option value="wa">Walloon - wa</option>
+                                                <option value="cy">Welsh - Cymraeg</option>
+                                                <option value="fy">Western Frisian</option>
+                                                <option value="xh">Xhosa</option>
+                                                <option value="yi">Yiddish</option>
+                                                <option value="yo">Yoruba - Èdè Yorùbá</option>
+                                                <option value="zu">Zulu - isiZulu</option>
                                             </select>
                                             <input type="hidden" name="currtab" value="voiceover">
                                             <button type="submit" class="addLanguageBtn commonBtn">Add Language</button>
@@ -1283,7 +1683,18 @@ If you are not registered with any of the payment processors below, please click
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            
+                                            @foreach($userData[0]->uservoicover as $voicelng)
+                                            <tr>
+                                                <td>{{$voicelng->language}}</td>
+                                                <td>
+                                                    <form action="{{route('delete.voiceover.languages')}}" method="post" id="delete-voicelng-form">
+                                                        @csrf
+                                                        <input type="hidden" name="id" value="{{$voicelng->id}}">
+                                                        <span class="btn delete-voicelng fa fa-trash"></span>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -1302,922 +1713,7 @@ If you are not registered with any of the payment processors below, please click
                                         <p>Please select your subject areas adn click ot tab to <b>Save</b> Button</p>
                                         <form action="{{route('user-save-specilizations')}}" method="post">
                                             @csrf
-                                            <div class="row">
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]" value="Acting and Directing">
-                                                        <label for="">Acting and Directing</label>
-                                                    </div>
-                                                </div>  
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]" name="spicializations[]" value="Ecology">
-                                                        <label for="">Ecology</label>
-                                                    </div>
-                                                </div> 
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]" value="Medicine - Public Health Education & Poromotion">
-                                                        <label for="">Medicine - Public Health Education & Poromotion</label>
-                                                    </div>
-                                                </div> 
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]" value="Advertising">
-                                                        <label for="">Advertising</label>
-                                                    </div>
-                                                </div>  
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]" value="Economics">
-                                                        <label for="">Economics</label>
-                                                    </div>
-                                                </div>  
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]" value="Medicine - Social Psychology">
-                                                        <label for="">Medicine - Social Psychology</label>
-                                                    </div>
-                                                </div> 
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]" value="Arespace Engineering">
-                                                        <label for="">Arespace Engineering</label>
-                                                    </div>
-                                                </div> 
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]" value="Education">
-                                                        <label for="">Education</label>
-                                                    </div>
-                                                </div> 
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]" value="Medicine - Taxicology">
-                                                        <label for="">Medicine - Taxicology</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]" value="Agriculture">
-                                                        <label for="">Agriculture</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]" value="Electrical Engineering">
-                                                        <label for="">Electrical Engineering</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Medicine (General)</label>
-                                                    </div>
-                                                </div> 
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Agronomy and Crop Science</label>
-                                                    </div>
-                                                </div> 
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Engineering</label>
-                                                    </div>
-                                                </div> 
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Medieval and Renaissance Studies</label>
-                                                    </div>
-                                                </div> 
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Aircraft</label>
-                                                    </div>
-                                                </div> 
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Entomology</label>
-                                                    </div>
-                                                </div> 
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Metallurgical Engineering</label>
-                                                    </div>
-                                                </div>  
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Antomy</label>
-                                                    </div>
-                                                </div>  
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Enterpreneurship</label>
-                                                    </div>
-                                                </div>  
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Military Technologies</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Animal Sciences</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Enviornmental Sciences</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Mining & Mineral Engineering</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Antropology</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Ethnic and Culture Studies</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Mining & Petrolium Technology</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Applied Mathematics</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Fibre, Textile and Weaving</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Molecular Biology</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Aquaculture</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Film & Cinema Studies</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Music</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Archaeology</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Finance</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Music History & Literature</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Architecture</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Fire Protection</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Naval Architecture And Marine Engineering</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Art</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Fishing & Fisheries Sciences</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Nuclear Engineering</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Astronomy</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Food Sciences</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Oceanography</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Astrophysics</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Fornsics Science</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Oil & Gas Engineering</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Atmospheric Sciences and Meterology</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Foresty</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Optics</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Automotive</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Genealogy/Family History Research</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Organic Chemistry</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Aviation</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">General</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Patent Translaion</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Banking & Financial</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Genetics</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Petrochemistry</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Bible and Biblical Studies</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Geochemistry</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Petrolium Engineering</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Bio Chemistry</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Geography</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Philosophy</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Bioengineering and Biomedical Engineering</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Geology</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Photographic Art</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Biology</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Geophysics and Seismology</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Photography</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Biomedical</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Gerontology</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Physical and Theoretical Chemistry</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Biometrics</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Health</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Physical Education Teaching and Coaching</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Biophysics</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Heating, Air Condition and Refrigeration</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Physics</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Biopsycology</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">History</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Political Science</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Biostatistics</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Hospitality</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Polymer Chemistry</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Biotechnology</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Humanities and Humanistics Studies</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Psychology</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Botany</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Information Science and Systems</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Raditions Biology</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Broadcast Jouralism</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Internet</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Radio Television Broadcasting</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Buildings</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Islamic Studies</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Religion</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Business Adminitration and Management</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Journalism and Mass Communication</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Religion and Religious Studies</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Busines General</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Law and Legal</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Science (General)</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Business Marketing</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Liguistics</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Sociology</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Cartography</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Literature</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Software Engineering</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Ceramics Arts and Ceramics</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Manufacturing (Metal Working and Product, Instruments, Funiture, Printing, Clothing, etc)</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Sport and Fitness</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Chemical Technology and Related Industries</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Marine and Aquatics Biology</label>
-                                                    </div>
-                                                </div>
-                                            
-                                            <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Taxation</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Chemistry</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Mathematics</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Telecommuincations</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Child Care</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Mechanical Engineering</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Textiles Sciences and Engineering</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Civil Engineering</label>
-                                                    </div>
-                                                </div>
-                                                 <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Medicine - Acupuncture and Oriental Medicine</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Theatre</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Computer and Information Science</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Medicine - Dentistry</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Theology and Theological Studies</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Computer Engineering</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Medicine - Medical Technology</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Theology and Methematical Studies</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Computer Games and Gambling, Electronic Games, Games of Chance</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Medicine - Microbology and Bacterioloy</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="spicializations[]">
-                                                        <label for="">Tourism and Travel</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox">
-                                                        <label for="">Criminology</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox">
-                                                        <label for="">Medicine - Neuroscience</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox">
-                                                        <label for="">Transportation</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox">
-                                                        <label for="">Culinary Arts</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox">
-                                                        <label for="">Mdeicine - Nursing</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox">
-                                                        <label for="">Veteinary</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox">
-                                                        <label for="">Data Communications</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox">
-                                                        <label for="">Medicine - Occupatinal Health and Industrial Hygiene</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox">
-                                                        <label for="">Visual and Performing Arts</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox">
-                                                        <label for="">Data Processing</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox">
-                                                        <label for="">Medicine - Ophthalmology</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox">
-                                                        <label for="">Women Studies</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox">
-                                                        <label for="">Design and Applied Arts</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox">
-                                                        <label for="">Medicine - Pahrmacology</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox">
-                                                        <label for="">Zoology</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox">
-                                                        <label for="">Desktop Publising (DTP)</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox">
-                                                        <label for="">Medicine - Psychiatry</label>
-                                                    </div>
-                                                </div>
-                                                </div>
-                
+                                            @include("screens.includes.specializtioncheckbox")
                                             <div class="multiBtn pt-5">
                                                 <input type="hidden" name="currtab" value="specialization">
                                                 <button type="submit" class="commonBtn">Submit</button>
@@ -2242,208 +1738,8 @@ If you are not registered with any of the payment processors below, please click
                                         <p>View Your Profile (Specialization)</p>
                                         <p>Please select your subject areas adn click ot tab to <b>Save</b> Button</p>
                                         <form action="{{route('user-save-software-tools')}}" method="post">
-                                            @csrf
-                                            <div class="row">
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="softwares[]" value="Across">
-                                                        <label for="">Across</label>
-                                                    </div>
-                                                </div>  
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="softwares[]" value="IBM TranslationManager">
-                                                        <label for="">IBM TranslationManager</label>
-                                                    </div>
-                                                </div> 
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="softwares[]" value="PASSOLO">
-                                                        <label for="">PASSOLO</label>
-                                                    </div>
-                                                </div> 
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="softwares[]" value="Adobe Acrobt">
-                                                        <label for="">Adobe Acrobt</label>
-                                                    </div>
-                                                </div>  
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox" name="softwares[]" value="Idiom WorldServer">
-                                                        <label for="">Idiom WorldServer</label>
-                                                    </div>
-                                                </div>  
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox">
-                                                        <label for="">PowerPoint</label>
-                                                    </div>
-                                                </div> 
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox">
-                                                        <label for="">Adobe Captivate</label>
-                                                    </div>
-                                                </div> 
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox">
-                                                        <label for="">JCAT</label>
-                                                    </div>
-                                                </div> 
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox">
-                                                        <label for="">QuarkXPress</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox">
-                                                        <label for="">Adobe Illustrator</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox">
-                                                        <label for="">MemoQ</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox">
-                                                        <label for="">Robohelp</label>
-                                                    </div>
-                                                </div> 
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox">
-                                                        <label for="">Adobe InDesign</label>
-                                                    </div>
-                                                </div> 
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox">
-                                                        <label for="">Meta Texis</label>
-                                                    </div>
-                                                </div> 
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox">
-                                                        <label for="">SDLX Translation Suite</label>
-                                                    </div>
-                                                </div> 
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox">
-                                                        <label for="">Adobe Photoshop</label>
-                                                    </div>
-                                                </div> 
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox">
-                                                        <label for="">MultiCorpora</label>
-                                                    </div>
-                                                </div> 
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox">
-                                                        <label for="">STAR Transit</label>
-                                                    </div>
-                                                </div>  
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox">
-                                                        <label for="">AidTrans Studio</label>
-                                                    </div>
-                                                </div>  
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox">
-                                                        <label for="">MultiCorpora</label>
-                                                    </div>
-                                                </div>  
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox">
-                                                        <label for="">STAR Transit</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox">
-                                                        <label for="">AidTrans Studio</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox">
-                                                        <label for="">MultiTrans</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox">
-                                                        <label for="">TRADOS</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox">
-                                                        <label for="">AutoCAD</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox">
-                                                        <label for="">OmegaT</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox">
-                                                        <label for="">TRANS Suite 2000</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox">
-                                                        <label for="">Deja Vu</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox">
-                                                        <label for="">Open Language Tools</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox">
-                                                        <label for="">TransAssist</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox">
-                                                        <label for="">Heartsome Translation Suite</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox">
-                                                        <label for="">PageMaker</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <div class="checkBox-Div">
-                                                        <input type="checkbox">
-                                                        <label for="">WordFast</label>
-                                                    </div>
-                                                </div>
-                                                
-                                                </div>
+                                                @csrf
+                                                @include('screens.includes.softwarecheckbox')
                                                 <p style="margin-top:20px" class="notice"><b>Note:</b> Job notification will be send according to the subject areas selected on this page.</p>
                                                 <p><b>Other Soft</b> (Max. 500 characters, including spaces)</p>
                                                 <div class="inputDiv">
@@ -2486,32 +1782,39 @@ If you are not registered with any of the payment processors below, please click
                                         </ul>
                                         <p>Using HTML images tags and link to files.</p>
                                         <p>You have total 42,42 Kb Uploaded and <b>2,005.76</b> KB for free space. The limit is 2,048 KB.</p>
-                                        <form action="{{route('delete.user.files')}}" method="post">
+                                        <form action="{{route('delete.user.files')}}" method="post" id="delete-files-form">
                                             @csrf
                                             <table>
                                                 <thead>
+                                                    <th></th>
                                                     <th>File Name and Link</th>
                                                     <th>File Size</th>
                                                     <th>Download Count</th>
                                                 </thead>
                                                 <tbody>
+                                                    @foreach($userData[0]->userfiles as $files)
                                                     <tr>
                                                         <td>
                                                             <div class="checkBoxDiv">
-                                                                <input type="checkbox" name="user_files[]" value="">
-                                                                <div class="contentDiv">
-                                                                    <p><b>Areeb's_Resume.pdf</b></p>
-                                                                    <p>CV</p>
-                                                                    <p><b>Link to File:</b> /cafe/file/?id=188175</p>
-                                                                </div>
+                                                                <input type="checkbox" name="user_files[]" value="{{$files->id}}">
+                                                               
                                                             </div>
                                                         </td>
-                                                        <td>42.24 KB</td>
+                                                        <td>
+                                                            <div class="contentDiv">
+                                                                <p><b>{{$files->file_title}}</b></p>
+                                                                <p>{{$files->purpose}}</p>
+                                                                <p><b>Link to File:</b><a href="{{asset('files/userfiles/'.$files->file)}}">{{$files->file}}</a></p>
+                                                            </div>
+                                                        </td>
+                                                        <td>{{$files->file_size}}</td>
                                                         <td>0</td>
                                                     </tr>
+                                                    @endforeach
                                                 </tbody>
                                             </table>
-                                            <button class="deleteSelected">Delete Selected</button>
+                                            <br>
+                                            <button type="button" class="deleteSelected">Delete Selected</button>
                                         </form>
                                         <form action="{{route('user.save.files')}}" method="post" enctype="multipart/form-data">
                                             @csrf
@@ -2591,6 +1894,96 @@ If you are not registered with any of the payment processors below, please click
 @endsection
 @section('script')
 <script type="text/javascript">
-    
+    $(".delete-language").click(function(e){
+        Swal.fire({
+          title: 'Do you want to Delete the language?',
+          showCancelButton: true,
+          confirmButtonColor: "#DD6B55",
+          confirmButtonText: 'Yes, Delete it',
+        }).then((result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+            Swal.fire('Delete!', '', 'success')
+            $("#delete-language-form").submit();
+          } else if (result.isDenied) {
+            Swal.fire('Changes are not saved', '', 'info')
+          }
+        })
+    });
+
+    $(".delete-mother-language").click(function(e){
+        Swal.fire({
+          title: 'Do you want to Delete the Mother language?',
+          showCancelButton: true,
+          confirmButtonColor: "#DD6B55",
+          confirmButtonText: 'Yes, Delete it',
+        }).then((result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+            Swal.fire('Delete!', '', 'success')
+            $("#delete-mlanguage-form").submit();
+          } else if (result.isDenied) {
+            Swal.fire('Changes are not saved', '', 'info')
+          }
+        })
+    });
+
+        $(".delete-service-rate").click(function(e){
+        Swal.fire({
+          title: 'Do you want to Delete the Service?',
+          showCancelButton: true,
+          confirmButtonColor: "#DD6B55",
+          confirmButtonText: 'Yes, Delete it',
+        }).then((result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+            Swal.fire('Delete!', '', 'success')
+            $("#delete-servicerates-form").submit();
+          } else if (result.isDenied) {
+            Swal.fire('Changes are not saved', '', 'info')
+          }
+        })
+    });
+
+    $(".delete-voicelng").click(function(){
+        Swal.fire({
+          title: 'Do you want to Delete the language?',
+          showCancelButton: true,
+          confirmButtonColor: "#DD6B55",
+          confirmButtonText: 'Yes, Delete it!',
+        }).then((result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+            Swal.fire('Delete!', '', 'success')
+            $("#delete-voicelng-form").submit();
+          } else if (result.isDenied) {
+            Swal.fire('Changes are not saved', '', 'info')
+          }
+        })
+    })
+
+    $(".deleteSelected").click(function(){
+        //get input checkbox array if is not empty
+        if($("input[name='user_files[]']:checked").length <= 0)
+        {
+            swal.fire('Please Select One checkbox','','error');
+            return false;
+        }
+       
+         Swal.fire({
+          title: 'Do you want to Delete the Files?',
+          showCancelButton: true,
+          confirmButtonColor: "#DD6B55",
+          confirmButtonText: 'Yes, Delete it!',
+        }).then((result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+            Swal.fire('Delete!', '', 'success')
+            $("#delete-files-form").submit();
+          } else if (result.isDenied) {
+            Swal.fire('Changes are not saved', '', 'info')
+          }
+        })
+    })
 </script>
 @endsection
