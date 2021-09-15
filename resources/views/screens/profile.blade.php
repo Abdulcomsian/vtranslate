@@ -411,7 +411,7 @@
                                 <div class="text-center privacy-box">
                                     <h4><b>Profile</b></h4>
                                     <p>Public</p>
-                                     <label class="switch"><input type="checkbox" class="togglebtn" data-type="profile" @if(isset($userData[0]->usergeneralinfo-> private_information) && $userData[0]->usergeneralinfo-> private_information=='1'){{'checked'}}@endif/><div></div>
+                                     <label class="switch"><input type="checkbox" class="togglebtn" data-type="profile" @if(isset($userData[0]->usergeneralinfo->private_information) && $userData[0]->usergeneralinfo-> private_information=='1'){{'checked'}}@endif/><div></div>
                                     </label>
                                 </div>
                             </div>
@@ -495,7 +495,8 @@
                             <div class="row" style="margin-bottom:20px">
                                 <div class="col-lg-3">
                                     <div class="important-note">
-                                        <p>If you want your profile to be
+                                        <p>
+                                            If you want your profile to be
                                             more exposed, consider submitting your photograph
                                             or logo. The site statistics show that profiles with photos are viewed 6.1 times more
                                             frequently (profiles with a photograph in average 1472 times, without a photograph
@@ -504,7 +505,9 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-9">
-                                    <h4>{{$userData[0]->usergeneralinfo->first_name ?? ''}} {{ $userData[0]->usergeneralinfo->last_name ?? ''}}</h4>
+                                    <h4>
+                                        {{$userData[0]->usergeneralinfo->first_name ?? ''}} {{ $userData[0]->usergeneralinfo->last_name ?? ''}}
+                                    </h4>
                                     <p>{{$userData[0]->usergeneralinfo->advertising_slogan ?? ''}}</p>
                                     <p>{{$userData[0]->usergeneralinfo->company_name ?? ''}}</p>
                                     <p><b>Pakistan</b></p>
@@ -519,38 +522,65 @@
                             </div>
                             <a href="{{$userData[0]->usergeneralinfo->website ?? ''}}"><b>{{$userData[0]->usergeneralinfo->website ?? ''}}</b></a>
                         </div>
-                        <p><b>TCTerms Score 0</b> [disable]</p>
+                        <!-- <p><b>TCTerms Score 0</b> [disable]</p> -->
                         <div class="text-left" style="margin-top:20px">
-                            <p class="mainHeading">Contact Information (invisible)</p>
+                            <p class="mainHeading">Contact Information {{ $userData[0]->usergeneralinfo->display_contact_info=='0' ? "(Visible)" : "(Invisible)" }}</p>
                         </div>
-                        <p><b>Address:</b> House no 1182, Mangla road, G-9/4, Islamabad, Punjab 44000, Pakistan</p>
-                        <p><b>Phone:</b> 03245040502, <b>Fax:</b> fax number field, <b>Cell Phone:</b> 03245040502</p>
+                        <p>
+                            <b>Address:</b>{{$userData[0]->usergeneralinfo->address ?? ''}}
+                        </p>
+                        <p>
+                            <b>Phone:</b> 
+                            {{$userData[0]->usergeneralinfo->telephone ?? ''}}, 
+                            <b>Fax:</b> {{$userData[0]->usergeneralinfo->fax ?? ''}}, 
+                            <b>Cell Phone:</b> {{$userData[0]->usergeneralinfo->mobile_phone ?? ''}}
+                        </p>
                         <p>Joined: Thursday, August 26, 2021, last update Thursday, August 26, 2021 </p>
-                        <p><b>Preferred E-mail of Areeb Hassan: send a message</b></p>
-                        <p><b>Send a Private Message</b></p>
-                        <p><b>Facebook</b></p>
+                        <p>
+                            <b>
+                                Preferred E-mail of {{$userData[0]->usergeneralinfo->first_name ?? ''}} {{ $userData[0]->usergeneralinfo->last_name ?? ''}}: {{ $userData[0]->usergeneralinfo->gemail ?? ''}}
+                            </b>
+                        </p>
+
                         <div class="text-left" style="margin-top:20px">
                             <p class="mainHeading">Working Language Pairs</p>
                         </div>
-                        <p>Aymara >> Basque, Basque » Brazilian Portuguese</p>
+                        <p>
+                            @foreach($userData[0]->userlanguages as $lng)
+                            {{$lng->from_languages >> $lng->to_languages}}
+                            @endforeach
+                        </p>
                         <div class="text-left" style="margin-top:20px">
                             <p class="mainHeading">Services and Rates</p>
                         </div>
-                        <p>Rates are Invisible</p>
+                        <p>Rates are 
+                            @if(isset($userData[0]->usergeneralinfo->show_rated_users)){{"visible"}}@else{{"invisible"}}@endif
+                        </p>
                         <p>Other, Subtitling</p>
-                        <p>Preferred currency: <b>PKR</b></p>
+                        <p>Preferred currency: <b>$</b></p>
                         <p>Enter your rates and you will be able to click or tap the <b>Translation Rates Statistics</b> button below) to view the information that is valuable to any freelance translator (if there is enough information in the database to get the correct statistical results). You can also click or tap the <b>Enter Rates</b> button in the Control Panel above to enter your translation rates. </p>
                         <button style="width:auto">Edit My Rates</button>
                         <button style="width:auto">Translation Rates Statistics </button>
+
+                        <!-- rates and statistics -->
                         <div class="text-left" style="margin-top:20px">
                             <p class="mainHeading">Subject Areas</p>
                         </div>
-                        <p>Acting and Directing, Advertising, Aerospace Engineering, Agriculture, Agronomy and Crop Science, Aircraft, Chemical Technology and Related Industries, Chemistry, Child Care, Civil Engineering, Ecology, Economics, Education, Electrical Engineering, Engineering, Entomology, Manufacturing (Metal Working and Products, Instruments, Furniture, Printing, Clothing, etc.), Marine and Aquatic Biology, Mathematics, Mechanical Engineering, Medicine – Acupuncture and Oriental Medicine, Medicine – Dentistry, Medicine - Ophthalmology, Medicine – Public Health Education and Promotion, Medicine – Social Psychology, Medicine – Toxicology, Medicine (General), Medieval and Renaissance Studies, Metallurgical Engineering, Sport and 
-                            Fitness, Transportation, Veterinary, Visual and Performing Arts, Women Studies</p>
+                        <p>
+                            @foreach($userData[0]->userspicialize->spicializations ?? [] as $spcialize)
+                            {{$spcialize}},
+                            @endforeach
+                        </p>
                             <div class="text-left" style="margin-top:20px">
                             <p class="mainHeading">Voice-Over</p>
                         </div>
-                        <p><b>Voice Languages:</b> Abkhazian, Urdu</p>
+                        <!-- voic over -->
+                        <p>
+                            <b>Voice Languages:</b> 
+                            @foreach($userData[0]->uservoicover as $voiclng)
+                            {{$voiclng->language}},
+                            @endforeach
+                        </p>
                         <p><b>Voice Gender: </b>Female Voice</p>
                         <p><b>Voice Ages:</b> Young Adult, Middle Age Adult</p>
                         <p><b>Type of Recording: </b>Audio Books, Character Voices, Commercials, Documentaries, e-Learning, Imaging, Infomercials, Interactive Voice Response Telecom Applications (IVR), Narration, On
@@ -560,10 +590,14 @@
                                 <b>Detailed Description and Voice Samples</b>
                             </p>
                         </div>
+
+                        <!-- Cover Letter -->
                         <div class="text-left" style="margin-top:20px">
                             <p class="mainHeading">Cover Letter (not visible for everybody)</p>
                         </div>
-                        <p>cover lettercover lettercover lettercover lettercover lettercover lettercover lettercover lettercover lettercover lettercover lettercover lettercover lettercover lettercover lettercover lettercover lettercover lettercover letter</p>
+                        <p>
+                            {{$userData[0]->usergeneralinfo->cover_letter ?? ''}}
+                        </p>
                         <div class="text-left" style="margin-top:20px">
                             <p class="mainHeading">Background (Your Presentation Page, Résumé or CV)</p>
                         </div> 
@@ -571,30 +605,32 @@
                             <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
                             <p><b>CV (42KB)</b></p>
                         </div>  
+
+                        <!-- software areas -->
                         <div class="text-left" style="margin-top:20px">
                             <p class="mainHeading">Software</p>
                         </div> 
                         <ul style="padding-left:30px; list-style:disc;">
-                            <li>Adobe Acrobat</li>
-                            <li>Adobe Captivate</li>
-                            <li>Adobe Photoshop</li>
-                            <li>AutoCAD</li>
-                            <li>Déjà Vu</li>
-                            <li>JCAT</li>
-                            <li>Memo</li>
-                            <li>Meta Texis</li>
-                            <li>MultiCorpora</li>
-                            <li>Open Language Tools</li>
-                            <li>PageMaker</li>
+                            @foreach($userData[0]->usersoftwares->software_tools ?? [] as $soft)
+                            <li>{{$soft}}</li>
+                            @endforeach
                         </ul>
+
+                        <!-- platform and hardware -->
                         <div class="text-left" style="margin-top:20px">
                             <p class="mainHeading">Platform & hardware</p>
                         </div> 
-                        <p>platform and hardware platform and hardware platform and hardware platform and hardware platform and hardware platform and hardware platform and hardware platform and hardware platform and hardware platform and hardware platform and hardware platform and hardware platform and hardware</p>
+                        <p>
+                            {{$userData[0]->usergeneralinfo->platform_hardware ?? ''}}
+                        </p>
+
+                        <!-- Membership -->
                         <div class="text-left" style="margin-top:20px">
                             <p class="mainHeading">Membership</p>
                         </div>
-                        <p>Membership in professional associations Membership in professional associationsMembership in professional associations Membership in professional associations Membership in professional associations Membership in professional associations Membership in professional associations Membership in professional associations</p>
+                        <p>
+                            {{$userData[0]->usergeneralinfo->membership_professional_associations ?? ''}}
+                        </p>
                         <div class="text-left" style="margin-top:20px">
                             <p class="mainHeading">Verified Credentials</p>
                         </div>
