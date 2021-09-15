@@ -137,8 +137,7 @@
         transform: rotate(-360deg);
     }
     a.green {
-        background-color: rgba(1,151,171,1);
-        color: rgba(0,63,71,1);
+        background-color: #99e6ff;
         border-color: rgba(0,63,71,.2);
     }
 
@@ -155,12 +154,11 @@
         font-size: 1px;
         border: none;
         padding: 40% 20% 0 20%;
-        color: #fff;
     }
 
     .round span:hover {
         opacity: .85;
-        font-size: 16px;
+        font-size: 15px;
         -webkit-text-shadow: 0 1px 1px rgba(0,0,0,.5);
         -moz-text-shadow: 0 1px 1px rgba(0,0,0,.5);
         -o-text-shadow: 0 1px 1px rgba(0,0,0,.5);
@@ -168,7 +166,7 @@
     }
 
     .green span {
-        background: rgba(0,63,71,.7);       
+        background: #99e6ff;       
     }
 
     /** Switch
@@ -204,7 +202,7 @@
 }
 
 .switch input:checked + div {
-     background: #ff6347;
+     background: #3CB371;
   -webkit-transform: translate3d(100%, 0, 0);
      -moz-transform: translate3d(100%, 0, 0);
           transform: translate3d(100%, 0, 0);
@@ -348,8 +346,10 @@
                                         </div>
 
                                     </div>
-                                    <div class="col-lg-12">
-                                         <button type="submit" class="btn btn-danger">Change Profile Photo</button>
+                                    <div class="col-lg-12" style="margin-top:-40px">
+                                        <center>
+                                         <button type="submit" class="btn btn-danger " style="width: 55%;padding:5px;float:none">Change Profile Photo</button>
+                                         </center>
                                    </div>
                                 </form>
                             </div>
