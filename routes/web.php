@@ -96,6 +96,9 @@ Route::middleware(['verified','auth'])->group(function()
          Route::post('/delete-mother-languages','UserController@delete_mother_languages')->name('delete.mother.languages');
         Route::post('/delete-voiceover-language','UserController@delete_voiceover_language')->name('delete.voiceover.languages');
         Route::post('/delete-service-rates','UserController@delete_service_rates')->name('delete.service.rates');
+        Route::post('/change-profile-photo','UserController@chagne_profile_photo')->name('change-profile-photo');
+        Route::get('/view-user-profile','UserController@view_user_profile')->name('view-user-profile');
+        Route::get('/change-user-status','UserController@change_user_status')->name('change-user-status');
         
     });
 

@@ -402,4 +402,106 @@ class UserController extends Controller
             return back();
         }
     }
+
+    public function chagne_profile_photo(Request $request)
+    {
+        try
+        {
+            if($file = $request->file('profilephoto'))
+            {
+                $path = 'profile-images/';
+                if(!file_exists(public_path().'/'.$path)) 
+                {
+                  $path = 'profile-images/';
+                   File::makeDirectory(public_path().'/'.$path,0777,true);
+                } 
+                if(Auth::user()->profile_photo)//if already resume unlink resume and upload new one
+                 {
+                    unlink(public_path().'/profile-images/'.Auth::user()->profile_photo);
+                 }
+                $name = time().$file->getClientOriginalName();
+                $size=$file->getSize();
+                $file->move('profile-images/',$name); 
+            }
+
+            User::find(Auth::user()->id)->update([
+                'profile_photo'=>$name,
+            ]);
+             toastr()->success('Profile Photo Changed Successfully');
+            return \Redirect::route('profile');
+
+       }
+        catch (\Exception $exception)
+        {
+            toastr()->error('Something went wrong, try again');
+            return back();
+        }
+    }
+
+    //view user profile
+    public function view_user_profile()
+    {
+        if(Auth::user()->user_status=='Translator')
+        {
+            $userData=User::with('usergeneralinfo','userlanguages','usersoftwares','userspicialize','uservoicover','userfiles','usermotherlanguages','usersevices')->where('id',Auth::user()->id)->get();
+            // dd($userData[0]->usergeneralinfo);
+            return view('screens.freelancer.freelancer',compact('userData'));
+        }
+        else
+        {
+             $userData=User::with('usergeneralinfo','userlanguages','usersoftwares','userspicialize','uservoicover','userfiles','usermotherlanguages','usersevices')->where('id',Auth::user()->id)->get();
+            return view('screens.agencies.agency',compact('userData'));
+        }
+    }
+
+    //change user status
+    public function change_user_status(Request $request)
+    {
+        try
+        {
+            $type=$request->type;
+            if($type=="profile")
+            {
+                $result=UserGeneralInformation::where('user_id',Auth::user()->id)->update(['private_information'=>$request->status]);
+
+            }
+            elseif($type=="availability")
+            {
+                $result=User::find(Auth::user()->id)->update(['status'=>$request->status]);
+            }
+            elseif($type=="ContactInfo")
+            {
+                $result=UserGeneralInformation::where('user_id',Auth::user()->id)->update(['display_contact_info'=>$request->status]);
+            }
+            elseif($type=="Rates")
+            {
+                $result=UserGeneralInformation::where('user_id',Auth::user()->id)->update(['show_rated_users'=>$request->status]);
+            }
+            elseif($type=="JobNotification")
+            {
+                $result=UserGeneralInformation::where('user_id',Auth::user()->id)->update(['jobsnotification'=>$request->status]);
+            }
+            elseif($type=="NewsNotification")
+            {
+                $result=UserGeneralInformation::where('user_id',Auth::user()->id)->update(['news_notification'=>$request->status]);
+            }
+            elseif($type=="ForumsNotification")
+            {
+                $result=1;
+            }
+            
+            if($result)
+            {
+                echo"success";
+            }
+            else
+            {
+                echo"error";
+            }
+        }
+        catch (\Exception $exception)
+        {
+            echo"error";
+        }
+    }
 }

@@ -1,4 +1,220 @@
 @extends('layouts.master' ,['page_title' => 'Profile'])
+@section('css')
+<style>
+.avatar-upload {
+  position: relative;
+  max-width: 205px;
+  margin: 50px auto;
+}
+.avatar-upload .avatar-edit {
+  position: absolute;
+  right: 12px;
+  z-index: 1;
+  top: 10px;
+}
+.avatar-upload .avatar-edit input {
+  display: none;
+}
+.avatar-upload .avatar-edit input + label {
+  display: inline-block;
+  width: 34px;
+  height: 34px;
+  margin-bottom: 0;
+  border-radius: 100%;
+  background: #ffffff;
+  border: 1px solid transparent;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  font-weight: normal;
+  transition: all 0.2s ease-in-out;
+}
+.avatar-upload .avatar-edit input + label:hover {
+  background: #f1f1f1;
+  border-color: #d6d6d6;
+}
+.avatar-upload .avatar-edit input + label:after {
+  content: "\f040";
+  font-family: "FontAwesome";
+  color: #757575;
+  position: absolute;
+  top: 10px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  margin: auto;
+}
+.avatar-upload .avatar-preview {
+  width: 192px;
+  height: 192px;
+  position: relative;
+  border-radius: 100%;
+  border: 6px solid #f8f8f8;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+}
+.avatar-upload .avatar-preview > div {
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+    #btnul {
+        margin: 80px auto;
+        text-align: center;
+    }
+
+    #btnul li {
+        list-style: none;
+        position: relative;
+        display: inline-block;
+        width: 150px;
+        height: 150px;
+    }
+
+    @-moz-keyframes rotate {
+        0% {transform: rotate(0deg);}
+        100% {transform: rotate(-360deg);}
+    }
+
+    @-webkit-keyframes rotate {
+        0% {transform: rotate(0deg);}
+        100% {transform: rotate(-360deg);}
+    }
+
+    @-o-keyframes rotate {
+        0% {transform: rotate(0deg);}
+        100% {transform: rotate(-360deg);}
+    }
+
+    @keyframes rotate {
+        0% {transform: rotate(0deg);}
+        100% {transform: rotate(-360deg);}
+    }
+
+    .round {
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        padding-top: 50px;      
+        text-decoration: none;      
+        text-align: center;
+        font-size: 25px;        
+        text-shadow: 0 1px 0 rgba(255,255,255,.7);
+        letter-spacing: -.065em;
+        font-family: "Hammersmith One", sans-serif;     
+        -webkit-transition: all .25s ease-in-out;
+        -o-transition: all .25s ease-in-out;
+        -moz-transition: all .25s ease-in-out;
+        transition: all .25s ease-in-out;
+        box-shadow: 2px 2px 7px rgba(0,0,0,.2);
+        border-radius: 300px;
+        z-index: 1;
+        border-width: 4px;
+        border-style: solid;
+    }
+
+    .round:hover {
+        width: 130%;
+        height: 130%;
+        left: -15%;
+        top: -15%;
+        font-size: 33px;
+        padding-top: 38px;
+        -webkit-box-shadow: 5px 5px 10px rgba(0,0,0,.3);
+        -o-box-shadow: 5px 5px 10px rgba(0,0,0,.3);
+        -moz-box-shadow: 5px 5px 10px rgba(0,0,0,.3);
+        box-shadow: 5px 5px 10px rgba(0,0,0,.3);
+        z-index: 2;
+        border-size: 10px;
+        -webkit-transform: rotate(-360deg);
+        -moz-transform: rotate(-360deg);
+        -o-transform: rotate(-360deg);
+        transform: rotate(-360deg);
+    }
+    a.green {
+        background-color: rgba(1,151,171,1);
+        color: rgba(0,63,71,1);
+        border-color: rgba(0,63,71,.2);
+    }
+
+    a.green:hover {
+        color: rgba(1,151,171,1);
+    }
+    .round span.round {
+        display: block;
+        opacity: 0;
+        -webkit-transition: all .5s ease-in-out;
+        -moz-transition: all .5s ease-in-out;
+        -o-transition: all .5s ease-in-out;
+        transition: all .5s ease-in-out;
+        font-size: 1px;
+        border: none;
+        padding: 40% 20% 0 20%;
+        color: #fff;
+    }
+
+    .round span:hover {
+        opacity: .85;
+        font-size: 16px;
+        -webkit-text-shadow: 0 1px 1px rgba(0,0,0,.5);
+        -moz-text-shadow: 0 1px 1px rgba(0,0,0,.5);
+        -o-text-shadow: 0 1px 1px rgba(0,0,0,.5);
+        text-shadow: 0 1px 1px rgba(0,0,0,.5);  
+    }
+
+    .green span {
+        background: rgba(0,63,71,.7);       
+    }
+
+    /** Switch
+ -------------------------------------*/
+
+.switch input {
+  position: absolute;
+  opacity: 0;
+}
+
+/**
+ * 1. Adjust this to size
+ */
+
+.switch {
+  display: inline-block;
+  font-size: 20px; /* 1 */
+  height: 1em;
+  width: 2em;
+  background: #BDB9A6;
+  border-radius: 1em;
+}
+
+.switch div {
+  height: 1em;
+  width: 1em;
+  border-radius: 1em;
+  background: #FFF;
+  box-shadow: 0 0.1em 0.3em rgba(0,0,0,0.3);
+  -webkit-transition: all 300ms;
+     -moz-transition: all 300ms;
+          transition: all 300ms;
+}
+
+.switch input:checked + div {
+     background: #ff6347;
+  -webkit-transform: translate3d(100%, 0, 0);
+     -moz-transform: translate3d(100%, 0, 0);
+          transform: translate3d(100%, 0, 0);
+}
+
+
+
+
+</style>
+@endsection
 @section('content')
 <section id="profileBanner">
         <div class="text-center">
@@ -66,6 +282,7 @@
                             <li class="nav-item">
                                <a href="#general" class="nav-link {{$generaltab}}" data-toggle="pill"><span>General</span> </a>
                             </li>
+                            @if(!empty(auth::user()->user_status) && auth::user()->user_status=="Translator")
                             <li class="nav-item">
                                <a href="#resume" class="nav-link {{$resumetab}}" data-toggle="pill"><span>Resume</span> </a>
                             </li>
@@ -90,6 +307,7 @@
                               <li class="nav-item">
                                  <a href="#files" class="nav-link" data-toggle="pill"><span>Files</span> </a>
                               </li>
+                            @endif
                          </ul>
                     </div>
                 </div>
@@ -115,29 +333,31 @@
                             <p class="mainHeading">Profile Management</p>
                         </div>
                         <div class="row">
-                            <div class="col-lg-3">
-                                <button>Editing Wizard</button>
+                            <div class="col-lg-6">
+
+                                <form class="form-group" action="{{route('change-profile-photo')}}" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="avatar-upload">
+                                        <div class="avatar-edit">
+                                            <input type='file' id="imageUpload" name="profilephoto" accept=".png, .jpg, .jpeg" />
+                                            <label for="imageUpload"></label>
+                                        </div>
+                                        <div class="avatar-preview">
+                                            <div id="imagePreview" style="background-image: url('{{asset('profile-images/').'/'.auth::user()->profile_photo ?? ''}}');">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-12">
+                                         <button type="submit" class="btn btn-danger">Change Profile Photo</button>
+                                   </div>
+                                </form>
                             </div>
-                            <div class="col-lg-3">
-                                <button>Submit Photo</button>
-                            </div>
-                            <div class="col-lg-3">
-                                <button>Delete Photo</button>
-                            </div>
-                            <div class="col-lg-3">
-                                <button>Add Agency</button>
-                            </div>
-                            <div class="col-lg-3">
-                                <button>Editing Wizard</button>
-                            </div>
-                            <div class="col-lg-3">
-                                <button>Submit Photo</button>
-                            </div>
-                            <div class="col-lg-3">
-                                <button>Delete Photo</button>
-                            </div>
-                            <div class="col-lg-3">
-                                <button>Add Agency</button>
+
+                            <div class="col-lg-6">
+                                <ul id="btnul">
+                                  <li><a href="{{route('view-user-profile')}}" class="round green">View Profile<span class="round">That is, if you already have an Profile.</span></a></li>
+                                </ul> 
                             </div>
                         </div>
                         <div class="box" style="margin-top:20px">
@@ -157,13 +377,12 @@
                             <p class="mainHeading">Availability</p>
                         </div>
                         <div class="row">
-                            <div class="col-lg-2">
-                                <input type="radio" id="html" name="fav_language" value="HTML">
-                                <input type="radio" id="css" name="fav_language" value="CSS">
-                                <p>Available</p>
-                                <button>Disable</button>
+                            <div class="col-lg-4">
+                             <h4><b>Availability</b></h4>
+                                     <label class="switch"><input type="checkbox" class="togglebtn" data-type="availability" @if(auth::user()->status=='1'){{'checked'}}@endif/><div ></div>
+                                    </label>
                             </div>
-                            <div class="col-lg-10">
+                            <!-- <div class="col-lg-8">
                                 <div class="d-flex multipleItem">
                                     <button>Change to Buy</button>
                                     <label for=""><b>Until</b></label>
@@ -177,7 +396,7 @@
                                         <option value="">2021</option>
                                     </select>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <p>Translator's Availability is displayed <a href="">at the top right corner of your profile page.</a>
                             Busy members are shown at the end of the search results.
@@ -192,21 +411,24 @@
                                 <div class="text-center privacy-box">
                                     <h4><b>Profile</b></h4>
                                     <p>Public</p>
-                                    <button>Make Private</button>
+                                     <label class="switch"><input type="checkbox" class="togglebtn" data-type="profile" @if(isset($userData[0]->usergeneralinfo-> private_information) && $userData[0]->usergeneralinfo-> private_information=='1'){{'checked'}}@endif/><div></div>
+                                    </label>
                                 </div>
                             </div>
                             <div class="col-lg-4">
                                 <div class="text-center privacy-box">
                                     <h4><b>Contact Info</b></h4>
                                     <p>Invisible</p>
-                                    <button>Make Visible</button>
+                                    <label class="switch"><input type="checkbox" class="togglebtn" data-type="ContactInfo" @if(isset($userData[0]->usergeneralinfo->display_contact_info) && $userData[0]->usergeneralinfo->display_contact_info=='1'){{'checked'}}@endif/><div></div>
+                                    </label>
                                 </div>
                             </div>
                             <div class="col-lg-4">
                                 <div class="text-center privacy-box">
                                     <h4><b>Rates</b></h4>
                                     <p>No rates</p>
-                                    <button>Make Visible</button>
+                                    <label class="switch"><input type="checkbox" class="togglebtn" data-type="Rates"  @if(isset($userData[0]->usergeneralinfo->show_rated_users) && $userData[0]->usergeneralinfo->show_rated_users=='1'){{'checked'}}@endif/><div></div>
+                                    </label>
                                 </div>
                             </div>
                         </div>
@@ -214,6 +436,7 @@
                             <div class="col-lg-4">
                                 <div class="text-center privacy-box">
                                     <p><b>TCTerms Q & A</b></p>
+
                                 </div>
                             </div>
                             <div class="col-lg-4">
@@ -232,37 +455,41 @@
                             <p class="mainHeading">Email Notification</p>
                         </div>
                         <div class="row">
-                            <div class="col-lg-3">
+                            <div class="col-lg-4">
                                 <div class="text-center privacy-box">
                                     <h4><b>Job Notification</b></h4>
                                     <p>Diabaled</p>
-                                    <button>Enable</button>
+                                    <label class="switch"><input type="checkbox" class="togglebtn" data-type="JobNotification" @if(isset($userData[0]->usergeneralinfo->jobsnotification) && $userData[0]->usergeneralinfo->jobsnotification=='1'){{'checked'}}@endif/><div></div>
+                                    </label>
                                     <p><b>Block Countries</b></p>
                                 </div>
                             </div>
-                            <div class="col-lg-3">
+                            <div class="col-lg-4">
                                 <div class="text-center privacy-box">
                                     <h4><b>News Notification</b></h4>
                                     <p>Diabaled</p>
-                                    <button>Enable</button>
+                                    <label class="switch"><input type="checkbox" class="togglebtn" data-type="NewsNotification" @if(isset($userData[0]->usergeneralinfo->news_notification) && $userData[0]->usergeneralinfo->news_notification=='1'){{'checked'}}@endif/><div></div>
+                                    </label>
                                 </div>
                             </div>
                             <div
-                             class="col-lg-3">
+                             class="col-lg-4">
                                 <div class="text-center privacy-box">
                                     <h4><b>Forums Notification</b></h4>
                                     <p>Diabaled</p>
-                                    <button>Subcribe</button>
+                                    <label class="switch"><input type="checkbox" class="togglebtn" data-type="ForumsNotification"/><div></div>
+                                    </label>
                                 </div>
                             </div>
-                            <div
+                            <!-- <div
                              class="col-lg-3">
                                 <div class="text-center privacy-box">
                                     <h4><b>TCTTerms Notification</b></h4>
                                     <p>Enable</p>
-                                    <button>Diabaled</button>
+                                    <label class="switch"><input type="checkbox" /><div></div>
+                                    </label>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="userInfo">
                             <div class="row" style="margin-bottom:20px">
@@ -277,32 +504,22 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-9">
-                                    <h4>Areeb middle name Hassan</h4>
-                                    <p>Advertising slogan</p>
-                                    <p>Company text field</p>
+                                    <h4>{{$userData[0]->usergeneralinfo->first_name ?? ''}} {{ $userData[0]->usergeneralinfo->last_name ?? ''}}</h4>
+                                    <p>{{$userData[0]->usergeneralinfo->advertising_slogan ?? ''}}</p>
+                                    <p>{{$userData[0]->usergeneralinfo->company_name ?? ''}}</p>
                                     <p><b>Pakistan</b></p>
                                     <p>Mother Tongues:</p>
-                                    <p>Abkhazian, Albanian</p>
+                                    <p>
+                                        @foreach($userData[0]->usermotherlanguages as $lng)
+                                            {{$lng->mother_language}}
+                                        @endforeach
+                                    </p>
                                     <p>Time zone: not defined. Change</p>
                                 </div>
                             </div>
-                            <a href=""><b>https://www.accrualgroup.com</b></a>
+                            <a href="{{$userData[0]->usergeneralinfo->website ?? ''}}"><b>{{$userData[0]->usergeneralinfo->website ?? ''}}</b></a>
                         </div>
                         <p><b>TCTerms Score 0</b> [disable]</p>
-                        <p><b>Activity statistics of Areeb Hassan</b></p>
-                        <table class="activityStatusTable table-responsive"> 
-                            <thead>
-                                <tr>
-                                    <th>Services and Rates</th>
-                                    <th>Subject Areas</th>
-                                    <th>Voice</th>
-                                    <th>Soft & Platform</th>
-                                    <th>Accreditations</th>
-                                    <th>Membership</th>
-                                    <th>Credentials</th>
-                                </tr>
-                            </thead>
-                        </table>
                         <div class="text-left" style="margin-top:20px">
                             <p class="mainHeading">Contact Information (invisible)</p>
                         </div>
@@ -1985,5 +2202,49 @@ If you are not registered with any of the payment processors below, please click
           }
         })
     })
+</script>
+<script type="text/javascript">
+    function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            $('#imagePreview').css('background-image', 'url('+e.target.result +')');
+            $('#imagePreview').hide();
+            $('#imagePreview').fadeIn(650);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+$("#imageUpload").change(function() {
+    readURL(this);
+});
+
+//change profile button checked
+$(".togglebtn").change(function(){
+    type=$(this).attr('data-type');
+    if($(this).is(":checked"))
+    {
+        status=1;
+    }else{
+        status=0;
+    }
+    $.ajax({
+        url:"{{route('change-user-status')}}",
+        method:'get',
+        data:{status:status,type:type},
+        success:function(res)
+        {
+            
+            if(res=="success")
+            {
+                Swal.fire('Status Changed Successfully!', '', 'success');
+            }
+            else
+            {
+                 Swal.fire('Oops!', '', 'error');
+            }
+        }
+    })
+})
 </script>
 @endsection
