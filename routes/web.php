@@ -28,12 +28,10 @@ Route::get('email/verify', [App\Http\Controllers\Auth\VerificationController::cl
     Route::get('/', function () {
     return view('screens.home');
     });
-    Route::get('/search-freelancer', function () {
-        return view('screens.freelancer.search-freelancer');
-    });
-    Route::get('/top-freelancer', function () {
-        return view('screens.freelancer.top-freelancer');
-    });
+    
+    Route::get('/search-freelancer','FreelancerController@search_freelancer')->name('search-freelancer');
+    Route::get('/top-freelancer','FreelancerController@index')->name('top-freelancer');
+
     Route::get('/search-agencies', function () {
         return view('screens.agencies.search-agencies');
     });

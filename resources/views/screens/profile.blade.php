@@ -546,8 +546,9 @@
                             <p class="mainHeading">Working Language Pairs</p>
                         </div>
                         <p>
+                           
                             @foreach($userData[0]->userlanguages as $lng)
-                            {{$lng->from_languages >> $lng->to_languages}}
+                            {{$lng->from_languages .'>>'. $lng->to_languages}}
                             @endforeach
                         </p>
                         <div class="text-left" style="margin-top:20px">
