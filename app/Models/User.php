@@ -29,6 +29,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'user_status',
         'status',
         'resume',
+        'profile_photo',
     ];
 
     /**
@@ -62,9 +63,13 @@ class User extends Authenticatable implements MustVerifyEmail
      {
        return $this->hasMany(UserLanguages::class);
      }
+     public function usermotherlanguages()
+     {
+        return $this->hasMany(UserMotherLanguages::class);
+     }
      public function usersevices()//relation with services model
      {
-        //pending due to incomplete structure
+        return $this->hasMany(UserServicesRates::class);
      }
      public function usersoftwares()//relation with software models
      {
@@ -76,6 +81,10 @@ class User extends Authenticatable implements MustVerifyEmail
      }
      public function uservoicover()//relation with voice overmodel
      {
-        return $this->hasOne(UserVoiceOver::class);
+        return $this->hasMany(UserVoiceOver::class);
+     }
+     public function userfiles()
+     {
+         return $this->hasMany(UserFiles::class);
      }
 }

@@ -220,103 +220,21 @@
                               </tr>
                             </thead>
                             <tbody>
-                              <tr>
-                                <td class="checkbox">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                </td>
-                                <td class="companyimg">
-                                    <h3>lorem ipsum</h3>
-                                    <img src="assets/img/Job Posted.png" alt="">
-                                </td>
-                                <td class="location">ABC</td>
-                                <td class="date">Jan 01, 2021</td>
-                                <td></td>
-                                <td></td>
-                              </tr>
-    
-                              <tr class="tablebackground">
-                                <td class="checkbox">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                </td>
-                                <td class="companyimg">
-                                    <h3>lorem ipsum</h3>
-                                    <img src="assets/img/Job Posted.png" alt="">
-                                </td>
-                                <td class="location">ABC</td>
-                                <td class="date">Jan 01, 2021</td>
-                                <td></td>
-                                <td></td>
-                              </tr>
-    
-                              <tr>
-                                <td class="checkbox">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                </td>
-                                <td class="companyimg">
-                                    <h3>lorem ipsum</h3>
-                                    <img src="assets/img/Job Posted.png" alt="">
-                                </td>
-                                <td class="location">ABC</td>
-                                <td class="date">Jan 01, 2021</td>
-                                <td></td>
-                                <td></td>
-                              </tr>
-    
-                              <tr class="tablebackground">
-                                <td class="checkbox">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                </td>
-                                <td class="companyimg">
-                                    <h3>lorem ipsum</h3>
-                                    <img src="assets/img/Job Posted.png" alt="">
-                                </td>
-                                <td class="location">ABC</td>
-                                <td class="date">Jan 01, 2021</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-    
-                              <tr>
-                                <td class="checkbox">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                </td>
-                                <td class="companyimg">
-                                    <h3>lorem ipsum</h3>
-                                    <img src="assets/img/Job Posted.png" alt="">
-                                </td>
-                                <td class="location">ABC</td>
-                                <td class="date">Jan 01, 2021</td>
-                                <td></td>
-                                <td></td>
-                              </tr>
-    
-                              <tr class="tablebackground">
-                                <td class="checkbox">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                </td>
-                                <td class="companyimg">
-                                    <h3>lorem ipsum</h3>
-                                    <img src="assets/img/Job Posted.png" alt="">
-                                </td>
-                                <td class="location">ABC</td>
-                                <td class="date">Jan 01, 2021</td>
-                                <td></td>
-                                <td></td>
-                              </tr>
-    
-                              <tr>
-                                <td class="checkbox">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                </td>
-                                <td class="companyimg">
-                                    <h3>lorem ipsum</h3>
-                                    <img src="assets/img/Job Posted.png" alt="">
-                                </td>
-                                <td class="location">ABC</td>
-                                <td class="date">Jan 01, 2021</td>
-                                <td></td>
-                                <td></td>
-                              </tr>
+                        @foreach($FreelancerData as $freelancer)
+                          <tr>
+                            <td class="checkbox">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            </td>
+                            <td class="companyimg">
+                                <h3>{{$freelancer->fname.' '.$freelancer->lname}}</h3>
+                                <img src="/assets/img/Job Posted.png" alt="">
+                            </td>
+                            <td class="location">{{$freelancer->usergeneralinfo->address ?? ''}}</td>
+                            <td class="date">{{date("F-Y", strtotime($freelancer->usergeneralinfo->updated_at ?? ''));}}</td>
+                            <td></td>
+                            <td></td>
+                          </tr>
+                        @endforeach
                              
                             </tbody>
                             

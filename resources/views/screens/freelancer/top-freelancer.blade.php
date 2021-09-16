@@ -22,104 +22,21 @@
                           </tr>
                         </thead>
                         <tbody>
+                        @foreach($FreelancerData as $freelancer)
                           <tr>
                             <td class="checkbox">
                                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
                             </td>
                             <td class="companyimg">
-                                <h3>lorem ipsum</h3>
+                                <h3>{{$freelancer->fname.' '.$freelancer->lname}}</h3>
                                 <img src="/assets/img/Job Posted.png" alt="">
                             </td>
-                            <td class="location">ABC</td>
-                            <td class="date">Jan 01, 2021</td>
+                            <td class="location">{{$freelancer->usergeneralinfo->address ?? ''}}</td>
+                            <td class="date">{{date("F-Y", strtotime($freelancer->usergeneralinfo->updated_at ?? ''));}}</td>
                             <td></td>
                             <td></td>
                           </tr>
-
-                          <tr class="tablebackground">
-                            <td class="checkbox">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            </td>
-                            <td class="companyimg">
-                                <h3>lorem ipsum</h3>
-                                <img src="/assets/img/Job Posted.png" alt="">
-                            </td>
-                            <td class="location">ABC</td>
-                            <td class="date">Jan 01, 2021</td>
-                            <td></td>
-                            <td></td>
-                          </tr>
-
-                          <tr>
-                            <td class="checkbox">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            </td>
-                            <td class="companyimg">
-                                <h3>lorem ipsum</h3>
-                                <img src="/assets/img/Job Posted.png" alt="">
-                            </td>
-                            <td class="location">ABC</td>
-                            <td class="date">Jan 01, 2021</td>
-                            <td></td>
-                            <td></td>
-                          </tr>
-
-                          <tr class="tablebackground">
-                            <td class="checkbox">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            </td>
-                            <td class="companyimg">
-                                <h3>lorem ipsum</h3>
-                                <img src="/assets/img/Job Posted.png" alt="">
-                            </td>
-                            <td class="location">ABC</td>
-                            <td class="date">Jan 01, 2021</td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-
-                          <tr>
-                            <td class="checkbox">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            </td>
-                            <td class="companyimg">
-                                <h3>lorem ipsum</h3>
-                                <img src="/assets/img/Job Posted.png" alt="">
-                            </td>
-                            <td class="location">ABC</td>
-                            <td class="date">Jan 01, 2021</td>
-                            <td></td>
-                            <td></td>
-                          </tr>
-
-                          <tr class="tablebackground">
-                            <td class="checkbox">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            </td>
-                            <td class="companyimg">
-                                <h3>lorem ipsum</h3>
-                                <img src="/assets/img/Job Posted.png" alt="">
-                            </td>
-                            <td class="location">ABC</td>
-                            <td class="date">Jan 01, 2021</td>
-                            <td></td>
-                            <td></td>
-                          </tr>
-
-                          <tr>
-                            <td class="checkbox">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            </td>
-                            <td class="companyimg">
-                                <h3>lorem ipsum</h3>
-                                <img src="/assets/img/Job Posted.png" alt="">
-                            </td>
-                            <td class="location">ABC</td>
-                            <td class="date">Jan 01, 2021</td>
-                            <td></td>
-                            <td></td>
-                          </tr>
-                         
+                        @endforeach
                         </tbody>
                         
                     </table>
@@ -132,10 +49,10 @@
                         <p class="header">FREELANCER OF THE DAY</p>
                         <div class="sliderDiv">
                             <div class="profileBox">
-                                <img src="assets/img/user.png" alt="" class="img-fluid">
+                                <img src="{{asset('/profile-images/'.$FreelancerData[0]->profile_photo ?? '')}}" alt="" class="img-fluid">
                                 <div class="userDetail">
-                                    <h5>John Doe</h5>
-                                    <p>Spanish Translator</p>
+                                    <h5>{{$FreelancerData[0]->fname.' '.$FreelancerData[0]->lname}}</h5>
+                                    <p>{{$FreelancerData[0]->userlanguages[0]->from_languages ?? ''}} Translator</p>
                                 </div>
                                 <hr>
                                 <div class="reviewDiv">

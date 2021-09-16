@@ -12,4 +12,6 @@ class UserSpecializations extends Model
      protected $casts = [
         'spicializations' => 'array',
     ];
+
+     protected $guarded = []; 
 }
