@@ -524,7 +524,7 @@
                         </div>
                         <!-- <p><b>TCTerms Score 0</b> [disable]</p> -->
                         <div class="text-left" style="margin-top:20px">
-                            <p class="mainHeading">Contact Information {{ $userData[0]->usergeneralinfo->display_contact_info=='0' ? "(Visible)" : "(Invisible)" }}</p>
+                            <p class="mainHeading">Contact Information  @if(isset($userData[0]->usergeneralinfo->display_contact_info) && $userData[0]->usergeneralinfo->display_contact_info=='0'){{"(Visible)"}} else {{"(Invisible)" }}@endif</p>
                         </div>
                         <p>
                             <b>Address:</b>{{$userData[0]->usergeneralinfo->address ?? ''}}

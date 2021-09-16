@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Request;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -87,4 +88,5 @@ class User extends Authenticatable implements MustVerifyEmail
      {
          return $this->hasMany(UserFiles::class);
      }
+
 }

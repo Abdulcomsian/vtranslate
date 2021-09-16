@@ -29,7 +29,7 @@
                             </td>
                             <td class="companyimg">
                                 <h3>{{$freelancer->fname.' '.$freelancer->lname}}</h3>
-                                <img src="/assets/img/Job Posted.png" alt="">
+                                <img src="@if($freelancer->profile_photo!=null){{asset('/profile-images').'/'.$freelancer->profile_photo}} @else{{'/assets/img/Job Posted.png'}}@endif" alt="" class="img-circle img-responsive " width="100px" height="100px">
                             </td>
                             <td class="location">{{$freelancer->usergeneralinfo->address ?? ''}}</td>
                             <td class="date">{{date("F-Y", strtotime($freelancer->usergeneralinfo->updated_at ?? ''));}}</td>
@@ -49,9 +49,9 @@
                         <p class="header">FREELANCER OF THE DAY</p>
                         <div class="sliderDiv">
                             <div class="profileBox">
-                                <img src="{{asset('/profile-images/'.$FreelancerData[0]->profile_photo ?? '')}}" alt="" class="img-fluid">
+                                <img src="@if(isset($FreelancerData[0]->profile_photo) && $FreelancerData[0]->profile_photo!=null){{asset('/profile-images/'.$FreelancerData[0]->profile_photo ?? '')}}@else{{'/assets/img/Job Posted.png'}}@endif" alt="" class="img-fluid">
                                 <div class="userDetail">
-                                    <h5>{{$FreelancerData[0]->fname.' '.$FreelancerData[0]->lname}}</h5>
+                                    <h5>{{$FreelancerData[0]->fname ?? ''}} {{ $FreelancerData[0]->lname ?? ''}}</h5>
                                     <p>{{$FreelancerData[0]->userlanguages[0]->from_languages ?? ''}} Translator</p>
                                 </div>
                                 <hr>

@@ -9,25 +9,25 @@
                 <div class="col-lg-9">
                     <div class="commonDiv">
                         <h3>Search Freelancer</h3>
-                        <form action="">
+                        <form action="{{route('search-freelancer')}}" method="post">
+                            @csrf
                             <div class="inputDiv">
                                 <label for="">Freelancer</label>
-                                <select name="" id="">
-                                    <option value="Select Topic">Select Freelancer</option>
+                                <select name="freelancerid" id="freelancerid">
+                                    <option value="">Select Freelancer</option>
+                                    @foreach($FreelancerData as $freelancer)
+                                    <option value="{{$freelancer->id}}">{{$freelancer->fname .' '.$freelancer->lname}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="inputDiv">
                                 <label for="">Keywords:</label>
-                                <input type="text" class="form-control" id="exampleInputMessage">
+                                <input type="text" class="form-control" name="keyword" id="keyword">
                             </div>
-                            <div class="checkboxh pb-3">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                <label class="form-check-label" for="exampleCheck1">Search only in agency names.</label>
-                            </div>
-
                             <div class="inputDiv">
                                 <label for="">Language</label>
                                 <select id="languages" name="languages">
+                                    <option value="">Select Language</option>
                                     <option value="af">Afrikaans</option>
                                     <option value="sq">Albanian - shqip</option>
                                     <option value="am">Amharic - አማርኛ</option>
@@ -172,14 +172,8 @@
                                     <option value="zu">Zulu - isiZulu</option>
                                 </select>
                             </div>
-                            <div class="inputDiv">
-                                <label for="">Type of an Freelancer</label>
-                                <select name="" id="">
-                                    <option value="Select Topic">Type of an Freelancer</option>
-                                </select>
-                            </div>
                             <div class="checkboxh ">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                <input type="checkbox" class="form-check-input" name="last30" id="exampleCheck1">
                                 <label class="form-check-label" for="exampleCheck1">Freelancer profile updated during the last 30 days</label>
                             </div>
                             <div class="inputDiv pt-3">
@@ -188,31 +182,29 @@
                                     <option value="Select Topic">Select Location</option>
                                 </select>
                             </div>
-                            <div class="inputDiv">
+                           <!--  <div class="inputDiv">
                                 <label for="">Invitation and Presence</label>
                                 <select name="" id="">
                                     <option value="Select Topic">Invitation and Presence</option>
                                 </select>
-                            </div>
+                            </div> -->
                             
                             <div class="multiBtn text-center pt-5">
-                                <button class="agencycommonBtn">Submit</button>
+                                <button type="submit" class="agencycommonBtn">Submit</button>
                             </div>
-                           
                         </form>
                         
-                    
                     </div>
                     <div class="table-responsive">
                         <table class="table">
                             <div class="sectionp ">
-                                <p>Total Records: 1234</p>
+                                <p>Total Records: {{count($FreelancerData)}}</p>
                                
                             </div>
                             <thead class="tablehead">
                               <tr>
                                 <th scope="col">Select</th>
-                                <th scope="col">Agency</th>
+                                <th scope="col">Freelancer</th>
                                 <th scope="col">Location</th>
                                 <th scope="col">Last Updated</th>
                                 <th scope="col">To Jobs, if any</th>
@@ -227,7 +219,7 @@
                             </td>
                             <td class="companyimg">
                                 <h3>{{$freelancer->fname.' '.$freelancer->lname}}</h3>
-                                <img src="/assets/img/Job Posted.png" alt="">
+                                <img src="@if($freelancer->profile_photo!=null){{asset('/profile-images').'/'.$freelancer->profile_photo}} @else{{'/assets/img/Job Posted.png'}}@endif" alt="" class="img-circle img-responsive " width="100px" height="100px">
                             </td>
                             <td class="location">{{$freelancer->usergeneralinfo->address ?? ''}}</td>
                             <td class="date">{{date("F-Y", strtotime($freelancer->usergeneralinfo->updated_at ?? ''));}}</td>
