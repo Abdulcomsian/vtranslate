@@ -6,6 +6,7 @@
                 <div class="banner-content">
                     <div class="row" >
                         <div class="col-lg-6">
+                            <div class="leftBannerContent">
                             <h1>The Easiest Way To Hire <br> Expert Translate</h1>
                             <h2>lorem ipsum dolor sit amit, consectetur adipiscing elit ut aliquam, purus <br> sit amet luctus</h2>
                             <!-- <a href="#" class="btnD1">Read More</a> -->
@@ -34,6 +35,7 @@
                                     <span class="spantext">English-korean</span>
                                     <span class="spantext">English-korean</span>
                                 </p>
+                            </div>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-12 pt-3">
@@ -109,7 +111,7 @@
                         <img class="overviewImg" src="assets/img/Job Posted.png">
                         <div class="translateContent">
                             <h2>2000+</h2>
-                        <p> Jobs Posted</p>
+                            <p> Jobs Posted</p>
                         </div>
                     </div>
                 </div>
@@ -388,7 +390,7 @@
                         <div class="lookingFor">
                             <p class="header">What are you Looking for?</p>
                             <ul>
-                                <li><a href="job-posting.html">Post a Job</a></li>
+                                <li><a href="route{{ url('/post-a-job') }}">Post a Job</a></li>
                                 <li><a href="">Find a Translator</a></li>
                                 <li><a href="">Find a Translation Agency</a></li>
                             </ul>
@@ -461,7 +463,7 @@
                             <a href="find-a-job.html"><button type="button" class="btnD1">View Job</button></a>
                        </div>
                         <div class="centerbannerbtn2">
-                             <a href="job-posting.html"><button type="button" class="btnD2">Post a job</button></a>
+                             <a href="{{ url('post-a-job') }}"><button type="button" class="btnD2">Post a job</button></a>
                         </div>
                      </div> 
                 </div>

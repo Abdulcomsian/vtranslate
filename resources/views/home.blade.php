@@ -388,7 +388,7 @@
                         <div class="lookingFor">
                             <p class="header">What are you Looking for?</p>
                             <ul>
-                                <li><a href="job-posting.html">Post a Job</a></li>
+                                <li><a href="{{ url('/post-a-job') }}">Post a Job</a></li>
                                 <li><a href="">Find a Translator</a></li>
                                 <li><a href="">Find a Translation Agency</a></li>
                             </ul>
@@ -461,7 +461,7 @@
                             <a href="find-a-job.html"><button type="button" class="btnD1">View Job</button></a>
                        </div>
                         <div class="centerbannerbtn2">
-                             <a href="job-posting.html"><button type="button" class="btnD2">Post a job</button></a>
+                             <a href="{{ url('/post-a-job') }}"><button type="button" class="btnD2">Post a job</button></a>
                         </div>
                      </div> 
                 </div>
