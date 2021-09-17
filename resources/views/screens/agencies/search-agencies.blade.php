@@ -184,8 +184,11 @@
                             </div>
                             <div class="inputDiv pt-3">
                                 <label for="">Location</label>
-                                <select name="" id="">
-                                    <option value="Select Topic">Select Location</option>
+                                <select name="country" id="country">
+                                    <option value="">Select Location</option>
+                                    @foreach($countries as $country)
+                                    <option value="{{$country->id}}">{{$country->country_name}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                            <!--  <div class="inputDiv">
@@ -313,4 +316,11 @@
             
         </div>
     </section>
+@endsection
+@section('script')
+<script type="text/javascript">
+    $(".agencysubmitbtn").click(function(){
+        if($("#agencyid").val()=="" && $("[input:name='keyword']").val()=="" && )
+    })
+</script>
 @endsection

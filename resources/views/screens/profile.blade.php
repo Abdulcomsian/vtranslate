@@ -559,9 +559,29 @@
                         </p>
                         <p>Other, Subtitling</p>
                         <p>Preferred currency: <b>$</b></p>
-                        <p>Enter your rates and you will be able to click or tap the <b>Translation Rates Statistics</b> button below) to view the information that is valuable to any freelance translator (if there is enough information in the database to get the correct statistical results). You can also click or tap the <b>Enter Rates</b> button in the Control Panel above to enter your translation rates. </p>
-                        <button style="width:auto">Edit My Rates</button>
-                        <button style="width:auto">Translation Rates Statistics </button>
+                         <table class="table table-hover">
+                             <thead>
+                                 <tr>
+                                    <th>#</th>
+                                    <th>Service</th>
+                                    <th>Language</th>
+                                    <th>Rate</th>
+                                 </tr>
+                             </thead>
+                             <tbody>
+                                @foreach($userData[0]->usersevices as $service)
+                                 <tr>
+                                    <td>{{$loop->index+1}}</td>
+                                    <td>{{$service->service}}</td>
+                                    @php
+                                    $pairlanguage=\App\Models\UserLanguages::where('id',$service->pair_language)->first();
+                                    @endphp
+                                    <td>{{$pairlanguage->from_languages.">>".$pairlanguage->to_languages}}</td>
+                                    <td>{{"Min rate per word is ".$service->min_rate_per_word." $ Min rate per minute is ".$service->min_rate_per_minute." $"}}</td>
+                                 </tr>
+                                @endforeach
+                             </tbody>
+                         </table>
 
                         <!-- rates and statistics -->
                         <div class="text-left" style="margin-top:20px">
@@ -604,7 +624,7 @@
                         </div> 
                         <div class="box" style="display: flex;justify-content: space-between;">
                             <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
-                            <p><b>CV (42KB)</b></p>
+                            <p><b>@if(auth::user()->resume)<a target="_blank" href="{{asset('files/resume').'/'.auth::user()->resume}}">View Resume</a>@else{{"(No Resume Uploaded)"}}@endif</b></p>
                         </div>  
 
                         <!-- software areas -->

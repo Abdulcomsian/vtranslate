@@ -42,9 +42,8 @@ Route::get('email/verify', [App\Http\Controllers\Auth\VerificationController::cl
     Route::get('/forums', function () {
         return view('screens.forums');
     });
-    Route::get('/contact-us', function () {
-        return view('screens.contact-us');
-    });
+    Route::get('/contact-us','ContactUsController@index')->name('contact-us');
+    Route::post('/contact-us','ContactUsController@store')->name('contact-us');
 
     Route::get('/about-us', function () {
         return view('screens.about-us');

@@ -12,6 +12,7 @@ use App\Models\UserSoftware;
 use App\Models\UserFiles;
 use App\Models\UserMotherLanguages;
 use App\Models\UserServicesRates;
+use App\Models\Country;
 use DB;
 
 class FreelancerController extends Controller
@@ -28,16 +29,19 @@ class FreelancerController extends Controller
     //search Freelancer
     public function search_freelancer()
     {
-
+         $allafreelancermembers=User::where('user_status','Translator')->get();
          $FreelancerData=User::with('usergeneralinfo','userlanguages','usersoftwares','userspicialize','uservoicover','userfiles','usermotherlanguages','usersevices')->where('user_status','Translator')->get();
-         return view('screens.freelancer.search-freelancer',compact('FreelancerData'));
+         $countries=Country::get();
+         return view('screens.freelancer.search-freelancer',compact('FreelancerData','countries','allafreelancermembers'));
     }
     public function search(Request $request)
     {
+         $allafreelancermembers=User::where('user_status','Translator')->get();
+         $countries=Country::get();
          $FreelancerData=User::with('usergeneralinfo','userlanguages','usersoftwares','userspicialize','uservoicover','userfiles','usermotherlanguages','usersevices')
-         ->where('user_status','Translator')
+         
           ->when($request->freelancerid, function($query) use ($request){
-              return $query->where('id', $request->freelancerid);
+              return $query->orwhere('id', $request->freelancerid);
           })
            ->when($request->keyword, function($query) use ($request){
               return $query->whereHas('usergeneralinfo', function($query) {
@@ -49,8 +53,12 @@ class FreelancerController extends Controller
                     $query->orwhere('from_languages', '=', \Request::input('languages'))->orwhere('to_languages', '=', \Request::input('languages'));
                     });
           })
+         ->when($request->country, function($query) use ($request){
+                    return $query->orwhere('country_id', '=',$request->country);    
+          })
+         ->where('user_status','Translator')
          ->get();
-         return view('screens.freelancer.search-freelancer',compact('FreelancerData'));
+         return view('screens.freelancer.search-freelancer',compact('FreelancerData','allafreelancermembers','countries'));
         
     }
 }

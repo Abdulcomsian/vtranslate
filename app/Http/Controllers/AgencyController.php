@@ -12,6 +12,7 @@ use App\Models\UserSoftware;
 use App\Models\UserFiles;
 use App\Models\UserMotherLanguages;
 use App\Models\UserServicesRates;
+use App\Models\Country;
 use DB;
 
 class AgencyController extends Controller
@@ -26,14 +27,16 @@ class AgencyController extends Controller
     public function search_agencies()
     {
         $allagencymembers=User::where('user_status','Employer')->get();
-         $AgencyData=User::with('usergeneralinfo','userlanguages','usersoftwares','userspicialize','uservoicover','userfiles','usermotherlanguages','usersevices')->where('user_status','Employer')->get();
-         return view('screens.agencies.search-agencies',compact('AgencyData','allagencymembers'));
+        $countries=Country::get();
+        $AgencyData=User::with('usergeneralinfo','userlanguages','usersoftwares','userspicialize','uservoicover','userfiles','usermotherlanguages','usersevices')->where('user_status','Employer')->get();
+         return view('screens.agencies.search-agencies',compact('AgencyData','allagencymembers','countries'));
     }
 
     //search
     public function search(Request $request)
     {
         $allagencymembers=User::where('user_status','Employer')->get();
+        $countries=Country::get();
         $AgencyData=User::with('usergeneralinfo','userlanguages','usersoftwares','userspicialize','uservoicover','userfiles','usermotherlanguages','usersevices')
           
           ->when($request->agencyid, function($query) use ($request){
@@ -49,9 +52,12 @@ class AgencyController extends Controller
                     $query->orwhere('from_languages', '=', \Request::input('languages'))->orwhere('to_languages', '=', \Request::input('languages'));
                     });
           })
+          ->when($request->country, function($query) use ($request){
+                    return $query->orwhere('country_id', '=',$request->country);    
+          })
           ->where('user_status','Employer')
         
          ->get();
-         return view('screens.agencies.search-agencies',compact('AgencyData','allagencymembers'));
+         return view('screens.agencies.search-agencies',compact('AgencyData','allagencymembers','countries'));
     }
 }
