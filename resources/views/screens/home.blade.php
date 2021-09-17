@@ -6,6 +6,7 @@
                 <div class="banner-content">
                     <div class="row" >
                         <div class="col-lg-6">
+                            <div class="leftBannerContent">
                             <h1>The Easiest Way To Hire <br> Expert Translate</h1>
                             <h2>lorem ipsum dolor sit amit, consectetur adipiscing elit ut aliquam, purus <br> sit amet luctus</h2>
                             <!-- <a href="#" class="btnD1">Read More</a> -->
@@ -34,6 +35,7 @@
                                     <span class="spantext">English-korean</span>
                                     <span class="spantext">English-korean</span>
                                 </p>
+                            </div>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-12 pt-3">

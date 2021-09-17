@@ -1,5 +1,6 @@
 <section id="header">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="{{url('/home')}}">
                 <img src="assets/img/logo.png" alt="" class="img-fluid">
             </a>
@@ -65,4 +66,5 @@
               </ul>
             </div>
           </nav>
-    </section>
+    </div>
+</section>
