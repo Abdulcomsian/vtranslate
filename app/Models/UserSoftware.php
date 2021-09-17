@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class UserSoftware extends Model
 {
     use HasFactory;
+
+     protected $casts = [
+        'software_tools' => 'array',
+    ];
+    protected $guarded = []; 
 }

@@ -17,10 +17,12 @@ class CreateUserFilesTable extends Migration
             $table->id();
             $table->string('file_title')->nullable();
             $table->string('file')->nullable();
+            $table->string('file_size')->nullable();
             $table->string('purpose')->nullable();
-            $table->unsignedBigInteger('language')->nullable();
+            $table->string('language')->nullable();
             $table->longText('comments')->nullable();
-            $table->foreign('language')->references('id')->on('user_languages');
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

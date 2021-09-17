@@ -28,6 +28,7 @@ class CreateUsersTable extends Migration
             $table->boolean('status')->nullable();
             $table->string('user_status')->nullable();
             $table->string('resume')->nullable()->comments= 'Pdf or Docs File';
+            $table->string('profile_photo')->nullable();
             $table->foreign('country_id')->references('id')->on('countries');
             $table->rememberToken();
             $table->softDeletes();
