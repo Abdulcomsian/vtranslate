@@ -68,9 +68,10 @@ select:focus{
     top: 10%;
     left: 4.8%;
     z-index: 9999;
+    padding: 0px 65px;
 }
 #header .navbar-collapse{
-    justify-content:space-between;
+    justify-content:flex-end;
 }
 #header ul{
     justify-content: center;
@@ -216,6 +217,9 @@ select:focus{
     max-width: 100%;
     height: auto;
     margin-right: 7px;
+}
+#homeBanner .leftBannerContent{
+    padding: 70px 0px;
 }
 /***************** Create - Account - CSS ****************/
 #createAccount{
@@ -811,7 +815,7 @@ svg{
 
 .banner .banner-content h1{
      color: #fff;
-     font-size: 45px;
+     font-size: 35px;
      font-family: Montserrat;
      font-weight: 600;
      line-height: 1.4em;
@@ -823,7 +827,7 @@ svg{
      padding: 0;
      text-align: start;
      color: #fff;
-     font-size: 16px;
+     font-size: 14px;
      line-height: 25px;
      padding-bottom: 15px;
      font-weight: 400;
@@ -850,7 +854,6 @@ svg{
      font-family: Montserrat;
      display: flex;
      width: 100%;
-     max-width:75%;
      justify-content: center;
      align-items: center;
  }
@@ -1383,7 +1386,7 @@ postJobDiv .multiple-select a{
 } */
 /******************* Post - A - Job **********************/
 #postJobDiv .headingSection{
-    padding: 50px 50px 0px;
+    padding: 50px 30px 0px;
 }
 #postJobDiv .commonDiv{
     padding: 0px;

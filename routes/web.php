@@ -75,6 +75,9 @@ Route::get('email/verify', [App\Http\Controllers\Auth\VerificationController::cl
     Route::get('/freelancer', function () {
         return view('screens.freelancer.freelancer');
     });
+    Route::get('/post-a-job', function () {
+        return view('screens.job-posting');
+    });
 Route::middleware(['verified','auth'])->group(function()
     {
         Route::get('/profile','UserController@profile')->name('profile');
