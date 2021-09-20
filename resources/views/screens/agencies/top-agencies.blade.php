@@ -22,104 +22,29 @@
                           </tr>
                         </thead>
                         <tbody>
+                        @if(count($AgencyData)>0)
+                        @foreach($AgencyData as $agency)
                           <tr>
                             <td class="checkbox">
                                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
                             </td>
                             <td class="companyimg">
-                                <h3>lorem ipsum</h3>
-                                <img src="/assets/img/Job Posted.png" alt="">
+                                <h3>{{$agency->fname ?? ''}} {{$agency->lname ?? ''}}</h3>
+                                <img src="@if(isset($agency->profile_photo) && $agency->profile_photo!=null){{asset('/profile-images').'/'.$agency->profile_photo}} @else{{'/assets/img/Job Posted.png'}}@endif" alt="" class="img-circle img-responsive " width="100px" height="100px" >
                             </td>
-                            <td class="location">ABC</td>
-                            <td class="date">Jan 01, 2021</td>
+                            <td class="location">{{$agency->usergeneralinfo->address ?? ''}}</td>
+                            <td class="date">{{date("F-Y", strtotime($agency->usergeneralinfo->updated_at ?? ''));}}</td>
                             <td></td>
                             <td></td>
                           </tr>
-
-                          <tr class="tablebackground">
-                            <td class="checkbox">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            </td>
-                            <td class="companyimg">
-                                <h3>lorem ipsum</h3>
-                                <img src="/assets/img/Job Posted.png" alt="">
-                            </td>
-                            <td class="location">ABC</td>
-                            <td class="date">Jan 01, 2021</td>
-                            <td></td>
-                            <td></td>
-                          </tr>
-
-                          <tr>
-                            <td class="checkbox">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            </td>
-                            <td class="companyimg">
-                                <h3>lorem ipsum</h3>
-                                <img src="/assets/img/Job Posted.png" alt="">
-                            </td>
-                            <td class="location">ABC</td>
-                            <td class="date">Jan 01, 2021</td>
-                            <td></td>
-                            <td></td>
-                          </tr>
-
-                          <tr class="tablebackground">
-                            <td class="checkbox">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            </td>
-                            <td class="companyimg">
-                                <h3>lorem ipsum</h3>
-                                <img src="/assets/img/Job Posted.png" alt="">
-                            </td>
-                            <td class="location">ABC</td>
-                            <td class="date">Jan 01, 2021</td>
-                            <td></td>
-                            <td></td>
+                        @endforeach
+                        @else
+                        <tr>
+                            <td colspan="6" style="text-align: center;">
+                             <h3 class="text-danger">No Record Found!</h3>
+                            <td
                         </tr>
-
-                          <tr>
-                            <td class="checkbox">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            </td>
-                            <td class="companyimg">
-                                <h3>lorem ipsum</h3>
-                                <img src="/assets/img/Job Posted.png" alt="">
-                            </td>
-                            <td class="location">ABC</td>
-                            <td class="date">Jan 01, 2021</td>
-                            <td></td>
-                            <td></td>
-                          </tr>
-
-                          <tr class="tablebackground">
-                            <td class="checkbox">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            </td>
-                            <td class="companyimg">
-                                <h3>lorem ipsum</h3>
-                                <img src="/assets/img/Job Posted.png" alt="">
-                            </td>
-                            <td class="location">ABC</td>
-                            <td class="date">Jan 01, 2021</td>
-                            <td></td>
-                            <td></td>
-                          </tr>
-
-                          <tr>
-                            <td class="checkbox">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            </td>
-                            <td class="companyimg">
-                                <h3>lorem ipsum</h3>
-                                <img src="/assets/img/Job Posted.png" alt="">
-                            </td>
-                            <td class="location">ABC</td>
-                            <td class="date">Jan 01, 2021</td>
-                            <td></td>
-                            <td></td>
-                          </tr>
-                         
+                        @endif
                         </tbody>
                         
                     </table>
@@ -132,10 +57,10 @@
                         <p class="header">AGENCY OF THE DAY</p>
                         <div class="sliderDiv">
                             <div class="profileBox">
-                                <img src="assets/img/user.png" alt="" class="img-fluid">
+                                <img src="@if($AgencyData[0]->profile_photo!=null){{asset('/profile-images/'.$AgencyData[0]->profile_photo ?? '')}}@else{{'/assets/img/Job Posted.png'}}@endif" alt="" class="img-fluid" alt="" class="img-fluid">
                                 <div class="userDetail ml-2">
-                                    <h5>John Doe</h5>
-                                    <p>Spanish Translator</p>
+                                    <h5>{{$AgencyData[0]->fname.' '.$AgencyData[0]->lname}}</h5>
+                                    <p>{{$AgencyData[0]->userlanguages[0]->from_languages ?? ''}} Employer</p>
                                 </div>
                                 <hr>
                                 <div class="reviewDiv ml-2">

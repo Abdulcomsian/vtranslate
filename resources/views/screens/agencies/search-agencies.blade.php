@@ -9,25 +9,25 @@
                 <div class="col-lg-9">
                     <div class="commonDiv">
                         <h3>Search Translation Agency</h3>
-                        <form action="">
+                        <form action="{{route('search-agencies')}}" method="post">
+                            @csrf
                             <div class="inputDiv">
                                 <label for="">Agency</label>
-                                <select name="" id="">
-                                    <option value="Select Topic">Select Agency</option>
+                                <select name="agencyid" id="agencyid">
+                                    <option value="">Select Agency</option>
+                                    @foreach($allagencymembers as $agency)
+                                    <option value="{{$agency->id}}">{{$agency->fname .' '.$agency->lname}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="inputDiv">
                                 <label for="">Keywords:</label>
-                                <input type="text" class="form-control" id="exampleInputMessage">
+                                <input type="text" class="form-control" name="keyword" id="exampleInputMessage">
                             </div>
-                            <div class="checkboxh pb-3">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                <label class="form-check-label" for="exampleCheck1">Search only in agency names.</label>
-                            </div>
-
                             <div class="inputDiv">
                                 <label for="">Language</label>
                                 <select id="languages" name="languages">
+                                    <option value="">Select Language</option>
                                     <option value="af">Afrikaans</option>
                                     <option value="sq">Albanian - shqip</option>
                                     <option value="am">Amharic - አማርኛ</option>
@@ -172,41 +172,45 @@
                                     <option value="zu">Zulu - isiZulu</option>
                                 </select>
                             </div>
-                            <div class="inputDiv">
+                            <!-- <div class="inputDiv">
                                 <label for="">Type of an Agency</label>
                                 <select name="" id="">
                                     <option value="Select Topic">Type of an Agency</option>
                                 </select>
-                            </div>
+                            </div> -->
                             <div class="checkboxh ">
                                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
                                 <label class="form-check-label" for="exampleCheck1">Agency profile updated during the last 30 days</label>
                             </div>
                             <div class="inputDiv pt-3">
                                 <label for="">Location</label>
-                                <select name="" id="">
-                                    <option value="Select Topic">Select Location</option>
+                                <select name="country" id="country">
+                                    <option value="">Select Location</option>
+                                    @foreach($countries as $country)
+                                    <option value="{{$country->id}}">{{$country->country_name}}</option>
+                                    @endforeach
                                 </select>
                             </div>
-                            <div class="inputDiv">
+                           <!--  <div class="inputDiv">
                                 <label for="">Invitation and Presence</label>
                                 <select name="" id="">
                                     <option value="Select Topic">Invitation and Presence</option>
                                 </select>
-                            </div>
+                            </div> -->
                             
                             <div class="multiBtn text-center pt-5">
-                                <button class="agencycommonBtn">Submit</button>
+                                <button class="agencycommonBtn agencysubmitbtn">Submit</button>
                             </div>
                            <div class="table-responsive">
                             <table class="table">
                                 <div class="sectionp ">
-                                    <p>Total Records: 1234</p>
+                                    <p>Total Records: {{count($AgencyData)}}</p>
                                    
                                 </div>
                                 <thead class="tablehead">
                                   <tr>
                                     <th scope="col">Select</th>
+                                    <th scope="col">Name</th>
                                     <th scope="col">Agency</th>
                                     <th scope="col">Location</th>
                                     <th scope="col">Last Updated</th>
@@ -215,107 +219,29 @@
                                   </tr>
                                 </thead>
                                 <tbody>
+                                @if(count($AgencyData)>0)
+                                @foreach($AgencyData as $agency)
                                   <tr>
                                     <td class="checkbox">
                                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
                                     </td>
-                                    <td class="companyimg">
-                                        <img src="/assets/img/Job Posted.png" alt="">
-                                    </td>
-                                    <td class="location">ABC</td>
-                                    <td class="date">Jan 01, 2021</td>
-                                    <td></td>
-                                    <td></td>
-                                  </tr>
-        
-                                  <tr class="tablebackground">
-                                    <td class="checkbox">
-                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                    <td>
+                                        {{$agency->fname.' '.$agency->lname}}
                                     </td>
                                     <td class="companyimg">
-                                        <img src="/assets/img/Job Posted.png" alt="">
+                                        <img src="@if($agency->profile_photo!=null){{asset('/profile-images').'/'.$agency->profile_photo}} @else{{'/assets/img/Job Posted.png'}}@endif" alt="" class="img-circle img-responsive " width="100px" height="100px">
                                     </td>
-                                    <td class="location">ABC</td>
-                                    <td class="date">Jan 01, 2021</td>
+                                    <td class="location">{{$agency->usergeneralinfo->address ?? ''}}</td>
+                                    <td class="date">{{date("F-Y", strtotime($agency->usergeneralinfo->updated_at ?? ''));}}</td>
                                     <td></td>
                                     <td></td>
-                                  </tr>
-        
-                                  <tr>
-                                    <td class="checkbox">
-                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    </td>
-                                    <td class="companyimg">
-                                        <img src="/assets/img/Job Posted.png" alt="">
-                                    </td>
-                                    <td class="location">ABC</td>
-                                    <td class="date">Jan 01, 2021</td>
-                                    <td></td>
-                                    <td></td>
-                                  </tr>
-        
-                                  <tr class="tablebackground">
-                                    <td class="checkbox">
-                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    </td>
-                                    <td class="companyimg">
-                                        <img src="/assets/img/Job Posted.png" alt="">
-                                    </td>
-                                    <td class="location">ABC</td>
-                                    <td class="date">Jan 01, 2021</td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-        
-                                  <tr>
-                                    <td class="checkbox">
-                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    </td>
-                                    <td class="companyimg">
-                                        <img src="/assets/img/Job Posted.png" alt="">
-                                    </td>
-                                    <td class="location">ABC</td>
-                                    <td class="date">Jan 01, 2021</td>
-                                    <td></td>
-                                    <td></td>
-                                  </tr>
-        
-                                  <tr class="tablebackground">
-                                    <td class="checkbox">
-                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    </td>
-                                    <td class="companyimg">
-                                        <img src="/assets/img/Job Posted.png" alt="">
-                                    </td>
-                                    <td class="location">ABC</td>
-                                    <td class="date">Jan 01, 2021</td>
-                                    <td></td>
-                                    <td></td>
-                                  </tr>
-        
-                                  <tr>
-                                    <td class="checkbox">
-                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    </td>
-                                    <td class="companyimg">
-                                        <img src="/assets/img/Job Posted.png" alt="">
-                                    </td>
-                                    <td class="location">ABC</td>
-                                    <td class="date">Jan 01, 2021</td>
-                                    <td></td>
-                                    <td></td>
-                                  </tr>
-                                 
+                                  </tr>  
+                                @endforeach  
+                                @endif             
                                 </tbody>
-                                
                             </table>
                            </div>
-                             
-
                         </form>
-                        
-                        
-                    
                     </div>
                     <section class="orderdisplaying">
                         <div class="container">
@@ -390,4 +316,11 @@
             
         </div>
     </section>
+@endsection
+@section('script')
+<script type="text/javascript">
+    $(".agencysubmitbtn").click(function(){
+        if($("#agencyid").val()=="" && $("[input:name='keyword']").val()=="" && )
+    })
+</script>
 @endsection

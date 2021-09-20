@@ -29,21 +29,21 @@ Route::get('email/verify', [App\Http\Controllers\Auth\VerificationController::cl
     return view('screens.home');
     });
     
+    //freelancer search and top freelancer 
     Route::get('/search-freelancer','FreelancerController@search_freelancer')->name('search-freelancer');
     Route::get('/top-freelancer','FreelancerController@index')->name('top-freelancer');
+    Route::post('/search-freelancer','FreelancerController@search')->name('search-freelancer');
 
-    Route::get('/search-agencies', function () {
-        return view('screens.agencies.search-agencies');
-    });
-    Route::get('/top-agencies', function () {
-        return view('screens.agencies.top-agencies');
-    });
+    //agency search and top agency 
+    Route::get('/top-agencies','AgencyController@index')->name('top-agencies');
+    Route::get('/search-agencies','AgencyController@search_agencies')->name('search-agencies');
+    Route::post('/search-agencies','AgencyController@search')->name('search-agencies');
+
     Route::get('/forums', function () {
         return view('screens.forums');
     });
-    Route::get('/contact-us', function () {
-        return view('screens.contact-us');
-    });
+    Route::get('/contact-us','ContactUsController@index')->name('contact-us');
+    Route::post('/contact-us','ContactUsController@store')->name('contact-us');
 
     Route::get('/about-us', function () {
         return view('screens.about-us');
