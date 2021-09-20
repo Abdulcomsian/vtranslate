@@ -25,9 +25,8 @@ Route::get('email/verify', [App\Http\Controllers\Auth\VerificationController::cl
 
 //route group
 
-    Route::get('/', function () {
-    return view('screens.home');
-    });
+    //home page
+    Route::get('/','HomeController@index')->name('home');
     
     //freelancer search and top freelancer 
     Route::get('/search-freelancer','FreelancerController@search_freelancer')->name('search-freelancer');
@@ -75,9 +74,7 @@ Route::get('email/verify', [App\Http\Controllers\Auth\VerificationController::cl
     Route::get('/freelancer', function () {
         return view('screens.freelancer.freelancer');
     });
-    Route::get('/post-a-job', function () {
-        return view('screens.job-posting');
-    });
+   
 Route::middleware(['verified','auth'])->group(function()
     {
         Route::get('/profile','UserController@profile')->name('profile');
@@ -100,6 +97,9 @@ Route::middleware(['verified','auth'])->group(function()
         Route::post('/change-profile-photo','UserController@chagne_profile_photo')->name('change-profile-photo');
         Route::get('/view-user-profile','UserController@view_user_profile')->name('view-user-profile');
         Route::get('/change-user-status','UserController@change_user_status')->name('change-user-status');
+        //post job route
+        Route::get('/post-a-job','JobsController@index')->name('post-a-job');
+        Route::post('/post-a-job','JobsController@store')->name('post-a-job');
         
     });
 

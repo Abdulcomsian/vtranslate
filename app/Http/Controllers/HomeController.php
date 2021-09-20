@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Jobs;
+use App\Models\JobsPairLanguages;
+use App\Models\User;
+use App\Models\Country;
 
 class HomeController extends Controller
 {
@@ -23,6 +27,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+         $countries=Country::get();
+         $totaltranslater=User::where('user_status','Translator')->count();
+         $jobs=jobs::with('jobspairlang')->get();
+         return view('screens.home',compact('jobs','totaltranslater','countries'));
     }
 }

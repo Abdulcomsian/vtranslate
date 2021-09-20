@@ -18,8 +18,8 @@ class ContactUsController extends Controller
 
     public function store(Request $request)
     {
-        // try
-        // {
+        try
+        {
           if($file = $request->file('file'))
             {
                 $path = 'files/contact-us/';
@@ -43,11 +43,11 @@ class ContactUsController extends Controller
                 toastr()->success('Your Request Submitted Successfully!');
                 return back();
             }
-        //}
-        // catch (\Exception $exception)
-        // {
-        //     toastr()->error('Something went wrong, try again');
-        //     return back();
-        // }
+        }
+        catch (\Exception $exception)
+        {
+            toastr()->error('Something went wrong, try again');
+            return back();
+        }
     }
 }
