@@ -358,12 +358,16 @@
                                                 <p>
                                                     <span>Expiry</span>
                                                  @php
+                                                    $favourite='';
                                                     $to = \Carbon\Carbon::createFromFormat('Y-m-d', $job->expiry_date);
                                                     $from = \Carbon\Carbon::createFromFormat('Y-m-d', date('Y-m-d'));
 
                                                     $diff_in_days = $to->diffInDays($from);
+
+                                                   
+                                                        $favourite=\App\Models\FavouriteJobs::where('jobs_id',$job->id)->where('user_id',auth::user()->id)->first();
                                                     
-                                                    $favourite=\App\Models\FavouriteJobs::where('jobs_id',$job->id)->where('user_id',auth::user()->id)->first();
+                                                    
                                                  @endphp
                                                     <span>{{$diff_in_days}} Day Left</span>
                                                 </p>
