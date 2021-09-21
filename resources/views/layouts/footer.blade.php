@@ -91,4 +91,10 @@
             $(this).addClass("fa fa-heart-o favoriteIcon")
         }
     })
+    $("#Set-Date").click(function(){
+        $("#postJobDiv .setDateDiv").css("display","block")
+    })
+    $("#No-dealine").click(function(){
+        $("#postJobDiv .setDateDiv").css("display","none")
+    })
 </script>

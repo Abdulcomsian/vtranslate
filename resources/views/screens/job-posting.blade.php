@@ -22,6 +22,51 @@
                             <input type="text" name="" id="">
                        </div>
                        <div class="languageDiv">
+                           <h5>Job Types</h5>
+                            <div class="multiple-select">
+                                <select name="" id="">
+                                    <option value="">Teaching</option>
+                                </select>
+                            </div>
+                            <div class="radioDiv">
+                                <input type="radio" id="Intermediate" name="fav_language" value="Intermediate">
+                                <label for="Intermediate">Intermediate</label>
+                                <input type="radio" id="Potential" name="fav_language" value="Potential">
+                                <label for="Potential">Potential</label>
+                                <input type="radio" id="In-House" name="fav_language" value="In-House">
+                                <label for="In-House">In-House</label>
+                                <input type="radio" id="Tele-Community" name="fav_language" value="Tele-Community">
+                                <label for="Tele-Community">Tele-Community</label>
+                            </div>
+                            <p><b>Expalanation of Job Types</b></p>
+                            <h5>Deadlines</h5>
+                            <div class="radioDiv">
+                                <input type="radio" id="No-dealine" name="fav_language" value="No-dealine">
+                                <label for="No-dealine">No-dealine</label>
+                                <input type="radio" id="Set-Date" name="fav_language" value="Set Date">
+                                <label for="Set Date">Set Date</label>
+                            </div>
+                            <div class="setDateDiv">
+                                <div class="multiple-select" style="margin-bottom:30px;">
+                                    <select name="" id="">
+                                        <option value="">----</option>
+                                    </select>
+                                    <select name="" id="">
+                                        <option value="">----</option>
+                                    </select>
+                                    <select name="" id="">
+                                        <option value="">2021</option>
+                                    </select>
+                                </div>
+                                <p><b>Time</b></p>
+                                <div class="multiple-select">
+                                    <select name="" id="">
+                                        <option value="">Select Time</option>
+                                    </select>
+                                </div>
+                            </div>
+                       </div>
+                       <div class="languageDiv">
                            <h5>Languages</h5>
                            <p class="warning">At least one language pair is required.</p>
                            <p>Please include both language pairs if you need an interpreter. For example, if you need an English-French interpreter, select English>French 
