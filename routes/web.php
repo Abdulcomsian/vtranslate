@@ -27,6 +27,9 @@ Route::get('email/verify', [App\Http\Controllers\Auth\VerificationController::cl
 
     //home page
     Route::get('/','HomeController@index')->name('home');
+    Route::post('/job-search','HomeController@job_search')->name('job-search');
+    Route::get('/make-job-fav','JobsController@make_job_fav')->name('make-job-fav');
+    Route::get('/remove-job-fav','JobsController@remove_job_fav')->name('remove-job-fav');
     
     //freelancer search and top freelancer 
     Route::get('/search-freelancer','FreelancerController@search_freelancer')->name('search-freelancer');

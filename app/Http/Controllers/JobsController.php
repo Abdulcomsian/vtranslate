@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Jobs;
 use App\Models\JobsPairLanguages;
+use App\Models\FavouriteJobs;
 use Auth;
 
 class JobsController extends Controller
@@ -53,6 +54,38 @@ class JobsController extends Controller
         {
             toastr()->error('Something went wrong, try again');
             return back();
+        }
+    }
+    //make job favourite
+    public function make_job_fav(Request $request)
+    {
+        $jobs_id=$request->jobs_id;
+        $FavouriteJobs = new FavouriteJobs();
+        $FavouriteJobs->jobs_id=$jobs_id;
+        $FavouriteJobs->user_id=Auth::user()->id;
+        if($FavouriteJobs->save())
+        {
+            echo"success";
+        }
+        else
+        {
+            echo"error";
+        }
+    }
+
+    //remove from favourite
+
+    public function remove_job_fav(Request $request)
+    {
+        $jobs_id=$request->jobs_id;
+        $res=FavouriteJobs::where('jobs_id',$jobs_id)->where('user_id',Auth::user()->id)->delete();
+        if($res)
+        {
+            echo"success";
+        }
+        else
+        {
+            echo"error";
         }
     }
 }
