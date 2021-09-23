@@ -1470,7 +1470,48 @@ postJobDiv .multiple-select a{
     font-size: 14px;
     font-weight: 500;
 }
+#postJobDiv .radioDiv{
+    margin: 30px 0px;
+}
+#postJobDiv .radioDiv input{
+    width: 15px;
+    height: 15px;;
+}
+#postJobDiv .radioDiv label{
+    font-size: 15px;
+}
+#postJobDiv .setDateDiv{
+    display: none;
+}
 
+#jobDetail{
+    margin: 50px 0px;
+}
+#jobDetail .jobPosted{
+    text-align: center;
+    padding: 10px !important;
+}
+#jobDetail .jobPosted p{
+    font-size: 14px;
+}
+#jobDetail .jobPosted img{
+    width: 100px;
+    margin-bottom: 50px;
+}
+#jobDetail .jobPosted p b{
+    color: #0E0D6B;
+}
+#jobDetail .nav-pills .nav-link.active, 
+#jobDetail .nav-pills .show>.nav-link{
+    background-color: #0E0D6B !important;
+    color: #fff !important;
+}
+#jobDetail .nav-link{
+    color: #000 !important;
+}
+#jobDetail .tab-pane{
+    margin: 50px 0px;
+}
 /* *********************forum CSS***************** */
 
 .sectionBtn .createbtn{
