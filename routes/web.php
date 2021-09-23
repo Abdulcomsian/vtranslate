@@ -77,9 +77,7 @@ Route::get('/agency', function () {
 Route::get('/freelancer', function () {
     return view('screens.freelancer.freelancer');
 });
-Route::get('/detail-job', function () {
-    return view('screens.job-detail');
-});
+
 Route::middleware(['verified', 'auth'])->group(function () {
     Route::get('/profile', 'UserController@profile')->name('profile');
     Route::post('/user-change-status', 'UserController@change_status')->name('user-change-status');
@@ -104,6 +102,9 @@ Route::middleware(['verified', 'auth'])->group(function () {
     //post job route
     Route::get('/post-a-job', 'JobsController@index')->name('post-a-job');
     Route::post('/post-a-job', 'JobsController@store')->name('post-a-job');
+
+    //job detail route here
+    Route::get('/job-details/{id}', 'JobsController@job_details')->name('job-details');
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
