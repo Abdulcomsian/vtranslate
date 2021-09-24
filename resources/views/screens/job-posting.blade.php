@@ -23,7 +23,7 @@
                         </div>
                         <div class="inputDiv">
                             <label for="">Job Description <span class="required">*</span></label>
-                            <textarea class="form-control" type="text" name="job_desc" id="job_desc" rows="4" cols="60">
+                            <textarea class="form-control" name="job_desc" id="job_desc" rows="4" cols="60">
                             </textarea>
                         </div>
                         <div class="languageDiv">

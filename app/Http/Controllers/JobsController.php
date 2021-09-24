@@ -103,4 +103,8 @@ class JobsController extends Controller
             ->get();
         return view('screens.job-detail', compact('jobs_details'));
     }
+    //sned message against job
+    public function job_send_message(Request $request)
+    {
+    }
 }

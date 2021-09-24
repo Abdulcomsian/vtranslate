@@ -68,7 +68,7 @@ class UserController extends Controller
     public function save_general_info(Request $request)
     {
 
-        $input = $request->except('_token', 'currtab');
+        $input = $request->except('_token', 'currtab', 'private_information', 'disallow_indexing', 'display_contact_info', 'news_notification', 'jobsnotification', 'show_rated_users');
         try {
             $record = UserGeneralInformation::where('user_id', Auth::user()->id)->first();
             $input['user_id'] = Auth::user()->id;
@@ -80,12 +80,12 @@ class UserController extends Controller
 
             //update record in user table
             $userdata = User::find(Auth::user()->id);
-            $userdata->private_information = isset($input['private_information']) ? 1 : 0;
-            $userdata->disallow_indexing = isset($input['disallow_indexing']) ? 1 : 0;
-            $userdata->display_contact_info = isset($input['display_contact_info']) ? 1 : 0;
-            $userdata->news_notification = isset($input['news_notification']) ? 1 : 0;
-            $userdata->jobsnotification = isset($input['jobsnotification']) ? 1 : 0;
-            $userdata->show_rated_users = isset($input['show_rated_users']) ? 1 : 0;
+            $userdata->private_information = isset($request->private_information) ? 1 : 0;
+            $userdata->disallow_indexing = isset($request->disallow_indexing) ? 1 : 0;
+            $userdata->display_contact_info = isset($request->display_contact_info) ? 1 : 0;
+            $userdata->news_notification = isset($request->news_notification) ? 1 : 0;
+            $userdata->jobsnotification = isset($request->jobsnotification) ? 1 : 0;
+            $userdata->show_rated_users = isset($request->show_rated_users) ? 1 : 0;
             $userdata->save();
             //toaster message
             toastr()->success('User Gneral Info Saved Successfull!');

@@ -20,7 +20,6 @@
                 </ul>
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-
                         <div class="row">
                             <div class="col-lg-3">
                                 <div class="jobPosted commonDiv">
@@ -67,72 +66,71 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="commonDiv">
-                                        <div class="messageDiv">
-                                            <form action="">
-                                                <div class="inputDiv">
-                                                    <label for="">
-                                                        To
-                                                    </label>
-                                                    <p><b>Obaib Sahid</b></p>
-                                                </div>
-                                                <div class="inputDiv">
-                                                    <label for="">
-                                                        From
-                                                    </label>
-                                                    <p>
-                                                        <input type="text">
-                                                    </p>
-                                                </div>
-                                                <div class="inputDiv">
-                                                    <label for="">
-                                                        Your Email
-                                                    </label>
-                                                    <p><b>abc@gmail.com</b></p>
-                                                </div>
-                                                <div class="inputDiv">
-                                                    <label for="">
-                                                        Subject
-                                                    </label>
-                                                    <p>
-                                                        <input type="text">
-                                                    </p>
-                                                </div>
-                                                <div class="inputDiv textAreaDiv">
-                                                    <label for="">
-                                                        Your Message
-                                                    </label>
-                                                    <p>
-                                                        <textarea name="" id="" cols="30" rows="10"></textarea>
-                                                    </p>
-                                                </div>
-                                                <p><b>Submit your Resume</b> and it will appear in the message box above.</p>
-                                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-                                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="commonDiv">
+                                    <div class="messageDiv">
+                                        <form action="{{route('job-send-message')}}" method="post">
+                                            @csrf
+                                            <div class="inputDiv">
+                                                <label for="">
+                                                    To:
+                                                </label>
+                                                <p><b>{{$jobs_details[0]->fname ?? ''}} {{$jobs_details[0]->lname ?? ''}}</b></p>
+                                            </div>
+                                            <div class="inputDiv">
+                                                <label for="from">
+                                                    From<sapn class="text-danger"> *</sapn>
+                                                </label>
+                                                <p>
+                                                    <input type="text" class="form-control" name="from" placeholder="Enter Name" required>
+                                                </p>
+                                            </div>
+                                            <div class="inputDiv">
+                                                <label for="">
+                                                    Your Email
+                                                </label>
+                                                <p><b>{{auth::user()->email ?? ''}}</b></p>
+                                            </div>
+                                            <div class="inputDiv">
+                                                <label for="">
+                                                    Subject<sapn class="text-danger"> *</sapn>
+                                                </label>
+                                                <p>
+                                                    <input type="text" class="form-control" name="subject" placeholder="Enter Subject" required>
+                                                </p>
+                                            </div>
+                                            <div class="inputDiv textAreaDiv">
+                                                <label for="">
+                                                    Your Message<sapn class="text-danger"> *</sapn>
+                                                </label>
+                                                <p>
+                                                    <textarea name="message" id="summernote" required></textarea>
+                                                </p>
+                                            </div>
+                                            <p><b>Submit your Resume From Profile section</b> and it will appear in the message box above.</p>
+                                            <p>If you worked for the outsourcer, please do not forget to post your feedback in the Hall of Fame and Shame — posting is free. Use the Feedback link in users' or agencies' profiles to post your feedback. Your positive feedback is especially welcome. Best outsourcers will appear on Who's Posting Jobs pages and banner.</p>
+                                            <p>* indicates a required field.</p>
+                                            <p>Your e-mail address and your IP address will be disclosed to the recipient of this message.</p>
 
-                                                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-                                                <label for="vehicle1"> Sen a copy to your self</label><br>
-                                                <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
-                                                <label for="vehicle2"> Include a link to your profile in this list</label><br>
-                                                <div class="btnDiv">
-                                                    <button type="submit">Submit</button>
-                                                    <button>Cancle</button>
-                                                </div>
-                                            </form>
-                                        </div>
+                                            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                                            <label for="vehicle1"> Sen a copy to your self</label><br>
+                                            <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+                                            <label for="vehicle2"> Include a link to your profile in this list</label><br>
+                                            <div class="btnDiv">
+                                                <button type="submit">Submit</button>
+                                                <button>Cancle</button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
                     </div>
-                    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">...</div>
-                    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
+
                 </div>
             </div>
         </div>
