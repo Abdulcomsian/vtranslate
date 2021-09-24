@@ -18,7 +18,9 @@ class CreateJobsTable extends Migration
             $table->string('job_title')->nullalbe();
             $table->string('budget')->nullable();
             $table->string('job_type')->nullable();
+            $table->string('job_level')->nullable();
             $table->date('expiry_date')->nullable();
+            $table->tinyInteger('expiry_status')->nullable();
             $table->longtext('job_desc')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->tinyInteger('certify')->nullalbe();
