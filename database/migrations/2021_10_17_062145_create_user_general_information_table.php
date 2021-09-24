@@ -39,12 +39,6 @@ class CreateUserGeneralInformationTable extends Migration
             $table->longText('platform_hardware')->nullable();
             $table->longText('cover_letter')->nullable();
             $table->string('advertising_slogan')->nullable();
-            $table->boolean('private_information')->default('0')->comment =' 0 for hide and 1 for show';
-            $table->boolean('disallow_indexing')->default('1')->comment   =' 1 for search engine  and 0 for not';
-            $table->boolean('display_contact_info')->default('1')->comment=' 1 for display contact info  and 0 for not';
-            $table->boolean('news_notification')->default('0')->comment=' 0 for off  and 1 for on';
-            $table->boolean('jobsnotification')->default('0')->comment=' 0 for off  and 1 for on';
-            $table->boolean('show_rated_users')->default('0')->comment=' 1 for Show the list of all outsourcers and service providers rated by you on your profile page';
             $table->foreign('country')->references('id')->on('countries');
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

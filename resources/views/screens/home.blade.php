@@ -9,26 +9,51 @@
                         <div class="leftBannerContent">
                             <h1>The Easiest Way To Hire <br> Expert Translate</h1>
                             <h2>lorem ipsum dolor sit amit, consectetur adipiscing elit ut aliquam, purus <br> sit amet luctus</h2>
-                            <!-- <a href="#" class="btnD1">Read More</a> -->
-                            <div class="inputfield">
-                                <div class="form-group forum d-flex" style="margin-right: 20px;">
-                                    <i class="fa fa-search" aria-hidden="true"></i>
-                                    <input class="form-control" placeholder="Search by language">
+                            <!-- <div class="inputfield">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group forum d-flex">
+                                            <i class="fa fa-search" aria-hidden="true"></i>
+                                            <input class="form-control" placeholder="Search by language">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <select name="job_type" class="form-control p-0 pl-4">
+                                            <option value="">Select Job Type</option>
+                                            <option value="Closed captioning">Closed captioning</option>
+                                            <option value="Copywriting">Copywriting</option>
+                                            <option value="Desktop publishing">Desktop publishing</option>
+                                            <option value="Editing">Editing</option>
+                                            <option value="Interpreting">Interpreting</option>
+                                            <option value="Interpreting – conference">Interpreting – conference</option>
+                                            <option value="Interpreting – court/legal">Interpreting – court/legal</option>
+                                            <option value="Interpreting – medical">Interpreting – medical</option>
+                                            <option value="Interpreting – phone">Interpreting – phone</option>
+                                            <option value="Interpreting – sign language">Interpreting – sign language</option>
+                                            <option value="Localization">Localization</option>
+                                            <option value="Other">Other</option>
+                                            <option value="Project management">Project management</option>
+                                            <option value="Proofreading">Proofreading</option>
+                                            <option value="Research">Research</option>
+                                            <option value="Subtitling">Subtitling</option>
+                                            <option value="Teaching">Teaching</option>
+                                            <option value="Technical Review">Technical Review</option>
+                                            <option value="Technical writing">Technical writing</option>
+                                            <option value="Terminology research">Terminology research</option>
+                                            <option value="Transcription">Transcription</option>
+                                            <option value="Translation">Translation</option>
+                                            <option value="Typesetting"></option>
+                                            <option value="Voice-over">Voice-over</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="input-bar-item">
+                                            <button class="btn btn-info">Search</button>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="select">
-                                    <select name="Categories" class="Categories">
-                                        <option value="Categories">Categories</option>
-                                        <option value="Categories">English-korean</option>
-                                        <option value="Categories">Japenese-English</option>
-                                        <option value="audi">Germen-korean</option>
-                                    </select>
-                                </div>
-                                <div class="input-bar-item">
-                                    <button class="btn btn-info">Search</button>
-                                </div>
-                            </div>
+                            </div> -->
                             <div class="language">
-
                                 <p>
                                     <span>Popular Categories:</span>
                                     <span class="spantext">English-korean</span>
@@ -366,7 +391,6 @@
                                             <p>
                                                 <span>Expiry</span>
                                                 @php
-                                                $favourite='';
                                                 if($job->expiry_date)
                                                 {
                                                 $to = \Carbon\Carbon::createFromFormat('Y-m-d', $job->expiry_date);
@@ -375,6 +399,7 @@
                                                 }
 
                                                 $favourite=\App\Models\FavouriteJobs::where('jobs_id',$job->id)->where('user_id',auth::user()->id)->first();
+
                                                 @endphp
                                                 <span>@if($job->expiry_date){{$diff_in_days." Day Left"}}@else{{'No Deadline'}}@endif</span>
                                             </p>
