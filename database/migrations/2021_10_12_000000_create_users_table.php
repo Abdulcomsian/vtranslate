@@ -27,8 +27,14 @@ class CreateUsersTable extends Migration
             $table->unsignedBigInteger('country_id')->nullable();
             $table->boolean('status')->nullable();
             $table->string('user_status')->nullable();
-            $table->string('resume')->nullable()->comments= 'Pdf or Docs File';
+            $table->string('resume')->nullable()->comments = 'Pdf or Docs File';
             $table->string('profile_photo')->nullable();
+            $table->boolean('private_information')->default('0')->comment = ' 0 for hide and 1 for show';
+            $table->boolean('disallow_indexing')->default('1')->comment   = ' 1 for search engine  and 0 for not';
+            $table->boolean('display_contact_info')->default('1')->comment = ' 1 for display contact info  and 0 for not';
+            $table->boolean('news_notification')->default('0')->comment = ' 0 for off  and 1 for on';
+            $table->boolean('jobsnotification')->default('0')->comment = ' 0 for off  and 1 for on';
+            $table->boolean('show_rated_users')->default('0')->comment = ' 1 for Show the list of all outsourcers and service providers rated by you on your profile page';
             $table->foreign('country_id')->references('id')->on('countries');
             $table->rememberToken();
             $table->softDeletes();
