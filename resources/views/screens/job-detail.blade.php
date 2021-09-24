@@ -62,7 +62,68 @@
                                     </div>
                                 </div>
                         </div>
-                        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">...</div>
+                        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="commonDiv">
+                                        <div class="messageDiv">
+                                            <form action="">
+                                                <div class="inputDiv">
+                                                    <label for="">
+                                                        To
+                                                    </label>
+                                                    <p><b>Obaib Sahid</b></p>
+                                                </div>
+                                                <div class="inputDiv">
+                                                    <label for="">
+                                                        From
+                                                    </label>
+                                                    <p>
+                                                        <input type="text">
+                                                    </p>
+                                                </div>
+                                                <div class="inputDiv">
+                                                    <label for="">
+                                                        Your Email
+                                                    </label>
+                                                    <p><b>abc@gmail.com</b></p>
+                                                </div>
+                                                <div class="inputDiv">
+                                                    <label for="">
+                                                        Subject
+                                                    </label>
+                                                    <p>
+                                                        <input type="text">
+                                                    </p>
+                                                </div>
+                                                <div class="inputDiv textAreaDiv">
+                                                    <label for="">
+                                                        Your Message
+                                                    </label>
+                                                    <p>
+                                                        <textarea name="" id="" cols="30" rows="10"></textarea>
+                                                    </p>
+                                                </div>
+                                                <p><b>Submit your Resume</b> and it will appear in the message box above.</p>
+                                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+                                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+
+                                                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                                                <label for="vehicle1"> Sen a copy to your self</label><br>
+                                                <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+                                                <label for="vehicle2"> Include a link to your profile in this list</label><br>
+                                                <div class="btnDiv">
+                                                    <button type="submit">Submit</button>
+                                                    <button>Cancle</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
                     </div>
                 </div>
