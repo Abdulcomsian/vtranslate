@@ -11,9 +11,11 @@
                     <li class="nav-item">
                         <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Bidding</a>
                     </li>
+                    @if(auth::user()->user_status=="Translator")
                     <li class="nav-item">
                         <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Send a Message to the Job Poster</a>
                     </li>
+                    @endif
                     <!-- <li class="nav-item">
                         <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">All My Bids</a>
                     </li> -->
@@ -34,11 +36,11 @@
                                     <p>Is it a free Email?</p>
                                     <hr>
                                     <!-- <p>Bids: <span><b>0</b></span></p> -->
-                                    <p>View: <span><b>0</b></span></p>
+                                    <p>View: <span><b>{{$jobviewcount}}</b></span></p>
                                     <hr>
                                     <p>Notification:</p>
                                     <p>All member</p>
-                                    <p>Message Sent: <span><b>0</b></span></p>
+                                    <p>Message Sent: <span><b>{{$job_proposal_counts}}</b></span></p>
                                 </div>
                             </div>
                             <div class="col-lg-9">
@@ -75,6 +77,7 @@
                                     <div class="messageDiv">
                                         <form action="{{route('job-send-message')}}" method="post">
                                             @csrf
+                                            <input type="hidden" name="jobid" value="{{request()->route('id') }}" />
                                             <div class="inputDiv">
                                                 <label for="to">
                                                     To:
@@ -123,7 +126,11 @@
                                             <input type="checkbox" id="inclue_profile_link" name="inclue_profile_link">
                                             <label for="inclue_link"> Include a link to your profile in this list</label><br>
                                             <div class="btnDiv">
+                                                @if($jobapplystatus>0)
+                                                <p class="text-danger">You Already Applied For this job</p>
+                                                @else
                                                 <button type="submit">Submit</button>
+                                                @endif
                                                 <button type="reset">Cancle</button>
                                             </div>
                                         </form>
