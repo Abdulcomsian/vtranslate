@@ -6,8 +6,11 @@ use Illuminate\Http\Request;
 use App\Models\Jobs;
 use App\Models\JobsPairLanguages;
 use App\Models\FavouriteJobs;
+use App\Models\JobProposal;
+use App\Mail\JobApplyEmail;
 use Auth;
 use DB;
+use Mail;
 
 class JobsController extends Controller
 {
@@ -103,8 +106,40 @@ class JobsController extends Controller
             ->get();
         return view('screens.job-detail', compact('jobs_details'));
     }
-    //sned message against job
+    //sned message against job OR PROPOSAL
     public function job_send_message(Request $request)
     {
+
+        $jobproposal = new JobProposal();
+        $jobproposal->from = $request->from;
+        $jobproposal->subject = $request->subject;
+        $jobproposal->message = $request->message;
+        $jobproposal->user_id = Auth::user()->id;
+        if (isset($request->send_copy)) {
+            $jobproposal->copy_self = 1;
+        }
+        if (isset($request->inclue_profile_link)) {
+            $jobproposal->include_link = 1;
+        }
+        if ($jobproposal->save()) {
+            //send email to job poster 
+            $data = [
+                'from' => $request->from,
+                'subject' => $request->subject,
+                'messsage' => $request->message,
+                'email' => Auth::user()->email,
+                'job_poster_name' => $request->job_poster_name,
+            ];
+            //send 
+            Mail::to($request->job_poster_email)->send(new JobApplyEmail($data));
+            if (isset($request->send_copy)) {
+                Mail::send('mail.jobcopy', ['data' => $data], function ($message) use ($data) {
+                    $message->subject('vtranslate');
+                    $message->to($data['email']);
+                });
+            }
+            toastr()->success('Job Apply Successfully');
+            return back();
+        }
     }
 }

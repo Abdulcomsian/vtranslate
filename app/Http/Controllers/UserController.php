@@ -23,10 +23,7 @@ class UserController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+
 
     /**
      * Show the application dashboard.
@@ -381,6 +378,15 @@ class UserController extends Controller
             $userData = User::with('usergeneralinfo', 'userlanguages', 'usersoftwares', 'userspicialize', 'uservoicover', 'userfiles', 'usermotherlanguages', 'usersevices')->where('id', Auth::user()->id)->get();
             return view('screens.agencies.agency', compact('userData'));
         }
+    }
+
+    //use public profile sprofile
+    public function public_profile($id)
+    {
+
+        $userData = User::with('usergeneralinfo', 'userlanguages', 'usersoftwares', 'userspicialize', 'uservoicover', 'userfiles', 'usermotherlanguages', 'usersevices')->where('id', $id)->get();
+        // dd($userData[0]->usergeneralinfo);
+        return view('screens.freelancer.freelancer', compact('userData'));
     }
 
     //change user status

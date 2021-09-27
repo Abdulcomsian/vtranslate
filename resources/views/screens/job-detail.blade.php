@@ -76,9 +76,11 @@
                                         <form action="{{route('job-send-message')}}" method="post">
                                             @csrf
                                             <div class="inputDiv">
-                                                <label for="">
+                                                <label for="to">
                                                     To:
                                                 </label>
+                                                <input type="hidden" name="job_poster_email" value="{{$jobs_details[0]->email ?? ''}}" />
+                                                <input type="hidden" name="job_poster_name" value="{{$jobs_details[0]->fname ?? ''}} {{$jobs_details[0]->lname ?? ''}}" />
                                                 <p><b>{{$jobs_details[0]->fname ?? ''}} {{$jobs_details[0]->lname ?? ''}}</b></p>
                                             </div>
                                             <div class="inputDiv">
@@ -90,17 +92,17 @@
                                                 </p>
                                             </div>
                                             <div class="inputDiv">
-                                                <label for="">
+                                                <label for="email">
                                                     Your Email
                                                 </label>
                                                 <p><b>{{auth::user()->email ?? ''}}</b></p>
                                             </div>
                                             <div class="inputDiv">
-                                                <label for="">
+                                                <label for="subject">
                                                     Subject<sapn class="text-danger"> *</sapn>
                                                 </label>
                                                 <p>
-                                                    <input type="text" class="form-control" name="subject" placeholder="Enter Subject" required>
+                                                    <input type="text" class="form-control" name="subject" placeholder="Enter Subject" value="{{\Request::url() }}" required>
                                                 </p>
                                             </div>
                                             <div class="inputDiv textAreaDiv">
@@ -116,13 +118,13 @@
                                             <p>* indicates a required field.</p>
                                             <p>Your e-mail address and your IP address will be disclosed to the recipient of this message.</p>
 
-                                            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-                                            <label for="vehicle1"> Sen a copy to your self</label><br>
-                                            <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
-                                            <label for="vehicle2"> Include a link to your profile in this list</label><br>
+                                            <input type="checkbox" id="copy_self" name="send_copy">
+                                            <label for="send_copy"> Sen a copy to your self</label><br>
+                                            <input type="checkbox" id="inclue_profile_link" name="inclue_profile_link">
+                                            <label for="inclue_link"> Include a link to your profile in this list</label><br>
                                             <div class="btnDiv">
                                                 <button type="submit">Submit</button>
-                                                <button>Cancle</button>
+                                                <button type="reset">Cancle</button>
                                             </div>
                                         </form>
                                     </div>

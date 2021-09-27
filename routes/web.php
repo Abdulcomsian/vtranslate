@@ -24,7 +24,7 @@ Auth::routes(['verify' => true]);
 Route::get('email/verify', [App\Http\Controllers\Auth\VerificationController::class, 'show'])->name('verification.notice');
 
 //route group
-
+Route::get('/public-profile/{id}', 'UserController@public_profile')->name('public-profile');
 //home page
 Route::get('/', 'HomeController@index')->name('home');
 Route::post('/job-search', 'HomeController@job_search')->name('job-search');
@@ -105,6 +105,7 @@ Route::middleware(['verified', 'auth'])->group(function () {
     Route::get('/post-a-job', 'JobsController@index')->name('post-a-job');
     Route::post('/post-a-job', 'JobsController@store')->name('post-a-job');
     Route::get('/job-details/{id}', 'JobsController@job_details')->name('job-details');
+    //SEND JOB PROPOSAL OR MESSAGE ROUTE
     Route::post('/job-send-message', 'JobsController@job_send_message')->name('job-send-message');
 });
 

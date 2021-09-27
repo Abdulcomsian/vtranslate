@@ -61,7 +61,6 @@
 @toastr_render
 <script>
     $('#summernote').summernote({
-        placeholder: 'Type Your Message.....',
         tabsize: 2,
         height: 200
     });
