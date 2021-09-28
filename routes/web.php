@@ -19,34 +19,14 @@ Route::get('/login', function () {
 Route::get('/register', function () {
     return view('screens.auth.register');
 });
-
 Auth::routes(['verify' => true]);
 Route::get('email/verify', [App\Http\Controllers\Auth\VerificationController::class, 'show'])->name('verification.notice');
 
-//route group
-Route::get('/public-profile/{id}', 'UserController@public_profile')->name('public-profile');
 //home page
 Route::get('/', 'HomeController@index')->name('home');
-Route::post('/job-search', 'HomeController@job_search')->name('job-search');
-Route::get('/make-job-fav', 'JobsController@make_job_fav')->name('make-job-fav');
-Route::get('/remove-job-fav', 'JobsController@remove_job_fav')->name('remove-job-fav');
-
-//freelancer search and top freelancer 
-Route::get('/search-freelancer', 'FreelancerController@search_freelancer')->name('search-freelancer');
-Route::get('/top-freelancer', 'FreelancerController@index')->name('top-freelancer');
-Route::post('/search-freelancer', 'FreelancerController@search')->name('search-freelancer');
-
-//agency search and top agency 
-Route::get('/top-agencies', 'AgencyController@index')->name('top-agencies');
-Route::get('/search-agencies', 'AgencyController@search_agencies')->name('search-agencies');
-Route::post('/search-agencies', 'AgencyController@search')->name('search-agencies');
-
 Route::get('/forums', function () {
     return view('screens.forums');
 });
-Route::get('/contact-us', 'ContactUsController@index')->name('contact-us');
-Route::post('/contact-us', 'ContactUsController@store')->name('contact-us');
-
 Route::get('/about-us', function () {
     return view('screens.about-us');
 });
@@ -62,12 +42,10 @@ Route::get('/how-it-works', function () {
 Route::get('/faq', function () {
     return view('screens.faq');
 });
-Route::get('/favourite-job', function () {
-    return view('screens.favourite-job');
-});
-Route::get('/search-job', function () {
-    return view('screens.search-job');
-});
+
+// Route::get('/search-job', function () {
+//     return view('screens.search-job');
+// });
 Route::get('/pro-member', function () {
     return view('screens.pro-membership');
 });
@@ -100,6 +78,8 @@ Route::group(['prefix' => 'user', 'middleware' => ['verified', 'auth']], functio
     Route::get('/view-user-profile', 'UserController@view_user_profile')->name('view-user-profile');
     Route::get('/change-user-status', 'UserController@change_user_status')->name('change-user-status');
 });
+//public profile freelancer
+Route::get('/public-profile/{id}', 'UserController@public_profile')->name('public-profile');
 
 Route::middleware(['verified', 'auth'])->group(function () {
     Route::get('/post-a-job', 'JobsController@index')->name('post-a-job');
@@ -109,7 +89,24 @@ Route::middleware(['verified', 'auth'])->group(function () {
     Route::post('/job-send-message', 'JobsController@job_send_message')->name('job-send-message');
 });
 
+Route::get('/contact-us', 'ContactUsController@index')->name('contact-us');
+Route::post('/contact-us', 'ContactUsController@store')->name('contact-us');
 
+Route::get('/job-search', 'HomeController@job_search')->name('job-search');
+Route::get('/make-job-fav', 'JobsController@make_job_fav')->name('make-job-fav');
+Route::get('/remove-job-fav', 'JobsController@remove_job_fav')->name('remove-job-fav');
+Route::get('/favourite-job', 'JobsController@favourite_job')->name('favourite-job');
+Route::get('/favourite-job-search', 'JobsController@favourite_job_search')->name('favourite-job-search');
+
+//freelancer search and top freelancer 
+Route::get('/search-freelancer', 'FreelancerController@search_freelancer')->name('search-freelancer');
+Route::get('/top-freelancer', 'FreelancerController@index')->name('top-freelancer');
+Route::post('/search-freelancer', 'FreelancerController@search')->name('search-freelancer');
+
+//agency search and top agency 
+Route::get('/top-agencies', 'AgencyController@index')->name('top-agencies');
+Route::get('/search-agencies', 'AgencyController@search_agencies')->name('search-agencies');
+Route::post('/search-agencies', 'AgencyController@search')->name('search-agencies');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //Show this page after verifying email address
