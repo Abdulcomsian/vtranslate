@@ -162,12 +162,11 @@
                     </div>
                     <div class="formDiv">
                         <div class="col-lg-12">
-                            <form action="{{route('job-search')}}" method="post">
-                                @csrf
+                            <form action="{{route('job-search')}}" method="get">
                                 <div class="multiDiv">
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <select name="job_type" class="form-control p-0 pl-4">
+                                            <select name="job_type" class="form-control p-0 pl-4" required>
                                                 <option value="">Select Job Type</option>
                                                 <option value="Closed captioning">Closed captioning</option>
                                                 <option value="Copywriting">Copywriting</option>
@@ -376,7 +375,7 @@
                                         <div class="detial">
                                             <p>
                                                 <span>Poposals</span>
-                                                <span>0</span>
+                                                <span>{{count($job->jobproposals ?? 0)}}</span>
                                             </p>
                                             <p>
                                                 <span>Location</span>
@@ -404,10 +403,12 @@
                                                 <span>@if($job->expiry_date){{$diff_in_days." Day Left"}}@else{{'No Deadline'}}@endif</span>
                                             </p>
                                         </div>
+                                        @if(auth::user()->user_status=="Translator")
                                         @if($favourite)
                                         <i class="fa fa-heart favoriteIcon removefavor" data-id="{{$job->id}}" aria-hidden="true"></i>
                                         @else
                                         <i class="fa fa-heart-o favoriteIcon makefavor" data-id="{{$job->id}}" aria-hidden="true"></i>
+                                        @endif
                                         @endif
                                         <a href="{{url('job-details',$job->id)}}"><button class="commonBtn" style="padding: 8px 32px;">Apply Now</button></a>
                                     </div>
@@ -427,6 +428,9 @@
                         <p class="header">What are you Looking for?</p>
                         <ul>
                             <li><a href="{{ url('/post-a-job') }}">Post a Job</a></li>
+                            @if(auth::user()->user_status=="Translator")
+                            <li><a href="{{url('/favourite-job')}}">Favourite Job</a></li>
+                            @endif
                             <li><a href="{{url('/search-freelancer')}}">Find a Translator</a></li>
                             <li><a href="{{url('/search-agencies')}}">Find a Translation Agency</a></li>
                         </ul>
@@ -522,10 +526,10 @@
             <div class="col-md-3">
                 <div class="servicesIcon">
                     <div class="imgparent">
-                        <a href="register.html"><img class="servicesImg" src="assets/img/Group 22.png"></a>
+                        <a href="{{url('register')}}"><img class="servicesImg" src="assets/img/Group 22.png"></a>
                     </div>
                     <div class="servicesContent">
-                        <a href="register.html">
+                        <a href="{{url('register')}}">
                             <h2>Create in Account</h2>
                         </a>
                         <p>Become an Employer by creating an account</p>
@@ -536,7 +540,7 @@
             <div class="col-md-3">
                 <div class="servicesIcon">
                     <div class="imgparent">
-                        <a href="job-posting.html"><img class="servicesImg" src="assets/img/Group 23.png"></a>
+                        <a href="{{route('post-a-job')}}"><img class="servicesImg" src="assets/img/Group 23.png"></a>
                     </div>
                     <div class="servicesContent">
                         <h2><a href="{{route('post-a-job')}}">Post A Job</a></h2>
@@ -548,7 +552,7 @@
             <div class="col-md-3">
                 <div class="servicesIcon">
                     <div class="imgparent">
-                        <a href="Freelancer.html"><img class="servicesImg" src="assets/img/Group 24.png"></a>
+                        <a href="{{route('top-freelancer')}}"><img class="servicesImg" src="assets/img/Group 24.png"></a>
                     </div>
                     <div class="servicesContent">
                         <h2>Choose Translator</h2>

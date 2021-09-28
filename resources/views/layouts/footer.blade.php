@@ -59,6 +59,7 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 @toastr_js
 @toastr_render
+@yield('js')
 <script>
     $('#summernote').summernote({
         tabsize: 2,

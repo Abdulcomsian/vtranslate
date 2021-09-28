@@ -23,13 +23,13 @@
                         </div>
                         <div class="inputDiv">
                             <label for="">Job Description <span class="required">*</span></label>
-                            <textarea class="form-control" name="job_desc" id="job_desc" rows="4" cols="60">
+                            <textarea class="form-control" name="job_desc" id="job_desc" rows="4" cols="60" required="required">
                             </textarea>
                         </div>
                         <div class="languageDiv">
                             <h5>Job Types</h5>
                             <div class="multiple-select">
-                                <select name="job_type" class="form-control p-0">
+                                <select name="job_type" class="form-control p-0" required="required">
                                     <option value="">Select Service</option>
                                     <option value="Closed captioning">Closed captioning</option>
                                     <option value="Copywriting">Copywriting</option>
@@ -58,7 +58,7 @@
                                 </select>
                             </div>
                             <div class="radioDiv">
-                                <input type="radio" id="Intermediate" name="job_type_level" value="Intermediate">
+                                <input type="radio" id="Intermediate" name="job_type_level" value="Intermediate" checked>
                                   <label for="Intermediate">Intermediate</label>
                                   <input type="radio" id="Potential" name="job_type_level" value="Potential">
                                   <label for="Potential">Potential</label>
@@ -70,7 +70,7 @@
                             <p><b>Expalanation of Job Types</b></p>
                             <h5>Deadlines</h5>
                             <div class="radioDiv">
-                                <input type="radio" id="No-dealine" name="expriy_status" value="0">
+                                <input type="radio" id="No-dealine" name="expriy_status" value="0" checked>
                                   <label for="No-dealine">No-dealine</label>
                                   <input type="radio" id="Set-Date" name="expriy_status" value="1">
                                   <label for="Set Date">Set Date</label>
@@ -87,7 +87,7 @@
                             <div class="multiple-select pairlng">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <select class="form-control" id="from_language" name="from_language[]">
+                                        <select class="form-control" id="from_language" name="from_language[]" required>
                                             <option value="">Select Language</option>
                                             <option value="af">Afrikaans</option>
                                             <option value="sq">Albanian - shqip</option>
@@ -237,7 +237,7 @@
                                         <span>>></span>
                                     </div>
                                     <div class="col-md-4">
-                                        <select class="form-control" id="to_language" name="to_language[]">
+                                        <select class="form-control" id="to_language" name="to_language[]" required>
                                             <option value="">Select Language</option>
                                             <option value="af">Afrikaans</option>
                                             <option value="sq">Albanian - shqip</option>
