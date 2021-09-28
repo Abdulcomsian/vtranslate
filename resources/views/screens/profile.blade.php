@@ -579,7 +579,7 @@
                     <h3>Select Status</h3>
                     <span>User Name: <b>{{auth::user()->username}}</b></span>
                     <span>Current Status: <b>{{auth::user()->user_status}}</b></span>
-                    <form action="{{route('user-change-status')}}" method="post">
+                    <form action="{{route('change-status')}}" method="post">
                         @csrf
                         <p>Please select your status:</p>
                         <fieldset>
@@ -619,7 +619,7 @@
                             </span>
                         </div>
                         <h4 class="font-weight-600">Contact Information</h4>
-                        <form action="{{route('user-save-general-info')}}" method="post">
+                        <form action="{{route('save-general-info')}}" method="post">
                             @csrf
                             <div class="inputDiv">
                                 <label for="">Title:</label>
@@ -857,27 +857,27 @@
                                         $news_notificationchecked='';
                                         $jobsnotification_checked='';
                                         $show_rated_users_checked='';
-                                        if(isset($userData[0]->usergeneralinfo->private_information)==1)
+                                        if(auth::user()->private_information==1)
                                         {
                                         $privatechecked='checked';
                                         }
-                                        if(isset($userData[0]->usergeneralinfo->disallow_indexing)==1)
+                                        if(auth::user()->disallow_indexing==1)
                                         {
                                         $disallowchecked='checked';
                                         }
-                                        if(isset($userData[0]->usergeneralinfo->display_contact_info)==1)
+                                        if(auth::user()->display_contact_info==1)
                                         {
                                         $displaycontchecked='checked';
                                         }
-                                        if(isset($userData[0]->usergeneralinfo->news_notification)==1)
+                                        if(auth::user()->news_notification==1)
                                         {
                                         $news_notificationchecked='checked';
                                         }
-                                        if(isset($userData[0]->usergeneralinfo->jobsnotification)==1)
+                                        if(auth::user()->jobsnotification==1)
                                         {
                                         $jobsnotification_checked='checked';
                                         }
-                                        if(isset($userData[0]->usergeneralinfo->show_rated_users)==1)
+                                        if(auth::user()->show_rated_users==1)
                                         {
                                         $show_rated_users_checked='checked';
                                         }
@@ -958,7 +958,7 @@
                                     <h3>Resume</h3>
                                     <p class="warning">Upload Your Resume</p>
                                     <p><a href="{{asset('files/resume/'.auth::user()->resume ?? '')}}" target="_blank">{{auth::user()->resume ?? ''}}</a></p>
-                                    <form action="{{route('user-upload-resume')}}" method="post" enctype="multipart/form-data">
+                                    <form action="{{route('upload-resume')}}" method="post" enctype="multipart/form-data">
                                         @csrf
                                         <div class="control-group">
                                             <div class="controls bootstrap-timepicker">
@@ -1006,7 +1006,7 @@
 
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <form action="{{route('user-mother-languages')}}" method="post">
+                                            <form action="{{route('mother-languages')}}" method="post">
                                                 @csrf
                                                 <table>
                                                     <thead>
@@ -1205,7 +1205,7 @@
                                         </div>
                                     </div>
                                     <br>
-                                    <form action="{{route('user-save-languages')}}" method="post">
+                                    <form action="{{route('save-languages')}}" method="post">
                                         @csrf
                                         <div class="row">
                                             <div class="col-md-5">
@@ -1703,7 +1703,7 @@
                                 <h3>Voice-Over</h3>
                                 <label for="">Choose Language</label>
                                 <div class="inputDiv">
-                                    <form action="{{route('user-save-voice-over')}}" method="post">
+                                    <form action="{{route('save-voice-over')}}" method="post">
                                         @csrf
                                         <select name="language" id="language" required="required">
                                             <option value="">Select Language</option>
@@ -1891,7 +1891,7 @@
                                     <h3>Specialization</h3>
                                     <p>View Your Profile (Specialization)</p>
                                     <p>Please select your subject areas adn click ot tab to <b>Save</b> Button</p>
-                                    <form action="{{route('user-save-specilizations')}}" method="post">
+                                    <form action="{{route('save-specilizations')}}" method="post">
                                         @csrf
                                         @include("screens.includes.specializtioncheckbox")
                                         <div class="multiBtn pt-5">
@@ -1917,7 +1917,7 @@
                                     <h3>Software</h3>
                                     <p>View Your Profile (Specialization)</p>
                                     <p>Please select your subject areas adn click ot tab to <b>Save</b> Button</p>
-                                    <form action="{{route('user-save-software-tools')}}" method="post">
+                                    <form action="{{route('save-software-tools')}}" method="post">
                                         @csrf
                                         @include('screens.includes.softwarecheckbox')
                                         <p style="margin-top:20px" class="notice"><b>Note:</b> Job notification will be send according to the subject areas selected on this page.</p>

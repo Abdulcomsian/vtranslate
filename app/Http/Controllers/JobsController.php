@@ -6,8 +6,13 @@ use Illuminate\Http\Request;
 use App\Models\Jobs;
 use App\Models\JobsPairLanguages;
 use App\Models\FavouriteJobs;
+use App\Models\JobProposal;
+use App\Mail\JobApplyEmail;
+use App\Mail\JobCopyEmail;
+use App\Models\JobViews;
 use Auth;
 use DB;
+use Mail;
 
 class JobsController extends Controller
 {
@@ -92,15 +97,69 @@ class JobsController extends Controller
     //jobs details page work
     public function job_details($id)
     {
-        $jobs_details = DB::table('jobs')
-            ->select('*')
-            ->join('users', 'users.id', '=', 'jobs.user_id')
-            ->join('countries', 'countries.id', '=', 'users.country_id')
-            ->join('jobs_pair_languages', 'jobs_pair_languages.jobs_id', '=', 'jobs.id')
-            ->leftjoin('user_specializations', 'user_specializations.user_id', '=', 'users.id')
-            ->leftjoin('user_general_information', 'users.id', '=', 'user_general_information.user_id')
-            ->where(['jobs.id' => $id])
-            ->get();
-        return view('screens.job-detail', compact('jobs_details'));
+        try {
+            $jobs_details = DB::table('jobs')
+                ->select('*')
+                ->join('users', 'users.id', '=', 'jobs.user_id')
+                ->join('countries', 'countries.id', '=', 'users.country_id')
+                ->join('jobs_pair_languages', 'jobs_pair_languages.jobs_id', '=', 'jobs.id')
+                ->leftjoin('user_specializations', 'user_specializations.user_id', '=', 'users.id')
+                ->leftjoin('user_general_information', 'users.id', '=', 'user_general_information.user_id')
+                ->where(['jobs.id' => $id])
+                ->get();
+            //view jobs for login translator
+            $checkcurrentuserview = JobViews::where('jobs_id', $id)->where('user_id', Auth::user()->id)->count();
+            if (Auth::user()->user_status == "Translator" && $checkcurrentuserview == 0) {
+                $jobsview = new JobViews();
+                $jobsview->user_id = Auth::user()->id;
+                $jobsview->jobs_id = $id;
+                $jobsview->save();
+            }
+            $job_proposal_counts = JobProposal::where('jobs_id', $id)->count();
+            //jobs views count
+            $jobviewcount = JobViews::where('jobs_id', $id)->count();
+            $jobapplystatus = JobProposal::where('jobs_id', $id)->where('user_id', Auth::user()->id)->count();
+            return view('screens.job-detail', compact('jobs_details', 'job_proposal_counts', 'jobapplystatus', 'jobviewcount'));
+        } catch (\Exception $exception) {
+            toastr()->error('Something went wrong, try again');
+            return back();
+        }
+    }
+    //sned message against job OR PROPOSAL
+    public function job_send_message(Request $request)
+    {
+        try {
+            $jobproposal = new JobProposal();
+            $jobproposal->from = $request->from;
+            $jobproposal->subject = $request->subject;
+            $jobproposal->message = $request->message;
+            $jobproposal->user_id = Auth::user()->id;
+            $jobproposal->jobs_id = $request->jobid;
+            if (isset($request->send_copy)) {
+                $jobproposal->copy_self = 1;
+            }
+            if (isset($request->inclue_profile_link)) {
+                $jobproposal->include_link = 1;
+            }
+            if ($jobproposal->save()) {
+                //send email to job poster 
+                $data = [
+                    'from' => $request->from,
+                    'subject' => $request->subject,
+                    'messsage' => $request->message,
+                    'job_poster_name' => $request->job_poster_name,
+                ];
+                //send 
+                Mail::to($request->job_poster_email)->send(new JobApplyEmail($data));
+                if (isset($request->send_copy)) {
+                    Mail::to(Auth::user()->email)->send(new JobCopyEmail($data));
+                }
+                toastr()->success('Job Apply Successfully');
+                return back();
+            }
+        } catch (\Exception $exception) {
+            toastr()->error('Something went wrong, try again');
+            return back();
+        }
     }
 }

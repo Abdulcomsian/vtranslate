@@ -1657,7 +1657,37 @@ tbody tr .tableData{
     vertical-align: middle !important;
 }
 
-
+.messageDiv .inputDiv{
+    display: flex;
+}
+.messageDiv .inputDiv label{
+    width: 20%;
+}
+.messageDiv .inputDiv input,
+.messageDiv .inputDiv textarea{
+    padding: 5px 15px;
+}
+.messageDiv .inputDiv input:focus{
+    border: 1px solid;
+}
+.messageDiv .textAreaDiv{
+    display: block;
+}
+.messageDiv .textAreaDiv label,
+.messageDiv .textAreaDiv textarea{
+    width: 100%;
+}
+.messageDiv .btnDiv{
+    text-align: center;
+}
+.messageDiv .btnDiv button{
+    background-color: #0E0D6B !important;
+    color: #fff;
+    padding: 10px 40px;
+    border-radius: 8px;
+    font-size: 16px;
+    border: none;
+}
 @media screen and (max-width: 1200px) {
     .commonDiv span{
         margin: 0px;
