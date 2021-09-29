@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -113,3 +112,219 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::view('/thanks-for-registration', 'auth.thanks-for-registration');
 //Show thanks page after successfull registeration of user
 Route::view('/successfully-registered', 'auth.login-success')->name('login.success');
+
+
+
+// chatter routes
+// Route helper.
+$route = function ($accessor, $default = '') {
+
+    return  config('chatter.routes.' . $accessor, $default);
+};
+
+// Middleware helper.
+$middleware = function ($accessor, $default = []) {
+    return config('chatter.middleware.' . $accessor, $default);
+};
+
+// Authentication middleware helper.
+$authMiddleware = function ($accessor) use ($middleware) {
+    return array_unique(
+        array_merge((array) $middleware($accessor), ['auth'])
+    );
+};
+
+/*
+ * Chatter routes.
+ */
+//Route::get('/forums', 'ChatterController@index');
+Route::group([
+    'as'         => 'chatter.',
+    'prefix'     => $route('home'),
+    'middleware' => $middleware('global', 'web'),
+], function () use ($route, $middleware, $authMiddleware) {
+
+    // Home view.
+    Route::get('/', [
+        'as'         => 'home',
+        'uses'       => 'devdojoController\ChatterController@index',
+        'middleware' => $middleware('home'),
+    ]);
+
+    // Single category view.
+    Route::get($route('category') . '/{slug}', [
+        'as'         => 'category.show',
+        'uses'       => 'devdojoController\ChatterController@index',
+        'middleware' => $middleware('category.show'),
+    ]);
+
+    /*
+     * Auth routes.
+     */
+
+    // Login view.
+    Route::get('login', [
+        'as'   => 'login',
+        'uses' => 'devdojoController\ChatterController@login',
+    ]);
+
+    // Register view.
+    Route::get('register', [
+        'as'   => 'register',
+        'uses' => 'devdojoController\ChatterController@register',
+    ]);
+
+    /*
+     * Discussion routes.
+     */
+    Route::group([
+        'as'     => 'discussion.',
+        'prefix' => $route('discussion'),
+    ], function () use ($middleware, $authMiddleware) {
+
+        // All discussions view.
+        Route::get('/', [
+            'as'         => 'index',
+            'uses'       => 'devdojoController\ChatterDiscussionController@index',
+            'middleware' => $middleware('discussion.index'),
+        ]);
+
+        // Create discussion view.
+        Route::get('create', [
+            'as'         => 'create',
+            'uses'       => 'devdojoController\ChatterDiscussionController@create',
+            'middleware' => $authMiddleware('discussion.create'),
+        ]);
+
+        // Store discussion action.
+        Route::post('/', [
+            'as'         => 'store',
+            'uses'       => 'devdojoController\ChatterDiscussionController@store',
+            'middleware' => $authMiddleware('discussion.store'),
+        ]);
+
+        // Single discussion view.
+        Route::get('{category}/{slug}', [
+            'as'         => 'showInCategory',
+            'uses'       => 'devdojoController\ChatterDiscussionController@show',
+            'middleware' => $middleware('discussion.show'),
+        ]);
+
+        // Add user notification to discussion
+        Route::post('{category}/{slug}/email', [
+            'as'         => 'email',
+            'uses'       => 'devdojoController\ChatterDiscussionController@toggleEmailNotification',
+        ]);
+
+        /*
+         * Specific discussion routes.
+         */
+        Route::group([
+            'prefix' => '{discussion}',
+        ], function () use ($middleware, $authMiddleware) {
+
+            // Single discussion view.
+            Route::get('/', [
+                'as'         => 'show',
+                'uses'       => 'devdojoController\ChatterDiscussionController@show',
+                'middleware' => $middleware('discussion.show'),
+            ]);
+
+            // Edit discussion view.
+            Route::get('edit', [
+                'as'         => 'edit',
+                'uses'       => 'devdojoController\ChatterDiscussionController@edit',
+                'middleware' => $authMiddleware('discussion.edit'),
+            ]);
+
+            // Update discussion action.
+            Route::match(['PUT', 'PATCH'], '/', [
+                'as'         => 'update',
+                'uses'       => 'devdojoController\ChatterDiscussionController@update',
+                'middleware' => $authMiddleware('discussion.update'),
+            ]);
+
+            // Destroy discussion action.
+            Route::delete('/', [
+                'as'         => 'destroy',
+                'uses'       => 'devdojoController\ChatterDiscussionController@destroy',
+                'middleware' => $authMiddleware('discussion.destroy'),
+            ]);
+        });
+    });
+
+    /*
+     * Post routes.
+     */
+    Route::group([
+        'as'     => 'posts.',
+        'prefix' => $route('post', 'posts'),
+    ], function () use ($middleware, $authMiddleware) {
+
+        // All posts view.
+        Route::get('/', [
+            'as'         => 'index',
+            'uses'       => 'devdojoController\ChatterPostController@index',
+            'middleware' => $middleware('post.index'),
+        ]);
+
+        // Create post view.
+        Route::get('create', [
+            'as'         => 'create',
+            'uses'       => 'devdojoController\ChatterPostController@create',
+            'middleware' => $authMiddleware('post.create'),
+        ]);
+
+        // Store post action.
+        Route::post('/', [
+            'as'         => 'store',
+            'uses'       => 'devdojoController\ChatterPostController@store',
+            'middleware' => $authMiddleware('post.store'),
+        ]);
+
+        /*
+         * Specific post routes.
+         */
+        Route::group([
+            'prefix' => '{post}',
+        ], function () use ($middleware, $authMiddleware) {
+
+            // Single post view.
+            Route::get('/', [
+                'as'         => 'show',
+                'uses'       => 'devdojoController\ChatterPostController@show',
+                'middleware' => $middleware('post.show'),
+            ]);
+
+            // Edit post view.
+            Route::get('edit', [
+                'as'         => 'edit',
+                'uses'       => 'devdojoController\ChatterPostController@edit',
+                'middleware' => $authMiddleware('post.edit'),
+            ]);
+
+            // Update post action.
+            Route::match(['PUT', 'PATCH'], '/', [
+                'as'         => 'update',
+                'uses'       => 'devdojoController\ChatterPostController@update',
+                'middleware' => $authMiddleware('post.update'),
+            ]);
+
+            // Destroy post action.
+            Route::delete('/', [
+                'as'         => 'destroy',
+                'uses'       => 'devdojoController\ChatterPostController@destroy',
+                'middleware' => $authMiddleware('post.destroy'),
+            ]);
+        });
+    });
+});
+
+/*
+ * Atom routes
+ */
+Route::get($route('home') . '.atom', [
+    'as'         => 'chatter.atom',
+    'uses'       => 'devdojoController\ChatterAtomController@index',
+    'middleware' => $middleware('home'),
+]);
