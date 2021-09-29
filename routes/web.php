@@ -23,21 +23,28 @@ Route::get('email/verify', [App\Http\Controllers\Auth\VerificationController::cl
 
 //home page
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/forums', function () {
-    return view('screens.forums');
-});
+
+//about us
 Route::get('/about-us', function () {
     return view('screens.about-us');
 });
+
+//privacy policy
 Route::get('/privacy-policy', function () {
     return view('screens.privacy-policy');
 });
+
+//term and condition
 Route::get('/term-condition', function () {
     return view('screens.term-condition');
 });
+
+//how ti works
 Route::get('/how-it-works', function () {
     return view('screens.how-it-works');
 });
+
+//faq
 Route::get('/faq', function () {
     return view('screens.faq');
 });
@@ -47,12 +54,6 @@ Route::get('/faq', function () {
 // });
 Route::get('/pro-member', function () {
     return view('screens.pro-membership');
-});
-Route::get('/agency', function () {
-    return view('screens.agencies.agency');
-});
-Route::get('/freelancer', function () {
-    return view('screens.freelancer.freelancer');
 });
 
 //group route for User Profile
@@ -96,7 +97,9 @@ Route::get('/make-job-fav', 'JobsController@make_job_fav')->name('make-job-fav')
 Route::get('/remove-job-fav', 'JobsController@remove_job_fav')->name('remove-job-fav');
 Route::get('/favourite-job', 'JobsController@favourite_job')->name('favourite-job');
 Route::get('/favourite-job-search', 'JobsController@favourite_job_search')->name('favourite-job-search');
-
+Route::get('/my-job', 'JobsController@my_job')->name('my-job');
+Route::post('/job-delete', 'JobsController@job_delete')->name('job-delete');
+Route::post('/job-update', 'JobsController@job_update')->name('job-update');
 //freelancer search and top freelancer 
 Route::get('/search-freelancer', 'FreelancerController@search_freelancer')->name('search-freelancer');
 Route::get('/top-freelancer', 'FreelancerController@index')->name('top-freelancer');
@@ -114,9 +117,8 @@ Route::view('/thanks-for-registration', 'auth.thanks-for-registration');
 Route::view('/successfully-registered', 'auth.login-success')->name('login.success');
 
 
+/*chatter routes are start from here===========================================================*/
 
-// chatter routes
-// Route helper.
 $route = function ($accessor, $default = '') {
 
     return  config('chatter.routes.' . $accessor, $default);
@@ -328,3 +330,5 @@ Route::get($route('home') . '.atom', [
     'uses'       => 'devdojoController\ChatterAtomController@index',
     'middleware' => $middleware('home'),
 ]);
+
+/*chatter routes are end here===========================================================*/

@@ -170,44 +170,106 @@ class JobsController extends Controller
     //favourite jobs
     public function favourite_job()
     {
-        $countries = Country::get();
-        $FavouriteJobs = jobs::with('user')->with('jobspairlang')->with('jobproposals')
-            ->with('favourite')->where('status', 1)
-            ->where(function ($query) {
-                $query = $query->whereHas('favourite', function ($query) {
-                    $query->where('favourite_jobs.user_id', '=', Auth::user()->id);
-                });
-            })
-            ->paginate(20);
-        //dd($FavouriteJobs);
-        return view('screens.favourite-job', compact('FavouriteJobs', 'countries'));
+        try {
+            if (Auth::user()->user_status == "Translator") {
+                $countries = Country::get();
+                $FavouriteJobs = jobs::with('user')->with('jobspairlang')->with('jobproposals')
+                    ->with('favourite')->where('status', 1)
+                    ->where(function ($query) {
+                        $query = $query->whereHas('favourite', function ($query) {
+                            $query->where('favourite_jobs.user_id', '=', Auth::user()->id);
+                        });
+                    })
+                    ->paginate(20);
+
+                return view('screens.favourite-job', compact('FavouriteJobs', 'countries'));
+            } else {
+                toastr()->error('403 Forbidden');
+                return back();
+            }
+        } catch (\Exception $exception) {
+            toastr()->error('Something went wrong, try again');
+            return back();
+        }
     }
 
     //search job on home page
     public function favourite_job_search(Request $request)
     {
-        $FavouriteJobs = Jobs::with('jobspairlang')->with('user')
-            ->where('status', 1)
-            ->when($request->job_type, function ($query) use ($request) {
-                return $query->where('job_type', $request->job_type);
-            })
-            ->when($request->country, function ($query) use ($request) {
-                $query = $query->whereHas('user', function ($query) {
-                    $query->orwhere('country_id', '=', \Request::input('country'));
-                });
-            })
-            ->when($request->language, function ($query) use ($request) {
-                return $query->whereHas('jobspairlang', function ($query) {
-                    $query->orwhere('from_lang', '=', \Request::input('language'))->orwhere('to_lang', '=', \Request::input('language'));
-                });
-            })
-            ->where(function ($query) {
-                $query = $query->whereHas('favourite', function ($query) {
-                    return $query->where('favourite_jobs.user_id', '=', Auth::user()->id);
-                });
-            })
-            ->paginate(20);
-        $countries = Country::get();
-        return view('screens.favourite-job', compact('FavouriteJobs', 'countries'));
+        try {
+            $FavouriteJobs = Jobs::with('jobspairlang')->with('user')
+                ->where('status', 1)
+                ->when($request->job_type, function ($query) use ($request) {
+                    return $query->where('job_type', $request->job_type);
+                })
+                ->when($request->country, function ($query) use ($request) {
+                    $query = $query->whereHas('user', function ($query) {
+                        $query->orwhere('country_id', '=', \Request::input('country'));
+                    });
+                })
+                ->when($request->language, function ($query) use ($request) {
+                    return $query->whereHas('jobspairlang', function ($query) {
+                        $query->orwhere('from_lang', '=', \Request::input('language'))->orwhere('to_lang', '=', \Request::input('language'));
+                    });
+                })
+                ->where(function ($query) {
+                    $query = $query->whereHas('favourite', function ($query) {
+                        return $query->where('favourite_jobs.user_id', '=', Auth::user()->id);
+                    });
+                })
+                ->paginate(20);
+            $countries = Country::get();
+            return view('screens.favourite-job', compact('FavouriteJobs', 'countries'));
+        } catch (\Exception $exception) {
+            toastr()->error('Something went wrong, try again');
+            return back();
+        }
+    }
+    //agency my job
+    public function my_job()
+    {
+        try {
+            if (Auth::user()->user_status == "Employer") {
+                $myjobs = Jobs::where('user_id', Auth::user()->id)->get();
+                return view('screens.my-job', compact('myjobs'));
+            } else {
+                toastr()->error('403 forbidden');
+                return back();
+            }
+        } catch (\Exception $exception) {
+            toastr()->error('Something went wrong, try again');
+            return back();
+        }
+    }
+
+    //delete job
+    public function job_delete(Request $request)
+    {
+        try {
+            Jobs::find($request->id)->delete();
+            toastr()->success('job Deleted Successfully');
+            return back();
+        } catch (\Exception $exception) {
+            toastr()->error('Something went wrong, try again');
+            return back();
+        }
+    }
+
+    //job update function
+    public function job_update(Request $request)
+    {
+        try {
+            Jobs::find($request->id)->update([
+                'job_title' => $request->job_title,
+                'job_desc' => $request->job_desc,
+                'status' => $request->status,
+                'budget' => $request->budget
+            ]);
+            toastr()->success('job updated Successfully');
+            return back();
+        } catch (\Exception $exception) {
+            toastr()->error('Something went wrong, try again');
+            return back();
+        }
     }
 }

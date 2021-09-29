@@ -9,50 +9,6 @@
                         <div class="leftBannerContent">
                             <h1>The Easiest Way To Hire <br> Expert Translate</h1>
                             <h2>lorem ipsum dolor sit amit, consectetur adipiscing elit ut aliquam, purus <br> sit amet luctus</h2>
-                            <!-- <div class="inputfield">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group forum d-flex">
-                                            <i class="fa fa-search" aria-hidden="true"></i>
-                                            <input class="form-control" placeholder="Search by language">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <select name="job_type" class="form-control p-0 pl-4">
-                                            <option value="">Select Job Type</option>
-                                            <option value="Closed captioning">Closed captioning</option>
-                                            <option value="Copywriting">Copywriting</option>
-                                            <option value="Desktop publishing">Desktop publishing</option>
-                                            <option value="Editing">Editing</option>
-                                            <option value="Interpreting">Interpreting</option>
-                                            <option value="Interpreting – conference">Interpreting – conference</option>
-                                            <option value="Interpreting – court/legal">Interpreting – court/legal</option>
-                                            <option value="Interpreting – medical">Interpreting – medical</option>
-                                            <option value="Interpreting – phone">Interpreting – phone</option>
-                                            <option value="Interpreting – sign language">Interpreting – sign language</option>
-                                            <option value="Localization">Localization</option>
-                                            <option value="Other">Other</option>
-                                            <option value="Project management">Project management</option>
-                                            <option value="Proofreading">Proofreading</option>
-                                            <option value="Research">Research</option>
-                                            <option value="Subtitling">Subtitling</option>
-                                            <option value="Teaching">Teaching</option>
-                                            <option value="Technical Review">Technical Review</option>
-                                            <option value="Technical writing">Technical writing</option>
-                                            <option value="Terminology research">Terminology research</option>
-                                            <option value="Transcription">Transcription</option>
-                                            <option value="Translation">Translation</option>
-                                            <option value="Typesetting"></option>
-                                            <option value="Voice-over">Voice-over</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="input-bar-item">
-                                            <button class="btn btn-info">Search</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
                             <div class="language">
                                 <p>
                                     <span>Popular Categories:</span>
@@ -396,14 +352,14 @@
                                                 $from = \Carbon\Carbon::createFromFormat('Y-m-d', date('Y-m-d'));
                                                 $diff_in_days = $to->diffInDays($from);
                                                 }
-
-                                                $favourite=\App\Models\FavouriteJobs::where('jobs_id',$job->id)->where('user_id',auth::user()->id)->first();
-
                                                 @endphp
                                                 <span>@if($job->expiry_date){{$diff_in_days." Day Left"}}@else{{'No Deadline'}}@endif</span>
                                             </p>
                                         </div>
-                                        @if(auth::user()->user_status=="Translator")
+                                        @if(auth::check() && auth::user()->user_status=="Translator")
+                                        @php
+                                        $favourite=\App\Models\FavouriteJobs::where('jobs_id',$job->id)->where('user_id',auth::user()->id)->first();
+                                        @endphp
                                         @if($favourite)
                                         <i class="fa fa-heart favoriteIcon removefavor" data-id="{{$job->id}}" aria-hidden="true"></i>
                                         @else
@@ -428,7 +384,7 @@
                         <p class="header">What are you Looking for?</p>
                         <ul>
                             <li><a href="{{ url('/post-a-job') }}">Post a Job</a></li>
-                            @if(auth::user()->user_status=="Translator")
+                            @if(auth::check() && auth::user()->user_status=="Translator")
                             <li><a href="{{url('/favourite-job')}}">Favourite Job</a></li>
                             @endif
                             <li><a href="{{url('/search-freelancer')}}">Find a Translator</a></li>

@@ -19,45 +19,60 @@ class AgencyController extends Controller
 {
     public function index()
     {
-        $AgencyData=User::with('usergeneralinfo','userlanguages','usersoftwares','userspicialize','uservoicover','userfiles','usermotherlanguages','usersevices')->where('user_status','Employer')->paginate(12);
-         return view('screens.agencies.top-agencies',compact('AgencyData'));
+        try {
+            $AgencyData = User::with('usergeneralinfo', 'userlanguages', 'usersoftwares', 'userspicialize', 'uservoicover', 'userfiles', 'usermotherlanguages', 'usersevices')->where('user_status', 'Employer')->paginate(12);
+            return view('screens.agencies.top-agencies', compact('AgencyData'));
+        } catch (\Exception $exception) {
+            toastr()->error('Something went wrong, try again');
+            return back();
+        }
     }
 
     //search agency page
     public function search_agencies()
     {
-        $allagencymembers=User::where('user_status','Employer')->get();
-        $countries=Country::get();
-        $AgencyData=User::with('usergeneralinfo','userlanguages','usersoftwares','userspicialize','uservoicover','userfiles','usermotherlanguages','usersevices')->where('user_status','Employer')->get();
-         return view('screens.agencies.search-agencies',compact('AgencyData','allagencymembers','countries'));
+        try {
+            $allagencymembers = User::where('user_status', 'Employer')->get();
+            $countries = Country::get();
+            $AgencyData = User::with('usergeneralinfo', 'userlanguages', 'usersoftwares', 'userspicialize', 'uservoicover', 'userfiles', 'usermotherlanguages', 'usersevices')->where('user_status', 'Employer')->get();
+            return view('screens.agencies.search-agencies', compact('AgencyData', 'allagencymembers', 'countries'));
+        } catch (\Exception $exception) {
+            toastr()->error('Something went wrong, try again');
+            return back();
+        }
     }
 
     //search
     public function search(Request $request)
     {
-        $allagencymembers=User::where('user_status','Employer')->get();
-        $countries=Country::get();
-        $AgencyData=User::with('usergeneralinfo','userlanguages','usersoftwares','userspicialize','uservoicover','userfiles','usermotherlanguages','usersevices')
-          
-          ->when($request->agencyid, function($query) use ($request){
-              return $query->orwhere('id', $request->agencyid);
-          })
-          ->when($request->keyword, function($query) use ($request){
-              return $query->whereHas('usergeneralinfo', function($query) {
-                    $query->orwhere('special_keywords', '=', \Request::input('keyword'));
+        try {
+            $allagencymembers = User::where('user_status', 'Employer')->get();
+            $countries = Country::get();
+            $AgencyData = User::with('usergeneralinfo', 'userlanguages', 'usersoftwares', 'userspicialize', 'uservoicover', 'userfiles', 'usermotherlanguages', 'usersevices')
+
+                ->when($request->agencyid, function ($query) use ($request) {
+                    return $query->orwhere('id', $request->agencyid);
+                })
+                ->when($request->keyword, function ($query) use ($request) {
+                    return $query->whereHas('usergeneralinfo', function ($query) {
+                        $query->orwhere('special_keywords', '=', \Request::input('keyword'));
                     });
-          })
-          ->when($request->languages, function($query) use ($request){
-              return $query->whereHas('userlanguages', function($query) {
-                    $query->orwhere('from_languages', '=', \Request::input('languages'))->orwhere('to_languages', '=', \Request::input('languages'));
+                })
+                ->when($request->languages, function ($query) use ($request) {
+                    return $query->whereHas('userlanguages', function ($query) {
+                        $query->orwhere('from_languages', '=', \Request::input('languages'))->orwhere('to_languages', '=', \Request::input('languages'));
                     });
-          })
-          ->when($request->country, function($query) use ($request){
-                    return $query->orwhere('country_id', '=',$request->country);    
-          })
-          ->where('user_status','Employer')
-        
-         ->get();
-         return view('screens.agencies.search-agencies',compact('AgencyData','allagencymembers','countries'));
+                })
+                ->when($request->country, function ($query) use ($request) {
+                    return $query->orwhere('country_id', '=', $request->country);
+                })
+                ->where('user_status', 'Employer')
+
+                ->get();
+            return view('screens.agencies.search-agencies', compact('AgencyData', 'allagencymembers', 'countries'));
+        } catch (\Exception $exception) {
+            toastr()->error('Something went wrong, try again');
+            return back();
+        }
     }
 }
