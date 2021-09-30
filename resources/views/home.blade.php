@@ -1,534 +1,246 @@
-@extends('layouts.master' ,['page_title' => 'Home'])
+@extends(Config::get('chatter.master_file_extend'))
+
+@section(Config::get('chatter.yields.head'))
+    <link href="/vendor/devdojo/chatter/assets/vendor/spectrum/spectrum.css" rel="stylesheet">
+	<link href="/vendor/devdojo/chatter/assets/css/chatter.css" rel="stylesheet">
+	@if($chatter_editor == 'simplemde')
+		<link href="/vendor/devdojo/chatter/assets/css/simplemde.min.css" rel="stylesheet">
+	@endif
+@stop
+
 @section('content')
-<section id="homeBanner">
-        <div id="mainbanner" class="banner">
-            <div class="container-fluid">
-                <div class="banner-content">
-                    <div class="row" >
-                        <div class="col-lg-6">
-                            <h1>The Easiest Way To Hire <br> Expert Translate</h1>
-                            <h2>lorem ipsum dolor sit amit, consectetur adipiscing elit ut aliquam, purus <br> sit amet luctus</h2>
-                            <!-- <a href="#" class="btnD1">Read More</a> -->
-                            <div class="inputfield">
-                                <div class="form-group forum d-flex" style="margin-right: 20px;" >
-                                    <i class="fa fa-search" aria-hidden="true"></i>
-                                    <input class="form-control" placeholder="Search by language" >
-                                </div>
-                                <div class="select">
-                                    <select name="Categories" class="Categories">
-                                        <option value="Categories">Categories</option>
-                                        <option value="Categories">English-korean</option>
-                                        <option value="Categories">Japenese-English</option>
-                                        <option value="audi">Germen-korean</option>
-                                      </select> 
-                                </div>
-                                <div class="input-bar-item">
-                                    <button class="btn btn-info">Search</button>
-                                  </div>
-                            </div>
-                            <div class="language">
-    
-                                <p>
-                                    <span >Popular Categories:</span>
-                                    <span class="spantext">English-korean</span>
-                                    <span class="spantext">English-korean</span>
-                                    <span class="spantext">English-korean</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-sm-12 pt-3">
-                            <div class="rightDiv">
-                                <div class="lookingFor">
-                                    <p class="header">AGENCY OF THE DAY
-                                    </p>
-                                    <div class="sliderDiv">
-                                        <div class="profileBox">
-                                            <img src="assets/img/user.png" alt="" class="img-fluid">
-                                            <div class="userDetail">
-                                                <h5>John Doe</h5>
-                                                <p>Spanish Translator</p>
-                                            </div>
-                                            <hr>
-                                            <div class="reviewDiv">
-                                                <p><img src="assets/img/star.png" alt="" class="img-fluid"> 3 Reviews (5.0)</p>
-                                                <p>
-                                                    <img src="assets/img/arrow.png" alt="" class="img-fluid"> Spain
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-sm-12 pt-3">
-                            <div class="rightDiv">
-                                <div class="lookingFor">
-                                    <p class="header">AGENCY OF THE DAY
-                                    </p>
-                                    <div class="sliderDiv">
-                                        <div class="profileBox">
-                                            <img src="assets/img/user.png" alt="" class="img-fluid">
-                                            <div class="userDetail">
-                                                <h5>John Doe</h5>
-                                                <p>Spanish Translator</p>
-                                            </div>
-                                            <hr>
-                                            <div class="reviewDiv">
-                                                <p><img src="assets/img/star.png" alt="" class="img-fluid"> 3 Reviews (5.0)</p>
-                                                <p>
-                                                    <img src="assets/img/arrow.png" alt="" class="img-fluid"> Spain
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
+
+<div id="chatter" class="chatter_home">
+
+	<div id="chatter_hero">
+		<div id="chatter_hero_dimmer"></div>
+		<?php $headline_logo = Config::get('chatter.headline_logo'); ?>
+		@if( isset( $headline_logo ) && !empty( $headline_logo ) )
+			<img src="{{ Config::get('chatter.headline_logo') }}">
+		@else
+			<h1>{{ Config::get('chatter.headline') }}</h1>
+			<p>{{ Config::get('chatter.description') }}</p>
+		@endif
+	</div>
+
+	@if(Session::has('chatter_alert'))
+		<div class="chatter-alert alert alert-{{ Session::get('chatter_alert_type') }}">
+			<div class="container">
+	        	<strong><i class="chatter-alert-{{ Session::get('chatter_alert_type') }}"></i> {{ Config::get('chatter.alert_messages.' . Session::get('chatter_alert_type')) }}</strong>
+	        	{{ Session::get('chatter_alert') }}
+	        	<i class="chatter-close"></i>
+	        </div>
+	    </div>
+	    <div class="chatter-alert-spacer"></div>
+	@endif
+
+	@if (count($errors) > 0)
+	    <div class="chatter-alert alert alert-danger">
+	    	<div class="container">
+	    		<p><strong><i class="chatter-alert-danger"></i> {{ Config::get('chatter.alert_messages.danger') }}</strong> Please fix the following errors:</p>
+		        <ul>
+		            @foreach ($errors->all() as $error)
+		                <li>{{ $error }}</li>
+		            @endforeach
+		        </ul>
+		    </div>
+	    </div>
+	@endif
+
+	<div class="container chatter_container">
+		
+	    <div class="row">
+
+	    	<div class="col-md-3 left-column">
+	    		<!-- SIDEBAR -->
+	    		<div class="chatter_sidebar">
+					<button class="btn btn-primary" id="new_discussion_btn"><i class="chatter-new"></i> New {{ Config::get('chatter.titles.discussion') }}</button> 
+					<a href="/{{ Config::get('chatter.routes.home') }}"><i class="chatter-bubble"></i> All {{ Config::get('chatter.titles.discussions') }}</a>
+					<ul class="nav nav-pills nav-stacked">
+						<?php $categories = \App\Models\devdojoModel\Models::category()->all(); ?>
+						@foreach($categories as $category)
+							<li><a href="/{{ Config::get('chatter.routes.home') }}/{{ Config::get('chatter.routes.category') }}/{{ $category->slug }}"><div class="chatter-box" style="background-color:{{ $category->color }}"></div> {{ $category->name }}</a></li>
+						@endforeach
+					</ul>
+				</div>
+				<!-- END SIDEBAR -->
+	    	</div>
+	        <div class="col-md-9 right-column">
+	        	<div class="panel">
+		        	<ul class="discussions">
+		        		@foreach($discussions as $discussion)
+				        	<li>
+				        		<a class="discussion_list" href="/{{ Config::get('chatter.routes.home') }}/{{ Config::get('chatter.routes.discussion') }}/{{ $discussion->category->slug }}/{{ $discussion->slug }}">
+					        		<div class="chatter_avatar">
+					        			@if(Config::get('chatter.user.avatar_image_database_field'))
+					        				
+					        				<?php $db_field = Config::get('chatter.user.avatar_image_database_field'); ?>
+					        				
+					        				<!-- If the user db field contains http:// or https:// we don't need to use the relative path to the image assets -->
+					        				@if( (substr($discussion->user->{$db_field}, 0, 7) == 'http://') || (substr($discussion->user->{$db_field}, 0, 8) == 'https://') )
+					        					<img src="{{ $discussion->user->{$db_field}  }}">
+					        				@else
+					        					<img src="{{ Config::get('chatter.user.relative_url_to_image_assets') . $discussion->user->{$db_field}  }}">
+					        				@endif
+					        			
+					        			@else
+					        				
+					        				<span class="chatter_avatar_circle" style="background-color:#<?=stringToColorCode($discussion->user->email) ?>">
+					        					{{ strtoupper(substr($discussion->user->email, 0, 1)) }}
+					        				</span>
+					        				
+					        			@endif
+					        		</div>
+
+					        		<div class="chatter_middle">
+					        			<h3 class="chatter_middle_title">{{ $discussion->title }} <div class="chatter_cat" style="background-color:{{ $discussion->category->color }}">{{ $discussion->category->name }}</div></h3>
+					        			<span class="chatter_middle_details">Posted By: <span data-href="/user">{{ ucfirst($discussion->user->{Config::get('chatter.user.database_field_with_user_name')}) }}</span> {{ \Carbon\Carbon::createFromTimeStamp(strtotime($discussion->created_at))->diffForHumans() }}</span>
+					        			@if($discussion->post[0]->markdown)
+					        				<?php $discussion_body = GrahamCampbell\Markdown\Facades\Markdown::convertToHtml( $discussion->post[0]->body ); ?>
+					        			@else
+					        				<?php $discussion_body = $discussion->post[0]->body; ?>
+					        			@endif
+					        			<p>{{ substr(strip_tags($discussion_body), 0, 200) }}@if(strlen(strip_tags($discussion_body)) > 200){{ '...' }}@endif</p>
+					        		</div>
+
+					        		<div class="chatter_right">
+					        			
+					        			<div class="chatter_count"><i class="chatter-bubble"></i> {{ $discussion->postsCount[0]->total }}</div>
+					        		</div>
+
+					        		<div class="chatter_clear"></div>
+					        	</a>
+				        	</li>
+			        	@endforeach
+		        	</ul>
+	        	</div>
+
+	        	<div id="pagination">
+	        		{{ $discussions->links() }}
+	        	</div>
+
+	        </div>
+	    </div>
+	</div>
+
+	<div id="new_discussion">
+	        	
+
+    	<div class="chatter_loader dark" id="new_discussion_loader">
+		    <div></div>
+		</div>
+
+    	<form id="chatter_form_editor" action="/{{ Config::get('chatter.routes.home') }}/{{ Config::get('chatter.routes.discussion') }}" method="POST">
+        	<div class="row">
+	        	<div class="col-md-7">
+		        	<!-- TITLE -->
+	                <input type="text" class="form-control" id="title" name="title" placeholder="Title of {{ Config::get('chatter.titles.discussion') }}" v-model="title" value="{{ old('title') }}" >
+	            </div>
+
+	            <div class="col-md-4">
+		            <!-- CATEGORY -->
+			            <select id="chatter_category_id" class="form-control" name="chatter_category_id">
+			            	<option value="">Select a Category</option>
+				            @foreach($categories as $category)
+				            	@if(old('chatter_category_id') == $category->id)
+				            		<option value="{{ $category->id }}" selected>{{ $category->name }}</option>
+				            	@else
+				            		<option value="{{ $category->id }}">{{ $category->name }}</option>
+				            	@endif
+				            @endforeach
+			            </select>
+		        </div>
+
+		        <div class="col-md-1">
+		        	<i class="chatter-close"></i>
+		        </div>	
+	        </div><!-- .row -->
+
+            <!-- BODY -->
+        	<div id="editor">
+        		@if( $chatter_editor == 'tinymce' || empty($chatter_editor) )
+					<label id="tinymce_placeholder">Add the content for your Discussion here</label>
+    				<textarea id="body" class="richText" name="body" placeholder="">{{ old('body') }}</textarea>
+    			@elseif($chatter_editor == 'simplemde')
+    				<textarea id="simplemde" name="body" placeholder="">{{ old('body') }}</textarea>
+    			@endif
+    		</div>
+
+            <input type="hidden" name="_token" id="csrf_token_field" value="{{ csrf_token() }}">
+
+            <div id="new_discussion_footer">
+            	<input type='text' id="color" name="color" /><span class="select_color_text">Select a Color for this Discussion (optional)</span>
+            	<button id="submit_discussion" class="btn btn-success pull-right"><i class="chatter-new"></i> Create {{ Config::get('chatter.titles.discussion') }}</button>
+            	<a href="/{{ Config::get('chatter.routes.home') }}" class="btn btn-default pull-right" id="cancel_discussion">Cancel</a>
+            	<div style="clear:both"></div>
             </div>
-            
-        </div>
-        
-    </section>
-    <section id="companyOverview" class="companyOverview">
-        <div class="container ">
-            <div class="row ">
-                <div class="col-4">
-                    <div class="totalTranslate">
-                        <img class="overviewImg" src="assets/img/Total Translator.png">
-                       <div class="translateContent">
-                        <h2>100,000+</h2>
-                        <p>Total Translate</p>
-                       </div>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="totalTranslate">
-                        <img class="overviewImg" src="assets/img/Job Posted.png">
-                        <div class="translateContent">
-                            <h2>2000+</h2>
-                        <p> Jobs Posted</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="totalTranslate">
-                        <img class="overviewImg" src="assets/img/Satisfied Clients.png">
-                        <div class="translateContent">
-                            <h2>70,000+</h2>
-                            <p>Satidied Clients</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section id="findJobSection" class="pt-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-9">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <h3 class="font-weight-600 mb-3">Latest Jobs </h3>                        </div>
-                        <div class="formDiv">
-                            <div class="col-lg-12">
-                                <form action="">
-                                    <div class="multiDiv">
-                                        <select name="" id="">
-                                            <option value="Categories">Categories</option>
-                                        </select>
-                                        <select name="" id="">
-                                            <option value="Country">Country</option>
-                                        </select>
-                                        <select name="" id="">
-                                            <option value="Language">Language</option>
-                                        </select>
-                                    </div>
-                                    <a class="commonBtn" href="{{ url('search-job') }}">Search</a>
-                                    <!-- <button class="commonBtn">Search</button> -->
-                                </form>
-                            </div>
-                        </div>
-                        
-                        <div class="col-lg-12">
-                            <div class="multiCards">
-                                <div class="cardDiv">
-                                    <div class="priceInfo">
-                                        <div class="detailDiv">
-                                            <span class="price">$50</span>
-                                            <span>Italian>English</span>
-                                            <p>Lorem ipsum dolor sit amet,  consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus</p>
-                                        </div>
-                                        <hr>
-                                        <div class="locationDate">
-                                            <div class="detial">
-                                                <p>
-                                                    <span>Poposals</span>
-                                                    <span>0</span>
-                                                </p>
-                                                <p>
-                                                    <span>Location</span>
-                                                    <span>Lorem Ipsum</span>
-                                                </p>
-                                                <p>
-                                                    <span>Expiry</span>
-                                                    <span>10 Day Left</span>
-                                                </p>
-                                            </div>
-                                            <i class="fa fa-heart-o favoriteIcon" aria-hidden="true"></i>
-                                            <button class="commonBtn">Apply Now</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="cardDiv">
-                                    <div class="priceInfo">
-                                        <div class="detailDiv">
-                                            <span class="price">$50</span>
-                                            <span>Italian>English</span>
-                                            <p>Lorem ipsum dolor sit amet,  consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus</p>
-                                        </div>
-                                        <hr>
-                                        <div class="locationDate">
-                                            <div class="detial">
-                                                <p>
-                                                    <span>Poposals</span>
-                                                    <span>0</span>
-                                                </p>
-                                                <p>
-                                                    <span>Location</span>
-                                                    <span>Lorem Ipsum</span>
-                                                </p>
-                                                <p>
-                                                    <span>Expiry</span>
-                                                    <span>10 Day Left</span>
-                                                </p>
-                                            </div>
-                                            <i class="fa fa-heart-o favoriteIcon" aria-hidden="true"></i>
-                                            <button class="commonBtn">Apply Now</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="cardDiv">
-                                    <div class="priceInfo">
-                                        <div class="detailDiv">
-                                            <span class="price">$50</span>
-                                            <span>Italian>English</span>
-                                            <p>Lorem ipsum dolor sit amet,  consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus</p>
-                                        </div>
-                                        <hr>
-                                        <div class="locationDate">
-                                            <div class="detial">
-                                                <p>
-                                                    <span>Poposals</span>
-                                                    <span>0</span>
-                                                </p>
-                                                <p>
-                                                    <span>Location</span>
-                                                    <span>Lorem Ipsum</span>
-                                                </p>
-                                                <p>
-                                                    <span>Expiry</span>
-                                                    <span>10 Day Left</span>
-                                                </p>
-                                            </div>
-                                            <i class="fa fa-heart-o favoriteIcon" aria-hidden="true"></i>
-                                            <button class="commonBtn">Apply Now</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="cardDiv">
-                                    <div class="priceInfo">
-                                        <div class="detailDiv">
-                                            <span class="price">$50</span>
-                                            <span>Italian>English</span>
-                                            <p>Lorem ipsum dolor sit amet,  consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus</p>
-                                        </div>
-                                        <hr>
-                                        <div class="locationDate">
-                                            <div class="detial">
-                                                <p>
-                                                    <span>Poposals</span>
-                                                    <span>0</span>
-                                                </p>
-                                                <p>
-                                                    <span>Location</span>
-                                                    <span>Lorem Ipsum</span>
-                                                </p>
-                                                <p>
-                                                    <span>Expiry</span>
-                                                    <span>10 Day Left</span>
-                                                </p>
-                                            </div>
-                                            <i class="fa fa-heart-o favoriteIcon" aria-hidden="true"></i>
-                                            <button class="commonBtn">Apply Now</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="cardDiv">
-                                    <div class="priceInfo">
-                                        <div class="detailDiv">
-                                            <span class="price">$50</span>
-                                            <span>Italian>English</span>
-                                            <p>Lorem ipsum dolor sit amet,  consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus</p>
-                                        </div>
-                                        <hr>
-                                        <div class="locationDate">
-                                            <div class="detial">
-                                                <p>
-                                                    <span>Poposals</span>
-                                                    <span>0</span>
-                                                </p>
-                                                <p>
-                                                    <span>Location</span>
-                                                    <span>Lorem Ipsum</span>
-                                                </p>
-                                                <p>
-                                                    <span>Expiry</span>
-                                                    <span>10 Day Left</span>
-                                                </p>
-                                            </div>
-                                            <i class="fa fa-heart-o favoriteIcon" aria-hidden="true"></i>
-                                            <button class="commonBtn">Apply Now</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="cardDiv">
-                                    <div class="priceInfo">
-                                        <div class="detailDiv">
-                                            <span class="price">$50</span>
-                                            <span>Italian>English</span>
-                                            <p>Lorem ipsum dolor sit amet,  consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus</p>
-                                        </div>
-                                        <hr>
-                                        <div class="locationDate">
-                                            <div class="detial">
-                                                <p>
-                                                    <span>Poposals</span>
-                                                    <span>0</span>
-                                                </p>
-                                                <p>
-                                                    <span>Location</span>
-                                                    <span>Lorem Ipsum</span>
-                                                </p>
-                                                <p>
-                                                    <span>Expiry</span>
-                                                    <span>10 Day Left</span>
-                                                </p>
-                                            </div>
-                                            <i class="fa fa-heart-o favoriteIcon" aria-hidden="true"></i>
-                                            <button class="commonBtn">Apply Now</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="cardDiv">
-                                    <div class="priceInfo">
-                                        <div class="detailDiv">
-                                            <span class="price">$50</span>
-                                            <span>Italian>English</span>
-                                            <p>Lorem ipsum dolor sit amet,  consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus</p>
-                                        </div>
-                                        <hr>
-                                        <div class="locationDate">
-                                            <div class="detial">
-                                                <p>
-                                                    <span>Poposals</span>
-                                                    <span>0</span>
-                                                </p>
-                                                <p>
-                                                    <span>Location</span>
-                                                    <span>Lorem Ipsum</span>
-                                                </p>
-                                                <p>
-                                                    <span>Expiry</span>
-                                                    <span>10 Day Left</span>
-                                                </p>
-                                            </div>
-                                            <i class="fa fa-heart-o favoriteIcon" aria-hidden="true"></i>
-                                            <button class="commonBtn">Apply Now</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="cardDiv">
-                                    <div class="priceInfo">
-                                        <div class="detailDiv">
-                                            <span class="price">$50</span>
-                                            <span>Italian>English</span>
-                                            <p>Lorem ipsum dolor sit amet,  consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus</p>
-                                        </div>
-                                        <hr>
-                                        <div class="locationDate">
-                                            <div class="detial">
-                                                <p>
-                                                    <span>Poposals</span>
-                                                    <span>0</span>
-                                                </p>
-                                                <p>
-                                                    <span>Location</span>
-                                                    <span>Lorem Ipsum</span>
-                                                </p>
-                                                <p>
-                                                    <span>Expiry</span>
-                                                    <span>10 Day Left</span>
-                                                </p>
-                                            </div>
-                                            <i class="fa fa-heart-o favoriteIcon" aria-hidden="true"></i>
-                                            <button class="commonBtn">Apply Now</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button class="commonBtn">View More Jobs</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="rightDiv">
-                        <div class="lookingFor">
-                            <p class="header">What are you Looking for?</p>
-                            <ul>
-                                <li><a href="{{ url('/post-a-job') }}">Post a Job</a></li>
-                                <li><a href="">Find a Translator</a></li>
-                                <li><a href="">Find a Translation Agency</a></li>
-                            </ul>
-                        </div>
-                        <div class="lookingFor">
-                            <p class="header">Need Help?:</p>
-                            <ul>
-                                <li><a href="">Translation Jobs</a></li>
-                                <li><a href="">Terminology Help</a></li>
-                                <li><a href="">Discussion Forums</a></li>
-                                <li><a href="">Web Site Builder</a></li>
-                                <li><a href="">Web Site Builder</a></li>
-                                <li><a href="">Discussion Forums</a></li>
-                            </ul>
-                        </div>
-                        <div class="lookingFor">
-                            <p class="header">LINGUISTS OF THE DAY</p>
-                            <div class="sliderDiv">
-                                <div class="profileBox">
-                                    <img src="assets/img/user.png" alt="" class="img-fluid">
-                                    <div class="userDetail">
-                                        <h5>John Doe</h5>
-                                        <p>Spanish Translator</p>
-                                    </div>
-                                    <hr>
-                                    <div class="reviewDiv">
-                                        <p><img src="assets/img/star.png" alt="" class="img-fluid"> 3 Reviews (5.0)</p>
-                                        <p>
-                                            <img src="assets/img/arrow.png" alt="" class="img-fluid"> Spain
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="lookingFor">
-                            <p class="header">AGENCY OF THE DAY
-                            </p>
-                            <div class="sliderDiv">
-                                <div class="profileBox">
-                                    <img src="assets/img/user.png" alt="" class="img-fluid">
-                                    <div class="userDetail">
-                                        <h5>John Doe</h5>
-                                        <p>Spanish Translator</p>
-                                    </div>
-                                    <hr>
-                                    <div class="reviewDiv">
-                                        <p><img src="assets/img/star.png" alt="" class="img-fluid"> 3 Reviews (5.0)</p>
-                                        <p>
-                                            <img src="assets/img/arrow.png" alt="" class="img-fluid"> Spain
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-    </section>
-    <section id="centerBanner" class="centerBanner" style="background-image: url('assets/img/Home\ Background.png');">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <h1>Since The start</h1>
-                    <h2>We provide stable service  with expert</h2>
-                    <p>Freelancer around the globle are looking for work</p>
-                    <div class="btn-parent d-flex">
-                        <div class="centerbannerbtn1">
-                            <a href="find-a-job.html"><button type="button" class="btnD1">View Job</button></a>
-                       </div>
-                        <div class="centerbannerbtn2">
-                             <a href="{{ url('/post-a-job') }}"><button type="button" class="btnD2">Post a job</button></a>
-                        </div>
-                     </div> 
-                </div>
-            </div>
-        </div>
-    </section>
-    <section id="Services" class=" Services mt-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 ">
-                    <h2 class="heading">How it Works?</h2>
-                </div>
-                <div class="col-md-6 mainpart2 ">
-                    <p class="heading1">For Employer</p>
-                    <p class="heading2">For Freelancer</p>
-                </div>
-                
-            </div>
-            <div class="row text-center pt-5">
-                <div class="col-md-3">
-                    <div class="servicesIcon">
-                        <div class="imgparent">
-                            <a href="register.html"><img class="servicesImg" src="assets/img/Group 22.png"></a>
-                        </div>
-                        <div class="servicesContent">
-                            <a href="register.html"><h2>Create in Account</h2></a>
-                            <p>Become an Employer by creating an account</p>
-                        </div>
-                    </div>
-                </div>
-    
-                <div class="col-md-3">
-                    <div class="servicesIcon">
-                        <div class="imgparent">
-                            <a href="job-posting.html"><img class="servicesImg" src="assets/img/Group 23.png"></a>
-                        </div>
-                        <div class="servicesContent">
-                            <h2><a href="job-posting.html">Post A Job</a></h2>
-                            <p>Tell Us what you need done in seconds</p>
-                        </div>
-                    </div>
-                </div>
-    
-                <div class="col-md-3">
-                    <div class="servicesIcon">
-                        <div class="imgparent">
-                            <a href="Freelancer.html"><img class="servicesImg" src="assets/img/Group 24.png"></a>
-                        </div>
-                        <div class="servicesContent">
-                            <h2>Choose Translator</h2>
-                            <p>Get your bids in a while and choose a from best </p>
-                        </div>
-                    </div>
-                </div>
-    
-                <div class="col-md-3">
-                    <div class="servicesIcon">
-                        <div class="imgparent">
-                            <img class="servicesImg" src="assets/img/Group 25.png">
-                        </div>
-                        <div class="servicesContent">
-                            <h2>Pro Membership</h2>
-                            <p>Only pay when you'r completely satisfied</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        </form>
+
+    </div><!-- #new_discussion -->
+
+</div>
+
+@if( $chatter_editor == 'tinymce' || empty($chatter_editor) )
+	<input type="hidden" id="chatter_tinymce_toolbar" value="{{ Config::get('chatter.tinymce.toolbar') }}">
+	<input type="hidden" id="chatter_tinymce_plugins" value="{{ Config::get('chatter.tinymce.plugins') }}">
+@endif
+<input type="hidden" id="current_path" value="{{ Request::path() }}">
+
 @endsection
+
+@section(Config::get('chatter.yields.footer'))
+
+
+@if( $chatter_editor == 'tinymce' || empty($chatter_editor) )
+	<script src="/vendor/devdojo/chatter/assets/vendor/tinymce/tinymce.min.js"></script>
+	<script src="/vendor/devdojo/chatter/assets/js/tinymce.js"></script>
+	<script>
+		var my_tinymce = tinyMCE;
+		$('document').ready(function(){
+			$('#tinymce_placeholder').click(function(){
+				my_tinymce.activeEditor.focus();
+			});
+		});
+	</script>
+@elseif($chatter_editor == 'simplemde')
+	<script src="/vendor/devdojo/chatter/assets/js/simplemde.min.js"></script>
+	<script src="/vendor/devdojo/chatter/assets/js/chatter_simplemde.js"></script>
+@endif
+
+<script src="/vendor/devdojo/chatter/assets/vendor/spectrum/spectrum.js"></script>
+<script src="/vendor/devdojo/chatter/assets/js/chatter.js"></script>
+<script>
+	$('document').ready(function(){
+
+		$('.chatter-close').click(function(){
+			$('#new_discussion').slideUp();
+		});
+		$('#new_discussion_btn, #cancel_discussion').click(function(){
+			@if(Auth::guest())
+				window.location.href = "/{{ Config::get('chatter.routes.home') }}/login";
+			@else
+				$('#new_discussion').slideDown();
+				$('#title').focus();
+			@endif
+		});
+
+		$("#color").spectrum({
+		    color: "#333639",
+		    preferredFormat: "hex",
+		    containerClassName: 'chatter-color-picker',
+		    cancelText: '',
+    		chooseText: 'close',
+		    move: function(color) {
+				$("#color").val(color.toHexString());
+			}
+		});
+
+		@if (count($errors) > 0)
+			$('#new_discussion').slideDown();
+			$('#title').focus();
+		@endif
+
+
+	});
+</script>
+@stop
