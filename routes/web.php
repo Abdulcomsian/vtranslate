@@ -100,6 +100,8 @@ Route::get('/favourite-job-search', 'JobsController@favourite_job_search')->name
 Route::get('/my-job', 'JobsController@my_job')->name('my-job');
 Route::post('/job-delete', 'JobsController@job_delete')->name('job-delete');
 Route::post('/job-update', 'JobsController@job_update')->name('job-update');
+Route::post('/job-assignto', 'JobsController@job_assignto')->name('job-assignto');
+Route::get('/my-assign-jobs', 'JobsController@my_assign_jobs')->name('my-assign-jobs');
 //freelancer search and top freelancer 
 Route::get('/search-freelancer', 'FreelancerController@search_freelancer')->name('search-freelancer');
 Route::get('/top-freelancer', 'FreelancerController@index')->name('top-freelancer');

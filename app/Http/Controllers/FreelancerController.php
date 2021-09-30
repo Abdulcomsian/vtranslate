@@ -23,7 +23,7 @@ class FreelancerController extends Controller
      {
           try {
                $FreelancerData = User::with('usergeneralinfo', 'userlanguages', 'usersoftwares', 'userspicialize', 'uservoicover', 'userfiles', 'usermotherlanguages', 'usersevices')->where('user_status', 'Translator')->paginate(12);
-               return view('screens.freelancer.top-freelancer', compact('FreelancerData'));
+               return view('screens.freelancer.top-freelancer', compact('FreelancerData', 'jobapplied'));
           } catch (\Exception $exception) {
                toastr()->error('Something went wrong, try again');
                return back();

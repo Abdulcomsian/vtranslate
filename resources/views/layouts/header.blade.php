@@ -20,6 +20,7 @@
                             <a class="dropdown-item" href="{{ url('search-freelancer') }}">Search Freelancer</a>
                             <a class="dropdown-item" href="{{ url('top-freelancer') }}">Top 20</a>
                             <a class="dropdown-item" href="{{url('/favourite-job')}}">My Favourite</a>
+                            <a class="dropdown-item" href="{{url('/my-assign-jobs')}}">My Assign Jobs</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
