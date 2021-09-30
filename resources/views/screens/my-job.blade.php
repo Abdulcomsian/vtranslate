@@ -109,54 +109,54 @@
     <!-- edit modal of job -->
     <div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog" style="width: 800px !important;">
-            <form method="post" action="{{route('job-update')}}">
-                @csrf
-                <input type="hidden" name="id" id="jobeditid" />
-                <div class="modal-content">
-                    <div class="modal-header text-center">
-                        <h4 class="modal-title w-100 font-weight-bold">Edit Job</h4>
-                        <button type="button btn-primary" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+            <!-- <form method="post" action="{{route('job-update')}}">
+                @csrf -->
+            <input type="hidden" name="id" id="jobeditid" />
+            <input type="hidden" name="assignto" id="assignto" />
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold">Edit Job</h4>
+                    <button type="button btn-primary" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="md-form mb-2">
+                        <i class="fa fa-tag prefix grey-text"></i>
+                        <input type="text" id="job_title" name="job_title" class="form-control validate" required>
+                        <label data-error="wrong" data-success="right" for="form34">Job Title</label>
                     </div>
-                    <div class="modal-body">
-                        <div class="md-form mb-2">
-                            <i class="fa fa-tag prefix grey-text"></i>
-                            <input type="text" id="job_title" name="job_title" class="form-control validate" required>
-                            <label data-error="wrong" data-success="right" for="form34">Job Title</label>
-                        </div>
 
-                        <div class="md-form mb-2">
-                            <i class="fa fa-money prefix grey-text"></i>
-                            <input type="number" id="budget" name="budget" class="form-control validate" required>
-                            <label data-error="wrong" data-success="right" for="form29">Price</label>
-                        </div>
-
-                        <div class="md-form mb-2">
-                            <i class="fa fa-tasks prefix grey-text"></i>
-                            <select class="form-control" name="status" id="status" required>
-                                <option value="">Select Status</option>
-                                <option value="0">Pending</option>
-                                <option value="1"> Approved</option>
-                                <option value="2">Assign</option>
-                                <option value="4">Completed</option>
-                            </select>
-                            <label data-error="wrong" data-success="right" for="form29">Status</label>
-                        </div>
-
-                        <div class="md-form">
-                            <i class="fa fa-pencil prefix grey-text"></i>
-                            <textarea type="text" id="job_desc" name="job_desc" class="md-textarea form-control" rows="4" required></textarea>
-                            <label data-error="wrong" data-success="right" for="form8">Description</label>
-                        </div>
-
+                    <div class="md-form mb-2">
+                        <i class="fa fa-money prefix grey-text"></i>
+                        <input type="number" id="budget" name="budget" class="form-control validate" required>
+                        <label data-error="wrong" data-success="right" for="form29">Price</label>
                     </div>
-                    <div class="modal-footer d-flex justify-content-center">
-                        <button type="submit" class="btn btn-primary" style="background-color:#85bf31;">Submit <i class="fa fa-paper-plane-o ml-1"></i></button>
+
+                    <div class="md-form mb-2">
+                        <i class="fa fa-tasks prefix grey-text"></i>
+                        <select class="form-control" name="status" id="status" required>
+                            <option value="">Select Status</option>
+                            <option value="3">Cancel</option>
+                            <option value="2">Assign</option>
+                            <option value="4">Completed</option>
+                        </select>
+                        <label data-error="wrong" data-success="right" for="form29">Status</label>
+                    </div>
+
+                    <div class="md-form">
+                        <i class="fa fa-pencil prefix grey-text"></i>
+                        <textarea type="text" id="job_desc" name="job_desc" class="md-textarea form-control" rows="4" required></textarea>
+                        <label data-error="wrong" data-success="right" for="form8">Description</label>
                     </div>
 
                 </div>
-            </form>
+                <div class="modal-footer d-flex justify-content-center">
+                    <button type="button" class="btn btn-primary editjobbtn" style="background-color:#85bf31;">Submit <i class="fa fa-paper-plane-o ml-1"></i></button>
+                </div>
+
+            </div>
+            <!-- </form> -->
         </div>
     </div>
     <!-- modal fo assign to -->
@@ -277,6 +277,7 @@
 
     function editfunc(obj) {
         res = JSON.parse(obj);
+        $("#assignto").val(res.job_assign);
         $("#job_title").val(res.job_title);
         $("#job_desc").val(res.job_desc);
         $("#budget").val(res.budget);
@@ -296,6 +297,42 @@
         $("#jobtitle").val(jobtitle);
         $("#ratingmodal").modal('show');
     }
+
+    $(".editjobbtn").on('click', function() {
+        title = $("#job_title").val();
+        budget = $("#budget").val();
+        status = $("#status").val();
+        job_desc = $("#job_desc").val();
+        job_id = $("#jobeditid").val();
+        user_id = $("#assignto").val();
+        $.ajax({
+            url: "{{route('job-update')}}",
+            method: 'get',
+            data: {
+                title: title,
+                budget: budget,
+                status: status,
+                job_desc: job_desc,
+                job_id: job_id,
+                user_id: user_id
+            },
+            success: function(res) {
+                if (res == "success") {
+                    $("#modalContactForm").modal('hide');
+                    swal.fire('suceess', 'Job updated successfully');
+                    if (status == 4) {
+                        $("#jobid").val(job_id);
+                        $("#userid").val(user_id);
+                        $("#jobtitle").val(title);
+                        $("#ratingmodal").modal('show');
+                    }
+
+                } else {
+                    swal.fire('error', 'Something went wrong!!!');
+                }
+            }
+        })
+    })
 </script>
 
 <!-- RATE SCRIPT HERE -->

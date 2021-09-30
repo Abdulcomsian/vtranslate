@@ -7,6 +7,7 @@ use App\Models\Jobs;
 use App\Models\JobsPairLanguages;
 use App\Models\User;
 use App\Models\Country;
+use DB;
 
 class HomeController extends Controller
 {
@@ -15,10 +16,6 @@ class HomeController extends Controller
      *
      * @return void
      */
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
 
     /**
      * Show the application dashboard.
@@ -29,9 +26,18 @@ class HomeController extends Controller
     {
         try {
             $countries = Country::get();
+            //Agency of the day
+            $toprateagency = User::with('rates')
+                ->join('work_histories', 'users.id', '=', 'work_histories.user_id')
+                ->select('users.*', DB::raw('avg(rating) as avgrate,count(rating) as totalreview'))
+                ->where(['users.user_status' => 'Employer'])
+                ->groupBy('work_histories.user_id')
+                ->orderBy('avgrate', 'Desc')
+                ->limit(2)
+                ->get();
             $totaltranslater = User::where('user_status', 'Translator')->count();
             $jobs = jobs::with('user')->with('jobspairlang')->with('jobproposals')->where('status', 1)->paginate(20);
-            return view('screens.home', compact('jobs', 'totaltranslater', 'countries'));
+            return view('screens.home', compact('jobs', 'totaltranslater', 'countries', 'toprateagency'));
         } catch (\Exception $exception) {
             toastr()->error('Something went wrong, try again');
             return back();

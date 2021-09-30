@@ -260,17 +260,15 @@ class JobsController extends Controller
     public function job_update(Request $request)
     {
         try {
-            Jobs::find($request->id)->update([
-                'job_title' => $request->job_title,
+            Jobs::find($request->job_id)->update([
+                'job_title' => $request->title,
                 'job_desc' => $request->job_desc,
                 'status' => $request->status,
                 'budget' => $request->budget
             ]);
-            toastr()->success('job updated Successfully');
-            return back();
+            echo "success";
         } catch (\Exception $exception) {
-            toastr()->error('Something went wrong, try again');
-            return back();
+            echo "error";
         }
     }
     //assign job to freelancer
