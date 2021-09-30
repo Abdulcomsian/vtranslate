@@ -28,6 +28,7 @@
                                         <th scope="col">Job Type</th>
                                         <th scope="col">Job Level</th>
                                         <th scope="col">Job Desc</th>
+                                        <th scope="col">Assign To</th>
                                         <th scope="col">Deadline</th>
                                         <th scope="col">Status</th>
                                         <th scope="col">Actions</th>
@@ -42,20 +43,16 @@
                                         <td>{{$job->job_type}}</td>
                                         <th>{{$job->job_level}}</th>
                                         <td>{{$job->job_desc}}</td>
+                                        <td>
+                                            @if($job->job_assign)
+                                            <a href="#" role="button" class="assingto" onclick="assignfunc('{{$job->id}}')">{{getUsername($job->job_assign)}}</a>
+                                            @else
+                                            <a href="#" role="button" class="assingto" onclick="assignfunc('{{$job->id}}')">{{"No Assign"}}</a>
+                                            @endif
+                                        </td>
                                         <td>{{$job->expiry_date}}</td>
                                         <td>
-
-                                            @if($job->status==1)
-                                            {{"Approved"}}
-                                            @elseif($job->status==2)
-                                            {{"Assign"}}
-                                            @elseif($job->status==3)
-                                            {{"Cancel"}}
-                                            @elseif($job->status==4)
-                                            {{"Completed"}}
-                                            @else
-                                            {{"Pending"}}
-                                            @endif
+                                            {{job_status($job->status)}}
                                         </td>
                                         <td>
                                             <span class="fa fa-pencil jobedit" onclick="editfunc('{{$job}}')" data-id="{{$job->id}}" role="button"></span>
@@ -76,7 +73,7 @@
             </div>
         </div>
     </div>
-
+    <!-- edit modal of job -->
     <div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog" style="width: 800px !important;">
             <form method="post" action="{{route('job-update')}}">
@@ -129,6 +126,40 @@
             </form>
         </div>
     </div>
+    <!-- modal fo assign to -->
+    <div class="modal fade" id="assignmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="width: 800px !important;">
+            <form method="post" action="{{route('job-assignto')}}">
+                @csrf
+                <input type="hidden" name="job_id" id="job_id" />
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <h4 class="modal-title w-100 font-weight-bold">Assign Job</h4>
+                        <button type="button btn-primary" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="md-form mb-2">
+                            <i class="fa fa-tasks prefix grey-text"></i>
+                            <select class="form-control" name="freelancer" id="freelancer" required>
+                                <option value="">Select Freelancer</option>
+                                @php $freelancers=\App\Models\User::where('user_status','Translator')->get();@endphp
+                                @foreach($freelancers as $freelancer)
+                                <option value="{{$freelancer->id}}">{{$freelancer->fname ?? ''}}</option>
+                                @endforeach
+                            </select>
+                            <label data-error="wrong" data-success="right" for="form29">Freelancer</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary">Assign To <i class="fa fa-paper-plane-o ml-1"></i></button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
 </section>
 @endsection
 @section('script')
@@ -165,6 +196,11 @@
         $("#status").val(res.status);
         $("#jobeditid").val(res.id);
         $("#modalContactForm").modal('show');
+    }
+
+    function assignfunc(id) {
+        $("#job_id").val(id);
+        $("#assignmodal").modal("show");
     }
 </script>
 @endsection

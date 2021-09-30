@@ -383,9 +383,13 @@
                     <div class="lookingFor">
                         <p class="header">What are you Looking for?</p>
                         <ul>
+                            @if(auth::check() && auth::user()->user_status=="Employer")
                             <li><a href="{{ url('/post-a-job') }}">Post a Job</a></li>
+                            <li><a href="{{ url('my-job') }}">My Jobs</a></li>
+                            @endif
                             @if(auth::check() && auth::user()->user_status=="Translator")
                             <li><a href="{{url('/favourite-job')}}">Favourite Job</a></li>
+                            <li><a href="{{url('/my-assign-jobs')}}">My Ongoing Jobs</a></li>
                             @endif
                             <li><a href="{{url('/search-freelancer')}}">Find a Translator</a></li>
                             <li><a href="{{url('/search-agencies')}}">Find a Translation Agency</a></li>

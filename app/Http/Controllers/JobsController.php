@@ -272,4 +272,30 @@ class JobsController extends Controller
             return back();
         }
     }
+    //assign job to freelancer
+    public function job_assignto(Request $request)
+    {
+        try {
+            $jobsdata = Jobs::find($request->job_id);
+            $jobsdata->job_assign = $request->freelancer;
+            $jobsdata->status = 2;
+            $jobsdata->save();
+            toastr()->success('job Assign Successfully');
+            return back();
+        } catch (\Exception $exception) {
+            toastr()->error('Something went wrong, try again');
+            return back();
+        }
+    }
+    //freelancer jobs in whic he enrolled
+    public function my_assign_jobs()
+    {
+        try {
+            $myjobs = Jobs::where('job_assign', Auth::user()->id)->paginate(20);
+            return view('screens.freelancer-assign-jobs', compact('myjobs'));
+        } catch (\Exception $exception) {
+            toastr()->error('Something went wrong, try again');
+            return back();
+        }
+    }
 }

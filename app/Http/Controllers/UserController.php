@@ -13,6 +13,8 @@ use App\Models\UserSoftware;
 use App\Models\UserFiles;
 use App\Models\UserMotherLanguages;
 use App\Models\UserServicesRates;
+use App\Models\Jobs;
+use App\Models\JobProposal;
 use Auth;
 use File;
 
@@ -372,11 +374,12 @@ class UserController extends Controller
     {
         if (Auth::user()->user_status == 'Translator') {
             $userData = User::with('usergeneralinfo', 'userlanguages', 'usersoftwares', 'userspicialize', 'uservoicover', 'userfiles', 'usermotherlanguages', 'usersevices')->where('id', Auth::user()->id)->get();
-            // dd($userData[0]->usergeneralinfo);
-            return view('screens.freelancer.freelancer', compact('userData'));
+            $jobapplied = JobProposal::where('user_id', Auth::user()->id)->count();
+            return view('screens.freelancer.freelancer', compact('userData', 'jobapplied'));
         } else {
             $userData = User::with('usergeneralinfo', 'userlanguages', 'usersoftwares', 'userspicialize', 'uservoicover', 'userfiles', 'usermotherlanguages', 'usersevices')->where('id', Auth::user()->id)->get();
-            return view('screens.agencies.agency', compact('userData'));
+            $jobposted = Jobs::where('user_id', Auth::user()->id)->count();
+            return view('screens.agencies.agency', compact('userData', 'jobposted'));
         }
     }
 
@@ -385,8 +388,8 @@ class UserController extends Controller
     {
 
         $userData = User::with('usergeneralinfo', 'userlanguages', 'usersoftwares', 'userspicialize', 'uservoicover', 'userfiles', 'usermotherlanguages', 'usersevices')->where('id', $id)->get();
-        // dd($userData[0]->usergeneralinfo);
-        return view('screens.freelancer.freelancer', compact('userData'));
+        $jobapplied = JobProposal::where('user_id', $id)->count();
+        return view('screens.freelancer.freelancer', compact('userData', 'jobapplied'));
     }
 
     //change user status
