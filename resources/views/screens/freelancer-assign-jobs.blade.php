@@ -49,7 +49,7 @@
                                         </td>
                                         <td>{{$job->expiry_date}}</td>
                                         <td>
-                                            <a href="#" onclick="changesatus('{{$job->id}}')">{{job_status($job->status)}}</a>
+                                            <strong>{{job_status($job->status)}}</strong>
                                         </td>
                                     </tr>
                                     @endforeach
