@@ -84,7 +84,6 @@
                                             @endif
                                             @if($job->status!=3 && $job->status!=4)
                                             <button class="btn btn-danger" onclick="canceljob('{{$job->id}}')">Cancel</button>
-                                            <button class="btn btn-success">Complete</button>
                                             @endif
                                         </td>
                                     </tr>
