@@ -11,6 +11,19 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//Admin Views
+Route::get('/dashboard', function () {
+    return view('admin.screens.dashboard');
+});
+Route::get('/premium-member', function () {
+    return view('admin.screens.premium-member');
+});
+Route::get('/featured-member', function () {
+    return view('admin.screens.featured-member');
+});
+Route::get('/jobs', function () {
+    return view('admin.screens.jobs');
+});
 
 Route::get('/login', function () {
     return view('screens.auth.login');
