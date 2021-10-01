@@ -12,9 +12,9 @@
                             <div class="language">
                                 <p>
                                     <span>Popular Categories:</span>
-                                    <span class="spantext">English-korean</span>
-                                    <span class="spantext">English-korean</span>
-                                    <span class="spantext">English-korean</span>
+                                    @foreach($toplang as $lng)
+                                    <span class="spantext">{{$lng->from_lang ?? ''}}-{{$lng->to_lang ?? ''}}</span>
+                                    @endforeach
                                 </p>
                             </div>
                         </div>
@@ -388,45 +388,31 @@
                             <li><a href="">Discussion Forums</a></li>
                         </ul>
                     </div>
+                    @foreach($topfreelancer as $freelancer)
                     <div class="lookingFor">
                         <p class="header">LINGUISTS OF THE DAY</p>
                         <div class="sliderDiv">
                             <div class="profileBox">
-                                <img src="assets/img/user.png" alt="" class="img-fluid">
+                                <img src="{{asset('profile-images/').'/'.$rateagency->profile_photo ?? ''}}" alt="" class="img-fluid">
                                 <div class="userDetail">
-                                    <h5>John Doe</h5>
+                                    <h5>{{$freelancer->fname ?? ''}} {{$freelancer->lname ?? ''}}</h5>
                                     <p>Spanish Translator</p>
                                 </div>
                                 <hr>
                                 <div class="reviewDiv">
-                                    <p><img src="assets/img/star.png" alt="" class="img-fluid"> 3 Reviews (5.0)</p>
+                                    <p><img src="assets/img/star.png" alt="" class="img-fluid"> {{$freelancer->totalreview ?? ''}} Reviews ({{$freelancer->avgrate}})</p>
                                     <p>
-                                        <img src="assets/img/arrow.png" alt="" class="img-fluid"> Spain
+                                        <img src="assets/img/arrow.png" alt="" class="img-fluid">
+                                        @php
+                                        $countryname=\App\Models\Country::where('id',$freelancer->country_id)->first();
+                                        @endphp
+                                        {{$countryname->country_name ?? ''}}
                                     </p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="lookingFor">
-                        <p class="header">AGENCY OF THE DAY
-                        </p>
-                        <div class="sliderDiv">
-                            <div class="profileBox">
-                                <img src="assets/img/user.png" alt="" class="img-fluid">
-                                <div class="userDetail">
-                                    <h5>John Doe</h5>
-                                    <p>Spanish Translator</p>
-                                </div>
-                                <hr>
-                                <div class="reviewDiv">
-                                    <p><img src="assets/img/star.png" alt="" class="img-fluid"> 3 Reviews (5.0)</p>
-                                    <p>
-                                        <img src="assets/img/arrow.png" alt="" class="img-fluid"> Spain
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
 
             </div>

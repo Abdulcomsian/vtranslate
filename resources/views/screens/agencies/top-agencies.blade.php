@@ -57,16 +57,20 @@
                     </p>
                     <div class="sliderDiv">
                         <div class="profileBox">
-                            <img src="assets/img/user.png" alt="" class="img-fluid">
-                            <div class="userDetail">
-                                <h5>John Doe</h5>
-                                <p>Spanish Translator</p>
+                            <img src="@if(isset($topagency->profile_photo) && $topagency->profile_photo!=null){{asset('/profile-images/'.$topagency->profile_photo ?? '')}}@else{{'/assets/img/Job Posted.png'}}@endif" alt="" class="img-fluid">
+                            <div class="userDetail ml-2">
+                                <h5>{{$topagency->fname ?? ''}} {{ $topagency->lname ?? ''}}</h5>
+                                <p>Agency</p>
                             </div>
                             <hr>
-                            <div class="reviewDiv">
-                                <p><img src="assets/img/star.png" alt="" class="img-fluid"> 3 Reviews (5.0)</p>
+                            <div class="reviewDiv ml-2">
+                                <p><img src="assets/img/star.png" alt="" class="img-fluid">{{$topagency->totalreview ?? ''}} Reviews ({{$topagency->avgrate ?? ''}})</p>
                                 <p>
-                                    <img src="assets/img/arrow.png" alt="" class="img-fluid"> Spain
+                                    <img src="assets/img/arrow.png" alt="" class="img-fluid">
+                                    @php
+                                    $countryname=\App\Models\Country::where('id',$topagency->country_id)->first();
+                                    @endphp
+                                    {{$countryname->country_name ?? ''}}
                                 </p>
                             </div>
                         </div>
