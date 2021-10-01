@@ -25,7 +25,7 @@ function job_status($status)
     elseif ($status == 2)
         return "Assign";
     elseif ($status == 3)
-        return "Cancel";
+        return "Canceled";
     elseif ($status == 4)
         return "Completed";
     else

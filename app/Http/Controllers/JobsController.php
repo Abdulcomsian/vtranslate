@@ -289,13 +289,13 @@ class JobsController extends Controller
     //freelancer jobs in whic he enrolled
     public function my_assign_jobs()
     {
-        // try {
-        $myjobs = Jobs::where('job_assign', Auth::user()->id)->paginate(20);
-        return view('screens.freelancer-assign-jobs', compact('myjobs'));
-        // } catch (\Exception $exception) {
-        //     toastr()->error('Something went wrong, try again');
-        //     return back();
-        // }
+        try {
+            $myjobs = Jobs::where('job_assign', Auth::user()->id)->paginate(20);
+            return view('screens.freelancer-assign-jobs', compact('myjobs'));
+        } catch (\Exception $exception) {
+            toastr()->error('Something went wrong, try again');
+            return back();
+        }
     }
     //rate job for freelancer
     public function rate_job(Request $request)
@@ -317,6 +317,25 @@ class JobsController extends Controller
                 toastr()->success('Your Ratring submited Thanks!!!');
                 return back();
             }
+        } catch (\Exception $exception) {
+            toastr()->error('Something went wrong, try again');
+            return back();
+        }
+    }
+    //cancel job for some reason
+    public function cancel_job(Request $request)
+    {
+        try {
+            $job_id = $request->cancel_job_id;
+            Jobs::find($job_id)->update(
+                [
+                    'cancel_reason' => $request->cancel_reason,
+                ]
+            );
+            //here is the work for email to admin and agency
+
+            toastr()->success('job cancel request send to admin and agency');
+            return back();
         } catch (\Exception $exception) {
             toastr()->error('Something went wrong, try again');
             return back();

@@ -103,6 +103,7 @@ Route::get('/job-update', 'JobsController@job_update')->name('job-update');
 Route::post('/job-assignto', 'JobsController@job_assignto')->name('job-assignto');
 Route::get('/my-assign-jobs', 'JobsController@my_assign_jobs')->name('my-assign-jobs');
 Route::post('/rate-job', 'JobsController@rate_job')->name('rate-job');
+Route::post('/cancel-job', 'JobsController@cancel_job')->name('cancel-job');
 //freelancer search and top freelancer 
 Route::get('/search-freelancer', 'FreelancerController@search_freelancer')->name('search-freelancer');
 Route::get('/top-freelancer', 'FreelancerController@index')->name('top-freelancer');

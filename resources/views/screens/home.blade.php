@@ -24,6 +24,7 @@
                             </div>
                         </div>
                     </div>
+                    @if(count($toprateagency)>0)
                     @foreach($toprateagency as $rateagency)
                     <div class="col-lg-3 col-md-6 col-sm-12 pt-3">
                         <div class="rightDiv">
@@ -54,6 +55,58 @@
                         </div>
                     </div>
                     @endforeach
+                    @else
+                    <div class="col-lg-3 col-md-6 col-sm-12 pt-3">
+                        <div class="rightDiv">
+                            <div class="lookingFor">
+                                <p class="header">AGENCY OF THE DAY(not set)
+                                </p>
+                                <div class="sliderDiv">
+                                    <div class="profileBox">
+                                        <img src="{{asset('assets/img/user.png')}}" alt="" class="img-fluid">
+                                        <div class="userDetail">
+                                            <h5>Test</h5>
+                                            <p>Test Translator</p>
+                                        </div>
+                                        <hr>
+                                        <div class="reviewDiv">
+                                            <p><img src="assets/img/star.png" alt="" class="img-fluid"> 3 review (5))</p>
+                                            <p>
+                                                <img src="assets/img/arrow.png" alt="" class="img-fluid">
+                                                Test Coutnry
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 pt-3">
+                        <div class="rightDiv">
+                            <div class="lookingFor">
+                                <p class="header">AGENCY OF THE DAY(not set)
+                                </p>
+                                <div class="sliderDiv">
+                                    <div class="profileBox">
+                                        <img src="{{asset('assets/img/user.png')}}" alt="" class="img-fluid">
+                                        <div class="userDetail">
+                                            <h5>Test1</h5>
+                                            <p>Test1 Translator</p>
+                                        </div>
+                                        <hr>
+                                        <div class="reviewDiv">
+                                            <p><img src="assets/img/star.png" alt="" class="img-fluid"> 1 review (4.0))</p>
+                                            <p>
+                                                <img src="assets/img/arrow.png" alt="" class="img-fluid">
+                                                Test1 Coutnry
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
                 </div>
             </div>
 
@@ -87,8 +140,8 @@
                 <div class="totalTranslate">
                     <img class="overviewImg" src="assets/img/Satisfied Clients.png">
                     <div class="translateContent">
-                        <h2>70,000+</h2>
-                        <p>Satidied Clients</p>
+                        <h2>{{$completedjob ?? ''}}+</h2>
+                        <p>Satisfied Clients</p>
                     </div>
                 </div>
             </div>
@@ -385,12 +438,10 @@
                     <div class="lookingFor">
                         <p class="header">Need Help?:</p>
                         <ul>
-                            <li><a href="">Translation Jobs</a></li>
+                            <li><a href="{{url('job-search').'?job_type=Translation'}}">Translation Jobs</a></li>
                             <li><a href="">Terminology Help</a></li>
-                            <li><a href="">Discussion Forums</a></li>
-                            <li><a href="">Web Site Builder</a></li>
-                            <li><a href="">Web Site Builder</a></li>
-                            <li><a href="">Discussion Forums</a></li>
+                            <li><a href="{{url('/forums')}}">Discussion Forums</a></li>
+                            <li><a href="{{url('/contact-us')}}">Contact Us</a></li>
                         </ul>
                     </div>
                     @foreach($topfreelancer as $freelancer)

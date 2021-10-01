@@ -60,10 +60,9 @@
                                         <th scope="col">Job Type</th>
                                         <th scope="col">Job Level</th>
                                         <th scope="col">Job Desc</th>
-                                        <th scope="col">Assign</th>
                                         <th scope="col">Deadline</th>
                                         <th scope="col">Status</th>
-                                        <th scope="col">Review</th>
+                                        <th scope="col">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -75,18 +74,17 @@
                                         <td>{{$job->job_type}}</td>
                                         <th>{{$job->job_level}}</th>
                                         <td>{{$job->job_desc}}</td>
-                                        <td>
-                                            @if($job->job_assign)
-                                            <strong>{{getUsername($job->job_assign)}}</strong>
-                                            @endif
-                                        </td>
                                         <td>{{$job->expiry_date}}</td>
                                         <td>
                                             <strong>{{job_status($job->status)}}</strong>
                                         </td>
-                                        <td>
+                                        <td style="width: 20%;">
                                             @if($job->status==4)
-                                            <span class="fa fa-star" role="button" onclick="ratefunc('{{$job->id}}','{{$job->user_id}}','{{$job->job_title}}')"></span>
+                                            <button class="btn btn-sm"><span class="fa fa-star" role="button" onclick="ratefunc('{{$job->id}}','{{$job->user_id}}','{{$job->job_title}}')"></span></button>
+                                            @endif
+                                            @if($job->status!=3 && $job->status!=4)
+                                            <button class="btn btn-danger" onclick="canceljob('{{$job->id}}')">Cancel</button>
+                                            <button class="btn btn-success">Complete</button>
                                             @endif
                                         </td>
                                     </tr>
@@ -155,6 +153,34 @@
             </form>
         </div>
     </div>
+    <!-- Cancel job modal -->
+    <div class="modal fade" id="cancelmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="width: 800px !important;">
+            <form method="post" action="{{route('cancel-job')}}">
+                @csrf
+                <input type="hidden" name="cancel_job_id" id="cancel_job_id" />
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <h4 class="modal-title w-100 font-weight-bold">Cancel Job</h4>
+                        <button type="button btn-primary" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="md-form">
+                            <i class="fa fa-pencil prefix grey-text"></i>
+                            <textarea type="text" id="cancel_reason" name="cancel_reason" class="md-textarea form-control" rows="4" required></textarea>
+                            <label data-error="wrong" data-success="right" for="form8">Cancel Reason</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary" style="background-color:#85bf31;">Cancel Request<i class="fa fa-paper-plane-o ml-1"></i></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
 </section>
 @endsection
 @section('script')
@@ -164,6 +190,11 @@
         $("#userid").val(userid);
         $("#jobtitle").val(jobtitle);
         $("#ratingmodal").modal('show');
+    }
+
+    function canceljob(jobid) {
+        $("#cancel_job_id").val(jobid);
+        $("#cancelmodal").modal('show');
     }
 </script>
 
