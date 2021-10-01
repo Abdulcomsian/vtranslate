@@ -263,7 +263,7 @@
             </div>
             <div class="col-lg-3">
                 <div class="rightDiv">
-
+                    @if($topagency)
                     <div class="lookingFor">
                         <p class="header">AGENCY OF THE DAY
                         </p>
@@ -288,6 +288,7 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                 </div>
             </div>
 

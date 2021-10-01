@@ -12,9 +12,14 @@
                             <div class="language">
                                 <p>
                                     <span>Popular Categories:</span>
+                                    @if(count($toplang)>0)
                                     @foreach($toplang as $lng)
                                     <span class="spantext">{{$lng->from_lang ?? ''}}-{{$lng->to_lang ?? ''}}</span>
                                     @endforeach
+                                    @else
+                                    <span class="spantext">No Job Category rated yet.</span>
+                                    @endif
+
                                 </p>
                             </div>
                         </div>

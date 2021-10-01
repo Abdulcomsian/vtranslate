@@ -280,6 +280,7 @@
                 </div>
             </div>
             <div class="col-lg-3">
+                @if($topagency)
                 <div class="lookingFor">
                     <p class="header">AGENCY OF THE DAY
                     </p>
@@ -304,6 +305,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
                 <div class="googleAdd">
                     <img src="assets/img/Google Ad..png" alt="" class="img-responsive">
                 </div>

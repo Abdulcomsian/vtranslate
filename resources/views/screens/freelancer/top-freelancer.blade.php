@@ -45,6 +45,7 @@
 
             </div>
             <div class="col-lg-3">
+                @if($topfreelancer)
                 <div class="lookingFor">
                     <p class="header">FREELANCER OF THE DAY</p>
                     <div class="sliderDiv">
@@ -68,7 +69,7 @@
                         </div>
                     </div>
                 </div>
-
+                @endif
             </div>
 
         </div>

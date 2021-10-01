@@ -289,13 +289,13 @@ class JobsController extends Controller
     //freelancer jobs in whic he enrolled
     public function my_assign_jobs()
     {
-        try {
-            $myjobs = Jobs::where('job_assign', Auth::user()->id)->paginate(20);
-            return view('screens.freelancer-assign-jobs', compact('myjobs'));
-        } catch (\Exception $exception) {
-            toastr()->error('Something went wrong, try again');
-            return back();
-        }
+        // try {
+        $myjobs = Jobs::where('job_assign', Auth::user()->id)->paginate(20);
+        return view('screens.freelancer-assign-jobs', compact('myjobs'));
+        // } catch (\Exception $exception) {
+        //     toastr()->error('Something went wrong, try again');
+        //     return back();
+        // }
     }
     //rate job for freelancer
     public function rate_job(Request $request)
