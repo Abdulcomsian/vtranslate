@@ -543,10 +543,209 @@ svg{
     margin-bottom: 30px;
     font-size: 22px;
 }
-
-
-
-
+#dashboard-header{
+    border-bottom: 2px solid #e1e1ed;
+    padding: 15px;
+}
+#dashboard-header .navbar{
+    justify-content: space-between;
+    align-items: center;
+}
+#dashboard-header .dashboard-header-right .profileDiv{
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+#dashboard-header .dashboard-header-right .profileDiv .profileImage img{
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+}
+#dashboard-header .dashboard-header-right .profileDiv .profileImage{
+    margin-right: 20px;
+}
+#dashboard-header .dashboard-header-right .profileDiv .userInfo p{
+    margin-bottom: 0px;
+}
+#dashboard-header .dashboard-header-right .profileDiv .dropDown{
+    position: absolute;
+    padding: 10px 40px;
+    top: 55px;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: 0px 10px 30px #0e0d6b33;
+    border: 1px solid #0e0d6b;
+    border-radius: 8px;
+    transition: all .5s ease;
+    z-index: 99999999999999999999;
+    right: 0;
+    display: none;
+}
+#dashboard-header .dashboard-header-right .profileDiv .dropDown ul li a{
+    color: #0e0d6b;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+}
+#dashboard-header .dashboard-header-right ul{
+    margin: 0px;
+}
+.show{
+    display: block !important;
+}
+.admin-dashoard-footer{
+    margin: 0px !important;
+}
+#mainSideBar{
+    width: 20%;
+    display: flex;
+    position: relative;
+}
+#mainSideBar .desktop-nav{
+    width: 100%;
+    padding: 50px 0px;
+    border-right: 1px solid #e1e1ed;
+    height: 100%;
+}
+#mainSideBar .menuButton{
+    padding: 50px;
+    display: none;
+    position: absolute;
+}
+#mainSideBar .menuButton span{
+    padding: 15px 20px;
+    border: 1px solid #0e0d6b;
+    border-radius: 5px;
+    display: grid;
+    cursor: pointer;
+}
+#mainSection .multiDiv{ 
+    display: flex;
+    width: 100%;
+}
+#mainSideBar .desktop-nav ul li a.active,
+#mainSideBar .desktop-nav ul li a:hover,
+.mobileMenu ul li a.active{
+    color: #000;
+    font-weight: 600;
+    background-color: #0e0d6b1f;
+    border-radius: 0px;
+    border-right: 5px solid #0e0d6b;
+    padding: 20px 20px;
+    display: block;
+}
+#mainSideBar .desktop-nav ul li a,
+.mobileMenu ul li a{
+    color: #000;
+    font-weight: 600;
+    background-color: #fff;
+    border-radius: 0px;
+    padding: 20px 20px;
+    display: block;
+}
+#mainSideBar .desktop-nav ul li a i,
+.mobileMenu ul li a i{
+    margin-right: 20px;
+    font-size: 16px;
+}
+.mobileMenu{
+    width: 100%;
+    position: absolute;
+    height: 100%;
+    z-index: 9999999;
+    background: #fff;
+    display: none;
+    transition: all .5s ease;
+}
+.mobileMenu ul{
+    position: relative;
+    top: 100px;
+}
+.mobileMenu button{
+    position: absolute;
+    top: 20px;
+    background: transparent;
+}
+#mainSection .multiDiv .mainContent{
+    padding: 65px 50px;
+    width: 80%;
+}
+#mainSection .multiDiv .mainContent h3.title{
+    font-size: 24px;
+    font-weight: 700;
+}
+#mainSection .multiDiv .mainContent .tabs-div{
+    margin: 60px 0px;
+}
+#mainSection .multiDiv .mainContent .tabs-div ul li{
+    width: 50%;
+}
+#mainSection .multiDiv .mainContent .tabs-div .nav-pills .nav-link.active, 
+#mainSection .multiDiv .mainContent .tabs-div .nav-pills .show>.nav-link {
+    color: #fff;
+    background-color: #0e0d6b;
+}
+#mainSection .multiDiv .mainContent .tabs-div .nav-pills .nav-link{
+    color: #000;
+    font-weight: 500;
+}
+#mainSection .multiDiv .mainContent .tab-content{
+    padding: 30px;
+    background: #e1e1ed;
+}
+#mainSection .multiDiv .mainContent .tab-content .commonDiv{
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+}
+#mainSection .multiDiv .mainContent .tab-content thead{
+    background-color: transparent;
+}
+#mainSection .multiDiv .mainContent .tab-content table.dataTable.no-footer,
+#mainSection .multiDiv .mainContent .tab-content table.dataTable thead th, table.dataTable thead td{
+    border-color: #e1e1ed;
+}
+#mainSection .multiDiv .mainContent .tab-content .dataTables_info{
+    font-weight: 600;
+}
+.paginate_button.current{
+    background: #e1e1ed !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 100% !important;
+    font-weight: 600 !important;
+}
+.paginate_button{
+    background-color: transparent;
+    border-color: #000;
+    border-radius: 100%;
+    font-weight: 600 !important;
+}
+#mainSection .multiDiv .mainContent .tab-content td span{
+    margin: 0px 5px;
+}
+.edit{
+    font-weight: 600;
+    color: #000;
+    cursor: pointer;
+}
+.delete{
+    font-weight: 600;
+    color: red;
+    cursor: pointer;
+}
+.btn-primary{
+    background-color: #0e0d6b !important;
+    border: none !important;
+}
+#mainSection .multiDiv .mainContent .tab-content td img{
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+}
+#mainSection .multiDiv .mainContent .tab-content thead th{
+    min-width: 90px;
+}
 @media screen and (min-width: 1500px) {
     #header .navbar-collapse {
         justify-content: flex-end;
@@ -578,6 +777,7 @@ svg{
   
 }
 @media screen and (min-width: 1200px) {
+   
     #voice-Over .commonDiv form .inputDiv{
 
     }
@@ -592,7 +792,6 @@ svg{
     }
     
 }
-
 @media screen and (max-width: 1200px) {
     .banner .banner-content .inputfield{
         max-width: 60% !important;
@@ -657,6 +856,16 @@ svg{
     
   }
   @media screen and (max-width: 992px) {
+    #mainSection .multiDiv .mainContent{
+        width: 100%;
+        padding: 150px 50px 50px;
+    }
+    #mainSideBar .menuButton{
+        display: block;
+    }
+    #mainSideBar .desktop-nav{
+        display: none;
+    }
     #contactDiv form .inputDiv{
         max-width: 100% !important;
     }
@@ -764,6 +973,38 @@ svg{
     }
 }
 @media screen and (max-width: 576px) {
+    #mainSection .multiDiv .mainContent{
+        padding: 100px 20px 50px;
+    }
+    .footerBottom p{
+        font-size: 10px;
+    }
+    #mainSideBar .menuButton{
+        padding: 20px;
+    }
+    #mainSideBar .menuButton span{
+        padding: 10px 15px;
+    }
+    #dashboard-header .navbar-light .navbar-brand img {
+        width: 100px;
+    }
+    #dashboard-header{
+        padding: 15px 0px;
+    }
+    #dashboard-header .dashboard-header-right .profileDiv .dropDown ul li a{
+        font-size: 12px;
+    }
+    #dashboard-header .dashboard-header-right .profileDiv .dropDown{
+        padding: 0px 20px;
+        top: 35px;
+    }
+    #dashboard-header .dashboard-header-right .profileDiv .profileImage img{
+        width: 25px;
+        height: 25px;
+    }
+    #dashboard-header .dashboard-header-right .profileDiv .userInfo p{
+        font-size: 10px;
+    }
     .downloadFile{
         display: block;
         justify-content: center;
@@ -1688,7 +1929,14 @@ tbody tr .tableData{
     font-size: 16px;
     border: none;
 }
+
 @media screen and (max-width: 1200px) {
+    #mainSideBar .desktop-nav ul li a i{
+        margin-right: 5px;
+    }
+    #mainSideBar .desktop-nav ul li a{
+        font-size: 14px;
+    }
     .commonDiv span{
         margin: 0px;
     }
