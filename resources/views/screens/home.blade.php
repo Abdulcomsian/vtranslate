@@ -527,7 +527,7 @@
                         <a href="{{route('post-a-job')}}"><img class="servicesImg" src="assets/img/Group 23.png"></a>
                     </div>
                     <div class="servicesContent">
-                        <h2><a href="{{route('post-a-job')}}">Post A Job</a></h2>
+                        <h2><a href="{{route('post-a-job')}}">Find a job</a></h2>
                         <p>Tell Us what you need done in seconds</p>
                     </div>
                 </div>
@@ -539,7 +539,7 @@
                         <a href="{{route('top-freelancer')}}"><img class="servicesImg" src="assets/img/Group 24.png"></a>
                     </div>
                     <div class="servicesContent">
-                        <h2>Choose Translator</h2>
+                        <h2>Apply on a job</h2>
                         <p>Get your bids in a while and choose a from best </p>
                     </div>
                 </div>
@@ -551,7 +551,7 @@
                         <img class="servicesImg" src="assets/img/Group 25.png">
                     </div>
                     <div class="servicesContent">
-                        <h2>Pro Membership</h2>
+                        <h2>Get payment safely</h2>
                         <p>Only pay when you'r completely satisfied</p>
                     </div>
                 </div>
