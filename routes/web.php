@@ -24,6 +24,9 @@ Route::get('/featured-member', function () {
 Route::get('/jobs', function () {
     return view('admin.screens.jobs');
 });
+Route::get('/new-job', function () {
+    return view('admin.screens.new-job');
+});
 
 Route::get('/login', function () {
     return view('screens.auth.login');

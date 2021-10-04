@@ -746,6 +746,28 @@ svg{
 #mainSection .multiDiv .mainContent .tab-content thead th{
     min-width: 90px;
 }
+#mainSection .multiDiv .mainContent .header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#mainSection .multiDiv .mainContent .header button{
+    background: red;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: all .5s ease;
+}
+#mainSection .multiDiv .mainContent .header button:hover{
+    transform: scale(1.1);
+}
+#mainSection .multiDiv .mainContent .header button a{
+    color: #fff;
+}
+#header .active{
+    color: red !important;
+    font-weight: 600 !important;
+}
 @media screen and (min-width: 1500px) {
     #header .navbar-collapse {
         justify-content: flex-end;
@@ -856,6 +878,9 @@ svg{
     
   }
   @media screen and (max-width: 992px) {
+    #header{
+        padding: 0px;
+    }
     #mainSection .multiDiv .mainContent{
         width: 100%;
         padding: 150px 50px 50px;
@@ -2102,8 +2127,17 @@ tbody tr .tableData{
     .banner .banner-content h1 br{
         display: none;
     }
-    .banner .banner-content h1{
-        font-size: 30px;
+    .banner .banner-content h1,
+    .centerBanner h1,
+    .Services .heading{
+        font-size: 25px;
+    }
+    .centerBanner h2{
+        font-size: 18px;
+    }
+    .Services .heading1,
+    .Services .heading2{
+        font-size: 14px;
     }
     .banner .banner-content h2{
         text-align: center;

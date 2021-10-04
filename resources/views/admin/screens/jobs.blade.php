@@ -4,7 +4,12 @@
     <div class="multiDiv">
         @include('admin.layouts.sidebar')
         <div class="mainContent">
-            <h3 class="title">Jobs</h3>
+            <div class="header">
+                <h3 class="title">Jobs</h3>
+                <button>
+                    <a href="{{ url('new-job') }}">Add New Job</a>
+                </button>
+            </div>
             <div class=tabs-div>
                 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                     <li class="nav-item">
