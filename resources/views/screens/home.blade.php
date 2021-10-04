@@ -12,13 +12,20 @@
                             <div class="language">
                                 <p>
                                     <span>Popular Categories:</span>
-                                    <span class="spantext">English-korean</span>
-                                    <span class="spantext">English-korean</span>
-                                    <span class="spantext">English-korean</span>
+                                    @if(count($toplang)>0)
+                                    @foreach($toplang as $lng)
+                                    <span class="spantext">{{$lng->from_lang ?? ''}}-{{$lng->to_lang ?? ''}}</span>
+                                    @endforeach
+                                    @else
+                                    <span class="spantext">No Job Category rated yet.</span>
+                                    @endif
+
                                 </p>
                             </div>
                         </div>
                     </div>
+                    @if(count($toprateagency)>0)
+                    @foreach($toprateagency as $rateagency)
                     <div class="col-lg-3 col-md-6 col-sm-12 pt-3">
                         <div class="rightDiv">
                             <div class="lookingFor">
@@ -26,16 +33,47 @@
                                 </p>
                                 <div class="sliderDiv">
                                     <div class="profileBox">
-                                        <img src="assets/img/user.png" alt="" class="img-fluid">
+                                        <img src="{{asset('profile-images/').'/'.$rateagency->profile_photo ?? ''}}" alt="" class="img-fluid">
                                         <div class="userDetail">
-                                            <h5>John Doe</h5>
+                                            <h5>{{$rateagency->fname ?? ''}} {{$rateagency->lname ?? ''}}</h5>
                                             <p>Spanish Translator</p>
                                         </div>
                                         <hr>
                                         <div class="reviewDiv">
-                                            <p><img src="assets/img/star.png" alt="" class="img-fluid"> 3 Reviews (5.0)</p>
+                                            <p><img src="assets/img/star.png" alt="" class="img-fluid"> {{$rateagency->totalreview ?? ''}} Reviews ({{$rateagency->avgrate ?? ''}})</p>
                                             <p>
-                                                <img src="assets/img/arrow.png" alt="" class="img-fluid"> Spain
+                                                <img src="assets/img/arrow.png" alt="" class="img-fluid">
+                                                @php
+                                                $countryname=\App\Models\Country::where('id',$rateagency->country_id)->first();
+                                                @endphp
+                                                {{$countryname->country_name ?? ''}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                    @else
+                    <div class="col-lg-3 col-md-6 col-sm-12 pt-3">
+                        <div class="rightDiv">
+                            <div class="lookingFor">
+                                <p class="header">AGENCY OF THE DAY(not set)
+                                </p>
+                                <div class="sliderDiv">
+                                    <div class="profileBox">
+                                        <img src="{{asset('assets/img/user.png')}}" alt="" class="img-fluid">
+                                        <div class="userDetail">
+                                            <h5>Test</h5>
+                                            <p>Test Translator</p>
+                                        </div>
+                                        <hr>
+                                        <div class="reviewDiv">
+                                            <p><img src="assets/img/star.png" alt="" class="img-fluid"> 3 review (5))</p>
+                                            <p>
+                                                <img src="assets/img/arrow.png" alt="" class="img-fluid">
+                                                Test Coutnry
                                             </p>
                                         </div>
                                     </div>
@@ -46,20 +84,21 @@
                     <div class="col-lg-3 col-md-6 col-sm-12 pt-3">
                         <div class="rightDiv">
                             <div class="lookingFor">
-                                <p class="header">AGENCY OF THE DAY
+                                <p class="header">AGENCY OF THE DAY(not set)
                                 </p>
                                 <div class="sliderDiv">
                                     <div class="profileBox">
-                                        <img src="assets/img/user.png" alt="" class="img-fluid">
+                                        <img src="{{asset('assets/img/user.png')}}" alt="" class="img-fluid">
                                         <div class="userDetail">
-                                            <h5>John Doe</h5>
-                                            <p>Spanish Translator</p>
+                                            <h5>Test1</h5>
+                                            <p>Test1 Translator</p>
                                         </div>
                                         <hr>
                                         <div class="reviewDiv">
-                                            <p><img src="assets/img/star.png" alt="" class="img-fluid"> 3 Reviews (5.0)</p>
+                                            <p><img src="assets/img/star.png" alt="" class="img-fluid"> 1 review (4.0))</p>
                                             <p>
-                                                <img src="assets/img/arrow.png" alt="" class="img-fluid"> Spain
+                                                <img src="assets/img/arrow.png" alt="" class="img-fluid">
+                                                Test1 Coutnry
                                             </p>
                                         </div>
                                     </div>
@@ -67,6 +106,7 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                 </div>
             </div>
 
@@ -100,8 +140,8 @@
                 <div class="totalTranslate">
                     <img class="overviewImg" src="assets/img/Satisfied Clients.png">
                     <div class="translateContent">
-                        <h2>70,000+</h2>
-                        <p>Satidied Clients</p>
+                        <h2>{{$completedjob ?? ''}}+</h2>
+                        <p>Satisfied Clients</p>
                     </div>
                 </div>
             </div>
@@ -398,53 +438,37 @@
                     <div class="lookingFor">
                         <p class="header">Need Help?:</p>
                         <ul>
-                            <li><a href="">Translation Jobs</a></li>
+                            <li><a href="{{url('job-search').'?job_type=Translation'}}">Translation Jobs</a></li>
                             <li><a href="">Terminology Help</a></li>
-                            <li><a href="">Discussion Forums</a></li>
-                            <li><a href="">Web Site Builder</a></li>
-                            <li><a href="">Web Site Builder</a></li>
-                            <li><a href="">Discussion Forums</a></li>
+                            <li><a href="{{url('/forums')}}">Discussion Forums</a></li>
+                            <li><a href="{{url('/contact-us')}}">Contact Us</a></li>
                         </ul>
                     </div>
+                    @foreach($topfreelancer as $freelancer)
                     <div class="lookingFor">
                         <p class="header">LINGUISTS OF THE DAY</p>
                         <div class="sliderDiv">
                             <div class="profileBox">
-                                <img src="assets/img/user.png" alt="" class="img-fluid">
+                                <img src="{{asset('profile-images/').'/'.$rateagency->profile_photo ?? ''}}" alt="" class="img-fluid">
                                 <div class="userDetail">
-                                    <h5>John Doe</h5>
+                                    <h5>{{$freelancer->fname ?? ''}} {{$freelancer->lname ?? ''}}</h5>
                                     <p>Spanish Translator</p>
                                 </div>
                                 <hr>
                                 <div class="reviewDiv">
-                                    <p><img src="assets/img/star.png" alt="" class="img-fluid"> 3 Reviews (5.0)</p>
+                                    <p><img src="assets/img/star.png" alt="" class="img-fluid"> {{$freelancer->totalreview ?? ''}} Reviews ({{$freelancer->avgrate}})</p>
                                     <p>
-                                        <img src="assets/img/arrow.png" alt="" class="img-fluid"> Spain
+                                        <img src="assets/img/arrow.png" alt="" class="img-fluid">
+                                        @php
+                                        $countryname=\App\Models\Country::where('id',$freelancer->country_id)->first();
+                                        @endphp
+                                        {{$countryname->country_name ?? ''}}
                                     </p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="lookingFor">
-                        <p class="header">AGENCY OF THE DAY
-                        </p>
-                        <div class="sliderDiv">
-                            <div class="profileBox">
-                                <img src="assets/img/user.png" alt="" class="img-fluid">
-                                <div class="userDetail">
-                                    <h5>John Doe</h5>
-                                    <p>Spanish Translator</p>
-                                </div>
-                                <hr>
-                                <div class="reviewDiv">
-                                    <p><img src="assets/img/star.png" alt="" class="img-fluid"> 3 Reviews (5.0)</p>
-                                    <p>
-                                        <img src="assets/img/arrow.png" alt="" class="img-fluid"> Spain
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
 
             </div>

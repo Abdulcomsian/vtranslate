@@ -15,6 +15,7 @@ use App\Models\UserMotherLanguages;
 use App\Models\UserServicesRates;
 use App\Models\Jobs;
 use App\Models\JobProposal;
+use App\Models\WorkHistory;
 use Auth;
 use File;
 
@@ -372,14 +373,15 @@ class UserController extends Controller
     //view user profile
     public function view_user_profile()
     {
+        $workHistory = WorkHistory::where('user_id', Auth::user()->id)->get();
         if (Auth::user()->user_status == 'Translator') {
             $userData = User::with('usergeneralinfo', 'userlanguages', 'usersoftwares', 'userspicialize', 'uservoicover', 'userfiles', 'usermotherlanguages', 'usersevices')->where('id', Auth::user()->id)->get();
             $jobapplied = JobProposal::where('user_id', Auth::user()->id)->count();
-            return view('screens.freelancer.freelancer', compact('userData', 'jobapplied'));
+            return view('screens.freelancer.freelancer', compact('userData', 'jobapplied', 'workHistory'));
         } else {
             $userData = User::with('usergeneralinfo', 'userlanguages', 'usersoftwares', 'userspicialize', 'uservoicover', 'userfiles', 'usermotherlanguages', 'usersevices')->where('id', Auth::user()->id)->get();
             $jobposted = Jobs::where('user_id', Auth::user()->id)->count();
-            return view('screens.agencies.agency', compact('userData', 'jobposted'));
+            return view('screens.agencies.agency', compact('userData', 'jobposted', 'workHistory'));
         }
     }
 

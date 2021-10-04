@@ -48,97 +48,44 @@
             <div class="col-lg-8">
                 <div class="commonDiv">
                     <h3>Work History</h3>
+                    @foreach($workHistory as $history)
                     <div class="historyBox">
                         <div class="titleDate">
                             <div class="titleReview">
-                                <p>Seeking experienced WooCommerce Specialist for guidance on questions</p>
+                                <p>{{$history->job_title}}</p>
                                 <div class="reviewBox">
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    @php
+                                    for($i=0;$i < $history->rating;$i++)
+                                        {
+                                        @endphp
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        @php }
+                                        @endphp
+                                        @if($history->rating=='4')
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        @elseif($history->rating=='3')
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        @elseif($history->rating=='2')
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        @elseif($history->rating=='1')
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        @else
+                                        @endif
                                 </div>
                             </div>
                             <div class="datePrice">
                                 <p>Aug 2021 - Aug 2021</p>
                             </div>
                         </div>
-                        <p class="comment">Ashish was very helpful with his WooCommerce knowledge and was able to help me with my questions.</p>
+                        <p class="comment">{{$history->comment}}</p>
                     </div>
-                    <div class="historyBox">
-                        <div class="titleDate">
-                            <div class="titleReview">
-                                <p>Seeking experienced WooCommerce Specialist for guidance on questions</p>
-                                <div class="reviewBox">
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                            <div class="datePrice">
-                                <p>Aug 2021 - Aug 2021</p>
-                            </div>
-                        </div>
-                        <p class="comment">Ashish was very helpful with his WooCommerce knowledge and was able to help me with my questions.</p>
-                    </div>
-                    <div class="historyBox">
-                        <div class="titleDate">
-                            <div class="titleReview">
-                                <p>Seeking experienced WooCommerce Specialist for guidance on questions</p>
-                                <div class="reviewBox">
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                            <div class="datePrice">
-                                <p>Aug 2021 - Aug 2021</p>
-                            </div>
-                        </div>
-                        <p class="comment">Ashish was very helpful with his WooCommerce knowledge and was able to help me with my questions.</p>
-                    </div>
-                    <div class="historyBox">
-                        <div class="titleDate">
-                            <div class="titleReview">
-                                <p>Seeking experienced WooCommerce Specialist for guidance on questions</p>
-                                <div class="reviewBox">
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                            <div class="datePrice">
-                                <p>Aug 2021 - Aug 2021</p>
-                            </div>
-                        </div>
-                        <p class="comment">Ashish was very helpful with his WooCommerce knowledge and was able to help me with my questions.</p>
-                    </div>
-                    <div class="historyBox">
-                        <div class="titleDate">
-                            <div class="titleReview">
-                                <p>Seeking experienced WooCommerce Specialist for guidance on questions</p>
-                                <div class="reviewBox">
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                            <div class="datePrice">
-                                <p>Aug 2021 - Aug 2021</p>
-                            </div>
-                        </div>
-                        <p class="comment">Ashish was very helpful with his WooCommerce knowledge and was able to help me with my questions.</p>
-                    </div>
-
+                    @endforeach
                 </div>
             </div>
         </div>

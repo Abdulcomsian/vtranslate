@@ -94,4 +94,8 @@ class User extends Authenticatable implements MustVerifyEmail
    {
       return $this->hasMany(UserFiles::class);
    }
+   public function rates()
+   {
+      return $this->hasMany(WorkHistory::class);
+   }
 }

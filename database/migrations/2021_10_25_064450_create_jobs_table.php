@@ -25,6 +25,8 @@ class CreateJobsTable extends Migration
             $table->tinyInteger('status')->default(0);
             $table->tinyInteger('certify')->nullalbe();
             $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('job_assign')->nullable();
+            $table->longtext('cancel_reason')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });

@@ -23,7 +23,16 @@ class FreelancerController extends Controller
      {
           try {
                $FreelancerData = User::with('usergeneralinfo', 'userlanguages', 'usersoftwares', 'userspicialize', 'uservoicover', 'userfiles', 'usermotherlanguages', 'usersevices')->where('user_status', 'Translator')->paginate(12);
-               return view('screens.freelancer.top-freelancer', compact('FreelancerData', 'jobapplied'));
+               //freelancer of the day
+               $topfreelancer = User::with('rates')
+                    ->join('work_histories', 'users.id', '=', 'work_histories.user_id')
+                    ->select('users.*', DB::raw('avg(rating) as avgrate,count(rating) as totalreview'))
+                    ->where(['users.user_status' => 'Translator'])
+                    ->groupBy('work_histories.user_id')
+                    ->orderBy('avgrate', 'Desc')
+                    ->limit(1)
+                    ->first();
+               return view('screens.freelancer.top-freelancer', compact('FreelancerData', 'topfreelancer'));
           } catch (\Exception $exception) {
                toastr()->error('Something went wrong, try again');
                return back();
@@ -37,7 +46,16 @@ class FreelancerController extends Controller
                $allafreelancermembers = User::where('user_status', 'Translator')->get();
                $FreelancerData = User::with('usergeneralinfo', 'userlanguages', 'usersoftwares', 'userspicialize', 'uservoicover', 'userfiles', 'usermotherlanguages', 'usersevices')->where('user_status', 'Translator')->get();
                $countries = Country::get();
-               return view('screens.freelancer.search-freelancer', compact('FreelancerData', 'countries', 'allafreelancermembers'));
+               //agency of the day
+               $topagency = User::with('rates')
+                    ->join('work_histories', 'users.id', '=', 'work_histories.user_id')
+                    ->select('users.*', DB::raw('avg(rating) as avgrate,count(rating) as totalreview'))
+                    ->where(['users.user_status' => 'Employer'])
+                    ->groupBy('work_histories.user_id')
+                    ->orderBy('avgrate', 'Desc')
+                    ->limit(1)
+                    ->first();
+               return view('screens.freelancer.search-freelancer', compact('FreelancerData', 'countries', 'allafreelancermembers', 'topagency'));
           } catch (\Exception $exception) {
                toastr()->error('Something went wrong, try again');
                return back();
@@ -68,7 +86,15 @@ class FreelancerController extends Controller
                     })
                     ->where('user_status', 'Translator')
                     ->get();
-               return view('screens.freelancer.search-freelancer', compact('FreelancerData', 'allafreelancermembers', 'countries'));
+               $topagency = User::with('rates')
+                    ->join('work_histories', 'users.id', '=', 'work_histories.user_id')
+                    ->select('users.*', DB::raw('avg(rating) as avgrate,count(rating) as totalreview'))
+                    ->where(['users.user_status' => 'Employer'])
+                    ->groupBy('work_histories.user_id')
+                    ->orderBy('avgrate', 'Desc')
+                    ->limit(1)
+                    ->first();
+               return view('screens.freelancer.search-freelancer', compact('FreelancerData', 'allafreelancermembers', 'countries', 'topagency'));
           } catch (\Exception $exception) {
                toastr()->error('Something went wrong, try again');
                return back();

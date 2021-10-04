@@ -11,6 +11,7 @@ use App\Mail\JobApplyEmail;
 use App\Mail\JobCopyEmail;
 use App\Models\JobViews;
 use App\Models\Country;
+use App\Models\WorkHistory;
 use Auth;
 use DB;
 use Mail;
@@ -259,17 +260,15 @@ class JobsController extends Controller
     public function job_update(Request $request)
     {
         try {
-            Jobs::find($request->id)->update([
-                'job_title' => $request->job_title,
+            Jobs::find($request->job_id)->update([
+                'job_title' => $request->title,
                 'job_desc' => $request->job_desc,
                 'status' => $request->status,
                 'budget' => $request->budget
             ]);
-            toastr()->success('job updated Successfully');
-            return back();
+            echo "success";
         } catch (\Exception $exception) {
-            toastr()->error('Something went wrong, try again');
-            return back();
+            echo "error";
         }
     }
     //assign job to freelancer
@@ -293,6 +292,50 @@ class JobsController extends Controller
         try {
             $myjobs = Jobs::where('job_assign', Auth::user()->id)->paginate(20);
             return view('screens.freelancer-assign-jobs', compact('myjobs'));
+        } catch (\Exception $exception) {
+            toastr()->error('Something went wrong, try again');
+            return back();
+        }
+    }
+    //rate job for freelancer
+    public function rate_job(Request $request)
+    {
+        try {
+            //check if rating already given
+            $WorkHistory = WorkHistory::where('jobs_id', $request->job_id)->where('user_id', $request->user_id)->get();
+            if (count($WorkHistory) > 0) {
+                toastr()->error('Rating already submitted!!!');
+                return back();
+            } else {
+                $WorkHistory = new WorkHistory();
+                $WorkHistory->job_title = $request->job_title;
+                $WorkHistory->comment = $request->comment;
+                $WorkHistory->rating = $request->rating;
+                $WorkHistory->jobs_id = $request->job_id;
+                $WorkHistory->user_id = $request->user_id;
+                $WorkHistory->save();
+                toastr()->success('Your Ratring submited Thanks!!!');
+                return back();
+            }
+        } catch (\Exception $exception) {
+            toastr()->error('Something went wrong, try again');
+            return back();
+        }
+    }
+    //cancel job for some reason
+    public function cancel_job(Request $request)
+    {
+        try {
+            $job_id = $request->cancel_job_id;
+            Jobs::find($job_id)->update(
+                [
+                    'cancel_reason' => $request->cancel_reason,
+                ]
+            );
+            //here is the work for email to admin and agency
+
+            toastr()->success('job cancel request send to admin and agency');
+            return back();
         } catch (\Exception $exception) {
             toastr()->error('Something went wrong, try again');
             return back();

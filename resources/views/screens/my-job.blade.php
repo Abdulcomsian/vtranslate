@@ -4,6 +4,38 @@
     .dataTables_filter {
         float: right
     }
+
+    /* Rating Star Widgets Style */
+    .rating-stars ul {
+        list-style-type: none;
+        padding: 0;
+
+        -moz-user-select: none;
+        -webkit-user-select: none;
+    }
+
+    .rating-stars ul>li.star {
+        display: inline-block;
+
+    }
+
+    /* Idle State of the stars */
+    .rating-stars ul>li.star>i.fa {
+        font-size: 2.5em;
+        /* Change the size of the stars */
+        color: #ccc;
+        /* Color on idle state */
+    }
+
+    /* Hover state of the stars */
+    .rating-stars ul>li.star.hover>i.fa {
+        color: #FFCC36;
+    }
+
+    /* Selected state of the stars */
+    .rating-stars ul>li.star.selected>i.fa {
+        color: #FF912C;
+    }
 </style>
 @endsection
 @section('content')
@@ -62,6 +94,7 @@
                                                 <input type="hidden" name="id" value="{{$job->id}}">
 
                                             </form>
+                                            <span class="fa fa-star" role="button" onclick="ratefunc('{{$job->id}}','{{$job->job_assign}}','{{$job->job_title}}')"></span>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -76,54 +109,54 @@
     <!-- edit modal of job -->
     <div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog" style="width: 800px !important;">
-            <form method="post" action="{{route('job-update')}}">
-                @csrf
-                <input type="hidden" name="id" id="jobeditid" />
-                <div class="modal-content">
-                    <div class="modal-header text-center">
-                        <h4 class="modal-title w-100 font-weight-bold">Edit Job</h4>
-                        <button type="button btn-primary" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+            <!-- <form method="post" action="{{route('job-update')}}">
+                @csrf -->
+            <input type="hidden" name="id" id="jobeditid" />
+            <input type="hidden" name="assignto" id="assignto" />
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold">Edit Job</h4>
+                    <button type="button btn-primary" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="md-form mb-2">
+                        <i class="fa fa-tag prefix grey-text"></i>
+                        <input type="text" id="job_title" name="job_title" class="form-control validate" required>
+                        <label data-error="wrong" data-success="right" for="form34">Job Title</label>
                     </div>
-                    <div class="modal-body">
-                        <div class="md-form mb-2">
-                            <i class="fa fa-tag prefix grey-text"></i>
-                            <input type="text" id="job_title" name="job_title" class="form-control validate" required>
-                            <label data-error="wrong" data-success="right" for="form34">Job Title</label>
-                        </div>
 
-                        <div class="md-form mb-2">
-                            <i class="fa fa-money prefix grey-text"></i>
-                            <input type="number" id="budget" name="budget" class="form-control validate" required>
-                            <label data-error="wrong" data-success="right" for="form29">Price</label>
-                        </div>
-
-                        <div class="md-form mb-2">
-                            <i class="fa fa-tasks prefix grey-text"></i>
-                            <select class="form-control" name="status" id="status" required>
-                                <option value="">Select Status</option>
-                                <option value="0">Pending</option>
-                                <option value="1"> Approved</option>
-                                <option value="2">Assign</option>
-                                <option value="4">Completed</option>
-                            </select>
-                            <label data-error="wrong" data-success="right" for="form29">Status</label>
-                        </div>
-
-                        <div class="md-form">
-                            <i class="fa fa-pencil prefix grey-text"></i>
-                            <textarea type="text" id="job_desc" name="job_desc" class="md-textarea form-control" rows="4" required></textarea>
-                            <label data-error="wrong" data-success="right" for="form8">Description</label>
-                        </div>
-
+                    <div class="md-form mb-2">
+                        <i class="fa fa-money prefix grey-text"></i>
+                        <input type="number" id="budget" name="budget" class="form-control validate" required>
+                        <label data-error="wrong" data-success="right" for="form29">Price</label>
                     </div>
-                    <div class="modal-footer d-flex justify-content-center">
-                        <button type="submit" class="btn btn-primary">Submit <i class="fa fa-paper-plane-o ml-1"></i></button>
+
+                    <div class="md-form mb-2">
+                        <i class="fa fa-tasks prefix grey-text"></i>
+                        <select class="form-control" name="status" id="status" required>
+                            <option value="">Select Status</option>
+                            <option value="3">Cancel</option>
+                            <option value="2">Assign</option>
+                            <option value="4">Completed</option>
+                        </select>
+                        <label data-error="wrong" data-success="right" for="form29">Status</label>
+                    </div>
+
+                    <div class="md-form">
+                        <i class="fa fa-pencil prefix grey-text"></i>
+                        <textarea type="text" id="job_desc" name="job_desc" class="md-textarea form-control" rows="4" required></textarea>
+                        <label data-error="wrong" data-success="right" for="form8">Description</label>
                     </div>
 
                 </div>
-            </form>
+                <div class="modal-footer d-flex justify-content-center">
+                    <button type="button" class="btn btn-primary editjobbtn" style="background-color:#85bf31;">Submit <i class="fa fa-paper-plane-o ml-1"></i></button>
+                </div>
+
+            </div>
+            <!-- </form> -->
         </div>
     </div>
     <!-- modal fo assign to -->
@@ -153,7 +186,61 @@
                         </div>
                     </div>
                     <div class="modal-footer d-flex justify-content-center">
-                        <button type="submit" class="btn btn-primary">Assign To <i class="fa fa-paper-plane-o ml-1"></i></button>
+                        <button type="submit" class="btn btn-primary" style="background-color:#85bf31;">Assign To <i class="fa fa-paper-plane-o ml-1"></i></button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- rating modal of job -->
+    <div class="modal fade" id="ratingmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="width: 800px !important;">
+            <form method="post" action="{{route('rate-job')}}">
+                @csrf
+                <input type="hidden" name="job_id" id="jobid" />
+                <input type="hidden" name="user_id" id="userid" />
+                <input type="hidden" name="job_title" id="jobtitle" />
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <h4 class="modal-title w-100 font-weight-bold">Rate This Job</h4>
+                        <button type="button btn-success" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Rating Stars Box -->
+                        <div class="md-form">
+                            <div class='rating-stars text-center'>
+                                <ul id='stars'>
+                                    <li class='star selected hover' title='Poor' data-value='1'>
+                                        <i class='fa fa-star fa-fw'></i>
+                                    </li>
+                                    <li class='star' title='Fair' data-value='2'>
+                                        <i class='fa fa-star fa-fw'></i>
+                                    </li>
+                                    <li class='star' title='Good' data-value='3'>
+                                        <i class='fa fa-star fa-fw'></i>
+                                    </li>
+                                    <li class='star' title='Excellent' data-value='4'>
+                                        <i class='fa fa-star fa-fw'></i>
+                                    </li>
+                                    <li class='star' title='WOW!!!' data-value='5'>
+                                        <i class='fa fa-star fa-fw'></i>
+                                    </li>
+                                </ul>
+                            </div>
+                            <input type="hidden" name="rating" id="ratingstar" value="1" />
+                        </div>
+                        <div class="md-form">
+                            <i class="fa fa-pencil prefix grey-text"></i>
+                            <textarea type="text" id="comment" name="comment" class="md-textarea form-control" rows="4" required></textarea>
+                            <label data-error="wrong" data-success="right" for="form8">Comment</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary" style="background-color:#85bf31;">Submit <i class="fa fa-paper-plane-o ml-1"></i></button>
                     </div>
 
                 </div>
@@ -190,6 +277,7 @@
 
     function editfunc(obj) {
         res = JSON.parse(obj);
+        $("#assignto").val(res.job_assign);
         $("#job_title").val(res.job_title);
         $("#job_desc").val(res.job_desc);
         $("#budget").val(res.budget);
@@ -202,5 +290,98 @@
         $("#job_id").val(id);
         $("#assignmodal").modal("show");
     }
+
+    function ratefunc(jobid, userid, jobtitle) {
+        $("#jobid").val(jobid);
+        $("#userid").val(userid);
+        $("#jobtitle").val(jobtitle);
+        $("#ratingmodal").modal('show');
+    }
+
+    $(".editjobbtn").on('click', function() {
+        title = $("#job_title").val();
+        budget = $("#budget").val();
+        status = $("#status").val();
+        job_desc = $("#job_desc").val();
+        job_id = $("#jobeditid").val();
+        user_id = $("#assignto").val();
+        $.ajax({
+            url: "{{route('job-update')}}",
+            method: 'get',
+            data: {
+                title: title,
+                budget: budget,
+                status: status,
+                job_desc: job_desc,
+                job_id: job_id,
+                user_id: user_id
+            },
+            success: function(res) {
+                if (res == "success") {
+                    $("#modalContactForm").modal('hide');
+                    swal.fire('suceess', 'Job updated successfully');
+                    if (status == 4) {
+                        $("#jobid").val(job_id);
+                        $("#userid").val(user_id);
+                        $("#jobtitle").val(title);
+                        $("#ratingmodal").modal('show');
+                    }
+
+                } else {
+                    swal.fire('error', 'Something went wrong!!!');
+                }
+            }
+        })
+    })
+</script>
+
+<!-- RATE SCRIPT HERE -->
+<script>
+    $(document).ready(function() {
+
+        /* 1. Visualizing things on Hover - See next part for action on click */
+        $('#stars li').on('mouseover', function() {
+            var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
+
+            // Now highlight all the stars that's not after the current hovered star
+            $(this).parent().children('li.star').each(function(e) {
+                if (e < onStar) {
+                    $(this).addClass('hover');
+                } else {
+                    $(this).removeClass('hover');
+                }
+            });
+
+        }).on('mouseout', function() {
+            $(this).parent().children('li.star').each(function(e) {
+                $(this).removeClass('hover');
+            });
+        });
+
+
+        /* 2. Action to perform on click */
+        $('#stars li').on('click', function() {
+            var onStar = parseInt($(this).data('value'), 10); // The star currently selected
+            var stars = $(this).parent().children('li.star');
+
+            for (i = 0; i < stars.length; i++) {
+                $(stars[i]).removeClass('selected');
+            }
+
+            for (i = 0; i < onStar; i++) {
+                $(stars[i]).addClass('selected');
+            }
+
+            // JUST RESPONSE (Not needed)
+            var ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
+            if (ratingValue > 1) {
+                $("#ratingstar").val(ratingValue);
+            } else {
+                $("#ratingstar").val(ratingValue);
+            }
+        });
+
+
+    });
 </script>
 @endsection

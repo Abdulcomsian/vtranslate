@@ -21,7 +21,16 @@ class AgencyController extends Controller
     {
         try {
             $AgencyData = User::with('usergeneralinfo', 'userlanguages', 'usersoftwares', 'userspicialize', 'uservoicover', 'userfiles', 'usermotherlanguages', 'usersevices')->where('user_status', 'Employer')->paginate(12);
-            return view('screens.agencies.top-agencies', compact('AgencyData'));
+            //agency of the day
+            $topagency = User::with('rates')
+                ->join('work_histories', 'users.id', '=', 'work_histories.user_id')
+                ->select('users.*', DB::raw('avg(rating) as avgrate,count(rating) as totalreview'))
+                ->where(['users.user_status' => 'Employer'])
+                ->groupBy('work_histories.user_id')
+                ->orderBy('avgrate', 'Desc')
+                ->limit(1)
+                ->first();
+            return view('screens.agencies.top-agencies', compact('AgencyData', 'topagency'));
         } catch (\Exception $exception) {
             toastr()->error('Something went wrong, try again');
             return back();
@@ -35,7 +44,16 @@ class AgencyController extends Controller
             $allagencymembers = User::where('user_status', 'Employer')->get();
             $countries = Country::get();
             $AgencyData = User::with('usergeneralinfo', 'userlanguages', 'usersoftwares', 'userspicialize', 'uservoicover', 'userfiles', 'usermotherlanguages', 'usersevices')->where('user_status', 'Employer')->get();
-            return view('screens.agencies.search-agencies', compact('AgencyData', 'allagencymembers', 'countries'));
+            //agency of the day
+            $topagency = User::with('rates')
+                ->join('work_histories', 'users.id', '=', 'work_histories.user_id')
+                ->select('users.*', DB::raw('avg(rating) as avgrate,count(rating) as totalreview'))
+                ->where(['users.user_status' => 'Employer'])
+                ->groupBy('work_histories.user_id')
+                ->orderBy('avgrate', 'Desc')
+                ->limit(1)
+                ->first();
+            return view('screens.agencies.search-agencies', compact('AgencyData', 'allagencymembers', 'countries', 'topagency'));
         } catch (\Exception $exception) {
             toastr()->error('Something went wrong, try again');
             return back();
@@ -69,7 +87,17 @@ class AgencyController extends Controller
                 ->where('user_status', 'Employer')
 
                 ->get();
-            return view('screens.agencies.search-agencies', compact('AgencyData', 'allagencymembers', 'countries'));
+
+            //agency of the day
+            $topagency = User::with('rates')
+                ->join('work_histories', 'users.id', '=', 'work_histories.user_id')
+                ->select('users.*', DB::raw('avg(rating) as avgrate,count(rating) as totalreview'))
+                ->where(['users.user_status' => 'Employer'])
+                ->groupBy('work_histories.user_id')
+                ->orderBy('avgrate', 'Desc')
+                ->limit(1)
+                ->first();
+            return view('screens.agencies.search-agencies', compact('AgencyData', 'allagencymembers', 'countries', 'topagency'));
         } catch (\Exception $exception) {
             toastr()->error('Something went wrong, try again');
             return back();
