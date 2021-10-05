@@ -152,7 +152,7 @@
                             </div>
                             <div class="checkBoxDiv">
                                 <input type="checkbox" name="job_notification" id="job_notification" >
-                                <label for="">Can we send you job notifications, news and updates about WeTranslate.com?</label>
+                                <label for="">Can we send you job notifications, news and updates about VeTranslate.com?</label>
                             </div>
                             <div class="checkBoxDiv">
                                 <input type="checkbox" name="terms_conditon" id="terms_conditon" required="required">
