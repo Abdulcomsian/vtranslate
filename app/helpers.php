@@ -17,6 +17,12 @@ function checkedsoft($array, $string)
     }
 }
 
+function getcountryname($id)
+{
+    $countryname = \App\Models\Country::where('id', $id)->first();
+    return $countryname->country_name;
+}
+
 //job status
 function job_status($status)
 {

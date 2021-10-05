@@ -32,7 +32,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-   // protected $redirectTo = RouteServiceProvider::HOME;
+    // protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.
@@ -55,9 +55,10 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'fname' => ['required', 'string', 'max:255'],
             'lname' => ['required', 'string', 'max:255'],
-            'username' => ['required', 'string', 'max:255','unique:users'],
+            'username' => ['required', 'string', 'max:255', 'unique:users'],
             'country' => ['required'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'user_status' => ['required'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             //'g-recaptcha-response' => 'required|captcha',
         ]);
@@ -71,14 +72,11 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-     try {
-            if(isset($data['job_notification']))
-            {
-                $job_notification_status=1;
-            }
-            else
-            {
-                $job_notification_status=0;
+        try {
+            if (isset($data['job_notification'])) {
+                $job_notification_status = 1;
+            } else {
+                $job_notification_status = 0;
             }
             return User::create([
                 'fname' => $data['fname'],
@@ -87,11 +85,11 @@ class RegisterController extends Controller
                 'zipcode' => $data['zipcode'],
                 'email' => $data['email'],
                 'username' => $data['username'],
-                'job_notification'=>$job_notification_status,
+                'user_status' => $data['user_status'],
+                'job_notification' => $job_notification_status,
                 'password' => Hash::make($data['password']),
             ]);
-        }
-        catch (\Exception $exception){
+        } catch (\Exception $exception) {
             toastr()->error('Something went wrong, try again');
             return back();
         }
@@ -100,8 +98,8 @@ class RegisterController extends Controller
     //override this function 
     public function showRegistrationForm()
     {
-        $countries=Country::all();
-        return view('auth.register',compact('countries'));
+        $countries = Country::all();
+        return view('auth.register', compact('countries'));
     }
 
     //redirect to
@@ -117,7 +115,7 @@ class RegisterController extends Controller
     {
         $this->validator($request->all())->validate();
         event(new Registered($user = $this->create($request->all())));
-//        $this->guard()->login($user);
+        //        $this->guard()->login($user);
         if ($response = $this->registered($request, $user)) {
             return $response;
         }

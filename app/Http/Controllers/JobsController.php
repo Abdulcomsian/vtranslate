@@ -9,6 +9,7 @@ use App\Models\FavouriteJobs;
 use App\Models\JobProposal;
 use App\Mail\JobApplyEmail;
 use App\Mail\JobCopyEmail;
+use App\Mail\JobpostedEmail;
 use App\Models\JobViews;
 use App\Models\Country;
 use App\Models\WorkHistory;
@@ -61,7 +62,12 @@ class JobsController extends Controller
                 $JobsPairLanguages->jobs_id = $jobsid;
                 $JobsPairLanguages->save();
             }
-
+            //email for admin
+            $data = [
+                'messsage' => "",
+            ];
+            //send email to job poster
+            Mail::to("obaidkust@gamil.com")->send(new JobpostedEmail($data));
             toastr()->success('Jobs Saved Successfully!');
             return back();
         } catch (\Exception $exception) {

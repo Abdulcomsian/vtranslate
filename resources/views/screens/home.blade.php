@@ -449,7 +449,7 @@
                         <p class="header">LINGUISTS OF THE DAY</p>
                         <div class="sliderDiv">
                             <div class="profileBox">
-                                <img src="{{asset('profile-images/').'/'.$rateagency->profile_photo ?? ''}}" alt="" class="img-fluid">
+                                <img src="{{asset('profile-images/').'/'. $freelancer->profile_photo ?? ''}}" alt="" class="img-fluid">
                                 <div class="userDetail">
                                     <h5>{{$freelancer->fname ?? ''}} {{$freelancer->lname ?? ''}}</h5>
                                     <p>Spanish Translator</p>
