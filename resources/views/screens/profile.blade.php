@@ -465,7 +465,7 @@
                     </p>
                     <p>Other, Subtitling</p>
                     <p>Preferred currency: <b>$</b></p>
-                    <table class="table table-hover">
+                    <table class="table table-hover table-responsive">
                         <thead>
                             <tr>
                                 <th>#</th>

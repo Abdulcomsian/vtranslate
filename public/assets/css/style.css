@@ -771,6 +771,35 @@ svg{
 #accordion .card-header button{
     text-align: left !important;
 }
+table#jobTable tr th {
+    min-width: 120px;
+}
+#profile p a{
+    word-break: break-all;
+}
+.searchInput{
+    position: absolute;
+    bottom: -44px;
+    display: none;
+    transition: all .5s ease;
+}
+.searchInput input{
+    border: none;
+    padding: 10px 20px;
+    border-radius: 22px;
+}
+.show{
+    display: block !important;
+}
+.form-check-input{
+    position: relative !important;
+}
+#postJobDiv .inputDiv textarea{
+    margin-left: 80px;
+}
+.form-control{
+    height: auto !important;
+}
 @media screen and (min-width: 1500px) {
     #header .navbar-collapse {
         justify-content: flex-end;
@@ -930,6 +959,29 @@ svg{
   }
   
 @media screen and (max-width: 768px) {
+    #profile .inputDiv,
+    #contactDiv form .inputDiv,
+    #postJobDiv .inputDiv{
+        display: block !important;
+        max-width: 100% !important;
+    }
+    #postJobDiv .inputDiv input,
+    #postJobDiv .inputDiv textarea{
+        margin: 0px !important;
+        width: 100% !important;
+    }
+    #profile .inputDiv .inputSpan,
+    #profile .inputDiv .inputSpan input,
+    #profile .inputDiv label,
+    #profile .inputDiv .inputSpan textarea,
+    #contactDiv form .inputDiv input, 
+    #contactDiv form .inputDiv select{
+        width: 100% !important;
+    }
+    
+    tr th {
+        min-width: 150px;
+    }
     #term-condition .introduction p{
         line-height: 24px;
         text-align: justify;
@@ -1302,7 +1354,7 @@ svg{
     font-weight: 600;
 }
 .commonDiv span {
-    margin-right: 50px;
+    /* margin-right: 50px; */
     font-size: 14px;
 }
 .commonDiv .radioBtnDiv{
@@ -1694,7 +1746,7 @@ postJobDiv .multiple-select a{
     
 }
 #postJobDiv .inputDiv label{
-    width: 145px;
+    width: 170px;
 }
 #postJobDiv fieldset .radioBtnDiv{
     margin-right: 50px;
@@ -2086,9 +2138,6 @@ tbody tr .tableData{
     }
     #homeBanner .lookingFor{
         margin: auto !important;
-    }
-    #profile .inputDiv .inputSpan{
-        margin-left: 10px;
     }
     #profile form .warningText, .warningself{
         font-size: 10px !important;

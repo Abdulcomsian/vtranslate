@@ -19,12 +19,13 @@
                         </div>
                         <div class="inputDiv">
                             <label for="">Job Budget <span class="required">*</span></label>
-                            <input class="form-control" type="number" name="job_budget" id="job_budget" placeholder="Budget" required="required">
+                            <input min="0" oninput="this.value = !!this.value &amp;&amp; Math.abs(this.value) >= 0 ? Math.abs(this.value) : null" class="form-control" type="number" name="job_budget" id="job_budget" placeholder="Budget" required="required">
                         </div>
                         <div class="inputDiv">
                             <label for="">Job Description <span class="required">*</span></label>
-                            <textarea class="form-control" name="job_desc" id="job_desc" rows="4" cols="60">
-                            </textarea>
+                            <!-- <textarea class="form-control" name="job_desc" id="job_desc" rows="4" cols="60">
+                            </textarea> -->
+                            <textarea class="form-control" name="" id="" cols="30" rows="10"></textarea>
                         </div>
                         <div class="languageDiv">
                             <h5>Job Types</h5>
