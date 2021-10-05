@@ -51,7 +51,7 @@
                     <div class="col-lg-12">
                         <div class="multiCards">
                             <!-- table here -->
-                            <table class="table table-striped display" id="jobTable">
+                            <table class="table table-striped display table-responsive" id="jobTable">
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>

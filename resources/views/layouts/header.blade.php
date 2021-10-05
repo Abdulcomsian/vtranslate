@@ -65,9 +65,12 @@
                         </select>
                     </li>
                     <li class="nav-item">
-                        <i class="fa fa-search" aria-hidden="true"></i>
+                        <i class="fa fa-search searchBtn" aria-hidden="true"></i>
                     </li>
                 </ul>
+                <div class="searchInput">
+                    <input type="search" placeholder="Search">
+                </div>
             </div>
         </nav>
     </div>

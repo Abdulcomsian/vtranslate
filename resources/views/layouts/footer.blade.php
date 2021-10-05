@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="footerBox">
-                    <a href="home.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>
+                    <a href="home.html"><img src="{{ asset('assets/img/logo.png') }}" alt="" class="img-fluid"></a>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim.</p>
                 </div>
             </div>
@@ -126,4 +126,11 @@
                 $("#header ul li:nth-child(1) a").addClass("active");
             }
        });
+       $(".searchBtn").click(function(){
+           if($(".searchInput").css("display")=="block"){
+                $(".searchInput").removeClass("show")
+           } else{
+                $(".searchInput").addClass("show")
+           }
+       })
 </script>
