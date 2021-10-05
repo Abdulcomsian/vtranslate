@@ -12,18 +12,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 //Admin Views
-Route::get('/dashboard', function () {
-    return view('admin.screens.dashboard');
-});
+Route::get('/dashboard', 'AdminController@index')->name('dashboard');
+Route::post('/deleteuser', 'AdminController@delete_user')->name('deleteuser');
+Route::get('/jobs', 'AdminController@jobs')->name('jobs');
+Route::post('/deletejob', 'AdminController@delete_job')->name('deletejob');
+Route::post('/job-status', 'AdminController@job_status')->name('job-status');
 Route::get('/premium-member', function () {
     return view('admin.screens.premium-member');
 });
 Route::get('/featured-member', function () {
     return view('admin.screens.featured-member');
 });
-Route::get('/jobs', function () {
-    return view('admin.screens.jobs');
-});
+
 Route::get('/new-job', function () {
     return view('admin.screens.new-job');
 });
