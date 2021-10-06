@@ -28,13 +28,19 @@ class JobsController extends Controller
 
     public function index()
     {
-        return view('screens.job-posting');
+        if (Auth::user()->user_status == "Employer") {
+            return view('screens.job-posting');
+        } else {
+            toastr()->error('You are not Authorized to access this page!');
+            return back();
+        }
     }
 
     //save job
     public function store(Request $request)
     {
         try {
+
             $jobsModel = new Jobs();
             $jobsModel->job_title = $request->job_title;
             $jobsModel->budget = $request->job_budget;
@@ -240,7 +246,7 @@ class JobsController extends Controller
                 $myjobs = Jobs::where('user_id', Auth::user()->id)->get();
                 return view('screens.my-job', compact('myjobs'));
             } else {
-                toastr()->error('403 forbidden');
+                toastr()->error('You are not Authorized to access this page!');
                 return back();
             }
         } catch (\Exception $exception) {

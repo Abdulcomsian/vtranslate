@@ -13,7 +13,7 @@
                         @csrf
                         <div class="inputDiv">
                             <label for="">Freelancer</label>
-                            <select name="freelancerid" id="freelancerid">
+                            <select name="freelancerid" id="freelancerid" required>
                                 <option value="">Select Freelancer</option>
                                 @foreach($allafreelancermembers as $freelance)
                                 <option value="{{$freelance->id}}">{{$freelance->fname .' '.$freelance->lname}}</option>
@@ -185,13 +185,6 @@
                                 @endforeach
                             </select>
                         </div>
-                        <!--  <div class="inputDiv">
-                                <label for="">Invitation and Presence</label>
-                                <select name="" id="">
-                                    <option value="Select Topic">Invitation and Presence</option>
-                                </select>
-                            </div> -->
-
                         <div class="multiBtn text-center pt-5">
                             <button type="submit" class="agencycommonBtn">Submit</button>
                         </div>

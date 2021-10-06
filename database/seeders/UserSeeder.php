@@ -87,8 +87,20 @@ class UserSeeder extends Seeder
                 'password' => bcrypt('agency3'),
             ]
         );
+        User::create(
+            [
+                'fname' => 'admin',
+                'lname' => 'admin',
+                'email' => 'admin@gmail.com',
+                'username' => 'admin',
+                'email_verified_at' => '2021-07-30',
+                'country_id' => '170',
+                'user_status' => 'Admin',
+                'password' => bcrypt('admin123'),
+            ]
+        );
 
-            // CREATE THE CATEGORIES
+        // CREATE THE CATEGORIES
 
         \DB::table('chatter_categories')->delete();
 
