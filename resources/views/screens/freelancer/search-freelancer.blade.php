@@ -225,7 +225,9 @@
                                     <img src="@if($freelancer->profile_photo!=null){{asset('/profile-images').'/'.$freelancer->profile_photo}} @else{{'/assets/img/Job Posted.png'}}@endif" alt="" class="img-circle img-responsive " width="100px" height="100px">
                                 </td>
                                 <td class="location">{{$freelancer->usergeneralinfo->address ?? ''}}</td>
-                                <td class="date">{{date("F-Y", strtotime($freelancer->usergeneralinfo->updated_at ?? ''));}}</td>
+                                <td class="date">
+                                    <p>{{date("F-Y", strtotime($freelancer->usergeneralinfo->updated_at ?? ''));}}</p>
+                                </td>
                                 <td></td>
                                 <td></td>
                             </tr>

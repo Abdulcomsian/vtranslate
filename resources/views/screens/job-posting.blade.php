@@ -400,7 +400,7 @@
 
             <div class="col-lg-3">
                 <div class="rightDiv">
-                    <div class="lookingFor">
+                    <div class="lookingFor languageProfessional">
                         <p class="header">Clients Looking for a Language Professional:</p>
                         <ul>
                             <li><a href="{{ url('/post-a-job') }}">Post a Job</a></li>

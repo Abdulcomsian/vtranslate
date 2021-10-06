@@ -131,7 +131,7 @@
                                                 @else
                                                 <button type="submit">Submit</button>
                                                 @endif
-                                                <button type="reset">Cancle</button>
+                                                <button type="reset"><a href="{{ url('home') }}">Cancel</a></button>
                                             </div>
                                         </form>
                                     </div>
