@@ -469,9 +469,9 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Service</th>
+                                <th style="width: 30%;">Service</th>
                                 <th>Language</th>
-                                <th>Rate</th>
+                                <th style="width: 70%;">Rate</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -1673,9 +1673,10 @@
                                                 <td>{{$loop->iteration}}</td>
                                                 <td>{{$service->service}}</td>
                                                 @php
-                                                $pairlanguage=\App\Models\UserLanguages::where('id',$service->id)->first();
+                                                $pairlanguage=\App\Models\UserLanguages::where('id',$service->pair_language)->first();
+
                                                 @endphp
-                                                <td>{{$pairlanguage->from_languages."==>".$pairlanguage->to_languages}}</td>
+                                                <td>{{ $pairlanguage->from_languages ?? ''}}>>{{$pairlanguage->to_languages ?? ''}}</td>
                                                 <td>{{$service->min_rate_per_word." $"}}</td>
                                                 <td>{{$service->min_rate_per_minute." $"}}</td>
                                                 <td>
