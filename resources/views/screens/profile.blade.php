@@ -243,18 +243,18 @@
                                 </div>
                                 <div class="col-lg-12" style="margin-top:-40px">
                                     <center>
-                                        <button type="submit" class="btn btn-danger " style="width: 55%;padding:5px;float:none">Change Profile Photo</button>
+                                        <button type="submit" class="btn btn-danger changeProfileBtn" style="width: 55%;padding:5px;float:none">Change Profile Photo</button>
                                     </center>
                                 </div>
                             </form>
                         </div>
-                        <div class="col-lg-6 " align="center" style="padding-top:253px">
+                        <div class="col-lg-6 otherBtn" align="center" style="padding-top:253px">
                             <a href="{{route('view-user-profile')}}" class="btn btn-info p-2 " style="width: 55%;padding:5px;float:none">For Other</a>
                         </div>
                     </div>
                     <div class="box" style="margin-top:20px">
                         <p>Use the <b>Profile Editing Menu</b> above to edit you profile and preference</p>
-                        <p>You are logged on and therefore you can see on your profile page alla availabel Information
+                        <p>You are logged on and therefore you can see on your profile page all available Information
                             including your cover letter, full address, rates and the profile editing menu. Click
                             or tap question marks <b>?</b> to get context sensitive help.
                         </p>

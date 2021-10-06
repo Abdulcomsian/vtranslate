@@ -78,7 +78,7 @@ select:focus{
     align-items: center;
 }
 #header ul.navbar-nav.mt-2.mt-lg-0 li {
-    padding-left: 15px;
+    padding-left: 5px;
 }
 #header ul.navbar-nav.mt-2.mt-lg-0 li a{
     font-weight: 500;
@@ -150,11 +150,11 @@ select:focus{
 }
 #mainBanner .registerDiv h2{
     padding-top:30px;
-    font-size: 50px;
+    font-size: 40px;
     font-weight: 700;
 }
 #mainBanner .registerDiv p{
-    font-size: 22px;
+    font-size: 14px;
     margin: 30px 0px;
 }
 
@@ -285,6 +285,7 @@ select:focus{
     top: -21px;
     background: #fff;
     padding: 0px 20px;
+    font-weight: 700;
 }
 /**************** Footer - CSS *******************/
 #footer{
@@ -321,6 +322,7 @@ select:focus{
 .footerBottom p{
     margin: 0px;
     font-weight: 500;
+    font-size: 12px;
 }
 /* *************************home banner css *************/
 
@@ -340,6 +342,8 @@ select:focus{
 /* ************************* Find Job css *************/
 #findJobSection h3{
     color: rgba(44, 40, 135, 1);
+    font-weight: bold;
+    font-size: 30px;
 }
 #findJobSection .formDiv{
     width: 100%;
@@ -394,6 +398,7 @@ select:focus{
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 170px;
 }
 .sectionp {
     margin: 10px 0px;
@@ -767,6 +772,7 @@ svg{
 #header .active{
     color: red !important;
     font-weight: 600 !important;
+    background-color: transparent !important;
 }
 #accordion .card-header button{
     text-align: left !important;
@@ -779,9 +785,10 @@ table#jobTable tr th {
 }
 .searchInput{
     position: absolute;
-    bottom: -44px;
+    bottom: -45px;
     display: none;
     transition: all .5s ease;
+    z-index: 999999;
 }
 .searchInput input{
     border: none;
@@ -799,6 +806,36 @@ table#jobTable tr th {
 }
 .form-control{
     height: auto !important;
+}
+#postJobDiv .lookingFor,
+#contactDiv .lookingFor{
+    max-height: 300px;
+}
+#postJobDiv .lookingFor.languageProfessional,
+#contactDiv .lookingFor.languageProfessional{
+    max-height: 200px;
+}
+.footerBox p{
+    font-size: 14px;
+}
+.checkboxh label,
+#contactDiv form .inputDiv .textArea p {
+    font-size: 12px;
+}
+#postJobDiv .languageDiv h5{
+    font-size: 14px;
+}
+.infoDiv span{
+    margin-right: 50px;
+}
+.infoDiv span b{
+    margin-left: 0% !important;
+}
+#profile .infoDiv span:nth-child(3) a{
+    background: #0e0d6b;
+    color: #fff !important;
+    padding: 10px;
+    border-radius: 8px;
 }
 @media screen and (min-width: 1500px) {
     #header .navbar-collapse {
@@ -865,7 +902,7 @@ table#jobTable tr th {
         background: #ECECEC;
         border-radius: 10px;
         margin-right: 20px;
-        padding: 2px 115px 2px 6px;
+        padding: 10px 20px !important;
     }
     .servicesContent h2, .servicesContent h2 a{
         font-size: 18px !important;
@@ -910,6 +947,31 @@ table#jobTable tr th {
     
   }
   @media screen and (max-width: 992px) {
+    #profileDiv .actionDiv ul{
+        display: block !important;
+    }
+    #profileDiv .actionDiv ul li:after{
+        display: none !important;
+    }
+      .changeProfileBtn{
+          width: 75% !important;
+      }
+      .otherBtn{
+          padding: 0px !important;
+      }
+      #howWorks .left-img{
+          margin:auto !important;
+          text-align: center;
+      }
+    #contactDiv form .inputDiv .textArea textarea{
+        width: 100% !important;
+    }
+    #homeBanner .lookingFor, 
+    #contactDiv .lookingFor, 
+    #postJobDiv .lookingFor{
+        margin: auto;
+        margin-top: 50px;
+    }
     #header{
         padding: 0px;
     }
@@ -959,6 +1021,28 @@ table#jobTable tr th {
   }
   
 @media screen and (max-width: 768px) {
+    #howWorks .right-text a,
+    #howWorks .right-text a:hover{
+        width: 40% !important;
+    }
+    #informationCollected .bs-callout{
+        padding: 15px 10px !important;
+    }
+    #contactDiv .checkboxh {
+        margin-left: 7%;
+        display: flex;
+        justify-content: space-between;
+    } 
+    #contactDiv .checkboxh label{
+        margin-left: 5px;
+    }  
+    #findJobSection .multiCards .cardDiv p{
+        letter-spacing: -1px;
+        text-align: justify;
+    }
+    #findJobSection .multiCards .cardDiv .priceInfo .detailDiv{
+        max-width: 100%;
+    }
     #profile .inputDiv,
     #contactDiv form .inputDiv,
     #postJobDiv .inputDiv{
@@ -1118,8 +1202,8 @@ table#jobTable tr th {
     }
     #profileDiv .actionDiv ul li{
         font-size: 10px !important;
-        margin-right: 30px !important;
-        margin-left: 0px !important;
+        margin-right: 0px !important;
+        margin-left: 10px !important;
     }
     #profileDiv .actionDiv ul li:after {
         right: -10px !important;
@@ -1150,7 +1234,7 @@ table#jobTable tr th {
 
 .banner .banner-content h1{
      color: #fff;
-     font-size: 35px;
+     font-size: 30px;
      font-family: Montserrat;
      font-weight: 600;
      line-height: 1.4em;
@@ -1162,7 +1246,7 @@ table#jobTable tr th {
      padding: 0;
      text-align: start;
      color: #fff;
-     font-size: 14px;
+     font-size: 12px;
      line-height: 25px;
      padding-bottom: 15px;
      font-weight: 400;
@@ -1351,7 +1435,7 @@ table#jobTable tr th {
     top: -21px;
     background: #fff;
     padding: 0px 20px;
-    font-weight: 600;
+    font-weight: 700;
 }
 .commonDiv span {
     /* margin-right: 50px; */
@@ -1499,8 +1583,9 @@ table#jobTable tr th {
     background: #ECECEC;
     border-radius: 10px;
     margin-right: 20px;
-    padding: 5px 115px 10px 6px;
+    padding: 10px 20px !important;
     border: none;
+    font-size: 14px;
 }
 #findJobSection form{
     display: flex;
@@ -1686,7 +1771,6 @@ postJobDiv .multiple-select a{
 #contactDiv form .inputDiv label{
     width: 25%;
     font-size: 14px;
-    font-weight: 600;
 }
 .checkboxh{
     margin-left: 18%;
@@ -1813,7 +1897,7 @@ postJobDiv .multiple-select a{
     height: 15px;;
 }
 #postJobDiv .radioDiv label{
-    font-size: 15px;
+    font-size: 12px;
 }
 #postJobDiv .setDateDiv{
     display: none;
@@ -2133,6 +2217,9 @@ tbody tr .tableData{
     }
 }
 @media screen and (max-width: 768px) {
+    .infoDiv{
+        display: grid;
+    }
     .mainHeading{
         font-size: 14px !important;
     }
@@ -2318,15 +2405,13 @@ tbody tr .tableData{
 
     }
     #homeBanner .lookingFor p.header, #contactDiv .lookingFor p.header, #postJobDiv .lookingFor p.header {
-        background: #e62e2d;
         color: #fff;
         font-size: 14px;
-        padding: 5px 78px;
         border-radius: 10px 10px 0px 0px;
         font-weight: 500;
         margin-bottom: 0;
-        margin-top: 0;
         margin: auto;
+        margin-top: 50px;
     }
     #voice-Over .commonDiv form .inputDiv{
 
@@ -2360,7 +2445,18 @@ tbody tr .tableData{
 .checkbox input{
     font-family: Montserrat;
     margin: 2px;
-    margin-top: 60px;
+}
+.date{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 170px;
+}
+.table td{
+    border: none !important;
+}
+.table tr{
+    border-bottom: 1px solid #dee2e6;
 }
 .companyimg h3{
     font-family: Montserrat;
@@ -2704,7 +2800,7 @@ tbody tr .tableData{
     font-family: Montserrat;
     font-style: normal;
     font-weight: bold;
-    font-size: 40px;
+    font-size: 35px;
     line-height: 30px;
     text-transform: uppercase;
     color: #e62e2d;
@@ -2717,7 +2813,7 @@ tbody tr .tableData{
     font-family: Montserrat;
     font-style: normal;
     font-weight: bold;
-    font-size: 30px;
+    font-size: 25px;
     line-height: 30px;
     text-align: center;
     padding-top: 15px;
@@ -2729,7 +2825,7 @@ tbody tr .tableData{
     font-family: Montserrat;
     font-weight: 700;
     color: #fff;
-    font-size: 16px;
+    font-size: 12px;
     text-align: center;
     text-transform: uppercase;
 }
@@ -2754,7 +2850,7 @@ tbody tr .tableData{
     cursor: pointer;
     font-family: Montserrat;
     border-radius: 10px;
-    font-size: 18px;
+    font-size: 14px;
 }
 .btnD1:hover{
     text-decoration: none;
@@ -2773,7 +2869,7 @@ tbody tr .tableData{
     font-weight: 600;
     font-family: Montserrat;
     border-radius: 10px;
-    font-size: 18px;    
+    font-size: 14px;    
     cursor: pointer;
 }
 .btnD2:hover{
@@ -2800,7 +2896,7 @@ tbody tr .tableData{
     font-family: Montserrat;
     font-style: normal;
     font-weight: bold;
-    font-size: 35px;
+    font-size: 30px;
     line-height: 70px;
     padding-top: 15px;
 }
@@ -2814,10 +2910,12 @@ tbody tr .tableData{
     padding-right: 15px;
     color:#FF0202;
     font-family: Montserrat;
+    font-size: 14px;
 }
 .heading2{
     padding-left: 15px;
     font-family: Montserrat;
+    font-size: 14px;
 }
 
 
@@ -2840,10 +2938,10 @@ font-family: Montserrat;
 }
 .servicesContent p{
     font-family: Montserrat;
-font-style: normal;
-font-weight: normal;
-font-size: 16px;
-line-height: 30px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 24px;
 }
 
 /***************** About Us - CSS ******************/
@@ -2967,6 +3065,8 @@ line-height: 30px;
 #informationCollected p {
     margin: 0 0 10px;
     text-align: justify;
+    font-size: 14px;
+    letter-spacing: -0.2px;
 }
 #informationCollected .bs-callout p:last-child {
     margin-bottom: 0;
@@ -3023,7 +3123,7 @@ line-height: 30px;
     margin-top: 20px;
     background: #504d97;
     color: #fff;
-    padding: 10px 20px 10px 20px;
+    padding: 10px;
     border: none;
     font-size: 18px;
     font-weight: 500;
