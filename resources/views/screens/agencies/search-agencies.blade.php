@@ -13,7 +13,7 @@
                         @csrf
                         <div class="inputDiv">
                             <label for="">Agency</label>
-                            <select name="agencyid" id="agencyid">
+                            <select name="agencyid" id="agencyid" required>
                                 <option value="">Select Agency</option>
                                 @foreach($allagencymembers as $agency)
                                 <option value="{{$agency->id}}">{{$agency->fname .' '.$agency->lname}}</option>
@@ -172,12 +172,6 @@
                                 <option value="zu">Zulu - isiZulu</option>
                             </select>
                         </div>
-                        <!-- <div class="inputDiv">
-                                <label for="">Type of an Agency</label>
-                                <select name="" id="">
-                                    <option value="Select Topic">Type of an Agency</option>
-                                </select>
-                            </div> -->
                         <div class="checkboxh ">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">Agency profile updated during the last 30 days</label>
@@ -191,13 +185,6 @@
                                 @endforeach
                             </select>
                         </div>
-                        <!--  <div class="inputDiv">
-                                <label for="">Invitation and Presence</label>
-                                <select name="" id="">
-                                    <option value="Select Topic">Invitation and Presence</option>
-                                </select>
-                            </div> -->
-
                         <div class="multiBtn text-center pt-5">
                             <button class="agencycommonBtn agencysubmitbtn">Submit</button>
                         </div>
@@ -255,23 +242,7 @@
                                     <button type="submit" class="agenciesBtn">Update</button>
                                 </div>
                             </div>
-
-
-
                         </div>
-                        <!-- <div class="downloadFile">
-                                <div class="row ">
-                                
-                                        <div class="col-md-12 lastrow d-flex">
-                                            <div class="rowcontent">
-                                                <h6>Download all found records as a CSV file.</h6>
-                                            </div>
-                                            <div class="form-Bttn">
-                                                <button type="submit" class="agenciesBtnn">Download</button>
-                                            </div>
-                                        </div>
-                                </div>
-                            </div> -->
                     </div>
                 </section>
                 <div class="downloadFile">

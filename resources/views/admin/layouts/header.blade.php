@@ -1,4 +1,4 @@
-<section id="dashboard-header" >
+<section id="dashboard-header">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-lg navbar-light">
             <a class="navbar-brand" href="{{url('/home')}}">
@@ -14,15 +14,15 @@
                             </div>
                             <div class="userInfo">
                                 <p>Welcome Back,</p>
-                                <p><b>Abdul Basit</b></p>
+                                <p><b>{{auth::user()->fname ?? ''}} {{auth::user()->lname ?? ''}}</b></p>
                             </div>
                             <div class="dropDown">
                                 <ul>
                                     <li>
-                                        <a href="">Setting</a>
-                                    </li>
-                                    <li>
-                                        <a href="">Logout</a>
+                                        <a class="nav-link loginLink" href="{{ url('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign-in" aria-hidden="true"></i> Logout</a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
                                     </li>
                                 </ul>
                             </div>
@@ -30,7 +30,7 @@
                     </li>
                 </ul>
             </div>
-                <!-- <ul class="navbar-nav mt-2 mt-lg-0">
+            <!-- <ul class="navbar-nav mt-2 mt-lg-0">
                     <li class="nav-item active">
                         <a class="nav-link" href="{{url('/home')}}">Home</a>
                     </li>

@@ -355,6 +355,7 @@
 
                     <div class="col-lg-12">
                         <div class="multiCards">
+                            @if(count($jobs)>0)
                             @foreach($jobs as $job)
                             <div class="cardDiv">
                                 <div class="priceInfo">
@@ -414,6 +415,11 @@
                             <div class="d-flex justify-content-center">
                                 {!! $jobs->links() !!}
                             </div>
+                            @else
+                            <center>
+                                <h3><strong>No Record Found!</strong></h3>
+                            </center>
+                            @endif
                         </div>
                     </div>
                 </div>

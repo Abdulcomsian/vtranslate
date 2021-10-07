@@ -11,12 +11,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-//Admin Views
-Route::get('/dashboard', 'AdminController@index')->name('dashboard');
-Route::post('/deleteuser', 'AdminController@delete_user')->name('deleteuser');
-Route::get('/jobs', 'AdminController@jobs')->name('jobs');
-Route::post('/deletejob', 'AdminController@delete_job')->name('deletejob');
-Route::post('/job-status', 'AdminController@job_status')->name('job-status');
+
 Route::get('/premium-member', function () {
     return view('admin.screens.premium-member');
 });
@@ -70,6 +65,15 @@ Route::get('/faq', function () {
 // });
 Route::get('/pro-member', function () {
     return view('screens.pro-membership');
+});
+
+//Admin Views
+Route::group(['middleware' => ['admin', 'auth']], function () {
+    Route::get('/dashboard', 'AdminController@index')->name('dashboard');
+    Route::post('/deleteuser', 'AdminController@delete_user')->name('deleteuser');
+    Route::get('/jobs', 'AdminController@jobs')->name('jobs');
+    Route::post('/deletejob', 'AdminController@delete_job')->name('deletejob');
+    Route::post('/job-status', 'AdminController@job_status')->name('job-status');
 });
 
 //group route for User Profile

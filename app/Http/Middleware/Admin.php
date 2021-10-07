@@ -4,8 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class IsVerified
+class Admin
 {
     /**
      * Handle an incoming request.
@@ -17,14 +18,14 @@ class IsVerified
     public function handle(Request $request, Closure $next)
     {
         if (Auth::check()) {
-            if (Auth::user()->email_verified_at == NULL) {
-                return redirect()->route('verification.notice');
-            } else {
-
+            if (Auth::user()->user_status == "Admin") {
                 return $next($request);
+            } else {
+                toastr()->error('You are not an Authorized person please contact admin');
+                return back();
             }
         } else {
-            return $next($request);
+            return redirect('/');
         }
     }
 }
