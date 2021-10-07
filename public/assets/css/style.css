@@ -837,6 +837,7 @@ table#jobTable tr th {
     padding: 10px;
     border-radius: 8px;
 }
+
 @media screen and (min-width: 1500px) {
     #header .navbar-collapse {
         justify-content: flex-end;
@@ -947,6 +948,15 @@ table#jobTable tr th {
     
   }
   @media screen and (max-width: 992px) {
+    .box .form-group {
+        width: 100%;
+        margin-bottom: 20px !important;
+    }
+    .box .form-group select,
+    .box .form-group input{
+        width: 100%;
+        margin: 0px !important;
+    }
     #profileDiv .actionDiv ul{
         display: block !important;
     }
@@ -2215,6 +2225,9 @@ tbody tr .tableData{
     #voice-Over .commonDiv .primaryparent{
         padding-top: 20px;
     }
+    .arrow{
+        display: none;
+    }
 }
 @media screen and (max-width: 768px) {
     .infoDiv{
@@ -3207,10 +3220,12 @@ font-family: Montserrat;
     margin: 0px 20px;
     padding: 10px;
 }
-.serviceTable,
-.voiceOverTable{
+.serviceTable{
     width: 100% !important;
     display: inline-table !important;
+}
+.voiceOverTable thead th {
+    min-width: 157px;
 }
 .serviceTable tr td,
 .voiceOverTable tr td,
