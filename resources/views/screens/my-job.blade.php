@@ -36,6 +36,10 @@
     .rating-stars ul>li.star.selected>i.fa {
         color: #FF912C;
     }
+
+    .paginate_button {
+        padding: 5px !important;
+    }
 </style>
 @endsection
 @section('content')
@@ -77,9 +81,9 @@
                                         <td>{{$job->job_desc}}</td>
                                         <td>
                                             @if($job->job_assign)
-                                            <a href="#" role="button" class="assingto" onclick="assignfunc('{{$job->id}}')">{{getUsername($job->job_assign)}}</a>
+                                            <a href="#" class="btn btn-primary" style="font-size:10px" role="button" class="assingto" onclick="assignfunc('{{$job->id}}')">{{getUsername($job->job_assign)}}</a>
                                             @else
-                                            <a href="#" role="button" class="assingto" onclick="assignfunc('{{$job->id}}')">{{"No Assign"}}</a>
+                                            <a href="#" role="button" class=" btn btn-primary assingto" style="font-size:10px" onclick="assignfunc('{{$job->id}}')">{{"Assign Job"}}</a>
                                             @endif
                                         </td>
                                         <td>{{$job->expiry_date}}</td>
@@ -94,8 +98,11 @@
                                                 <input type="hidden" name="id" value="{{$job->id}}">
 
                                             </form>
-                                            <span class="fa fa-star" role="button" onclick="ratefunc('{{$job->id}}','{{$job->job_assign}}','{{$job->job_title}}')"></span>
+                                            @if($job->status==4)
+                                            <span class="fa fa-star" role="button" onclick="ratefunc('{{$job->id}}','{{$job->job_assign}}','{{$job->job_title}}')">Rate</span>
+                                            @endif
                                         </td>
+
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -255,24 +262,18 @@
         $('#jobTable').DataTable();
     });
     $(".jobdelete").on('click', function() {
-        swal.fire({
-                title: "Are you sure?",
-                text: "But you will still be able to retrieve this file.",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Yes, archive it!",
-                cancelButtonText: "No, cancel please!",
-                closeOnConfirm: false,
-                closeOnCancel: false
-            },
-            function(isConfirm) {
-                if (isConfirm) {
-                    $("#jobdeleteform").submit(); // submitting the form when user press yes
-                } else {
-                    swal("Cancelled", "Your imaginary file is safe :)", "error");
-                }
-            });
+        Swal.fire({
+            title: 'Do you want to Delete the Job?',
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: 'Yes, Delete it',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $("#jobdeleteform").submit(); // submitting the form when user press yes
+            } else {
+                swal("Cancelled", "Your imaginary file is safe :)", "error");
+            }
+        });
     })
 
     function editfunc(obj) {
