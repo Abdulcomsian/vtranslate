@@ -1365,7 +1365,7 @@
                                                     </tbody>
                                                 </table>
                                             </div>
-                                            <span>===></span>
+                                            <span class="arrow">===></span>
                                             <div class="col-md-5 ">
                                                 <table class="table-responsive">
                                                     <thead>
