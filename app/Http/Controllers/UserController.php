@@ -81,19 +81,19 @@ class UserController extends Controller
             }
 
             //update record in user table
-            $userdata = User::find(Auth::user()->id);
-            $userdata->private_information = isset($request->private_information) ? 1 : 0;
-            $userdata->disallow_indexing = isset($request->disallow_indexing) ? 1 : 0;
-            $userdata->display_contact_info = isset($request->display_contact_info) ? 1 : 0;
-            $userdata->news_notification = isset($request->news_notification) ? 1 : 0;
-            $userdata->jobsnotification = isset($request->jobsnotification) ? 1 : 0;
-            $userdata->show_rated_users = isset($request->show_rated_users) ? 1 : 0;
-            $userdata->fname = $request->fname;
-            $userdata->lname = $request->lname;
-            $userdata->email = $request->email;
-            $userdata->zipcode = $request->zipcode ?? '';
-            $userdata->country_id = $request->country_id;
-            $userdata->save();
+            $userdata = User::find(Auth::user()->id)->update([
+                'private_information' => isset($request->private_information) ? 1 : 0,
+                'disallow_indexing'  => isset($request->disallow_indexing) ? 1 : 0,
+                'display_contact_info'  => isset($request->display_contact_info) ? 1 : 0,
+                'news_notification'  => isset($request->news_notification) ? 1 : 0,
+                'jobsnotification'  => isset($request->jobsnotification) ? 1 : 0,
+                'show_rated_users'  => isset($request->show_rated_users) ? 1 : 0,
+                'fname'  => $request->fname,
+                'lname'  => $request->lname,
+                'email'  => $request->email,
+                'zipcode'  => $request->zipcode ?? '',
+                'country_id'  => $request->country_id
+            ]);
             //toaster message
             toastr()->success('User Gneral Info Saved Successfull!');
             return \Redirect::route('profile')->with('currtab', $request->currtab);
@@ -462,27 +462,27 @@ class UserController extends Controller
     //update password
     public function update_pass(Request $request)
     {
-        try {
-            $this->validate($request, [
-                'old_pass' => ['required', 'string'],
-                'new_pass' => [
-                    'required',
-                    'string',
-                    'min:8',
-                    'regex:/[a-z]/',      // must contain at least one lowercase letter
-                    'regex:/[A-Z]/',      // must contain at least one uppercase letter
-                    'regex:/[0-9]/',      // must contain at least one digit
-                ],
-                'conf_pass' => 'required|same:new_pass'
-            ]);
 
+        $this->validate($request, [
+            'old_password' => ['required', 'string'],
+            'new_password' => [
+                'required',
+                'string',
+                'min:8',
+                'regex:/[a-z]/',      // must contain at least one lowercase letter
+                'regex:/[A-Z]/',      // must contain at least one uppercase letter
+                'regex:/[0-9]/',      // must contain at least one digit
+            ],
+            'confirm_password' => 'required|same:new_pass'
+        ]);
+        try {
             $userdata = User::find(Auth::user()->id);
-            if (Hash::check($request->old_pass, $userdata->password)) {
-                $userdata->password = Hash::make($request->new_pass);
+            if (Hash::check($request->old_password, $userdata->password)) {
+                $userdata->password = Hash::make($request->new_password);
                 $userdata->save();
                 toastr()->error('Password Change Successfully');
             } else {
-                toastr()->success('Your old password is incorrect');
+                toastr()->error('Your old password is incorrect');
             }
             return back();
         } catch (\Exception $exception) {

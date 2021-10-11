@@ -2116,19 +2116,19 @@
                                         <div class="inputDiv">
                                             <label for="old_pass">Old Password:</label>
                                             <div class="inputSpan w-100">
-                                                <input type="password" class="form-control" name="old_pass" id="old_pass" placeholder="Enter Old Password" required="required">
+                                                <input type="password" class="form-control" name="old_password" id="old_pass" placeholder="Enter Old Password" required="required">
                                             </div>
                                         </div>
                                         <div class="inputDiv">
                                             <label for="new_pass">New Password</label>
                                             <div class="inputSpan w-100">
-                                                <input type="password" class="form-control" name="new_pass" id="new_pass" placeholder="New Password" required="required">
+                                                <input type="password" class="form-control" name="new_password" id="new_pass" placeholder="New Password" required="required">
                                             </div>
                                         </div>
                                         <div class="inputDiv">
                                             <label for="conf_pass">Confirm Password</label>
                                             <div class="inputSpan w-100">
-                                                <input type="password" class="form-control" name="conf_pass" id="conf_pass" placeholder="Confirm Password" required="required">
+                                                <input type="password" class="form-control" name="confirm_password" id="conf_pass" placeholder="Confirm Password" required="required">
                                             </div>
                                         </div>
                                         <div id="message">
