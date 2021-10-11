@@ -44,7 +44,7 @@
 @endsection
 @section('content')
 <section id="profileBanner">
-    <h3>Job Applied Users</h3>
+    <h3>Job Proposal Users</h3>
 </section>
 <section id="findJobSection" class="padd-100">
     <div class="container">

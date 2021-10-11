@@ -117,6 +117,7 @@ Route::get('/contact-us', 'ContactUsController@index')->name('contact-us');
 Route::post('/contact-us', 'ContactUsController@store')->name('contact-us');
 
 Route::get('/job-search', 'HomeController@job_search')->name('job-search');
+Route::get('/search-job', 'HomeController@search_job')->name('search-job');
 Route::get('/make-job-fav', 'JobsController@make_job_fav')->name('make-job-fav');
 Route::get('/remove-job-fav', 'JobsController@remove_job_fav')->name('remove-job-fav');
 Route::get('/favourite-job', 'JobsController@favourite_job')->name('favourite-job');
