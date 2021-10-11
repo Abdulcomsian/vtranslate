@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Jobs extends Model
 {
    use HasFactory;
-   protected $fillable = ['job_title', 'job_desc', 'status', 'budget', 'cancel_reason'];
+   protected $fillable = ['job_title', 'expiry_status', 'expiry_date', 'job_desc', 'status', 'budget', 'cancel_reason'];
    public function jobspairlang() //relation with voice overmodel
    {
       return $this->hasMany(JobsPairLanguages::class);

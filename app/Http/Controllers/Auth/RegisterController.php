@@ -59,7 +59,15 @@ class RegisterController extends Controller
             'country' => ['required'],
             'email' => ['required', 'string', 'email', 'max:100', 'unique:users'],
             'user_status' => ['required'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => [
+                'required',
+                'string',
+                'min:8',
+                'confirmed',
+                'regex:/[a-z]/',      // must contain at least one lowercase letter
+                'regex:/[A-Z]/',      // must contain at least one uppercase letter
+                'regex:/[0-9]/',      // must contain at least one digit
+            ],
             //'g-recaptcha-response' => 'required|captcha',
         ]);
     }

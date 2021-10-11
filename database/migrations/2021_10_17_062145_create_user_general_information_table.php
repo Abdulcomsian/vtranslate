@@ -16,18 +16,13 @@ class CreateUserGeneralInformationTable extends Migration
         Schema::create('user_general_information', function (Blueprint $table) {
             $table->id();
             $table->string('title')->nullable();
-            $table->string('first_name')->nullable();
-            $table->string('last_name')->nullable();
-            $table->string('gemail')->unique();
-            $table->string('postal_code')->nullable();
             $table->longText('address')->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();
-            $table->unsignedBigInteger('country')->nullable();
             $table->string('telephone')->nullable();
             $table->string('fax')->nullable();
             $table->string('mobile_phone')->nullable();
-            $table->string('second_email')->unique();
+            $table->string('second_email')->unique()->nullable();
             $table->string('website')->nullable();
             $table->string('company_name')->nullable();
             $table->string('position')->nullable();
@@ -39,7 +34,6 @@ class CreateUserGeneralInformationTable extends Migration
             $table->longText('platform_hardware')->nullable();
             $table->longText('cover_letter')->nullable();
             $table->string('advertising_slogan')->nullable();
-            $table->foreign('country')->references('id')->on('countries');
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

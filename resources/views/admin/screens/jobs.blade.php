@@ -45,7 +45,7 @@
                                     <td>${{$job->budget ?? ''}}</td>
                                     <td>{{$job->job_level ?? ''}}</td>
                                     <td>{{$job->job_desc ?? ''}}</td>
-                                    <td role="button" onclick="changestatus('{{$job->id}}')">{{job_status($job->status)}}</td>
+                                    <td onclick="changestatus('{{$job->id}}')"><button class="btn btn-primary">{{job_status($job->status)}}</button></td>
                                     <td>
                                         <!-- <span class="edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span> -->
                                         <span class="delete"><i class="fa fa-trash" onclick="deletejob('{{$job->id}}')" aria-hidden="true"></i></span>

@@ -66,6 +66,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @if(count($myjobs)>0)
                                     @foreach($myjobs as $job)
                                     <tr>
                                         <th scope="row">{{$loop->index+1}}</th>
@@ -74,7 +75,13 @@
                                         <td>{{$job->job_type}}</td>
                                         <th>{{$job->job_level}}</th>
                                         <td>{{$job->job_desc}}</td>
-                                        <td>{{$job->expiry_date}}</td>
+                                        <td>
+                                            @if($job->expiry_status==0)
+                                            {{'No Deadline'}}
+                                            @else
+                                            {{$job->expiry_date}}
+                                            @endif
+                                        </td>
                                         <td>
                                             <strong>{{job_status($job->status)}}</strong>
                                         </td>
@@ -88,6 +95,15 @@
                                         </td>
                                     </tr>
                                     @endforeach
+                                    @else
+                                    <tr>
+                                        <td colspan="9">
+                                            <center>
+                                                <h4 style="color:rgba(44, 40, 135, 1)"><strong>Currently You have no Project.</strong></h4>
+                                            </center>
+                                        </td>
+                                    </tr>
+                                    @endif
                                 </tbody>
                             </table>
                         </div>

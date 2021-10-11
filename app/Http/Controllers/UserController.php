@@ -16,6 +16,8 @@ use App\Models\UserServicesRates;
 use App\Models\Jobs;
 use App\Models\JobProposal;
 use App\Models\WorkHistory;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Auth;
 use File;
 
@@ -68,7 +70,7 @@ class UserController extends Controller
     public function save_general_info(Request $request)
     {
 
-        $input = $request->except('_token', 'currtab', 'private_information', 'disallow_indexing', 'display_contact_info', 'news_notification', 'jobsnotification', 'show_rated_users');
+        $input = $request->except('_token', 'currtab', 'private_information', 'disallow_indexing', 'display_contact_info', 'news_notification', 'jobsnotification', 'show_rated_users', 'fname', 'lname', 'email', 'zipcode', 'country_id');
         try {
             $record = UserGeneralInformation::where('user_id', Auth::user()->id)->first();
             $input['user_id'] = Auth::user()->id;
@@ -86,6 +88,11 @@ class UserController extends Controller
             $userdata->news_notification = isset($request->news_notification) ? 1 : 0;
             $userdata->jobsnotification = isset($request->jobsnotification) ? 1 : 0;
             $userdata->show_rated_users = isset($request->show_rated_users) ? 1 : 0;
+            $userdata->fname = $request->fname;
+            $userdata->lname = $request->lname;
+            $userdata->email = $request->email;
+            $userdata->zipcode = $request->zipcode ?? '';
+            $userdata->country_id = $request->country_id;
             $userdata->save();
             //toaster message
             toastr()->success('User Gneral Info Saved Successfull!');
@@ -373,25 +380,40 @@ class UserController extends Controller
     //view user profile
     public function view_user_profile()
     {
-        $workHistory = WorkHistory::where('user_id', Auth::user()->id)->get();
-        if (Auth::user()->user_status == 'Translator') {
-            $userData = User::with('usergeneralinfo', 'userlanguages', 'usersoftwares', 'userspicialize', 'uservoicover', 'userfiles', 'usermotherlanguages', 'usersevices')->where('id', Auth::user()->id)->get();
-            $jobapplied = JobProposal::where('user_id', Auth::user()->id)->count();
-            return view('screens.freelancer.freelancer', compact('userData', 'jobapplied', 'workHistory'));
-        } else {
-            $userData = User::with('usergeneralinfo', 'userlanguages', 'usersoftwares', 'userspicialize', 'uservoicover', 'userfiles', 'usermotherlanguages', 'usersevices')->where('id', Auth::user()->id)->get();
-            $jobposted = Jobs::where('user_id', Auth::user()->id)->count();
-            return view('screens.agencies.agency', compact('userData', 'jobposted', 'workHistory'));
+        try {
+            $workHistory = WorkHistory::where('user_id', Auth::user()->id)->get();
+            if (Auth::user()->user_status == 'Translator') {
+                $userData = User::with('usergeneralinfo', 'userlanguages', 'usersoftwares', 'userspicialize', 'uservoicover', 'userfiles', 'usermotherlanguages', 'usersevices')->where('id', Auth::user()->id)->get();
+                $jobapplied = JobProposal::where('user_id', Auth::user()->id)->count();
+                return view('screens.freelancer.freelancer', compact('userData', 'jobapplied', 'workHistory'));
+            } else {
+                $userData = User::with('usergeneralinfo', 'userlanguages', 'usersoftwares', 'userspicialize', 'uservoicover', 'userfiles', 'usermotherlanguages', 'usersevices')->where('id', Auth::user()->id)->get();
+                $jobposted = Jobs::where('user_id', Auth::user()->id)->count();
+                return view('screens.agencies.agency', compact('userData', 'jobposted', 'workHistory'));
+            }
+        } catch (\Exception $exception) {
+            toastr()->error('something went wrong');
+            return back();
         }
     }
 
     //use public profile sprofile
     public function public_profile($id)
     {
-
-        $userData = User::with('usergeneralinfo', 'userlanguages', 'usersoftwares', 'userspicialize', 'uservoicover', 'userfiles', 'usermotherlanguages', 'usersevices')->where('id', $id)->get();
-        $jobapplied = JobProposal::where('user_id', $id)->count();
-        return view('screens.freelancer.freelancer', compact('userData', 'jobapplied'));
+        try {
+            $workHistory = WorkHistory::where('user_id', $id)->get();
+            $userData = User::with('usergeneralinfo', 'userlanguages', 'usersoftwares', 'userspicialize', 'uservoicover', 'userfiles', 'usermotherlanguages', 'usersevices')->where('id', $id)->get();
+            $jobapplied = JobProposal::where('user_id', $id)->count();
+            $checkuser = User::find($id);
+            if ($checkuser->user_status == 'Translator') {
+                return view('screens.freelancer.freelancer', compact('userData', 'jobapplied', 'workHistory'));
+            } else {
+                return view('screens.agencies.agency', compact('userData', 'jobapplied', 'workHistory'));
+            }
+        } catch (\Exception $exception) {
+            toastr()->error('something went wrong');
+            return back();
+        }
     }
 
     //change user status
@@ -421,6 +443,68 @@ class UserController extends Controller
             }
         } catch (\Exception $exception) {
             echo "error";
+        }
+    }
+
+    //change password
+    public function change_pass(Request $request)
+    {
+        try {
+            $countries = Country::get();
+            $userData = User::with('usergeneralinfo', 'userlanguages', 'usersoftwares', 'userspicialize', 'uservoicover', 'userfiles', 'usermotherlanguages', 'usersevices')->where('id', Auth::user()->id)->get();
+            $request->session()->flash('currtab', 'changepass');
+            return view('screens.profile', compact('countries', 'userData'));
+        } catch (\Exception $exception) {
+            toastr()->error('Something went wrong');
+            return back();
+        }
+    }
+    //update password
+    public function update_pass(Request $request)
+    {
+        try {
+            $this->validate($request, [
+                'old_pass' => ['required', 'string'],
+                'new_pass' => [
+                    'required',
+                    'string',
+                    'min:8',
+                    'regex:/[a-z]/',      // must contain at least one lowercase letter
+                    'regex:/[A-Z]/',      // must contain at least one uppercase letter
+                    'regex:/[0-9]/',      // must contain at least one digit
+                ],
+                'conf_pass' => 'required|same:new_pass'
+            ]);
+
+            $userdata = User::find(Auth::user()->id);
+            if (Hash::check($request->old_pass, $userdata->password)) {
+                $userdata->password = Hash::make($request->new_pass);
+                $userdata->save();
+                toastr()->error('Password Change Successfully');
+            } else {
+                toastr()->success('Your old password is incorrect');
+            }
+            return back();
+        } catch (\Exception $exception) {
+            toastr()->error('Something went wrong');
+            return back();
+        }
+    }
+    //delete profile
+    public function delete_profile(Request $request)
+    {
+        try {
+            $res = User::find(Auth::user()->id)->delete();
+            if ($res) {
+                Auth::logout();
+                return redirect('/login');
+            } else {
+                toastr()->error('Profile not Deleted');
+                return back();
+            }
+        } catch (\Exception $exception) {
+            toastr()->error('Something went wrong');
+            return back();
         }
     }
 }
