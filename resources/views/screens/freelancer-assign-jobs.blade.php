@@ -80,7 +80,7 @@
                                         </td>
                                         <td style="width: 20%;">
                                             @if($job->status==4)
-                                            <button class="btn btn-sm"><span class="fa fa-star" role="button" onclick="ratefunc('{{$job->id}}','{{$job->user_id}}','{{$job->job_title}}')"></span></button>
+                                            <button class="btn btn-sm" onclick="ratefunc('{{$job->id}}','{{$job->user_id}}','{{$job->job_title}}')">Rate Agency</button>
                                             @endif
                                             @if($job->status!=3 && $job->status!=4)
                                             <button class="btn btn-danger" onclick="canceljob('{{$job->id}}')">Cancel</button>

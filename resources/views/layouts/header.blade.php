@@ -38,9 +38,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('contact-us') }}">Contact Us</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('user/profile') }}">Profile</a>
-                    </li>
                     @guest
                     <li class="nav-item">
                         <a class="nav-link loginLink" href="{{ url('login') }}"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
@@ -48,26 +45,51 @@
                     @endguest
                     @auth
                     <li class="nav-item">
+                        <div class="collapse navbar-collapse" id="navbar-list-4">
+                            <ul class="navbar-nav">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <img src="@if(auth::user()->profile_photo){{asset('profile-images/').'/'. auth::user()->profile_photo}}@else{{ 'https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg'}}@endif" width="40" height="40" class="rounded-circle">
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                        <a><strong>{{auth::user()->fname.' '.auth::user()->lname}}</strong></a>
+                                        <a>({{auth::user()->user_status}})</a>
+                                        <hr>
+                                        <a class="dropdown-item" href="{{ url('user/profile') }}">Edit Profile</a>
+                                        <a class="dropdown-item" href="{{ url('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign-in" aria-hidden="true"></i> Logout</a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </li>
+                    @endauth
+                    @auth
+                    <!-- <li class="nav-item">
                         <a class="nav-link loginLink" href="{{ url('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign-in" aria-hidden="true"></i> Logout</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             {{ csrf_field() }}
                         </form>
-                    </li>
+                    </li> -->
                     @endauth
                     @guest
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('register') }}">Join Now</a>
                     </li>
                     @endguest
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <select name="" id="" class="language">
                             <option value="ENG">ENG</option>
                         </select>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <i class="fa fa-search searchBtn" aria-hidden="true"></i>
                     </li>
                 </ul>
+
                 <div class="searchInput">
                     <input type="search" placeholder="Search">
                 </div>

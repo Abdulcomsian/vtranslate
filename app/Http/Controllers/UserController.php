@@ -365,7 +365,7 @@ class UserController extends Controller
             toastr()->success('Profile Photo Changed Successfully');
             return \Redirect::route('profile');
         } catch (\Exception $exception) {
-            toastr()->error('Something went wrong, try again');
+            toastr()->error('Please Upload your image first');
             return back();
         }
     }

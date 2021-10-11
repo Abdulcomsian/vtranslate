@@ -9,6 +9,50 @@
                         <div class="leftBannerContent">
                             <h1>The Easiest Way To Hire <br> Expert Translate</h1>
                             <h2>lorem ipsum dolor sit amit, consectetur adipiscing elit ut aliquam, purus <br> sit amet luctus</h2>
+                            <div class="inputfield">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group forum d-flex">
+                                            <i class="fa fa-search" aria-hidden="true"></i>
+                                            <input class="form-control" placeholder="Search by language">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <select name="job_type" class="form-control pl-4">
+                                            <option value="">Select Job Type</option>
+                                            <option value="Closed captioning">Closed captioning</option>
+                                            <option value="Copywriting">Copywriting</option>
+                                            <option value="Desktop publishing">Desktop publishing</option>
+                                            <option value="Editing">Editing</option>
+                                            <option value="Interpreting">Interpreting</option>
+                                            <option value="Interpreting – conference">Interpreting – conference</option>
+                                            <option value="Interpreting – court/legal">Interpreting – court/legal</option>
+                                            <option value="Interpreting – medical">Interpreting – medical</option>
+                                            <option value="Interpreting – phone">Interpreting – phone</option>
+                                            <option value="Interpreting – sign language">Interpreting – sign language</option>
+                                            <option value="Localization">Localization</option>
+                                            <option value="Other">Other</option>
+                                            <option value="Project management">Project management</option>
+                                            <option value="Proofreading">Proofreading</option>
+                                            <option value="Research">Research</option>
+                                            <option value="Subtitling">Subtitling</option>
+                                            <option value="Teaching">Teaching</option>
+                                            <option value="Technical Review">Technical Review</option>
+                                            <option value="Technical writing">Technical writing</option>
+                                            <option value="Terminology research">Terminology research</option>
+                                            <option value="Transcription">Transcription</option>
+                                            <option value="Translation">Translation</option>
+                                            <option value="Typesetting">Typesetting</option>
+                                            <option value="Voice-over">Voice-over</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="input-bar-item">
+                                            <button class="btn btn-info">Search</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="language">
                                 <p>
                                     <span>Popular Categories:</span>
@@ -186,7 +230,7 @@
                                                 <option value="Terminology research">Terminology research</option>
                                                 <option value="Transcription">Transcription</option>
                                                 <option value="Translation">Translation</option>
-                                                <option value="Typesetting"></option>
+                                                <option value="Typesetting">Typesetting</option>
                                                 <option value="Voice-over">Voice-over</option>
                                             </select>
                                         </div>

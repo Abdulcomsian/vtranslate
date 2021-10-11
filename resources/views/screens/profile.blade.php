@@ -169,9 +169,9 @@
                         <li class="nav-item">
                             <a class="nav-link {{$factive}}" data-toggle="pill" href="#profile"><span>My Profile</span> </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a href="#status" class="nav-link {{$statusactive}}" data-toggle="pill"><span>Status</span> </a>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <a href="#general" class="nav-link {{$generaltab}}" data-toggle="pill"><span>General</span> </a>
                         </li>
@@ -574,7 +574,7 @@
                         If you are not registered with any of the payment processors below, please click or tap the corresponding button below and sign up for PayPal or Skrill. After that you will enter your e-mail address on the profile form.</p>
                 </div>
             </div>
-            <div id="status" class="container tab-pane {{$statusactive}}">
+            <!-- <div id="status" class="container tab-pane {{$statusactive}}">
                 <div class="commonDiv">
                     <h3>Select Status</h3>
                     <span>User Name: <b>{{auth::user()->username}}</b></span>
@@ -603,7 +603,7 @@
                         <button class="commonBtn">Save</button>
                     </form>
                 </div>
-            </div>
+            </div> -->
             <div id="general" class="container tab-pane {{$generaltab}}">
                 <div id="profile" class="container tab-pane active">
                     <div class="commonDiv">
@@ -2061,7 +2061,7 @@
                                                 has a basic, decent MP3 encoder.
                                             </li>
                                         </ul>
-                                        <button type="submit" class="deleteSelected">Upload</button>
+                                        <center><button type="submit" class="btn btn-primary">Upload</button></center>
                                     </form>
                                 </div>
                             </div>

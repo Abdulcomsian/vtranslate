@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Auth\Events\Verified;
 use App\Models\User;
+use App\Mail\WelcomeUser;
+use Mail;
 
 class VerificationController extends Controller
 {
@@ -55,8 +57,8 @@ class VerificationController extends Controller
 
         if ($user->markEmailAsVerified())
             event(new Verified($user));
-
+        //welcome email send to user
+        Mail::to($user->email)->send(new WelcomeUser($user));
         return redirect($this->redirectPath())->with('verified', true);
     }
-
 }
