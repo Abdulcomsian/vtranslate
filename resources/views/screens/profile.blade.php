@@ -106,6 +106,42 @@
         -moz-transform: translate3d(100%, 0, 0);
         transform: translate3d(100%, 0, 0);
     }
+
+    #message {
+        display: none;
+        background: #f1f1f1;
+        color: #000;
+        position: relative;
+        padding: 20px;
+        margin-top: 10px;
+    }
+
+    #message p {
+        padding: 10px 35px;
+        font-size: 18px;
+    }
+
+    /* Add a green text color and a checkmark when the requirements are right */
+    .valid {
+        color: green;
+    }
+
+    .valid:before {
+        position: relative;
+        left: -35px;
+        content: "✔";
+    }
+
+    /* Add a red text color and an "x" when the requirements are wrong */
+    .invalid {
+        color: red;
+    }
+
+    .invalid:before {
+        position: relative;
+        left: -35px;
+        content: "✖";
+    }
 </style>
 @endsection
 @section('content')
@@ -130,6 +166,7 @@
                     $softwarestab='';
                     $specializationtab='';
                     $service_rate_tab='';
+                    $change_pass_tab='';
                     if(session()->get('currtab')=='status'){
                     $statusactive='active';
                     }
@@ -160,6 +197,10 @@
                     {
                     $service_rate_tab='active';
                     }
+                    elseif(session()->get('currtab')=='changepass')
+                    {
+                    $change_pass_tab="active";
+                    }
                     else
                     {
                     $factive='active';
@@ -173,7 +214,7 @@
                             <a href="#status" class="nav-link {{$statusactive}}" data-toggle="pill"><span>Status</span> </a>
                         </li> -->
                         <li class="nav-item">
-                            <a href="#general" class="nav-link {{$generaltab}}" data-toggle="pill"><span>General</span> </a>
+                            <a href="#general" class="nav-link generaltab {{$generaltab}}" data-toggle="pill"><span>General</span> </a>
                         </li>
                         @if(!empty(auth::user()->user_status) && auth::user()->user_status=="Translator")
                         <li class="nav-item">
@@ -209,15 +250,28 @@
             <div class="row">
                 <div class="col-lg-12">
                     <ul>
-                        <li>VT Forums Settings </li>
-                        <li>VT Teams Settings </li>
-                        <li>Change Email</li>
-                        <li>Change Password</li>
-                        <li class="noAfter">Delete Profile</li>
+                        <!-- <li>VT Forums Settings </li>
+                        <li>VT Teams Settings </li> -->
+                        <li class="change-email" role="button">Change Email</li>
+                        <li><a style="color:#212529" href="{{route('change-pass')}}">Change Password</a></li>
+                        <li class="Deleteprofile" role="button">Delete Profile</li>
+                        <form action="{{route('profile-delete')}}" method="post" id="delete-profile-form">
+                            @csrf
+
+                        </form>
                     </ul>
                 </div>
             </div>
         </div>
+        @if (count($errors) > 0)
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
         <div class="tab-content">
             <div id="profile" class="container tab-pane {{$factive}}">
                 <div class="commonDiv">
@@ -324,24 +378,6 @@
                                 </p>
                                 <label class="switch"><input type="checkbox" class="togglebtn" data-type="Rates" @if(auth::user()->show_rated_users=='1'){{'checked'}}@endif/><div></div>
                                 </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <div class="text-center privacy-box">
-                                <p><b>TCTerms Q & A</b></p>
-
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="text-center privacy-box">
-                                <p><b>Your Ignore List</b></p>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="text-center privacy-box">
-                                <p><b>TC Messaging System</b></p>
                             </div>
                         </div>
                     </div>
@@ -631,26 +667,26 @@
                             <div class="inputDiv">
                                 <label for="">First Name (Given):</label>
                                 <div class="inputSpan">
-                                    <input type="text" name="first_name" id="first_name" required="required" value="{{$userData[0]->usergeneralinfo->first_name ?? '' }}">
+                                    <input type="text" name="fname" id="fname" required="required" value="{{auth::user()->fname ?? '' }}">
                                 </div>
                             </div>
                             <div class="inputDiv">
                                 <label for="">Last Name (Family):</label>
                                 <div class="inputSpan">
-                                    <input type="text" name="last_name" id="last_name" required="required" value="{{$userData[0]->usergeneralinfo->last_name ?? '' }}">
+                                    <input type="text" name="lname" id="lname" required="required" value="{{auth::user()->lname ?? '' }}">
                                     <p>Please make sure your first, last and middle names begin with a capital letter and do not use all capital letters. </p>
                                 </div>
                             </div>
                             <div class="inputDiv">
                                 <label for="">E-Mail Address:</label>
                                 <div class="inputSpan">
-                                    <input type="email" name="gemail" id="gemail" required="required" value="{{$userData[0]->usergeneralinfo->gemail ?? '' }}">
+                                    <input type="email" name="email" id="email" required="required" value="{{auth::user()->email ?? '' }}">
                                 </div>
                             </div>
                             <div class="inputDiv">
                                 <label for="">Postal Code (Zip):</label>
                                 <div class="inputSpan">
-                                    <input type="text" name="postal_code" id="postal_code" value="{{$userData[0]->usergeneralinfo->postal_code ?? '' }}">
+                                    <input type="text" name="zipcode" id="zipcode" value="{{auth::user()->zipcode ?? '' }}">
                                 </div>
                             </div>
                             <div class="inputDiv">
@@ -674,12 +710,12 @@
                             <div class="inputDiv">
                                 <label for="">Country:</label>
                                 <div class="inputSpan">
-                                    <select name="country" id="country" required="required">
+                                    <select name="country_id" id="country_id" required="required">
                                         <option value="">Select Country</option>
                                         @foreach( $countries as $country)
                                         @php
                                         $selected='';
-                                        if(isset($userData[0]->usergeneralinfo->country) && $userData[0]->usergeneralinfo->country == $country->id)
+                                        if(auth::user()->country_id == $country->id)
                                         {
                                         $selected='selected';
                                         }
@@ -2069,6 +2105,48 @@
                     </div>
                 </div>
             </div>
+            <div id="change-pass" class="container tab-pane {{$change_pass_tab}}">
+                <div id="contactDiv" class="padd-100">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="commonDiv">
+                                    <h3>Change Password</h3>
+                                    <form action="{{route('change-pass')}}" method="post">
+                                        @csrf
+                                        <div class="inputDiv">
+                                            <label for="old_pass">Old Password:</label>
+                                            <div class="inputSpan w-100">
+                                                <input type="password" class="form-control" name="old_pass" id="old_pass" placeholder="Enter Old Password" required="required">
+                                            </div>
+                                        </div>
+                                        <div class="inputDiv">
+                                            <label for="new_pass">New Password</label>
+                                            <div class="inputSpan w-100">
+                                                <input type="password" class="form-control" name="new_pass" id="new_pass" placeholder="New Password" required="required">
+                                            </div>
+                                        </div>
+                                        <div class="inputDiv">
+                                            <label for="conf_pass">Confirm Password</label>
+                                            <div class="inputSpan w-100">
+                                                <input type="password" class="form-control" name="conf_pass" id="conf_pass" placeholder="Confirm Password" required="required">
+                                            </div>
+                                        </div>
+                                        <div id="message">
+                                            <h3>Password must contain the following:</h3>
+                                            <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+                                            <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+                                            <p id="number" class="invalid">A <b>number</b></p>
+                                            <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+                                        </div>
+                                        <center><button type="submit" class="btn btn-primary change_password_btn">Change Password</button></center>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -2236,6 +2314,90 @@
                 } else {
                     Swal.fire('Oops!', '', 'error');
                 }
+            }
+        })
+    })
+</script>
+<script>
+    $(".change-email").on('click', function() {
+        $(".nav-link").removeClass('active');
+        $(".generaltab").addClass('active');
+        $(".tab-pane").removeClass('active');
+        $("#general").addClass('active');
+    })
+
+    //change password script here
+    var letter = document.getElementById("letter");
+    var capital = document.getElementById("capital");
+    var number = document.getElementById("number");
+    var length = document.getElementById("length");
+    var myInput = document.getElementById("new_pass");
+
+    // When the user clicks on the password field, show the message box
+    myInput.onfocus = function() {
+        document.getElementById("message").style.display = "block";
+    }
+
+    // When the user clicks outside of the password field, hide the message box
+    myInput.onblur = function() {
+        document.getElementById("message").style.display = "none";
+    }
+    // When the user starts to type something inside the password field
+    myInput.onkeyup = function() {
+        // Validate lowercase letters
+        var lowerCaseLetters = /[a-z]/g;
+        if (myInput.value.match(lowerCaseLetters)) {
+            letter.classList.remove("invalid");
+            letter.classList.add("valid");
+        } else {
+            letter.classList.remove("valid");
+            letter.classList.add("invalid");
+        }
+
+        // Validate capital letters
+        var upperCaseLetters = /[A-Z]/g;
+        if (myInput.value.match(upperCaseLetters)) {
+            capital.classList.remove("invalid");
+            capital.classList.add("valid");
+        } else {
+            capital.classList.remove("valid");
+            capital.classList.add("invalid");
+        }
+
+        // Validate numbers
+        var numbers = /[0-9]/g;
+        if (myInput.value.match(numbers)) {
+            number.classList.remove("invalid");
+            number.classList.add("valid");
+        } else {
+            number.classList.remove("valid");
+            number.classList.add("invalid");
+        }
+
+        // Validate length
+        if (myInput.value.length >= 8) {
+            length.classList.remove("invalid");
+            length.classList.add("valid");
+        } else {
+            length.classList.remove("valid");
+            length.classList.add("invalid");
+        }
+    }
+
+    //Delete Profile
+    $(".Deleteprofile").on('click', function() {
+        Swal.fire({
+            title: 'Do you want to Delete Profile?',
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: 'Yes, Delete it!',
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                Swal.fire('Delete!', '', 'success')
+                $("#delete-profile-form").submit();
+            } else if (result.isDenied) {
+                Swal.fire('Changes are not saved', '', 'info')
             }
         })
     })

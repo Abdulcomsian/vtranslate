@@ -86,7 +86,13 @@
                                             <a href="#" role="button" class=" btn btn-primary assingto" style="font-size:10px" onclick="assignfunc('{{$job->id}}')">{{"Assign Job"}}</a>
                                             @endif
                                         </td>
-                                        <td>{{$job->expiry_date}}</td>
+                                        <td>
+                                            @if($job->expiry_status==0)
+                                            {{'No Deadline'}}
+                                            @else
+                                            {{$job->expiry_date}}
+                                            @endif
+                                        </td>
                                         <td>
                                             {{job_status($job->status)}}
                                         </td>

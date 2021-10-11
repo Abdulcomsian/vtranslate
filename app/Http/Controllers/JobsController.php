@@ -40,14 +40,14 @@ class JobsController extends Controller
     public function store(Request $request)
     {
         try {
-
+            //dd($request->all());
             $jobsModel = new Jobs();
             $jobsModel->job_title = $request->job_title;
             $jobsModel->budget = $request->job_budget;
             $jobsModel->job_desc = $request->job_desc;
             $jobsModel->job_type = $request->job_type;
             $jobsModel->job_level = $request->job_type_level;
-            if (isset($request->expiry_status)) {
+            if ($request->expiry_status == 1) {
                 $jobsModel->expiry_status = 1;
                 $jobsModel->expiry_date = $request->expiry_date;
             } else {

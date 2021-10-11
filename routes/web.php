@@ -97,6 +97,9 @@ Route::group(['prefix' => 'user', 'middleware' => ['verified', 'auth']], functio
     Route::post('/change-profile-photo', 'UserController@chagne_profile_photo')->name('change-profile-photo');
     Route::get('/view-user-profile', 'UserController@view_user_profile')->name('view-user-profile');
     Route::get('/change-user-status', 'UserController@change_user_status')->name('change-user-status');
+    Route::get('/change-pass', 'UserController@change_pass')->name('change-pass');
+    Route::post('/change-pass', 'UserController@update_pass')->name('change-pass');
+    Route::post('/profile-delete', 'UserController@delete_profile')->name('profile-delete');
 });
 //public profile freelancer
 Route::get('/public-profile/{id}', 'UserController@public_profile')->name('public-profile');

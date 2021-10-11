@@ -69,9 +69,9 @@
                             <p><b>Expalanation of Job Types</b></p>
                             <h5>Deadlines</h5>
                             <div class="radioDiv">
-                                <input type="radio" id="No-dealine" name="expriy_status" value="0" checked>
+                                <input type="radio" id="No-dealine" name="expiry_status" value="0" checked>
                                   <label for="No-dealine">No-dealine</label>
-                                  <input type="radio" id="Set-Date" name="expriy_status" value="1">
+                                  <input type="radio" id="Set-Date" name="expiry_status" value="1">
                                   <label for="Set Date">Set Date</label>
                             </div>
                             <div class="setDateDiv">
