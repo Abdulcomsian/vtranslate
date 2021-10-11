@@ -104,6 +104,7 @@
                                                 <input type="hidden" name="id" value="{{$job->id}}">
 
                                             </form>
+                                            <a href="{{route('job-applied-user',$job->id)}}"><span class="fa fa-eye" role="button"></span></a>
                                             @if($job->status==4)
                                             <span class="fa fa-star" role="button" onclick="ratefunc('{{$job->id}}','{{$job->job_assign}}','{{$job->job_title}}')">Rate</span>
                                             @endif

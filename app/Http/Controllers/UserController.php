@@ -380,25 +380,40 @@ class UserController extends Controller
     //view user profile
     public function view_user_profile()
     {
-        $workHistory = WorkHistory::where('user_id', Auth::user()->id)->get();
-        if (Auth::user()->user_status == 'Translator') {
-            $userData = User::with('usergeneralinfo', 'userlanguages', 'usersoftwares', 'userspicialize', 'uservoicover', 'userfiles', 'usermotherlanguages', 'usersevices')->where('id', Auth::user()->id)->get();
-            $jobapplied = JobProposal::where('user_id', Auth::user()->id)->count();
-            return view('screens.freelancer.freelancer', compact('userData', 'jobapplied', 'workHistory'));
-        } else {
-            $userData = User::with('usergeneralinfo', 'userlanguages', 'usersoftwares', 'userspicialize', 'uservoicover', 'userfiles', 'usermotherlanguages', 'usersevices')->where('id', Auth::user()->id)->get();
-            $jobposted = Jobs::where('user_id', Auth::user()->id)->count();
-            return view('screens.agencies.agency', compact('userData', 'jobposted', 'workHistory'));
+        try {
+            $workHistory = WorkHistory::where('user_id', Auth::user()->id)->get();
+            if (Auth::user()->user_status == 'Translator') {
+                $userData = User::with('usergeneralinfo', 'userlanguages', 'usersoftwares', 'userspicialize', 'uservoicover', 'userfiles', 'usermotherlanguages', 'usersevices')->where('id', Auth::user()->id)->get();
+                $jobapplied = JobProposal::where('user_id', Auth::user()->id)->count();
+                return view('screens.freelancer.freelancer', compact('userData', 'jobapplied', 'workHistory'));
+            } else {
+                $userData = User::with('usergeneralinfo', 'userlanguages', 'usersoftwares', 'userspicialize', 'uservoicover', 'userfiles', 'usermotherlanguages', 'usersevices')->where('id', Auth::user()->id)->get();
+                $jobposted = Jobs::where('user_id', Auth::user()->id)->count();
+                return view('screens.agencies.agency', compact('userData', 'jobposted', 'workHistory'));
+            }
+        } catch (\Exception $exception) {
+            toastr()->error('something went wrong');
+            return back();
         }
     }
 
     //use public profile sprofile
     public function public_profile($id)
     {
-
-        $userData = User::with('usergeneralinfo', 'userlanguages', 'usersoftwares', 'userspicialize', 'uservoicover', 'userfiles', 'usermotherlanguages', 'usersevices')->where('id', $id)->get();
-        $jobapplied = JobProposal::where('user_id', $id)->count();
-        return view('screens.freelancer.freelancer', compact('userData', 'jobapplied'));
+        try {
+            $workHistory = WorkHistory::where('user_id', $id)->get();
+            $userData = User::with('usergeneralinfo', 'userlanguages', 'usersoftwares', 'userspicialize', 'uservoicover', 'userfiles', 'usermotherlanguages', 'usersevices')->where('id', $id)->get();
+            $jobapplied = JobProposal::where('user_id', $id)->count();
+            $checkuser = User::find($id);
+            if ($checkuser->user_status == 'Translator') {
+                return view('screens.freelancer.freelancer', compact('userData', 'jobapplied', 'workHistory'));
+            } else {
+                return view('screens.agencies.agency', compact('userData', 'jobapplied', 'workHistory'));
+            }
+        } catch (\Exception $exception) {
+            toastr()->error('something went wrong');
+            return back();
+        }
     }
 
     //change user status

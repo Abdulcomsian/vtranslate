@@ -353,4 +353,18 @@ class JobsController extends Controller
             return back();
         }
     }
+
+    //job applied user
+    public function job_applied_user($id)
+    {
+
+        // try {
+        $job_applied_user = JobProposal::with('user')->with('job')->where('jobs_id', $id)->get();
+        //dd($job_applied_user);
+        return view('screens.job-applied-user', compact('job_applied_user'));
+        // } catch (\Exception $exception) {
+        //     toastr()->error('Something went wrong, try again');
+        //     return back();
+        // }
+    }
 }

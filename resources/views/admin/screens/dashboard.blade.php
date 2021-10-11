@@ -43,7 +43,7 @@
                                     <td>
                                         <!-- <span class="edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span> -->
                                         <span class="delete"><i class="fa fa-trash" onclick="deletefreelancer('{{$user->id}}')"></i></span>
-                                        <span class="edit"><i class="fa fa-eye" aria-hidden="true"></i></span>
+                                        <a href="{{route('public-profile',$user->id)}}"><span class="edit"><i class="fa fa-eye" aria-hidden="true"></i></span></a>
                                     </td>
                                 </tr>
                                 @endif
@@ -79,7 +79,7 @@
                                     <td>
                                         <!-- <span class="edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span> -->
                                         <span class="delete"><i class="fa fa-trash" onclick="deleteagency('{{$user->id}}')"></i></span>
-                                        <span class="edit"><i class="fa fa-eye" aria-hidden="true"></i></span>
+                                        <a href="{{route('public-profile',$user->id)}}"><span class="edit"><i class="fa fa-eye" aria-hidden="true"></i></span></a>
                                     </td>
                                 </tr>
                                 @endif

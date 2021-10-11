@@ -110,6 +110,7 @@ Route::middleware(['verified', 'auth'])->group(function () {
     Route::get('/job-details/{id}', 'JobsController@job_details')->name('job-details');
     //SEND JOB PROPOSAL OR MESSAGE ROUTE
     Route::post('/job-send-message', 'JobsController@job_send_message')->name('job-send-message');
+    Route::get('/job-applied-user/{id}', 'JobsController@job_applied_user')->name('job-applied-user');
 });
 
 Route::get('/contact-us', 'ContactUsController@index')->name('contact-us');

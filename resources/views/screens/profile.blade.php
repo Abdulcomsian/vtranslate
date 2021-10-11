@@ -1049,9 +1049,8 @@
                                                         <th>Mother languages</th>
                                                     </thead>
                                                     <tbody>
-
                                                         <td class="text-center ml-5">
-                                                            <select id="mother_language" name="mother_language" required="required">
+                                                            <select id="mother_language" name="mother_language" required>
                                                                 <option value="">Select Language</option>
                                                                 <option value="af">Afrikaans</option>
                                                                 <option value="sq">Albanian - shqip</option>
@@ -1251,7 +1250,7 @@
                                                     </thead>
                                                     <tbody>
                                                         <td class="text-center ml-5">
-                                                            <select id="from_languages" name="from_languages">
+                                                            <select id="from_languages" name="from_languages" required>
                                                                 <option value="">Select Language</option>
                                                                 <option value="af">Afrikaans</option>
                                                                 <option value="sq">Albanian - shqip</option>
@@ -1409,7 +1408,7 @@
                                                     </thead>
                                                     <tbody>
                                                         <td class="text-center ml-5">
-                                                            <select id="to_languages" name="to_languages">
+                                                            <select id="to_languages" name="to_languages" required>
                                                                 <option value="">Select Language</option>
                                                                 <option value="af">Afrikaans</option>
                                                                 <option value="sq">Albanian - shqip</option>

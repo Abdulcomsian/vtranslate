@@ -38,7 +38,7 @@
 
                         <div class="multiBtn">
                             <button type="submit" class="commonBtn mb-4 ">Submit You Request</button>
-                            <a href="/"><button class="commonBtn">Back</button></a>
+                            <a href="/"><button type="button" class="commonBtn">Back</button></a>
                         </div>
 
                     </form>
