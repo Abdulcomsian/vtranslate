@@ -67,18 +67,17 @@ class FreelancerController extends Controller
                $allafreelancermembers = User::where('user_status', 'Translator')->get();
                $countries = Country::get();
                $FreelancerData = User::with('usergeneralinfo', 'userlanguages', 'usersoftwares', 'userspicialize', 'uservoicover', 'userfiles', 'usermotherlanguages', 'usersevices')
-
-                    ->when($request->freelancerid, function ($query) use ($request) {
-                         return $query->orwhere('id', $request->freelancerid);
+                    ->when($request->name, function ($query) use ($request) {
+                         return $query->orwhere('fname', 'like', '%' . $request->name . '%')->orwhere('lname', 'like', '%' . $request->name . '%');
                     })
                     ->when($request->keyword, function ($query) use ($request) {
                          return $query->whereHas('usergeneralinfo', function ($query) {
-                              $query->orwhere('special_keywords', '=', \Request::input('keyword'));
+                              $query->orwhere('special_keywords', 'like', '%' . \Request::input('keyword') . '%');
                          });
                     })
                     ->when($request->languages, function ($query) use ($request) {
                          return $query->whereHas('userlanguages', function ($query) {
-                              $query->orwhere('from_languages', '=', \Request::input('languages'))->orwhere('to_languages', '=', \Request::input('languages'));
+                              $query->orwhere('from_languages', '=', \Request::input('slanguages'))->orwhere('to_languages', '=', \Request::input('tlanguages'));
                          });
                     })
                     ->when($request->country, function ($query) use ($request) {

@@ -52,10 +52,11 @@
                                         <img src="@if(auth::user()->profile_photo){{asset('profile-images/').'/'. auth::user()->profile_photo}}@else{{ 'https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg'}}@endif" width="40" height="40" class="rounded-circle">
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                        <a><strong>{{auth::user()->fname.' '.auth::user()->lname}}</strong></a>
+                                        <a><span class="fa fa-user"></span> <strong>{{auth::user()->fname.' '.auth::user()->lname}}</strong></a>
                                         <a>({{auth::user()->user_status}})</a>
                                         <hr>
-                                        <a class="dropdown-item" href="{{ url('user/profile') }}">Edit Profile</a>
+                                        <a class="dropdown-item" href="{{ route('view-user-profile') }}"><span class="fa fa-eye"></span> view Profile </a>
+                                        <a class="dropdown-item" href="{{ url('user/profile') }}"><span class="fa fa-pencil"></span> Edit Profile </a>
                                         <a class="dropdown-item" href="{{ url('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign-in" aria-hidden="true"></i> Logout</a>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
