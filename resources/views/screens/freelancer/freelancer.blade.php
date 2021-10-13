@@ -20,6 +20,8 @@
                         <div class="jobPosted">
                             <p>{{$jobapplied}}</p>
                             <p>Job Applied</p>
+                            <br>
+                            @if($userData[0]->resume)<p><a href="{{asset('files/resume').'/'.$userData[0]->resume ?? ''}}"><i class=" fa fa-download" aria-hidden="true"></i> Resume</a></p>@endif
                         </div>
                     </div>
                 </div>

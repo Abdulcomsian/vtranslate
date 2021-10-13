@@ -55,7 +55,7 @@
                                         <a><span class="fa fa-user"></span> <strong>{{auth::user()->fname.' '.auth::user()->lname}}</strong></a>
                                         <a>({{auth::user()->user_status}})</a>
                                         <hr>
-                                        <a class="dropdown-item" href="{{ route('profile') }}"><span class="fa fa-eye"></span> view Profile </a>
+                                        <a class="dropdown-item" href="{{ route('view-user-profile') }}"><span class="fa fa-eye"></span> view Profile </a>
                                         <a class="dropdown-item" href="{{ url('user/profile') }}"><span class="fa fa-pencil"></span> Edit Profile </a>
                                         <a class="dropdown-item" href="{{ url('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign-in" aria-hidden="true"></i> Logout</a>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
