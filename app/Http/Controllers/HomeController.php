@@ -79,7 +79,7 @@ class HomeController extends Controller
                 })
                 ->when($request->language, function ($query) use ($request) {
                     return $query->whereHas('jobspairlang', function ($query) {
-                        $query->where('from_lang', '=', \Request::input('language'))->orwhere('to_lang', '=', \Request::input('language'));
+                        $query->where('from_lang', '=', \Request::input('slanguage'))->orwhere('to_lang', '=', \Request::input('tlanguage'));
                     });
                 })
                 ->paginate(20);
@@ -134,7 +134,7 @@ class HomeController extends Controller
                 })
                 ->when($request->language, function ($query) use ($request) {
                     return $query->whereHas('jobspairlang', function ($query) {
-                        $query->where('from_lang', '=', \Request::input('language'))->orwhere('to_lang', '=', \Request::input('language'));
+                        $query->where('from_lang', '=', \Request::input('slanguage'))->orwhere('to_lang', '=', \Request::input('tlanguage'));
                     });
                 })
                 ->paginate(20);

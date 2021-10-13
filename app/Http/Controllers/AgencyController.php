@@ -69,16 +69,16 @@ class AgencyController extends Controller
             $AgencyData = User::with('usergeneralinfo', 'userlanguages', 'usersoftwares', 'userspicialize', 'uservoicover', 'userfiles', 'usermotherlanguages', 'usersevices')
 
                 ->when($request->agencyid, function ($query) use ($request) {
-                    return $query->orwhere('id', $request->agencyid);
+                    return $query->orwhere('name', 'like', '%' . $request->name . '%')->orwhere('lname', 'like', '%' . $request->name . '%');
                 })
                 ->when($request->keyword, function ($query) use ($request) {
                     return $query->whereHas('usergeneralinfo', function ($query) {
-                        $query->orwhere('special_keywords', '=', \Request::input('keyword'));
+                        $query->orwhere('special_keywords', 'like', '%' . \Request::input('keyword') . '%');
                     });
                 })
                 ->when($request->languages, function ($query) use ($request) {
                     return $query->whereHas('userlanguages', function ($query) {
-                        $query->orwhere('from_languages', '=', \Request::input('languages'))->orwhere('to_languages', '=', \Request::input('languages'));
+                        $query->orwhere('from_languages', '=', \Request::input('alanguages'))->orwhere('to_languages', '=', \Request::input('tlanguages'));
                     });
                 })
                 ->when($request->country, function ($query) use ($request) {
