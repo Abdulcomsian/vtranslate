@@ -37,6 +37,8 @@ class User extends Authenticatable implements MustVerifyEmail
       'news_notification',
       'jobsnotification',
       'show_rated_users',
+      'total_profile_section',
+      'mark_profile_section'
    ];
 
    /**

@@ -22,12 +22,12 @@ class FreelancerController extends Controller
      public function index()
      {
           try {
-               $FreelancerData = User::with('usergeneralinfo', 'userlanguages', 'usersoftwares', 'userspicialize', 'uservoicover', 'userfiles', 'usermotherlanguages', 'usersevices')->where('user_status', 'Translator')->paginate(12);
+               $FreelancerData = User::with('usergeneralinfo', 'userlanguages', 'usersoftwares', 'userspicialize', 'uservoicover', 'userfiles', 'usermotherlanguages', 'usersevices')->where('user_status', 'Freelancer')->paginate(12);
                //freelancer of the day
                $topfreelancer = User::with('rates')
                     ->join('work_histories', 'users.id', '=', 'work_histories.user_id')
                     ->select('users.*', DB::raw('avg(rating) as avgrate,count(rating) as totalreview'))
-                    ->where(['users.user_status' => 'Translator'])
+                    ->where(['users.user_status' => 'Freelancer'])
                     ->groupBy('work_histories.user_id')
                     ->orderBy('avgrate', 'Desc')
                     ->limit(1)
@@ -43,8 +43,8 @@ class FreelancerController extends Controller
      public function search_freelancer()
      {
           try {
-               $allafreelancermembers = User::where('user_status', 'Translator')->get();
-               $FreelancerData = User::with('usergeneralinfo', 'userlanguages', 'usersoftwares', 'userspicialize', 'uservoicover', 'userfiles', 'usermotherlanguages', 'usersevices')->where('user_status', 'Translator')->get();
+               $allafreelancermembers = User::where('user_status', 'Freelancer')->get();
+               $FreelancerData = User::with('usergeneralinfo', 'userlanguages', 'usersoftwares', 'userspicialize', 'uservoicover', 'userfiles', 'usermotherlanguages', 'usersevices')->where('user_status', 'Freelancer')->get();
                $countries = Country::get();
                //agency of the day
                $topagency = User::with('rates')
@@ -64,7 +64,7 @@ class FreelancerController extends Controller
      public function search(Request $request)
      {
           try {
-               $allafreelancermembers = User::where('user_status', 'Translator')->get();
+               $allafreelancermembers = User::where('user_status', 'Freelancer')->get();
                $countries = Country::get();
                $FreelancerData = User::with('usergeneralinfo', 'userlanguages', 'usersoftwares', 'userspicialize', 'uservoicover', 'userfiles', 'usermotherlanguages', 'usersevices')
                     ->when($request->name, function ($query) use ($request) {
@@ -83,7 +83,7 @@ class FreelancerController extends Controller
                     ->when($request->country, function ($query) use ($request) {
                          return $query->orwhere('country_id', '=', $request->country);
                     })
-                    ->where('user_status', 'Translator')
+                    ->where('user_status', 'Freelancer')
                     ->get();
                $topagency = User::with('rates')
                     ->join('work_histories', 'users.id', '=', 'work_histories.user_id')

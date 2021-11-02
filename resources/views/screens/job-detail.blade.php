@@ -11,7 +11,7 @@
                     <li class="nav-item">
                         <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Bidding</a>
                     </li>
-                    @if(auth::user()->user_status=="Translator")
+                    @if(auth::user()->user_status=="Freelancer")
                     <li class="nav-item">
                         <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Send a Message to the Job Poster</a>
                     </li>

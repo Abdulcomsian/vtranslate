@@ -23,7 +23,8 @@ class UserSeeder extends Seeder
                 'username' => 'tst1',
                 'email_verified_at' => '2021-07-30',
                 'country_id' => '170',
-                'user_status' => 'Translator',
+                'user_status' => 'Freelancer',
+                'total_profile_section' => 10,
                 'password' => bcrypt('translator1'),
             ]
         );
@@ -35,7 +36,8 @@ class UserSeeder extends Seeder
                 'username' => 'tst2',
                 'email_verified_at' => '2021-07-30',
                 'country_id' => '170',
-                'user_status' => 'Translator',
+                'user_status' => 'Freelancer',
+                'total_profile_section' => 10,
                 'password' => bcrypt('translator2'),
             ]
         );
@@ -47,7 +49,8 @@ class UserSeeder extends Seeder
                 'username' => 'tst3',
                 'email_verified_at' => '2021-07-30',
                 'country_id' => '170',
-                'user_status' => 'Translator',
+                'user_status' => 'Freelancer',
+                'total_profile_section' => 10,
                 'password' => bcrypt('translator3'),
             ]
         );

@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Auth;
 use File;
+use DB;
 
 class UserController extends Controller
 {
@@ -81,6 +82,8 @@ class UserController extends Controller
             }
 
             //update record in user table
+            $mark_profile_section=Auth::user()->mark_profile_section;
+            $mark_profile_section++;
             $userdata = User::find(Auth::user()->id)->update([
                 'private_information' => isset($request->private_information) ? 1 : 0,
                 'disallow_indexing'  => isset($request->disallow_indexing) ? 1 : 0,
@@ -92,7 +95,8 @@ class UserController extends Controller
                 'lname'  => $request->lname,
                 'email'  => $request->email,
                 'zipcode'  => $request->zipcode ?? '',
-                'country_id'  => $request->country_id
+                'country_id'  => $request->country_id,
+                'mark_profile_section'=>$mark_profile_section,
             ]);
             //toaster message
             toastr()->success('User Gneral Info Saved Successfull!');
@@ -121,6 +125,7 @@ class UserController extends Controller
                 $file->move('files/resume/', $name);
                 $userModel = User::find(Auth::user()->id);
                 $userModel->resume = $name;
+                $userModel->mark_profile_section=Auth::user()->mark_profile_section+1;
                 $userModel->save();
                 //toaster message
                 toastr()->success('User Resume Saved Successfull!');
@@ -141,6 +146,8 @@ class UserController extends Controller
             $UserLanguages->to_languages = $request->to_languages;
             $UserLanguages->user_id = Auth::user()->id;
             $UserLanguages->save();
+            //profile progress
+            User::find(Auth::user()->id)->update(['mark_profile_section'=>Auth::user()->mark_profile_section+1]);
             toastr()->success('User Language Saved Successfull!');
             return \Redirect::route('profile')->with('currtab', $request->currtab);
         } catch (\Exception $exception) {
@@ -156,6 +163,8 @@ class UserController extends Controller
             $MotherLanguages->mother_language = $request->mother_language;
             $MotherLanguages->user_id = Auth::user()->id;
             $MotherLanguages->save();
+            //profile progress
+             User::find(Auth::user()->id)->update(['mark_profile_section'=>Auth::user()->mark_profile_section+1]);
             toastr()->success('User Mother Language Saved Successfull!');
             return \Redirect::route('profile')->with('currtab', $request->currtab);
         } catch (\Exception $exception) {
@@ -175,6 +184,8 @@ class UserController extends Controller
             $UserServicesRates->min_rate_per_minute = $request->min_rate_per_minute;
             $UserServicesRates->user_id = Auth::user()->id;
             $UserServicesRates->save();
+            //profile progress
+             User::find(Auth::user()->id)->update(['mark_profile_section'=>Auth::user()->mark_profile_section+1]);
             toastr()->success('User Services Saved Successfull!');
             return \Redirect::route('profile')->with('currtab', $request->currtab);
         } catch (\Exception $exception) {
@@ -194,6 +205,8 @@ class UserController extends Controller
                 $UserVoiceOver->language = $request->language;
                 $UserVoiceOver->user_id = Auth::user()->id;
                 $UserVoiceOver->save();
+                //profile progress
+                 User::find(Auth::user()->id)->update(['mark_profile_section'=>Auth::user()->mark_profile_section+1]);
                 toastr()->success('User VoiceOver Language Saved Successfull!');
             } else {
                 toastr()->error('User VoiceOver Language Already Added');
@@ -220,6 +233,8 @@ class UserController extends Controller
                 $UserSpecializations->spicializations = $request->spicializations;
                 $UserSpecializations->user_id = Auth::user()->id;
                 $UserSpecializations->save();
+                //profile progress
+                 User::find(Auth::user()->id)->update(['mark_profile_section'=>Auth::user()->mark_profile_section+1]);
             }
             toastr()->success('User specializtions Saved Successfull!');
             return \Redirect::route('profile')->with('currtab', $request->currtab);
@@ -243,6 +258,8 @@ class UserController extends Controller
                 $UserSoftware->software_tools = $request->softwares;
                 $UserSoftware->user_id = Auth::user()->id;
                 $UserSoftware->save();
+                //profile progress
+                User::find(Auth::user()->id)->update(['mark_profile_section'=>Auth::user()->mark_profile_section+1]);
             }
             toastr()->success('User Softwares Saved Successfull!');
             return \Redirect::route('profile')->with('currtab', $request->currtab);
@@ -275,6 +292,8 @@ class UserController extends Controller
             $UserFiles->comments = $request->comments;
             $UserFiles->user_id = Auth::user()->id;
             $UserFiles->save();
+            //profile progress
+             User::find(Auth::user()->id)->update(['mark_profile_section'=>Auth::user()->mark_profile_section+1]);
             toastr()->success('User Files Saved Successfully!!');
             return \Redirect::route('profile');
         } catch (\Exception $exception) {
@@ -368,6 +387,7 @@ class UserController extends Controller
 
             User::find(Auth::user()->id)->update([
                 'profile_photo' => $name,
+                'mark_profile_section'=>Auth::user()->mark_profile_section+1
             ]);
             toastr()->success('Profile Photo Changed Successfully');
             return \Redirect::route('profile');
@@ -382,7 +402,7 @@ class UserController extends Controller
     {
         try {
             $workHistory = WorkHistory::where('user_id', Auth::user()->id)->get();
-            if (Auth::user()->user_status == 'Translator') {
+            if (Auth::user()->user_status == 'Freelancer') {
                 $userData = User::with('usergeneralinfo', 'userlanguages', 'usersoftwares', 'userspicialize', 'uservoicover', 'userfiles', 'usermotherlanguages', 'usersevices')->where('id', Auth::user()->id)->get();
                 $jobapplied = JobProposal::where('user_id', Auth::user()->id)->count();
                 return view('screens.freelancer.freelancer', compact('userData', 'jobapplied', 'workHistory'));
@@ -405,7 +425,7 @@ class UserController extends Controller
             $userData = User::with('usergeneralinfo', 'userlanguages', 'usersoftwares', 'userspicialize', 'uservoicover', 'userfiles', 'usermotherlanguages', 'usersevices')->where('id', $id)->get();
             $jobapplied = JobProposal::where('user_id', $id)->count();
             $checkuser = User::find($id);
-            if ($checkuser->user_status == 'Translator') {
+            if ($checkuser->user_status == 'Freelancer') {
                 return view('screens.freelancer.freelancer', compact('userData', 'jobapplied', 'workHistory'));
             } else {
                 return view('screens.agencies.agency', compact('userData', 'jobapplied', 'workHistory'));

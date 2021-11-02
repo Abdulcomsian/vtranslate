@@ -13,7 +13,7 @@
                         @csrf
                         <div class="inputDiv">
                             <label for="">Freelancer</label>
-                            <input class="form-control" name="name" id="name" required placeholder="Enter Freelancer Name" />
+                            <input class="form-control" name="name" id="name" placeholder="Enter Freelancer Name" />
                             <!-- <select name="freelancerid" id="freelancerid" required>
                                 <option value="">Select Freelancer</option>
                                 @foreach($allafreelancermembers as $freelance)

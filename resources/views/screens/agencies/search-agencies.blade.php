@@ -13,7 +13,7 @@
                         @csrf
                         <div class="inputDiv">
                             <label for="">Agency</label>
-                            <input class="form-control" name="name" id="name" required placeholder="Enter Agency Name" />
+                            <input class="form-control" name="name" id="name" placeholder="Enter Agency Name" />
                             <!-- <select name="agencyid" id="agencyid" required>
                                 <option value="">Select Agency</option>
                                 @foreach($allagencymembers as $agency)

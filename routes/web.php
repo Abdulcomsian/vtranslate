@@ -179,7 +179,7 @@ Route::group([
     Route::get('/', [
         'as'         => 'home',
         'uses'       => 'devdojoController\ChatterController@index',
-        'middleware' => $middleware('home'),
+        'middleware' => 'profile',
     ]);
 
     // Single category view.

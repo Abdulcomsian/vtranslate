@@ -404,7 +404,7 @@
                                                 <span>@if($job->expiry_date){{$diff_in_days." Day Left"}}@else{{'No Deadline'}}@endif</span>
                                             </p>
                                         </div>
-                                        @if(auth::check() && auth::user()->user_status=="Translator")
+                                        @if(auth::check() && auth::user()->user_status=="Freelancer")
                                         @php
                                         $favourite=\App\Models\FavouriteJobs::where('jobs_id',$job->id)->where('user_id',auth::user()->id)->first();
                                         @endphp
