@@ -104,25 +104,25 @@ Route::group(['prefix' => 'user', 'middleware' => ['verified', 'auth']], functio
 //public profile freelancer
 Route::get('/public-profile/{id}', 'UserController@public_profile')->name('public-profile');
 
-Route::middleware(['verified', 'auth'])->group(function () {
+Route::middleware(['verified', 'auth','profile'])->group(function () {
     Route::get('/post-a-job', 'JobsController@index')->name('post-a-job');
     Route::post('/post-a-job', 'JobsController@store')->name('post-a-job');
     Route::get('/job-details/{id}', 'JobsController@job_details')->name('job-details');
     //SEND JOB PROPOSAL OR MESSAGE ROUTE
     Route::post('/job-send-message', 'JobsController@job_send_message')->name('job-send-message');
     Route::get('/job-applied-user/{id}', 'JobsController@job_applied_user')->name('job-applied-user');
+    //new work
+    Route::get('/make-job-fav', 'JobsController@make_job_fav')->name('make-job-fav');
+    Route::get('/remove-job-fav', 'JobsController@remove_job_fav')->name('remove-job-fav');
+    Route::get('/my-job', 'JobsController@my_job')->name('my-job');
 });
 
 Route::get('/contact-us', 'ContactUsController@index')->name('contact-us');
 Route::post('/contact-us', 'ContactUsController@store')->name('contact-us');
-
 Route::get('/job-search', 'HomeController@job_search')->name('job-search');
 Route::get('/search-job', 'HomeController@search_job')->name('search-job');
-Route::get('/make-job-fav', 'JobsController@make_job_fav')->name('make-job-fav');
-Route::get('/remove-job-fav', 'JobsController@remove_job_fav')->name('remove-job-fav');
 Route::get('/favourite-job', 'JobsController@favourite_job')->name('favourite-job');
 Route::get('/favourite-job-search', 'JobsController@favourite_job_search')->name('favourite-job-search');
-Route::get('/my-job', 'JobsController@my_job')->name('my-job');
 Route::post('/job-delete', 'JobsController@job_delete')->name('job-delete');
 Route::get('/job-update', 'JobsController@job_update')->name('job-update');
 Route::post('/job-assignto', 'JobsController@job_assignto')->name('job-assignto');

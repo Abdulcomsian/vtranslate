@@ -17,10 +17,10 @@
                             <label for="">Job Title <span class="required">*</span></label>
                             <input class="form-control" type="text" name="job_title" id="job_title" placeholder="Job Title" required="required">
                         </div>
-                        <div class="inputDiv">
+                        <!-- <div class="inputDiv">
                             <label for="">Job Budget <span class="required">*</span></label>
                             <input min="0" oninput="this.value = !!this.value &amp;&amp; Math.abs(this.value) >= 0 ? Math.abs(this.value) : null" class="form-control" type="number" name="job_budget" id="job_budget" placeholder="Budget" required="required">
-                        </div>
+                        </div> -->
                         <div class="inputDiv">
                             <label for="">Job Description <span class="required">*</span></label>
                             <textarea class="form-control" name="job_desc" id="job_desc" cols="30" rows="10" required></textarea>
@@ -731,12 +731,18 @@
 @endsection
 @section('script')
 <script type="text/javascript">
+    var i=1;
     $(".addpair").click(function() {
-        $(".pairlng").append($("#pairlngdev").html());
+        if(i<=7)
+        {
+         $(".pairlng").append($("#pairlngdev").html());
+         i++
+        }
     })
 
     $(document).on("click", ".removepairlng", function() {
         $(this).parent().parent().remove();
+        i--;
     })
 </script>
 @endsection

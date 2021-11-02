@@ -43,7 +43,7 @@ class JobsController extends Controller
             //dd($request->all());
             $jobsModel = new Jobs();
             $jobsModel->job_title = $request->job_title;
-            $jobsModel->budget = $request->job_budget;
+            // $jobsModel->budget = $request->job_budget;
             $jobsModel->job_desc = $request->job_desc;
             $jobsModel->job_type = $request->job_type;
             $jobsModel->job_level = $request->job_type_level;
