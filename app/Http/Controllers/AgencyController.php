@@ -13,6 +13,7 @@ use App\Models\UserFiles;
 use App\Models\UserMotherLanguages;
 use App\Models\UserServicesRates;
 use App\Models\Country;
+use App\Models\JobsPairLanguages;
 use DB;
 
 class AgencyController extends Controller
