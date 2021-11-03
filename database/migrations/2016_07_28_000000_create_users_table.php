@@ -36,7 +36,7 @@ class CreateUsersTable extends Migration
             $table->boolean('jobsnotification')->default('0')->comment = ' 0 for off  and 1 for on';
             $table->boolean('show_rated_users')->default('0')->comment = ' 1 for Show the list of all outsourcers and service providers rated by you on your profile page';
             $table->integer('total_profile_section')->default('0');
-            $table->integer('mark_profile_section')->default('0');
+            $table->string('mark_profile_section');
             $table->foreign('country_id')->references('id')->on('countries');
             $table->rememberToken();
             $table->softDeletes();

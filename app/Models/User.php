@@ -40,7 +40,6 @@ class User extends Authenticatable implements MustVerifyEmail
       'total_profile_section',
       'mark_profile_section'
    ];
-
    /**
     * The attributes that should be hidden for serialization.
     *
@@ -58,6 +57,7 @@ class User extends Authenticatable implements MustVerifyEmail
     */
    protected $casts = [
       'email_verified_at' => 'datetime',
+      'mark_profile_section' => 'array',
    ];
 
    public function country() //relation with country model

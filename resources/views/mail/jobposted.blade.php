@@ -1,6 +1,6 @@
 @component('mail::message')
 <div class="background-color:#454545;">Hello Admin</div><br>
-{{auth::user()->fname}} has posted new job Kindly check and approve the job.
+Agency has posted new job Kindly check and approve the job.
 <hr>
 Thank you for visiting vtranslate
 

@@ -19,8 +19,10 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ url('search-freelancer') }}">Search Freelancer</a>
                             <a class="dropdown-item" href="{{ url('top-freelancer') }}">Top 20</a>
+                            @if(auth::check() && auth::user()->user_status=="Freelancer")
                             <a class="dropdown-item" href="{{url('/favourite-job')}}">My Favourite</a>
                             <a class="dropdown-item" href="{{url('/my-assign-jobs')}}">My Assign Jobs</a>
+                            @endif
                         </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -28,8 +30,10 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ url('search-agencies') }}">Search agencies</a>
                             <a class="dropdown-item" href="{{ url('top-agencies') }}">Top 20</a>
+                            @if(auth::check() && auth::user()->user_status=="Employer")
                             <a class="dropdown-item" href="{{ url('my-job') }}">My Jobs</a>
                             <a class="dropdown-item" href="{{route('post-a-job')}}">Post A Job</a>
+                            @endif
                         </div>
                     </li>
                     <li class="nav-item">

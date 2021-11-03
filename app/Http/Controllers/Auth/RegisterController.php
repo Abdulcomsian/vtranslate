@@ -86,13 +86,10 @@ class RegisterController extends Controller
             } else {
                 $job_notification_status = 0;
             }
-            if($data['user_status']=="Freelancer")
-            {
-                $total_profile_section=10;
-            }
-            else
-            {
-                $total_profile_section=2;
+            if ($data['user_status'] == "Freelancer") {
+                $total_profile_section = 9;
+            } else {
+                $total_profile_section = 1;
             }
             return User::create([
                 'fname' => $data['fname'],
@@ -102,7 +99,7 @@ class RegisterController extends Controller
                 'email' => $data['email'],
                 'username' => $data['username'],
                 'user_status' => $data['user_status'],
-                'total_profile_section'=>$total_profile_section,
+                'total_profile_section' => $total_profile_section,
                 'job_notification' => $job_notification_status,
                 'password' => Hash::make($data['password']),
             ]);
