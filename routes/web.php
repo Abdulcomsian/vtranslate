@@ -33,7 +33,7 @@ Auth::routes(['verify' => true]);
 Route::get('email/verify', [App\Http\Controllers\Auth\VerificationController::class, 'show'])->name('verification.notice');
 
 //home page
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->middleware(['profile'])->name('home');
 
 //about us
 Route::get('/about-us', function () {
@@ -104,7 +104,7 @@ Route::group(['prefix' => 'user', 'middleware' => ['verified', 'auth']], functio
 //public profile freelancer
 Route::get('/public-profile/{id}', 'UserController@public_profile')->name('public-profile');
 
-Route::middleware(['verified', 'auth','profile'])->group(function () {
+Route::middleware(['verified', 'auth', 'profile'])->group(function () {
     Route::get('/post-a-job', 'JobsController@index')->name('post-a-job');
     Route::post('/post-a-job', 'JobsController@store')->name('post-a-job');
     Route::get('/job-details/{id}', 'JobsController@job_details')->name('job-details');
@@ -115,18 +115,18 @@ Route::middleware(['verified', 'auth','profile'])->group(function () {
     Route::get('/make-job-fav', 'JobsController@make_job_fav')->name('make-job-fav');
     Route::get('/remove-job-fav', 'JobsController@remove_job_fav')->name('remove-job-fav');
     Route::get('/my-job', 'JobsController@my_job')->name('my-job');
+    Route::get('/favourite-job', 'JobsController@favourite_job')->name('favourite-job');
+    Route::get('/favourite-job-search', 'JobsController@favourite_job_search')->name('favourite-job-search');
+    Route::get('/my-assign-jobs', 'JobsController@my_assign_jobs')->name('my-assign-jobs');
 });
 
 Route::get('/contact-us', 'ContactUsController@index')->name('contact-us');
 Route::post('/contact-us', 'ContactUsController@store')->name('contact-us');
 Route::get('/job-search', 'HomeController@job_search')->name('job-search');
 Route::get('/search-job', 'HomeController@search_job')->name('search-job');
-Route::get('/favourite-job', 'JobsController@favourite_job')->name('favourite-job');
-Route::get('/favourite-job-search', 'JobsController@favourite_job_search')->name('favourite-job-search');
 Route::post('/job-delete', 'JobsController@job_delete')->name('job-delete');
 Route::get('/job-update', 'JobsController@job_update')->name('job-update');
 Route::post('/job-assignto', 'JobsController@job_assignto')->name('job-assignto');
-Route::get('/my-assign-jobs', 'JobsController@my_assign_jobs')->name('my-assign-jobs');
 Route::post('/rate-job', 'JobsController@rate_job')->name('rate-job');
 Route::post('/cancel-job', 'JobsController@cancel_job')->name('cancel-job');
 //freelancer search and top freelancer 
@@ -139,7 +139,7 @@ Route::get('/top-agencies', 'AgencyController@index')->name('top-agencies');
 Route::get('/search-agencies', 'AgencyController@search_agencies')->name('search-agencies');
 Route::post('/search-agencies', 'AgencyController@search')->name('search-agencies');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware(['profile'])->name('home');
 //Show this page after verifying email address
 Route::view('/thanks-for-registration', 'auth.thanks-for-registration');
 //Show thanks page after successfull registeration of user

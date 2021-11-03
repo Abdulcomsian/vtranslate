@@ -42,6 +42,8 @@ class LoginController extends Controller
     {
         if (Auth::User()->user_status == "Admin") {
             return redirect('/dashboard');
+        } else {
+            return redirect('/user/profile');
         }
     }
 }

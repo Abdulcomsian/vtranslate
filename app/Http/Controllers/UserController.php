@@ -82,8 +82,15 @@ class UserController extends Controller
             }
 
             //update record in user table
-            $mark_profile_section=Auth::user()->mark_profile_section;
-            $mark_profile_section++;
+            $mark_profile_section = Auth::user()->mark_profile_section;
+            if ($mark_profile_section) {
+                if (!in_array(1, $mark_profile_section)) {
+                    array_push($mark_profile_section, 1);
+                }
+            } else {
+                $mark_profile_section = array();
+                array_push($mark_profile_section, 1);
+            }
             $userdata = User::find(Auth::user()->id)->update([
                 'private_information' => isset($request->private_information) ? 1 : 0,
                 'disallow_indexing'  => isset($request->disallow_indexing) ? 1 : 0,
@@ -96,7 +103,7 @@ class UserController extends Controller
                 'email'  => $request->email,
                 'zipcode'  => $request->zipcode ?? '',
                 'country_id'  => $request->country_id,
-                'mark_profile_section'=>$mark_profile_section,
+                'mark_profile_section' => $mark_profile_section,
             ]);
             //toaster message
             toastr()->success('User Gneral Info Saved Successfull!');
@@ -123,9 +130,19 @@ class UserController extends Controller
                 }
                 $name = time() . $file->getClientOriginalName();
                 $file->move('files/resume/', $name);
+                //progress bar
+                $mark_profile_section = Auth::user()->mark_profile_section;
+                if ($mark_profile_section) {
+                    if (!in_array(2, $mark_profile_section)) {
+                        array_push($mark_profile_section, 2);
+                    }
+                } else {
+                    $mark_profile_section = array();
+                    array_push($mark_profile_section, 2);
+                }
                 $userModel = User::find(Auth::user()->id);
                 $userModel->resume = $name;
-                $userModel->mark_profile_section=Auth::user()->mark_profile_section+1;
+                $userModel->mark_profile_section = $mark_profile_section;
                 $userModel->save();
                 //toaster message
                 toastr()->success('User Resume Saved Successfull!');
@@ -147,7 +164,16 @@ class UserController extends Controller
             $UserLanguages->user_id = Auth::user()->id;
             $UserLanguages->save();
             //profile progress
-            User::find(Auth::user()->id)->update(['mark_profile_section'=>Auth::user()->mark_profile_section+1]);
+            $mark_profile_section = Auth::user()->mark_profile_section;
+            if ($mark_profile_section) {
+                if (!in_array(3, $mark_profile_section)) {
+                    array_push($mark_profile_section, 3);
+                }
+            } else {
+                $mark_profile_section = array();
+                array_push($mark_profile_section, 3);
+            }
+            User::find(Auth::user()->id)->update(['mark_profile_section' => $mark_profile_section]);
             toastr()->success('User Language Saved Successfull!');
             return \Redirect::route('profile')->with('currtab', $request->currtab);
         } catch (\Exception $exception) {
@@ -164,7 +190,16 @@ class UserController extends Controller
             $MotherLanguages->user_id = Auth::user()->id;
             $MotherLanguages->save();
             //profile progress
-             User::find(Auth::user()->id)->update(['mark_profile_section'=>Auth::user()->mark_profile_section+1]);
+            $mark_profile_section = Auth::user()->mark_profile_section;
+            if ($mark_profile_section) {
+                if (!in_array(4, $mark_profile_section)) {
+                    array_push($mark_profile_section, 4);
+                }
+            } else {
+                $mark_profile_section = array();
+                array_push($mark_profile_section, 4);
+            }
+            User::find(Auth::user()->id)->update(['mark_profile_section' => $mark_profile_section]);
             toastr()->success('User Mother Language Saved Successfull!');
             return \Redirect::route('profile')->with('currtab', $request->currtab);
         } catch (\Exception $exception) {
@@ -185,7 +220,16 @@ class UserController extends Controller
             $UserServicesRates->user_id = Auth::user()->id;
             $UserServicesRates->save();
             //profile progress
-             User::find(Auth::user()->id)->update(['mark_profile_section'=>Auth::user()->mark_profile_section+1]);
+            $mark_profile_section = Auth::user()->mark_profile_section;
+            if ($mark_profile_section) {
+                if (!in_array(5, $mark_profile_section)) {
+                    array_push($mark_profile_section, 5);
+                }
+            } else {
+                $mark_profile_section = array();
+                array_push($mark_profile_section, 5);
+            }
+            User::find(Auth::user()->id)->update(['mark_profile_section' => $mark_profile_section]);
             toastr()->success('User Services Saved Successfull!');
             return \Redirect::route('profile')->with('currtab', $request->currtab);
         } catch (\Exception $exception) {
@@ -206,7 +250,16 @@ class UserController extends Controller
                 $UserVoiceOver->user_id = Auth::user()->id;
                 $UserVoiceOver->save();
                 //profile progress
-                 User::find(Auth::user()->id)->update(['mark_profile_section'=>Auth::user()->mark_profile_section+1]);
+                $mark_profile_section = Auth::user()->mark_profile_section;
+                if ($mark_profile_section) {
+                    if (!in_array(6, $mark_profile_section)) {
+                        array_push($mark_profile_section, 6);
+                    }
+                } else {
+                    $mark_profile_section = array();
+                    array_push($mark_profile_section, 6);
+                }
+                User::find(Auth::user()->id)->update(['mark_profile_section' => $mark_profile_section]);
                 toastr()->success('User VoiceOver Language Saved Successfull!');
             } else {
                 toastr()->error('User VoiceOver Language Already Added');
@@ -234,7 +287,16 @@ class UserController extends Controller
                 $UserSpecializations->user_id = Auth::user()->id;
                 $UserSpecializations->save();
                 //profile progress
-                 User::find(Auth::user()->id)->update(['mark_profile_section'=>Auth::user()->mark_profile_section+1]);
+                $mark_profile_section = Auth::user()->mark_profile_section;
+                if ($mark_profile_section) {
+                    if (!in_array(7, $mark_profile_section)) {
+                        array_push($mark_profile_section, 7);
+                    }
+                } else {
+                    $mark_profile_section = array();
+                    array_push($mark_profile_section, 7);
+                }
+                User::find(Auth::user()->id)->update(['mark_profile_section' => $mark_profile_section]);
             }
             toastr()->success('User specializtions Saved Successfull!');
             return \Redirect::route('profile')->with('currtab', $request->currtab);
@@ -259,7 +321,16 @@ class UserController extends Controller
                 $UserSoftware->user_id = Auth::user()->id;
                 $UserSoftware->save();
                 //profile progress
-                User::find(Auth::user()->id)->update(['mark_profile_section'=>Auth::user()->mark_profile_section+1]);
+                $mark_profile_section = Auth::user()->mark_profile_section;
+                if ($mark_profile_section) {
+                    if (!in_array(8, $mark_profile_section)) {
+                        array_push($mark_profile_section, 8);
+                    }
+                } else {
+                    $mark_profile_section = array();
+                    array_push($mark_profile_section, 8);
+                }
+                User::find(Auth::user()->id)->update(['mark_profile_section' => $mark_profile_section]);
             }
             toastr()->success('User Softwares Saved Successfull!');
             return \Redirect::route('profile')->with('currtab', $request->currtab);
@@ -293,7 +364,16 @@ class UserController extends Controller
             $UserFiles->user_id = Auth::user()->id;
             $UserFiles->save();
             //profile progress
-             User::find(Auth::user()->id)->update(['mark_profile_section'=>Auth::user()->mark_profile_section+1]);
+            $mark_profile_section = Auth::user()->mark_profile_section;
+            if ($mark_profile_section) {
+                if (!in_array(9, $mark_profile_section)) {
+                    array_push($mark_profile_section, 9);
+                }
+            } else {
+                $mark_profile_section = array();
+                array_push($mark_profile_section, 9);
+            }
+            User::find(Auth::user()->id)->update(['mark_profile_section' => $mark_profile_section]);
             toastr()->success('User Files Saved Successfully!!');
             return \Redirect::route('profile');
         } catch (\Exception $exception) {
@@ -387,7 +467,6 @@ class UserController extends Controller
 
             User::find(Auth::user()->id)->update([
                 'profile_photo' => $name,
-                'mark_profile_section'=>Auth::user()->mark_profile_section+1
             ]);
             toastr()->success('Profile Photo Changed Successfully');
             return \Redirect::route('profile');

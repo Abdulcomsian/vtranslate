@@ -13,6 +13,7 @@ use App\Mail\JobpostedEmail;
 use App\Models\JobViews;
 use App\Models\Country;
 use App\Models\WorkHistory;
+use App\Jobs\JobPostedMailQueue;
 use Auth;
 use DB;
 use Mail;
@@ -40,7 +41,6 @@ class JobsController extends Controller
     public function store(Request $request)
     {
         try {
-            //dd($request->all());
             $jobsModel = new Jobs();
             $jobsModel->job_title = $request->job_title;
             // $jobsModel->budget = $request->job_budget;
@@ -72,8 +72,15 @@ class JobsController extends Controller
             $data = [
                 'messsage' => "",
             ];
-            //send email to job poster
-            Mail::to("obaidkust@gamil.com")->send(new JobpostedEmail($data));
+            //send email to addmin 
+            Mail::to("admin@gmail.com")->send(new JobpostedEmail($data));
+            // dispatch(function ()  use ($data) {
+            //     Mail::to("admin@gmail.com")->send(new JobpostedEmail($data));
+            // })->delay(now()->addSeconds(5));
+
+            //send mail to users using queue job
+            //JobPostedMailQueue::dispatch('here');
+
             toastr()->success('Jobs Saved Successfully!');
             return back();
         } catch (\Exception $exception) {
