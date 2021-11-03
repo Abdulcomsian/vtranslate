@@ -19,7 +19,7 @@ class Profile
     {
         if (Auth::check()) {
             if (Auth::user()->user_status != "Admin") {
-                if (Auth::user()->total_profile_section == count(Auth::user()->mark_profile_section)) {
+                if (Auth::user()->total_profile_section == count(Auth::user()->mark_profile_section ?? [])) {
                     return $next($request);
                 } else {
                     toastr()->error('Please Complete Your Profile 100% to proceed!');
@@ -29,7 +29,7 @@ class Profile
                 return $next($request);
             }
         } else {
-            return redirect('/');
+            return redirect('/login');
         }
     }
 }
