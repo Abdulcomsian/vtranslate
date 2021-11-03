@@ -73,9 +73,10 @@ class JobsController extends Controller
                 'messsage' => "",
             ];
             //send email to addmin 
-            dispatch(function ()  use ($data) {
-                Mail::to("admin@gmail.com")->send(new JobpostedEmail($data));
-            })->delay(now()->addSeconds(5));
+            Mail::to("admin@gmail.com")->send(new JobpostedEmail($data));
+            // dispatch(function ()  use ($data) {
+            //     Mail::to("admin@gmail.com")->send(new JobpostedEmail($data));
+            // })->delay(now()->addSeconds(5));
 
             //send mail to users using queue job
             //JobPostedMailQueue::dispatch('here');
