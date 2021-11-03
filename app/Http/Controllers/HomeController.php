@@ -40,7 +40,7 @@ class HomeController extends Controller
             $topfreelancer = User::with('rates')
                 ->join('work_histories', 'users.id', '=', 'work_histories.user_id')
                 ->select('users.*', DB::raw('avg(rating) as avgrate,count(rating) as totalreview'))
-                ->where(['users.user_status' => 'Translator'])
+                ->where(['users.user_status' => 'Freelancer'])
                 ->groupBy('work_histories.user_id')
                 ->orderBy('avgrate', 'Desc')
                 ->limit(2)
@@ -54,7 +54,7 @@ class HomeController extends Controller
                 ->limit(3)
                 ->get();
 
-            $totaltranslater = User::where('user_status', 'Translator')->count();
+            $totaltranslater = User::where('user_status', 'Freelancer')->count();
             $completedjob = Jobs::where('status', 4)->count();
             $jobs = jobs::with('user')->with('jobspairlang')->with('jobproposals')->where('status', 1)->paginate(20);
             return view('screens.home', compact('jobs', 'totaltranslater', 'countries', 'toprateagency', 'topfreelancer', 'toplang', 'completedjob'));
@@ -96,7 +96,7 @@ class HomeController extends Controller
             $topfreelancer = User::with('rates')
                 ->join('work_histories', 'users.id', '=', 'work_histories.user_id')
                 ->select('users.*', DB::raw('avg(rating) as avgrate,count(rating) as totalreview'))
-                ->where(['users.user_status' => 'Translator'])
+                ->where(['users.user_status' => 'Freelancer'])
                 ->groupBy('work_histories.user_id')
                 ->orderBy('avgrate', 'Desc')
                 ->limit(2)
@@ -111,7 +111,7 @@ class HomeController extends Controller
                 ->get();
             $countries = Country::get();
             $completedjob = Jobs::where('status', 4)->count();
-            $totaltranslater = User::where('user_status', 'Translator')->count();
+            $totaltranslater = User::where('user_status', 'Freelancer')->count();
             return view('screens.home', compact('jobs', 'totaltranslater', 'countries', 'toprateagency', 'topfreelancer', 'toplang', 'completedjob'));
         } catch (\Exception $exception) {
             toastr()->error('Something went wrong, try again');

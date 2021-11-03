@@ -191,7 +191,7 @@
                             <i class="fa fa-tasks prefix grey-text"></i>
                             <select class="form-control" name="freelancer" id="freelancer" required>
                                 <option value="">Select Freelancer</option>
-                                @php $freelancers=\App\Models\User::where('user_status','Translator')->get();@endphp
+                                @php $freelancers=\App\Models\User::where('user_status','Freelancer')->get();@endphp
                                 @foreach($freelancers as $freelancer)
                                 <option value="{{$freelancer->id}}">{{$freelancer->fname ?? ''}}</option>
                                 @endforeach

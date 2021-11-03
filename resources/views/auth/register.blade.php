@@ -6,13 +6,12 @@
     background: #f1f1f1;
     color: #000;
     position: relative;
-    padding: 20px;
-    margin-top: 10px;
+    padding: 12px;
   }
 
   #message p {
-    padding: 10px 35px;
-    font-size: 18px;
+    padding: 0px 35px;
+    font-size: 15px;
   }
 
   /* Add a green text color and a checkmark when the requirements are right */
@@ -125,7 +124,7 @@
               <label for="">User Type <span>*</span></label>
               <select name="user_status" class="@error('user_status') is-invalid @enderror" required="required">
                 <option value="">Select Type</option>
-                <option value="Translator">Translator</option>
+                <option value="Freelancer">Freelancer</option>
                 <option value="Employer">Employer</option>
               </select>
               @error('user_status')
@@ -138,7 +137,7 @@
           <div class="col-md-6">
             <div class="inputDiv">
               <label for="">Password <span>*</span></label>
-              <input type="password" class="@error('password') is-invalid @enderror" name="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" autocomplete="new-password" placeholder="Enter Password" required="required">
+              <input type="password" class="@error('password') is-invalid @enderror" name="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" autocomplete="off" placeholder="Enter Password" required="required">
               @error('password')
               <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -159,7 +158,7 @@
           </div>
         </div>
         <div id="message">
-          <h3>Password must contain the following:</h3>
+          <h5>Password must contain the following:</h5>
           <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
           <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
           <p id="number" class="invalid">A <b>number</b></p>

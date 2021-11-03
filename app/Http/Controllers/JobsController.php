@@ -31,7 +31,7 @@ class JobsController extends Controller
         if (Auth::user()->user_status == "Employer") {
             return view('screens.job-posting');
         } else {
-            toastr()->error('You are not Authorized to access this page!');
+            toastr()->error('Please signup as an agency to post a job');
             return back();
         }
     }
@@ -43,7 +43,7 @@ class JobsController extends Controller
             //dd($request->all());
             $jobsModel = new Jobs();
             $jobsModel->job_title = $request->job_title;
-            $jobsModel->budget = $request->job_budget;
+            // $jobsModel->budget = $request->job_budget;
             $jobsModel->job_desc = $request->job_desc;
             $jobsModel->job_type = $request->job_type;
             $jobsModel->job_level = $request->job_type_level;
@@ -123,7 +123,7 @@ class JobsController extends Controller
                 ->get();
             //view jobs for login translator
             $checkcurrentuserview = JobViews::where('jobs_id', $id)->where('user_id', Auth::user()->id)->count();
-            if (Auth::user()->user_status == "Translator" && $checkcurrentuserview == 0) {
+            if (Auth::user()->user_status == "Freelancer" && $checkcurrentuserview == 0) {
                 $jobsview = new JobViews();
                 $jobsview->user_id = Auth::user()->id;
                 $jobsview->jobs_id = $id;
@@ -184,7 +184,7 @@ class JobsController extends Controller
     public function favourite_job()
     {
         try {
-            if (Auth::user()->user_status == "Translator") {
+            if (Auth::user()->user_status == "Freelancer") {
                 $countries = Country::get();
                 $FavouriteJobs = jobs::with('user')->with('jobspairlang')->with('jobproposals')
                     ->with('favourite')->where('status', 1)

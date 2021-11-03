@@ -53,7 +53,7 @@
                             <li><a href="{{ url('/post-a-job') }}">Post a Job</a></li>
                             <li><a href="{{ url('my-job') }}">My Jobs</a></li>
                             @endif
-                            @if(auth::check() && auth::user()->user_status=="Translator")
+                            @if(auth::check() && auth::user()->user_status=="Freelancer")
                             <li><a href="{{url('/favourite-job')}}">Favourite Job</a></li>
                             <li><a href="{{url('/my-assign-jobs')}}">My Ongoing Jobs</a></li>
                             @endif
