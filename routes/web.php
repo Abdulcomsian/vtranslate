@@ -33,7 +33,7 @@ Auth::routes(['verify' => true]);
 Route::get('email/verify', [App\Http\Controllers\Auth\VerificationController::class, 'show'])->name('verification.notice');
 
 //home page
-Route::get('/', 'HomeController@index')->middleware(['profile'])->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
 //about us
 Route::get('/about-us', function () {
@@ -139,7 +139,7 @@ Route::get('/top-agencies', 'AgencyController@index')->name('top-agencies');
 Route::get('/search-agencies', 'AgencyController@search_agencies')->name('search-agencies');
 Route::post('/search-agencies', 'AgencyController@search')->name('search-agencies');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware(['profile'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //Show this page after verifying email address
 Route::view('/thanks-for-registration', 'auth.thanks-for-registration');
 //Show thanks page after successfull registeration of user

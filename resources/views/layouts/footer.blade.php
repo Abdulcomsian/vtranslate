@@ -108,29 +108,29 @@
         // }
     })
     $("#Set-Date").click(function() {
-        $("#postJobDiv .setDateDiv").css("display", "block")
+        $(".setDateDiv").css("display", "block")
     })
     $("#No-dealine").click(function() {
-        $("#postJobDiv .setDateDiv").css("display", "none")
+        $(".setDateDiv").css("display", "none")
     })
     var pageUrl = location.pathname.split("/")[1];
-       $('#header ul li a').each(function () {
-            link = $(this);
-            value=link.attr("href").split("/") 
-            console.log(value)
-            if (value[3] == pageUrl) {
-                $('#header ul li a').removeClass('active');
-               link.addClass("active");
-            } else if(value[3] == "home"){
-                $('#header ul li a').removeClass('active');
-                $("#header ul li:nth-child(1) a").addClass("active");
-            }
-       });
-       $(".searchBtn").click(function(){
-           if($(".searchInput").css("display")=="block"){
-                $(".searchInput").removeClass("show")
-           } else{
-                $(".searchInput").addClass("show")
-           }
-       })
+    $('#header ul li a').each(function() {
+        link = $(this);
+        value = link.attr("href").split("/")
+        console.log(value)
+        if (value[3] == pageUrl) {
+            $('#header ul li a').removeClass('active');
+            link.addClass("active");
+        } else if (value[3] == "home") {
+            $('#header ul li a').removeClass('active');
+            $("#header ul li:nth-child(1) a").addClass("active");
+        }
+    });
+    $(".searchBtn").click(function() {
+        if ($(".searchInput").css("display") == "block") {
+            $(".searchInput").removeClass("show")
+        } else {
+            $(".searchInput").addClass("show")
+        }
+    })
 </script>
