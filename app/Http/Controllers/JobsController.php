@@ -17,6 +17,7 @@ use App\Jobs\JobPostedMailQueue;
 use Auth;
 use DB;
 use Mail;
+use phpDocumentor\Reflection\Types\Null_;
 
 class JobsController extends Controller
 {
@@ -30,7 +31,8 @@ class JobsController extends Controller
     public function index()
     {
         if (Auth::user()->user_status == "Employer") {
-            return view('screens.job-posting');
+            $countries = Country::get();
+            return view('screens.job-posting', compact('countries'));
         } else {
             toastr()->error('Please signup as an agency to post a job');
             return back();
@@ -40,6 +42,7 @@ class JobsController extends Controller
     //save job
     public function store(Request $request)
     {
+        //dd($request->all());
         try {
             $jobsModel = new Jobs();
             $jobsModel->job_title = $request->job_title;
@@ -53,11 +56,23 @@ class JobsController extends Controller
             } else {
                 $jobsModel->expiry_status = 0;
             }
-            if (isset($request->cerfity)) {
-                $jobsModel->certify = 1;
-            } else {
-                $jobsModel->certify = 0;
+            //job specialization
+            if (isset($request->spicializations)) {
+                $jobsModel->job_specialization = $request->spicializations;
             }
+            //job softwares
+            if (isset($request->softwares)) {
+                $jobsModel->job_software = $request->softwares;
+            }
+            $jobsModel->country_id  = $request->Country ?? NULL;
+            $jobsModel->state  = $request->StateRegion ?? NULL;
+            $jobsModel->city  = $request->City ?? '';
+            $jobsModel->linguists_live = $request->linguists_live ?? NULL;
+            $jobsModel->certify = isset($request->cerfity) ? 1 : 0;
+            $jobsModel->notify_master_member = isset($request->job_notify_master_member) ? 1 : 0;
+            $jobsModel->show_job_master_member = isset($request->job_show_master_member) ? 1 : 0;
+            $jobsModel->publish = isset($request->publish) ? 1 : 0;
+            $jobsModel->show_tc_user = isset($request->job_show_tc_user) ? 1 : 0;
             $jobsModel->user_id = Auth::user()->id;
             $jobsModel->save();
             $jobsid = $jobsModel->id;
