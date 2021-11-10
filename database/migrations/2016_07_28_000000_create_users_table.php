@@ -38,7 +38,8 @@ class CreateUsersTable extends Migration
             $table->integer('total_profile_section')->default('0');
             $table->string('mark_profile_section');
             $table->foreign('country_id')->references('id')->on('countries');
-            $table->foreign('packages_id')->references('id')->on('packages');
+            $table->bigInteger('package_id')->unsigned()->nullable();
+            $table->foreign('package_id')->references('id')->on('packages');
             $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();
