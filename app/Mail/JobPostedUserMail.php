@@ -16,9 +16,12 @@ class JobPostedUserMail extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public $user;
+    public $jobid;
+    public function __construct($user, $jobid)
     {
-        //
+        $this->user = $user;
+        $this->jobid = $jobid;
     }
 
     /**
@@ -30,6 +33,6 @@ class JobPostedUserMail extends Mailable
     {
         return $this->markdown('mail.jobposteduser')
             ->subject('vtranslate')
-            ->with('data', '');
+            ->with('data', ['user' => $this->user, 'jobid' => $this->jobid]);
     }
 }

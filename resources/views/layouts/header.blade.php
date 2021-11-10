@@ -37,6 +37,9 @@
                         </div>
                     </li>
                     <li class="nav-item">
+                        <a class="dropdown-item" href="{{route('post-a-job')}}">Post A Job</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ url('forums') }}">Forum</a>
                     </li>
                     <li class="nav-item">

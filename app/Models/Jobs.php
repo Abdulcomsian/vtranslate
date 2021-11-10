@@ -34,7 +34,6 @@ class Jobs extends Model
    }
 
    //relation with job proposal
-
    public function jobproposals()
    {
       return $this->hasMany(JobProposal::class);

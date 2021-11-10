@@ -1,4 +1,7 @@
 <?php
+
+use Carbon\Carbon;
+
 function checkedspcial($array, $string)
 {
     if (in_array($string, $array)) {
@@ -131,4 +134,18 @@ function demoteHtmlHeaderTags($html)
     }
 
     return str_ireplace($originalHeaderTags, $demotedHeaderTags, $html);
+}
+
+function make_job_approved()
+{
+    $Jobsposted = \App\Models\Jobs::where(
+        'created_at',
+        '<',
+        Carbon::now()->subHours(4)->toDateTimeString()
+    )->where('status', 0)->get();
+    foreach ($Jobsposted as $job) {
+        $jobsapproved = \App\Models\Jobs::find($job->id);
+        $jobsapproved->status = 1;
+        $jobsapproved->save();
+    }
 }

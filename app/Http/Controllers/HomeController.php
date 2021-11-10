@@ -10,6 +10,8 @@ use App\Models\Country;
 use App\Models\WorkHistory;
 use DB;
 use Auth;
+use Carbon\Carbon;
+
 
 class HomeController extends Controller
 {
@@ -28,17 +30,18 @@ class HomeController extends Controller
 
     public function index()
     {
-        if (Auth::check()) {
-            if (Auth::user()->user_status != "Admin") {
-                if (Auth::user()->total_profile_section == count(Auth::user()->mark_profile_section ?? [])) {
-                    return true;
-                } else {
-                    toastr()->error('Please Complete Your Profile 100% to proceed!');
-                    return redirect('user/profile');
+        try {
+            if (Auth::check()) {
+                if (Auth::user()->user_status != "Admin") {
+                    if (Auth::user()->total_profile_section == count(Auth::user()->mark_profile_section ?? [])) {
+                    } else {
+                        toastr()->error('Please Complete Your Profile 100% to proceed!');
+                        return redirect('user/profile');
+                    }
                 }
             }
-        }
-        try {
+            //approved all jobs whos posted 4 hours before
+            make_job_approved();
             $countries = Country::get();
             //Agency of the day
             $toprateagency = User::with('rates')

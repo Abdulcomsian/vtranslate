@@ -314,10 +314,12 @@ class UserController extends Controller
             if ($record) {
                 UserSoftware::where('user_id', Auth::user()->id)->update([
                     'software_tools' => $request->softwares,
+                    'other_tools' => $request->other_tools,
                 ]);
             } else {
                 $UserSoftware = new UserSoftware();
                 $UserSoftware->software_tools = $request->softwares;
+                $UserSoftware->other_tools = $request->other_tools;
                 $UserSoftware->user_id = Auth::user()->id;
                 $UserSoftware->save();
                 //profile progress
