@@ -43,7 +43,7 @@ class JobPostedMailQueue implements ShouldQueue
             foreach ($user->userlanguages as $lang) {
                 foreach ($jobspair as $pari) {
                     if ($lang->from_languages == $pari->from_lang &&  $lang->to_languages == $pari->to_lang) {
-                        Mail::to($user->email)->send(new JobPostedUserMail());
+                        Mail::to($user->email)->send(new JobPostedUserMail($user, $this->data));
                         $i = 1;
                         break;
                     }

@@ -74,6 +74,9 @@ class JobsController extends Controller
             $jobsModel->publish = isset($request->publish) ? 1 : 0;
             $jobsModel->show_tc_user = isset($request->job_show_tc_user) ? 1 : 0;
             $jobsModel->user_id = Auth::user()->id;
+            if (Auth::user()->packages_id == 1) {
+                $jobsModel->status = 1;
+            }
             $jobsModel->save();
             $jobsid = $jobsModel->id;
             for ($i = 0; $i < count($request->from_language); $i++) {
@@ -263,6 +266,7 @@ class JobsController extends Controller
     {
         try {
             if (Auth::user()->user_status == "Employer") {
+                make_job_approved();
                 $myjobs = Jobs::where('user_id', Auth::user()->id)->get();
                 return view('screens.my-job', compact('myjobs'));
             } else {

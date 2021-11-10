@@ -426,15 +426,12 @@
                     <div class="box" style="margin-top:20px">
                         <p>Use the <b>Profile Editing Menu</b> above to edit you profile and preference</p>
                         <p>You are logged on and therefore you can see on your profile page all available Information
-                            including your cover letter, full address, rates and the profile editing menu. Click
-                            or tap question marks <b>?</b> to get context sensitive help.
+                            including your cover letter, full address, rates and the profile editing menu.
                         </p>
                     </div>
                     <div class="box" style="margin-top:20px">
-                        <p><b>Link to your profile page:</b> <a href="">areeb1.TanslatorsCafe.com</a> (you may use it, for example
+                        <p><b>Link to your profile page:</b> <a href="{{route('view-user-profile')}}">{{auth::user()->fname}}</a> (you may use it, for example
                             on your business card; please note that it must be without <b>"www"</b>)</p>
-                        <p><b>TC membership:</b> Regular from Thrusday, August 26, 2021, <b>Upgrade now! | Payment History and Invoices</b>
-                        </p>
                     </div>
                     <div class="text-center" style="margin-top:20px">
                         <p class="mainHeading">Availability</p>
@@ -2076,10 +2073,10 @@
                                         @csrf
                                         @include('screens.includes.softwarecheckbox')
                                         <p style="margin-top:20px" class="notice"><b>Note:</b> Job notification will be send according to the subject areas selected on this page.</p>
-                                        <p><b>Other Soft</b> (Max. 500 characters, including spaces)</p>
+                                        <p><b>Other Software</b> (Max. 500 characters, including spaces)</p>
                                         <div class="inputDiv">
                                             <div class="inputSpan">
-                                                <textarea name="" id="" cols="30" rows="4"></textarea>
+                                                <textarea name="other_tools" id="" cols="30" rows="4">{{$userData[0]->usersoftwares->other_tools ?? ''}}</textarea>
                                             </div>
                                         </div>
                                         <div class="multiBtn pt-5">
