@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use App\Models\Packages;
 
 class UserSeeder extends Seeder
 {
@@ -15,6 +16,13 @@ class UserSeeder extends Seeder
     public function run()
 
     {
+        \DB::table('packages')->delete();
+        Packages::create(
+            [
+                'package_name' => 'Premium',
+                'package_price' => '100',
+            ]
+        );
         User::create(
             [
                 'fname' => 'translator1',
@@ -25,6 +33,7 @@ class UserSeeder extends Seeder
                 'country_id' => '170',
                 'user_status' => 'Freelancer',
                 'total_profile_section' => 9,
+                'package_id' => 1,
                 'password' => bcrypt('translator1'),
             ]
         );
@@ -38,6 +47,7 @@ class UserSeeder extends Seeder
                 'country_id' => '170',
                 'user_status' => 'Freelancer',
                 'total_profile_section' => 9,
+                'package_id' => 1,
                 'password' => bcrypt('translator2'),
             ]
         );
@@ -51,6 +61,7 @@ class UserSeeder extends Seeder
                 'country_id' => '170',
                 'user_status' => 'Freelancer',
                 'total_profile_section' => 9,
+                'package_id' => 1,
                 'password' => bcrypt('translator3'),
             ]
         );
@@ -64,6 +75,7 @@ class UserSeeder extends Seeder
                 'country_id' => '170',
                 'user_status' => 'Employer',
                 'total_profile_section' => 1,
+                'package_id' => 1,
                 'password' => bcrypt('agency1'),
             ]
         );
@@ -77,6 +89,7 @@ class UserSeeder extends Seeder
                 'country_id' => '170',
                 'user_status' => 'Employer',
                 'total_profile_section' => 1,
+                'package_id' => 1,
                 'password' => bcrypt('agency2'),
             ]
         );
@@ -90,6 +103,7 @@ class UserSeeder extends Seeder
                 'country_id' => '170',
                 'user_status' => 'Employer',
                 'total_profile_section' => 1,
+                'package_id' => 1,
                 'password' => bcrypt('agency3'),
             ]
         );
@@ -102,6 +116,7 @@ class UserSeeder extends Seeder
                 'email_verified_at' => '2021-07-30',
                 'country_id' => '170',
                 'user_status' => 'Admin',
+                'package_id' => 1,
                 'password' => bcrypt('admin123'),
             ]
         );
