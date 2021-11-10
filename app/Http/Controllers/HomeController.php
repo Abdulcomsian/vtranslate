@@ -41,7 +41,7 @@ class HomeController extends Controller
                 }
             }
             //approved all jobs whos posted 4 hours before
-            make_job_approved();
+            make_job_approved(); //function in helper file
             $countries = Country::get();
             //Agency of the day
             $toprateagency = User::with('rates')
