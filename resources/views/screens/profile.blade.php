@@ -480,6 +480,7 @@
                                 </label>
                             </div>
                         </div>
+                        @if(auth::user()->user_status=="Freelancer")
                         <div class="col-lg-4">
                             <div class="text-center privacy-box">
                                 <h4><b>Rates</b></h4>
@@ -494,11 +495,13 @@
                                 </label>
                             </div>
                         </div>
+                        @endif
                     </div>
                     <div class="text-center" style="margin-top:20px">
                         <p class="mainHeading">Email Notification</p>
                     </div>
                     <div class="row">
+                        @if(auth::user()->user_status=="Freelancer")
                         <div class="col-lg-4">
                             <div class="text-center privacy-box">
                                 <h4><b>Job Notification</b></h4>
@@ -514,7 +517,8 @@
                                 <p><b>Block Countries</b></p>
                             </div>
                         </div>
-                        <div class="col-lg-4">
+                        @endif
+                        <!-- <div class="col-lg-4">
                             <div class="text-center privacy-box">
                                 <h4><b>News Notification</b></h4>
                                 <p>
@@ -527,7 +531,7 @@
                                 <label class="switch"><input type="checkbox" class="togglebtn" data-type="NewsNotification" @if(auth::user()->news_notification=='1'){{'checked'}}@endif/><div></div>
                                 </label>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="col-lg-4">
                             <div class="text-center privacy-box">
                                 <h4><b>Forums Notification</b></h4>
@@ -573,7 +577,6 @@
                                     {{$lng->mother_language}}
                                     @endforeach
                                 </p>
-                                <p>Time zone: not defined. Change</p>
                             </div>
                         </div>
                         <a href="{{$userData[0]->usergeneralinfo->website ?? ''}}"><b>{{$userData[0]->usergeneralinfo->website ?? ''}}</b></a>
@@ -591,13 +594,13 @@
                         <b>Fax:</b> {{$userData[0]->usergeneralinfo->fax ?? ''}},
                         <b>Cell Phone:</b> {{$userData[0]->usergeneralinfo->mobile_phone ?? ''}}
                     </p>
-                    <p>Joined: Thursday, August 26, 2021, last update Thursday, August 26, 2021 </p>
+                    <p>Joined: {{$userData[0]->created_at}}, last update: {{$userData[0]->updated_at}} </p>
                     <p>
                         <b>
                             Preferred E-mail of {{$userData[0]->usergeneralinfo->first_name ?? ''}} {{ $userData[0]->usergeneralinfo->last_name ?? ''}}: {{ $userData[0]->usergeneralinfo->gemail ?? ''}}
                         </b>
                     </p>
-
+                    @if(auth::user()->user_status=="Freelancer")
                     <div class="text-left" style="margin-top:20px">
                         <p class="mainHeading">Working Language Pairs</p>
                     </div>
@@ -700,7 +703,35 @@
                     <p>
                         {{$userData[0]->usergeneralinfo->platform_hardware ?? ''}}
                     </p>
-
+                    <!-- user files -->
+                    <div class="text-left" style="margin-top:20px">
+                        <p class="mainHeading">Files</p>
+                    </div>
+                    <p>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>File Name</th>
+                                <th>File Purpose</th>
+                                <th>Comments</th>
+                                <th>File</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($userData[0]->userfiles as $file)
+                            <tr>
+                                <td>
+                                    {{$file->file_title}}
+                                </td>
+                                <td>{{$file->purpose}}</td>
+                                <td>{{$file->comments}}</td>
+                                <td><a href="{{asset('files/userfiles').'/'.$file->file}}">View File</a></td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    </p>
+                    @endif
                     <!-- Membership -->
                     <div class="text-left" style="margin-top:20px">
                         <p class="mainHeading">Membership</p>
@@ -708,15 +739,6 @@
                     <p>
                         {{$userData[0]->usergeneralinfo->membership_professional_associations ?? ''}}
                     </p>
-                    <div class="text-left" style="margin-top:20px">
-                        <p class="mainHeading">Verified Credentials</p>
-                    </div>
-                    <p>No data</p>
-                    <p>Report your credentials</p>
-                    <div class="text-left" style="margin-top:20px">
-                        <p class="mainHeading">Translators and Agencies Rated by Areeb Hassan</p>
-                    </div>
-                    <p>None</p>
                     <div class="text-left" style="margin-top:20px">
                         <p class="mainHeading">Payment Options</p>
                     </div>
