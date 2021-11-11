@@ -506,10 +506,15 @@ class UserController extends Controller
             $userData = User::with('usergeneralinfo', 'userlanguages', 'usersoftwares', 'userspicialize', 'uservoicover', 'userfiles', 'usermotherlanguages', 'usersevices')->where('id', $id)->get();
             $jobapplied = JobProposal::where('user_id', $id)->count();
             $checkuser = User::find($id);
-            if ($checkuser->user_status == 'Freelancer') {
-                return view('screens.freelancer.freelancer', compact('userData', 'jobapplied', 'workHistory'));
+            if ($userData[0]->private_information) {
+                if ($checkuser->user_status == 'Freelancer') {
+                    return view('screens.freelancer.freelancer', compact('userData', 'jobapplied', 'workHistory'));
+                } else {
+                    return view('screens.agencies.agency', compact('userData', 'jobapplied', 'workHistory'));
+                }
             } else {
-                return view('screens.agencies.agency', compact('userData', 'jobapplied', 'workHistory'));
+                toastr()->error('Profile is Private!');
+                return redirect('/home');
             }
         } catch (\Exception $exception) {
             toastr()->error('something went wrong');

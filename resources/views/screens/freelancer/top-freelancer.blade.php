@@ -28,8 +28,10 @@
                                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
                                 </td>
                                 <td class="companyimg">
-                                    <h3>{{$freelancer->fname.' '.$freelancer->lname}}</h3>
-                                    <img src="@if($freelancer->profile_photo!=null){{asset('/profile-images').'/'.$freelancer->profile_photo}} @else{{'/assets/img/Job Posted.png'}}@endif" alt="" class="img-circle img-responsive " width="100px" height="100px">
+                                    <a href="{{route('public-profile',$freelancer->id)}}">
+                                        <h3>{{$freelancer->fname.' '.$freelancer->lname}}</h3>
+                                        <img src="@if($freelancer->profile_photo!=null){{asset('/profile-images').'/'.$freelancer->profile_photo}} @else{{'/assets/img/Job Posted.png'}}@endif" alt="" class="img-circle img-responsive " width="100px" height="100px">
+                                    </a>
                                 </td>
                                 <td class="location">{{$freelancer->usergeneralinfo->address ?? ''}}</td>
                                 <td class="date">{{date("F-Y", strtotime($freelancer->usergeneralinfo->updated_at ?? ''));}}</td>
