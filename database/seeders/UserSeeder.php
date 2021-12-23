@@ -32,7 +32,7 @@ class UserSeeder extends Seeder
                 'email_verified_at' => '2021-07-30',
                 'country_id' => '170',
                 'user_status' => 'Freelancer',
-                'total_profile_section' => 9,
+                'total_profile_section' => 8,
                 'package_id' => 1,
                 'password' => bcrypt('translator1'),
             ]
@@ -46,7 +46,7 @@ class UserSeeder extends Seeder
                 'email_verified_at' => '2021-07-30',
                 'country_id' => '170',
                 'user_status' => 'Freelancer',
-                'total_profile_section' => 9,
+                'total_profile_section' => 8,
                 'package_id' => 1,
                 'password' => bcrypt('translator2'),
             ]
@@ -60,7 +60,7 @@ class UserSeeder extends Seeder
                 'email_verified_at' => '2021-07-30',
                 'country_id' => '170',
                 'user_status' => 'Freelancer',
-                'total_profile_section' => 9,
+                'total_profile_section' => 8,
                 'package_id' => 1,
                 'password' => bcrypt('translator3'),
             ]

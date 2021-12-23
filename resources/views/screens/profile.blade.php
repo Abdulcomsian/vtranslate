@@ -324,9 +324,9 @@
                     }
                     @endphp
                     <ul class="nav nav-pills" role="tablist">
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link {{$factive}}" data-toggle="pill" href="#profile"><span>My Profile</span> </a>
-                        </li>
+                        </li> -->
                         <!-- <li class="nav-item">
                             <a href="#status" class="nav-link {{$statusactive}}" data-toggle="pill"><span>Status</span> </a>
                         </li> -->
@@ -338,7 +338,7 @@
                             <a href="#resume" class="nav-link {{$resumetab}}" data-toggle="pill"><span>Resume</span> </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="pill" href="#self-promotion"><span>Self Promotion</span> </a>
+                            <a class="nav-link" data-toggle="pill" href="#self-promotion"><span>Premium Member</span> </a>
                         </li>
                         <li class="nav-item">
                             <a href="#language" class="nav-link {{$languages}}" data-toggle="pill"><span>Languages</span> </a>
@@ -355,8 +355,11 @@
                         <li class="nav-item">
                             <a href="#software" class="nav-link {{$softwarestab}}" data-toggle="pill"><span>Software</span> </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a href="#files" class="nav-link" data-toggle="pill"><span>Files</span> </a>
+                        </li> -->
+                        <li class="nav-item">
+                            <a class="nav-link {{$factive}}" data-toggle="pill" href="#profile"><span>My Profile</span> </a>
                         </li>
                         @endif
                     </ul>
@@ -390,362 +393,7 @@
         </div>
         @endif
         <div class="tab-content">
-            <div id="profile" class="container tab-pane {{$factive}}">
-                <div class="commonDiv">
-                    <h3>My Profile</h3>
-                    <div class="text-center">
-                        <p class="mainHeading">Profile Management</p>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6">
 
-                            <form class="form-group" action="{{route('change-profile-photo')}}" method="post" enctype="multipart/form-data">
-                                @csrf
-                                <div class="avatar-upload">
-                                    <div class="avatar-edit">
-                                        <input type='file' id="imageUpload" name="profilephoto" accept=".png, .jpg, .jpeg" />
-                                        <label for="imageUpload"></label>
-                                    </div>
-                                    <div class="avatar-preview">
-                                        <div id="imagePreview" style="background-image: url('{{asset('profile-images/').'/'.auth::user()->profile_photo ?? ''}}');">
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="col-lg-12" style="margin-top:-40px">
-                                    <center>
-                                        <button type="submit" class="btn btn-danger changeProfileBtn" style="width: 55%;padding:5px;float:none">Change Profile Photo</button>
-                                    </center>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="col-lg-6 otherBtn" align="center" style="padding-top:253px">
-                            <a href="{{route('view-user-profile')}}" class="btn btn-info p-2 " style="width: 55%;padding:5px;float:none">For Other</a>
-                        </div>
-                    </div>
-                    <div class="box" style="margin-top:20px">
-                        <p>Use the <b>Profile Editing Menu</b> above to edit you profile and preference</p>
-                        <p>You are logged on and therefore you can see on your profile page all available Information
-                            including your cover letter, full address, rates and the profile editing menu.
-                        </p>
-                    </div>
-                    <div class="box" style="margin-top:20px">
-                        <p><b>Link to your profile page:</b> <a href="{{route('view-user-profile')}}">{{auth::user()->fname}}</a> (you may use it, for example
-                            on your business card; please note that it must be without <b>"www"</b>)</p>
-                    </div>
-                    <div class="text-center" style="margin-top:20px">
-                        <p class="mainHeading">Availability</p>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <h4><b>Availability</b></h4>
-                            <label class="switch"><input type="checkbox" class="togglebtn" data-type="availability" @if(auth::user()->status=='1'){{'checked'}}@endif/><div></div>
-                            </label>
-                        </div>
-                    </div>
-                    <p>Translator's Availability is displayed <a href="">at the top right corner of your profile page.</a>
-                        Busy members are shown at the end of the search results.
-                    </p>
-                    <p>Click or tap the <b>Disable</b> button to hide your availability status.</p>
-                    <p>You can use the following link to place your current busy status into another Website: <a href="">img src="https://www.translatorscafe.com/cafe/misc/GetBusy.asp?ID=449990"</a> </p>
-                    <div class="text-center" style="margin-top:20px">
-                        <p class="mainHeading">Availability</p>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <div class="text-center privacy-box">
-                                <h4><b>Profile</b></h4>
-                                <p>
-                                    @if(auth::user()->private_information=='1')
-                                    <i class="fa fa-unlock privateicon"></i>
-                                    @else
-                                    <i class="fa fa-lock privateicon"></i>
-                                    @endif
-                                </p>
-                                <label class="switch"><input type="checkbox" class="togglebtn" data-type="profile" @if(auth::user()->private_information=='1'){{'checked'}}@endif/><div></div>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="text-center privacy-box">
-                                <h4><b>Contact Info</b></h4>
-                                <p>
-                                    @if(auth::user()->display_contact_info=='1')
-                                    <i class="fa fa-eye visibleicon"></i>
-                                    @else
-                                    <i class="fa fa-eye-slash visibleicon"></i>
-                                    @endif
-                                </p>
-                                <label class="switch"><input type="checkbox" class="togglebtn" data-type="ContactInfo" @if(auth::user()->display_contact_info=='1'){{'checked'}}@endif/><div></div>
-                                </label>
-                            </div>
-                        </div>
-                        @if(auth::user()->user_status=="Freelancer")
-                        <div class="col-lg-4">
-                            <div class="text-center privacy-box">
-                                <h4><b>Rates</b></h4>
-                                <p>
-                                    @if(auth::user()->show_rated_users=='1')
-                                    <i class="fa fa-eye rateicon"></i>
-                                    @else
-                                    <i class="fa fa-eye-slash rateicon"></i>
-                                    @endif
-                                </p>
-                                <label class="switch"><input type="checkbox" class="togglebtn" data-type="Rates" @if(auth::user()->show_rated_users=='1'){{'checked'}}@endif/><div></div>
-                                </label>
-                            </div>
-                        </div>
-                        @endif
-                    </div>
-                    <div class="text-center" style="margin-top:20px">
-                        <p class="mainHeading">Email Notification</p>
-                    </div>
-                    <div class="row">
-                        @if(auth::user()->user_status=="Freelancer")
-                        <div class="col-lg-4">
-                            <div class="text-center privacy-box">
-                                <h4><b>Job Notification</b></h4>
-                                <p>
-                                    @if(auth::user()->jobsnotification=='1')
-                                    <i class="fa fa-bell jobnotifyicon" aria-hidden="true"></i>
-                                    @else
-                                    <i class="fa fa-bell-slash jobnotifyicon"></i>
-                                    @endif
-                                </p>
-                                <label class="switch"><input type="checkbox" class="togglebtn" data-type="JobNotification" @if(auth::user()->jobsnotification=='1'){{'checked'}}@endif/><div></div>
-                                </label>
-                                <p><b>Block Countries</b></p>
-                            </div>
-                        </div>
-                        @endif
-                        <!-- <div class="col-lg-4">
-                            <div class="text-center privacy-box">
-                                <h4><b>News Notification</b></h4>
-                                <p>
-                                    @if(auth::user()->news_notification=='1')
-                                    <i class="fa fa-bell newsnotifyicon" aria-hidden="true"></i>
-                                    @else
-                                    <i class="fa fa-bell-slash newsnotifyicon"></i>
-                                    @endif
-                                </p>
-                                <label class="switch"><input type="checkbox" class="togglebtn" data-type="NewsNotification" @if(auth::user()->news_notification=='1'){{'checked'}}@endif/><div></div>
-                                </label>
-                            </div>
-                        </div> -->
-                        <div class="col-lg-4">
-                            <div class="text-center privacy-box">
-                                <h4><b>Forums Notification</b></h4>
-                                <p>Diabaled</p>
-                                <label class="switch"><input type="checkbox" class="togglebtn" data-type="ForumsNotification" />
-                                    <div></div>
-                                </label>
-                            </div>
-                        </div>
-                        <!-- <div
-                             class="col-lg-3">
-                                <div class="text-center privacy-box">
-                                    <h4><b>TCTTerms Notification</b></h4>
-                                    <p>Enable</p>
-                                    <label class="switch"><input type="checkbox" /><div></div>
-                                    </label>
-                                </div>
-                            </div> -->
-                    </div>
-                    <div class="userInfo">
-                        <div class="row" style="margin-bottom:20px">
-                            <div class="col-lg-3">
-                                <div class="important-note">
-                                    <p>
-                                        If you want your profile to be
-                                        more exposed, consider submitting your photograph
-                                        or logo. The site statistics show that profiles with photos are viewed 6.1 times more
-                                        frequently (profiles with a photograph in average 1472 times, without a photograph
-                                        only 241 times).
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="col-lg-9">
-                                <h4>
-                                    {{$userData[0]->usergeneralinfo->first_name ?? ''}} {{ $userData[0]->usergeneralinfo->last_name ?? ''}}
-                                </h4>
-                                <p>{{$userData[0]->usergeneralinfo->advertising_slogan ?? ''}}</p>
-                                <p>{{$userData[0]->usergeneralinfo->company_name ?? ''}}</p>
-                                <p><b>Pakistan</b></p>
-                                <p>Mother Tongues:</p>
-                                <p>
-                                    @foreach($userData[0]->usermotherlanguages as $lng)
-                                    {{$lng->mother_language}}
-                                    @endforeach
-                                </p>
-                            </div>
-                        </div>
-                        <a href="{{$userData[0]->usergeneralinfo->website ?? ''}}"><b>{{$userData[0]->usergeneralinfo->website ?? ''}}</b></a>
-                    </div>
-                    <!-- <p><b>TCTerms Score 0</b> [disable]</p> -->
-                    <div class="text-left" style="margin-top:20px">
-                        <p class="mainHeading">Contact Information @if(isset($userData[0]->usergeneralinfo->display_contact_info) && $userData[0]->usergeneralinfo->display_contact_info=='0'){{"(Visible)"}} else {{"(Invisible)" }}@endif</p>
-                    </div>
-                    <p>
-                        <b>Address:</b>{{$userData[0]->usergeneralinfo->address ?? ''}}
-                    </p>
-                    <p>
-                        <b>Phone:</b>
-                        {{$userData[0]->usergeneralinfo->telephone ?? ''}},
-                        <b>Fax:</b> {{$userData[0]->usergeneralinfo->fax ?? ''}},
-                        <b>Cell Phone:</b> {{$userData[0]->usergeneralinfo->mobile_phone ?? ''}}
-                    </p>
-                    <p>Joined: {{$userData[0]->created_at}}, last update: {{$userData[0]->updated_at}} </p>
-                    <p>
-                        <b>
-                            Preferred E-mail of {{$userData[0]->usergeneralinfo->first_name ?? ''}} {{ $userData[0]->usergeneralinfo->last_name ?? ''}}: {{ $userData[0]->usergeneralinfo->gemail ?? ''}}
-                        </b>
-                    </p>
-                    @if(auth::user()->user_status=="Freelancer")
-                    <div class="text-left" style="margin-top:20px">
-                        <p class="mainHeading">Working Language Pairs</p>
-                    </div>
-                    <p>
-
-                        @foreach($userData[0]->userlanguages as $lng)
-                        {{$lng->from_languages .'>>'. $lng->to_languages}}
-                        @endforeach
-                    </p>
-                    <div class="text-left" style="margin-top:20px">
-                        <p class="mainHeading">Services and Rates</p>
-                    </div>
-                    <p>Rates are
-                        @if(isset($userData[0]->usergeneralinfo->show_rated_users)){{"visible"}}@else{{"invisible"}}@endif
-                    </p>
-                    <p>Other, Subtitling</p>
-                    <p>Preferred currency: <b>$</b></p>
-                    <table class="table table-hover table-responsive">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th style="width: 30%;">Service</th>
-                                <th>Language</th>
-                                <th style="width: 70%;">Rate</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($userData[0]->usersevices as $service)
-                            <tr>
-                                <td>{{$loop->index+1}}</td>
-                                <td>{{$service->service}}</td>
-                                @php
-                                $pairlanguage=\App\Models\UserLanguages::where('id',$service->pair_language)->first();
-                                @endphp
-                                <td>{{$pairlanguage->from_languages.">>".$pairlanguage->to_languages}}</td>
-                                <td>{{"Min rate per word is ".$service->min_rate_per_word." $ Min rate per minute is ".$service->min_rate_per_minute." $"}}</td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-
-                    <!-- rates and statistics -->
-                    <div class="text-left" style="margin-top:20px">
-                        <p class="mainHeading">Subject Areas</p>
-                    </div>
-                    <p>
-                        @foreach($userData[0]->userspicialize->spicializations ?? [] as $spcialize)
-                        {{$spcialize}},
-                        @endforeach
-                    </p>
-                    <div class="text-left" style="margin-top:20px">
-                        <p class="mainHeading">Voice-Over</p>
-                    </div>
-                    <!-- voic over -->
-                    <p>
-                        <b>Voice Languages:</b>
-                        @foreach($userData[0]->uservoicover as $voiclng)
-                        {{$voiclng->language}},
-                        @endforeach
-                    </p>
-                    <p><b>Voice Gender: </b>Female Voice</p>
-                    <p><b>Voice Ages:</b> Young Adult, Middle Age Adult</p>
-                    <p><b>Type of Recording: </b>Audio Books, Character Voices, Commercials, Documentaries, e-Learning, Imaging, Infomercials, Interactive Voice Response Telecom Applications (IVR), Narration, On
-                        Camera Recordings, Political, Promos</p>
-                    <div class="text-center">
-                        <p>
-                            <b>Detailed Description and Voice Samples</b>
-                        </p>
-                    </div>
-
-                    <!-- Cover Letter -->
-                    <div class="text-left" style="margin-top:20px">
-                        <p class="mainHeading">Cover Letter (not visible for everybody)</p>
-                    </div>
-                    <p>
-                        {{$userData[0]->usergeneralinfo->cover_letter ?? ''}}
-                    </p>
-                    <div class="text-left" style="margin-top:20px">
-                        <p class="mainHeading">Background (Your Presentation Page, Résumé or CV)</p>
-                    </div>
-                    <div class="box" style="display: flex;justify-content: space-between;">
-                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
-                        <p><b>@if(auth::user()->resume)<a target="_blank" href="{{asset('files/resume').'/'.auth::user()->resume}}">View Resume</a>@else{{"(No Resume Uploaded)"}}@endif</b></p>
-                    </div>
-
-                    <!-- software areas -->
-                    <div class="text-left" style="margin-top:20px">
-                        <p class="mainHeading">Software</p>
-                    </div>
-                    <ul style="padding-left:30px; list-style:disc;">
-                        @foreach($userData[0]->usersoftwares->software_tools ?? [] as $soft)
-                        <li>{{$soft}}</li>
-                        @endforeach
-                    </ul>
-
-                    <!-- platform and hardware -->
-                    <div class="text-left" style="margin-top:20px">
-                        <p class="mainHeading">Platform & hardware</p>
-                    </div>
-                    <p>
-                        {{$userData[0]->usergeneralinfo->platform_hardware ?? ''}}
-                    </p>
-                    <!-- user files -->
-                    <div class="text-left" style="margin-top:20px">
-                        <p class="mainHeading">Files</p>
-                    </div>
-                    <p>
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>File Name</th>
-                                <th>File Purpose</th>
-                                <th>Comments</th>
-                                <th>File</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($userData[0]->userfiles as $file)
-                            <tr>
-                                <td>
-                                    {{$file->file_title}}
-                                </td>
-                                <td>{{$file->purpose}}</td>
-                                <td>{{$file->comments}}</td>
-                                <td><a href="{{asset('files/userfiles').'/'.$file->file}}">View File</a></td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    </p>
-                    @endif
-                    <!-- Membership -->
-                    <div class="text-left" style="margin-top:20px">
-                        <p class="mainHeading">Membership</p>
-                    </div>
-                    <p>
-                        {{$userData[0]->usergeneralinfo->membership_professional_associations ?? ''}}
-                    </p>
-                    <div class="text-left" style="margin-top:20px">
-                        <p class="mainHeading">Payment Options</p>
-                    </div>
-                    <p>If you accept payments through several payment processors, their logos can be shown on your profile page. If your clients click or tap a payment processor logo on your profile, they will be redirected to the site of this payment processor. If you want to show payment processors through which you accept payments on your profile page (in this place), click or tap the Edit button above and enter your email addresses for corresponding payment processors in the form.
-                        If you are not registered with any of the payment processors below, please click or tap the corresponding button below and sign up for PayPal or Skrill. After that you will enter your e-mail address on the profile form.</p>
-                </div>
-            </div>
             <!-- <div id="status" class="container tab-pane {{$statusactive}}">
                 <div class="commonDiv">
                     <h3>Select Status</h3>
@@ -1135,7 +783,7 @@
                                         <div class="control-group">
                                             <div class="controls bootstrap-timepicker">
                                                 <label class="form-label" for="customFile">Upload Your Resume</label>
-                                                <input type="file" name="resume" accept="application/pdf,application/ms-word" class="control " id="customFile" required="required" />
+                                                <input type="file" name="resume[]" accept="application/pdf,application/ms-word" class="control " id="customFile" required="required" multiple />
                                             </div>
                                         </div>
 
@@ -1157,10 +805,14 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="commonDiv">
-                                    <h3>Self Promotion</h3>
-                                    <p>You may use <b>Self Promotion</b> pages for placing any promotional materials that will be attached to your profile. For example you place <b>TC Master Only</b> here your translation, pieces of poetry and prose. You can also upload files, for example images on your resume in .doc or .zip or .pdf format and provide links to your uploaded files or show them on you personal pages.</p>
-                                    <p>The features available <b>Master Membership Only.</b></p>
-                                    <a href=""><b>Upgrade to Master Now !</b></a>
+                                    <h3>Self Promotion-Premium Member </h3>
+                                    <ol>
+                                        <li>If you become premium member you’ll get the job notification instantly immediate to job get posted. </li>
+                                        <li>If not you’ll get the notification post 3 hours.</li>
+                                        <li>If you are a member your profile is going to visible on top of the <b>Home Page.</b> </li>
+                                        <li>Your profile is going to be considered on the top 20 freelancers. </li>
+                                        <li>Membership is just going to be <b>50 USD</b> ,but we have a promotion going on so we are giving membership free of cost use Coupon Code XYZ.</li>
+                                    </ol>
                                 </div>
                             </div>
                         </div>
@@ -1174,7 +826,7 @@
                             <div class="col-lg-12">
                                 <div class="commonDiv">
                                     <h3>Language</h3>
-                                    <p class="warningself">You can select only Two Mohter and Five Pair languages from below</p>
+                                    <p class="warningself">You can select only Two Mother and Five Pair languages from below</p>
 
                                     <div class="row">
                                         <div class="col-md-12">
@@ -1819,7 +1471,7 @@
                                                     <input class="form-control" type="text" name="min_rate_per_word" placeholder="Min rate Per Word $" required="required">
                                                 </div>
                                                 <div class="form-group ">
-                                                    <input class="form-control" type="text" name="min_rate_per_minute" placeholder="Minrate Per minute $" required="required">
+                                                    <input class="form-control" type="text" name="min_rate_per_minute" placeholder="Minrate Per minute $">
                                                 </div>
                                             </div>
                                     </div>
@@ -2024,12 +1676,14 @@
                                             <option value="yo">Yoruba - Èdè Yorùbá</option>
                                             <option value="zu">Zulu - isiZulu</option>
                                         </select>
+                                        <input type="file" name="voice" accept="audio/mp3,audio/wav" />
                                         <input type="hidden" name="currtab" value="voiceover">
-                                        <button type="submit" class="addLanguageBtn commonBtn">Add Language</button>
                                         <br>
+                                        <button type="submit" class="addLanguageBtn commonBtn" style="margin-top:10px">Add Language</button>
+
                                     </form>
                                 </div>
-                                <table class="table-responsive voiceOverTable">
+                                <table class="table table-hover  voiceOverTable">
                                     <thead>
                                         <tr>
                                             <th><b>Selected Language</b></th>
@@ -2114,7 +1768,7 @@
                     </div>
                 </div>
             </div>
-            <div id="files" class="container tab-pane fade">
+            <!-- <div id="files" class="container tab-pane fade">
                 <div id="contactDiv" class="padd-100">
                     <div class="container">
                         <div class="row">
@@ -2240,6 +1894,361 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div> -->
+            <div id="profile" class="container tab-pane {{$factive}}">
+                <div class="commonDiv">
+                    <h3>My Profile</h3>
+                    <div class="text-center">
+                        <p class="mainHeading">Profile Management</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+
+                            <form class="form-group" action="{{route('change-profile-photo')}}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                <div class="avatar-upload">
+                                    <div class="avatar-edit">
+                                        <input type='file' id="imageUpload" name="profilephoto" accept=".png, .jpg, .jpeg" />
+                                        <label for="imageUpload"></label>
+                                    </div>
+                                    <div class="avatar-preview">
+                                        <div id="imagePreview" style="background-image: url('{{asset('profile-images/').'/'.auth::user()->profile_photo ?? ''}}');">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-lg-12" style="margin-top:-40px">
+                                    <center>
+                                        <button type="submit" class="btn btn-danger changeProfileBtn" style="width: 55%;padding:5px;float:none">Change Profile Photo</button>
+                                    </center>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-lg-6 otherBtn" align="center" style="padding-top:253px">
+                            <a href="{{route('view-user-profile')}}" class="btn btn-info p-2 " style="width: 55%;padding:5px;float:none" target="_blank">For Other</a>
+                        </div>
+                    </div>
+                    <div class="box" style="margin-top:20px">
+                        <p>Use the <b>Profile Editing Menu</b> above to edit you profile and preference</p>
+                        <p>You are logged on and therefore you can see on your profile page all available Information
+                            including your cover letter, full address, rates and the profile editing menu.
+                        </p>
+                    </div>
+                    <div class="box" style="margin-top:20px">
+                        <p><b>Link to your profile page:</b> <a href="{{route('view-user-profile')}}">{{auth::user()->fname}}</a> (you may use it, for example
+                            on your business card; please note that it must be without <b>"www"</b>)</p>
+                    </div>
+                    <div class="text-center" style="margin-top:20px">
+                        <p class="mainHeading">Availability</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <h4><b>Availability</b></h4>
+                            <label class="switch"><input type="checkbox" class="togglebtn" data-type="availability" @if(auth::user()->status=='1'){{'checked'}}@endif/><div></div>
+                            </label>
+                        </div>
+                    </div>
+                    <p>Translator's Availability is displayed <a href="">at the top right corner of your profile page.</a>
+                        Busy members are shown at the end of the search results.
+                    </p>
+                    <p>Click or tap the <b>Disable</b> button to hide your availability status.</p>
+                    <div class="text-center" style="margin-top:20px">
+                        <p class="mainHeading">Availability</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="text-center privacy-box">
+                                <h4><b>Profile</b></h4>
+                                <p>
+                                    @if(auth::user()->private_information=='1')
+                                    <i class="fa fa-unlock privateicon"></i>
+                                    @else
+                                    <i class="fa fa-lock privateicon"></i>
+                                    @endif
+                                </p>
+                                <label class="switch"><input type="checkbox" class="togglebtn" data-type="profile" @if(auth::user()->private_information=='1'){{'checked'}}@endif/><div></div>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="text-center privacy-box">
+                                <h4><b>Contact Info</b></h4>
+                                <p>
+                                    @if(auth::user()->display_contact_info=='1')
+                                    <i class="fa fa-eye visibleicon"></i>
+                                    @else
+                                    <i class="fa fa-eye-slash visibleicon"></i>
+                                    @endif
+                                </p>
+                                <label class="switch"><input type="checkbox" class="togglebtn" data-type="ContactInfo" @if(auth::user()->display_contact_info=='1'){{'checked'}}@endif/><div></div>
+                                </label>
+                            </div>
+                        </div>
+                        @if(auth::user()->user_status=="Freelancer")
+                        <div class="col-lg-4">
+                            <div class="text-center privacy-box">
+                                <h4><b>Rates</b></h4>
+                                <p>
+                                    @if(auth::user()->show_rated_users=='1')
+                                    <i class="fa fa-eye rateicon"></i>
+                                    @else
+                                    <i class="fa fa-eye-slash rateicon"></i>
+                                    @endif
+                                </p>
+                                <label class="switch"><input type="checkbox" class="togglebtn" data-type="Rates" @if(auth::user()->show_rated_users=='1'){{'checked'}}@endif/><div></div>
+                                </label>
+                            </div>
+                        </div>
+                        @endif
+                    </div>
+                    <div class="text-center" style="margin-top:20px">
+                        <p class="mainHeading">Email Notification</p>
+                    </div>
+                    <div class="row">
+                        @if(auth::user()->user_status=="Freelancer")
+                        <div class="col-lg-4">
+                            <div class="text-center privacy-box">
+                                <h4><b>Job Notification</b></h4>
+                                <p>
+                                    @if(auth::user()->jobsnotification=='1')
+                                    <i class="fa fa-bell jobnotifyicon" aria-hidden="true"></i>
+                                    @else
+                                    <i class="fa fa-bell-slash jobnotifyicon"></i>
+                                    @endif
+                                </p>
+                                <label class="switch"><input type="checkbox" class="togglebtn" data-type="JobNotification" @if(auth::user()->jobsnotification=='1'){{'checked'}}@endif/><div></div>
+                                </label>
+                                <p><b>Block Countries</b></p>
+                            </div>
+                        </div>
+                        @endif
+                        <!-- <div class="col-lg-4">
+                            <div class="text-center privacy-box">
+                                <h4><b>News Notification</b></h4>
+                                <p>
+                                    @if(auth::user()->news_notification=='1')
+                                    <i class="fa fa-bell newsnotifyicon" aria-hidden="true"></i>
+                                    @else
+                                    <i class="fa fa-bell-slash newsnotifyicon"></i>
+                                    @endif
+                                </p>
+                                <label class="switch"><input type="checkbox" class="togglebtn" data-type="NewsNotification" @if(auth::user()->news_notification=='1'){{'checked'}}@endif/><div></div>
+                                </label>
+                            </div>
+                        </div> -->
+                        <div class="col-lg-4">
+                            <div class="text-center privacy-box">
+                                <h4><b>Forums Notification</b></h4>
+                                <p>Diabaled</p>
+                                <label class="switch"><input type="checkbox" class="togglebtn" data-type="ForumsNotification" />
+                                    <div></div>
+                                </label>
+                            </div>
+                        </div>
+                        <!-- <div
+                             class="col-lg-3">
+                                <div class="text-center privacy-box">
+                                    <h4><b>TCTTerms Notification</b></h4>
+                                    <p>Enable</p>
+                                    <label class="switch"><input type="checkbox" /><div></div>
+                                    </label>
+                                </div>
+                            </div> -->
+                    </div>
+                    <div class="userInfo">
+                        <div class="row" style="margin-bottom:20px">
+                            <div class="col-lg-3">
+                                <div class="important-note">
+                                    <p>
+                                        If you want your profile to be
+                                        more exposed, consider submitting your photograph
+                                        or logo. The site statistics show that profiles with photos are viewed 6.1 times more
+                                        frequently (profiles with a photograph in average 1472 times, without a photograph
+                                        only 241 times).
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-lg-9">
+                                <h4>
+                                    {{$userData[0]->usergeneralinfo->first_name ?? ''}} {{ $userData[0]->usergeneralinfo->last_name ?? ''}}
+                                </h4>
+                                <p>{{$userData[0]->usergeneralinfo->advertising_slogan ?? ''}}</p>
+                                <p>{{$userData[0]->usergeneralinfo->company_name ?? ''}}</p>
+                                <p><b>Pakistan</b></p>
+                                <p>Mother Tongues:</p>
+                                <p>
+                                    @foreach($userData[0]->usermotherlanguages as $lng)
+                                    {{$lng->mother_language}}
+                                    @endforeach
+                                </p>
+                            </div>
+                        </div>
+                        <a href="{{$userData[0]->usergeneralinfo->website ?? ''}}"><b>{{$userData[0]->usergeneralinfo->website ?? ''}}</b></a>
+                    </div>
+                    <!-- <p><b>TCTerms Score 0</b> [disable]</p> -->
+                    <div class="text-left" style="margin-top:20px">
+                        <p class="mainHeading">Contact Information @if(isset($userData[0]->usergeneralinfo->display_contact_info) && $userData[0]->usergeneralinfo->display_contact_info=='0'){{"(Visible)"}} else {{"(Invisible)" }}@endif</p>
+                    </div>
+                    <p>
+                        <b>Address:</b>{{$userData[0]->usergeneralinfo->address ?? ''}}
+                    </p>
+                    <p>
+                        <b>Phone:</b>
+                        {{$userData[0]->usergeneralinfo->telephone ?? ''}},
+                        <b>Fax:</b> {{$userData[0]->usergeneralinfo->fax ?? ''}},
+                        <b>Cell Phone:</b> {{$userData[0]->usergeneralinfo->mobile_phone ?? ''}}
+                    </p>
+                    <p>Joined: {{$userData[0]->created_at}}, last update: {{$userData[0]->updated_at}} </p>
+                    <p>
+                        <b>
+                            Preferred E-mail of {{$userData[0]->usergeneralinfo->first_name ?? ''}} {{ $userData[0]->usergeneralinfo->last_name ?? ''}}: {{ $userData[0]->usergeneralinfo->gemail ?? ''}}
+                        </b>
+                    </p>
+                    @if(auth::user()->user_status=="Freelancer")
+                    <div class="text-left" style="margin-top:20px">
+                        <p class="mainHeading">Working Language Pairs</p>
+                    </div>
+                    <p>
+
+                        @foreach($userData[0]->userlanguages as $lng)
+                        {{$lng->from_languages .'>>'. $lng->to_languages}}
+                        @endforeach
+                    </p>
+                    <div class="text-left" style="margin-top:20px">
+                        <p class="mainHeading">Services and Rates</p>
+                    </div>
+                    <p>Rates are
+                        @if(isset($userData[0]->usergeneralinfo->show_rated_users)){{"visible"}}@else{{"invisible"}}@endif
+                    </p>
+                    <p>Other, Subtitling</p>
+                    <p>Preferred currency: <b>$</b></p>
+                    <table class="table table-hover table-responsive">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th style="width: 30%;">Service</th>
+                                <th>Language</th>
+                                <th style="width: 70%;">Rate</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($userData[0]->usersevices as $service)
+                            <tr>
+                                <td>{{$loop->index+1}}</td>
+                                <td>{{$service->service}}</td>
+                                @php
+                                $pairlanguage=\App\Models\UserLanguages::where('id',$service->pair_language)->first();
+                                @endphp
+                                <td>{{$pairlanguage->from_languages.">>".$pairlanguage->to_languages}}</td>
+                                <td>{{"Min rate per word is ".$service->min_rate_per_word." $ Min rate per minute is ".$service->min_rate_per_minute." $"}}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+
+                    <!-- rates and statistics -->
+                    <div class="text-left" style="margin-top:20px">
+                        <p class="mainHeading">Subject Areas</p>
+                    </div>
+                    <p>
+                        @foreach($userData[0]->userspicialize->spicializations ?? [] as $spcialize)
+                        {{$spcialize}},
+                        @endforeach
+                    </p>
+                    <div class="text-left" style="margin-top:20px">
+                        <p class="mainHeading">Voice-Over</p>
+                    </div>
+                    <!-- voic over -->
+                    <p>
+                        <b>Voice Languages:</b>
+                        @foreach($userData[0]->uservoicover as $voiclng)
+                        {{$voiclng->language}},
+                        @endforeach
+                    </p>
+                    <p><b>Voice Gender: </b>Female Voice</p>
+                    <p><b>Voice Ages:</b> Young Adult, Middle Age Adult</p>
+                    <p><b>Type of Recording: </b>Audio Books, Character Voices, Commercials, Documentaries, e-Learning, Imaging, Infomercials, Interactive Voice Response Telecom Applications (IVR), Narration, On
+                        Camera Recordings, Political, Promos</p>
+                    <div class="text-center">
+                        <p>
+                            <b>Detailed Description and Voice Samples</b>
+                        </p>
+                    </div>
+
+                    <!-- Cover Letter -->
+                    <div class="text-left" style="margin-top:20px">
+                        <p class="mainHeading">Cover Letter (not visible for everybody)</p>
+                    </div>
+                    <p>
+                        {{$userData[0]->usergeneralinfo->cover_letter ?? ''}}
+                    </p>
+                    <div class="text-left" style="margin-top:20px">
+                        <p class="mainHeading">Background (Your Presentation Page, Résumé or CV)</p>
+                    </div>
+                    <div class="box" style="display: flex;justify-content: space-between;">
+                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                        <p><b>@if(auth::user()->resume)<a target="_blank" href="{{asset('files/resume').'/'.auth::user()->resume}}">View Resume</a>@else{{"(No Resume Uploaded)"}}@endif</b></p>
+                    </div>
+
+                    <!-- software areas -->
+                    <div class="text-left" style="margin-top:20px">
+                        <p class="mainHeading">Software</p>
+                    </div>
+                    <ul style="padding-left:30px; list-style:disc;">
+                        @foreach($userData[0]->usersoftwares->software_tools ?? [] as $soft)
+                        <li>{{$soft}}</li>
+                        @endforeach
+                    </ul>
+
+                    <!-- platform and hardware -->
+                    <div class="text-left" style="margin-top:20px">
+                        <p class="mainHeading">Platform & hardware</p>
+                    </div>
+                    <p>
+                        {{$userData[0]->usergeneralinfo->platform_hardware ?? ''}}
+                    </p>
+                    <!-- user files -->
+                    <div class="text-left" style="margin-top:20px">
+                        <p class="mainHeading">Files</p>
+                    </div>
+                    <p>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>File Name</th>
+                                <th>File Purpose</th>
+                                <th>Comments</th>
+                                <th>File</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($userData[0]->userfiles as $file)
+                            <tr>
+                                <td>
+                                    {{$file->file_title}}
+                                </td>
+                                <td>{{$file->purpose}}</td>
+                                <td>{{$file->comments}}</td>
+                                <td><a href="{{asset('files/userfiles').'/'.$file->file}}">View File</a></td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    </p>
+                    @endif
+                    <!-- Membership -->
+                    <div class="text-left" style="margin-top:20px">
+                        <p class="mainHeading">Membership</p>
+                    </div>
+                    <p>
+                        {{$userData[0]->usergeneralinfo->membership_professional_associations ?? ''}}
+                    </p>
+                    <div class="text-left" style="margin-top:20px">
+                        <p class="mainHeading">Payment Options</p>
+                    </div>
+                    <p>If you accept payments through several payment processors, their logos can be shown on your profile page. If your clients click or tap a payment processor logo on your profile, they will be redirected to the site of this payment processor. If you want to show payment processors through which you accept payments on your profile page (in this place), click or tap the Edit button above and enter your email addresses for corresponding payment processors in the form.
+                        If you are not registered with any of the payment processors below, please click or tap the corresponding button below and sign up for PayPal or Skrill. After that you will enter your e-mail address on the profile form.</p>
                 </div>
             </div>
             <div id="change-pass" class="container tab-pane {{$change_pass_tab}}">
@@ -2447,7 +2456,7 @@
             },
             success: function(res) {
                 if (res == "success") {
-                    Swal.fire('Status Changed Successfully!', '', 'success');
+                    // Swal.fire('Status Changed Successfully!', '', 'success');
                 } else {
                     Swal.fire('Oops!', '', 'error');
                 }

@@ -1,52 +1,66 @@
+<div class='row'>
+    @if(isset($editjob->job_specialization))
+    @php foreach($editjob->job_specialization as $specialization){ @endphp
+    <div class="col-md-4 ">
+        <div class="checkBox-Div">
+            <input type="checkbox" name="spicializations[]" value="{{$specialization}}" checked>
+            <label for="">{{$specialization}}</label>
+        </div>
+    </div>
+    @php } @endphp
+    @endif
+</div>
+
+
 <div class="row">
     <div class="col-md-4 ">
         <div class="checkBox-Div">
             <input type="checkbox" name="spicializations[]" value="Acting and Directing" {{checkedspcial($userData[0]->userspicialize->spicializations ?? [],'Acting and Directing')}}>
             <label for="">Acting and Directing</label>
         </div>
-    </div>  
+    </div>
     <div class="col-md-4 ">
         <div class="checkBox-Div">
             <input type="checkbox" name="spicializations[]" name="spicializations[]" value="Ecology" {{checkedspcial($userData[0]->userspicialize->spicializations ?? [],'Ecology')}}>
             <label for="">Ecology</label>
         </div>
-    </div> 
+    </div>
     <div class="col-md-4 ">
         <div class="checkBox-Div">
             <input type="checkbox" name="spicializations[]" value="Medicine - Public Health Education & Poromotion" {{checkedspcial($userData[0]->userspicialize->spicializations ?? [],'Medicine - Public Health Education & Poromotion')}}>
             <label for="">Medicine - Public Health Education & Poromotion</label>
         </div>
-    </div> 
+    </div>
     <div class="col-md-4 ">
         <div class="checkBox-Div">
             <input type="checkbox" name="spicializations[]" value="Advertising" {{checkedspcial($userData[0]->userspicialize->spicializations ?? [],'Advertising')}}>
             <label for="">Advertising</label>
         </div>
-    </div>  
+    </div>
     <div class="col-md-4 ">
         <div class="checkBox-Div">
             <input type="checkbox" name="spicializations[]" value="Economics" {{checkedspcial($userData[0]->userspicialize->spicializations ?? [],'Economics')}}>
             <label for="">Economics</label>
         </div>
-    </div>  
+    </div>
     <div class="col-md-4 ">
         <div class="checkBox-Div">
             <input type="checkbox" name="spicializations[]" value="Medicine - Social Psychology" {{checkedspcial($userData[0]->userspicialize->spicializations ?? [],'Medicine - Social Psychology')}}>
             <label for="">Medicine - Social Psychology</label>
         </div>
-    </div> 
+    </div>
     <div class="col-md-4 ">
         <div class="checkBox-Div">
             <input type="checkbox" name="spicializations[]" value="Arespace Engineering" {{checkedspcial($userData[0]->userspicialize->spicializations ?? [],'Arespace Engineering')}}>
             <label for="">Arespace Engineering</label>
         </div>
-    </div> 
+    </div>
     <div class="col-md-4 ">
         <div class="checkBox-Div">
             <input type="checkbox" name="spicializations[]" value="Education" {{checkedspcial($userData[0]->userspicialize->spicializations ?? [],'Education')}}>
             <label for="">Education</label>
         </div>
-    </div> 
+    </div>
     <div class="col-md-4 ">
         <div class="checkBox-Div">
             <input type="checkbox" name="spicializations[]" value="Medicine - Taxicology" {{checkedspcial($userData[0]->userspicialize->spicializations ?? [],'Medicine - Taxicology')}}>
@@ -70,55 +84,55 @@
             <input type="checkbox" name="spicializations[]" {{checkedspcial($userData[0]->userspicialize->spicializations ?? [],'Medicine (General)')}} value="Medicine (General">
             <label for="">Medicine (General)</label>
         </div>
-    </div> 
+    </div>
     <div class="col-md-4 ">
         <div class="checkBox-Div">
             <input type="checkbox" name="spicializations[]" {{checkedspcial($userData[0]->userspicialize->spicializations ?? [],'Agronomy and Crop Science')}} value="Agronomy and Crop Science">
             <label for="">Agronomy and Crop Science</label>
         </div>
-    </div> 
+    </div>
     <div class="col-md-4 ">
         <div class="checkBox-Div">
             <input type="checkbox" name="spicializations[]" {{checkedspcial($userData[0]->userspicialize->spicializations ?? [],'Engineering')}} value="Engineering">
             <label for="">Engineering</label>
         </div>
-    </div> 
+    </div>
     <div class="col-md-4 ">
         <div class="checkBox-Div">
             <input type="checkbox" name="spicializations[]" {{checkedspcial($userData[0]->userspicialize->spicializations ?? [],'Medieval and Renaissance Studies')}} value="Medieval and Renaissance Studies">
             <label for="">Medieval and Renaissance Studies</label>
         </div>
-    </div> 
+    </div>
     <div class="col-md-4 ">
         <div class="checkBox-Div">
             <input type="checkbox" name="spicializations[]" {{checkedspcial($userData[0]->userspicialize->spicializations ?? [],'Aircraft')}} value="Aircraft">
             <label for="">Aircraft</label>
         </div>
-    </div> 
+    </div>
     <div class="col-md-4 ">
         <div class="checkBox-Div">
             <input type="checkbox" name="spicializations[]" {{checkedspcial($userData[0]->userspicialize->spicializations ?? [],'Entomology')}} value="Entomology">
             <label for="">Entomology</label>
         </div>
-    </div> 
+    </div>
     <div class="col-md-4 ">
         <div class="checkBox-Div">
             <input type="checkbox" name="spicializations[]" {{checkedspcial($userData[0]->userspicialize->spicializations ?? [],'Metallurgical Engineering')}} value="Metallurgical Engineering">
             <label for="">Metallurgical Engineering</label>
         </div>
-    </div>  
+    </div>
     <div class="col-md-4 ">
         <div class="checkBox-Div">
             <input type="checkbox" name="spicializations[]" {{checkedspcial($userData[0]->userspicialize->spicializations ?? [],'Antomy')}} value="Antomy">
             <label for="">Antomy</label>
         </div>
-    </div>  
+    </div>
     <div class="col-md-4 ">
         <div class="checkBox-Div">
             <input type="checkbox" name="spicializations[]" {{checkedspcial($userData[0]->userspicialize->spicializations ?? [],'Enterpreneurship')}} value="Enterpreneurship">
             <label for="">Enterpreneurship</label>
         </div>
-    </div>  
+    </div>
     <div class="col-md-4 ">
         <div class="checkBox-Div">
             <input type="checkbox" name="spicializations[]" {{checkedspcial($userData[0]->userspicialize->spicializations ?? [],'Military Technologies')}} value="Military Technologies">
@@ -696,7 +710,7 @@
         </div>
     </div>
 
-     <div class="col-md-4 ">
+    <div class="col-md-4 ">
         <div class="checkBox-Div">
             <input type="checkbox" name="spicializations[]" {{checkedspcial($userData[0]->userspicialize->spicializations ?? [],'Taxation')}} value="Taxation">
             <label for="">Taxation</label>
@@ -744,7 +758,7 @@
             <label for="">Civil Engineering</label>
         </div>
     </div>
-     <div class="col-md-4 ">
+    <div class="col-md-4 ">
         <div class="checkBox-Div">
             <input type="checkbox" name="spicializations[]" {{checkedspcial($userData[0]->userspicialize->spicializations ?? [],'Medicine - Acupuncture and Oriental Medicine')}} value="Medicine - Acupuncture and Oriental Medicine">
             <label for="">Medicine - Acupuncture and Oriental Medicine</label>
@@ -830,7 +844,7 @@
     </div>
     <div class="col-md-4 ">
         <div class="checkBox-Div">
-        <input type="checkbox" name="spicializations[]" {{checkedspcial($userData[0]->userspicialize->spicializations ?? [],'Culinary Arts')}} value="Culinary Arts">
+            <input type="checkbox" name="spicializations[]" {{checkedspcial($userData[0]->userspicialize->spicializations ?? [],'Culinary Arts')}} value="Culinary Arts">
             <label for="">Culinary Arts</label>
         </div>
     </div>

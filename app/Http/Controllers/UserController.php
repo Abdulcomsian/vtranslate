@@ -16,6 +16,7 @@ use App\Models\UserServicesRates;
 use App\Models\Jobs;
 use App\Models\JobProposal;
 use App\Models\WorkHistory;
+use App\Models\Resume;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Auth;
@@ -52,20 +53,20 @@ class UserController extends Controller
     }
 
     //user chagne status translater or employer
-    public function change_status(Request $request)
-    {
-        try {
-            $user_id = Auth::user()->id;
-            $user_data = User::find($user_id)->update([
-                'user_status' => $request->user_status,
-            ]);
-            toastr()->success('User Status Changed Successfull!');
-            return \Redirect::route('profile')->with('currtab', $request->currtab);
-        } catch (\Exception $exception) {
-            toastr()->error('Something went wrong, try again');
-            return back()->with('currtab', $request->currtab);
-        }
-    }
+    // public function change_status(Request $request)
+    // {
+    //     try {
+    //         $user_id = Auth::user()->id;
+    //         $user_data = User::find($user_id)->update([
+    //             'user_status' => $request->user_status,
+    //         ]);
+    //         toastr()->success('User Status Changed Successfull!');
+    //         return \Redirect::route('profile')->with('currtab', $request->currtab);
+    //     } catch (\Exception $exception) {
+    //         toastr()->error('Something went wrong, try again');
+    //         return back()->with('currtab', $request->currtab);
+    //     }
+    // }
 
     //save general info of user
     public function save_general_info(Request $request)
@@ -107,29 +108,90 @@ class UserController extends Controller
             ]);
             //toaster message
             toastr()->success('User Gneral Info Saved Successfull!');
-            return \Redirect::route('profile')->with('currtab', $request->currtab);
+            return \Redirect::route('profile')->with('currtab', 'resume');
         } catch (\Exception $exception) {
             toastr()->error('Something went wrong, try again');
             return back()->with('currtab', $request->currtab);
         }
     }
     //upload resume
+    // public function upload_resume(Request $request)
+    // {
+    //     try {
+
+    //         if ($file = $request->file('resume')) {
+    //             $path = 'files/resume/';
+    //             if (!file_exists(public_path() . '/' . $path)) {
+    //                 $path = 'files/resume/';
+    //                 File::makeDirectory(public_path() . '/' . $path, 0777, true);
+    //             }
+    //             if (Auth::user()->resume) //if already resume unlink resume and upload new one
+    //             {
+    //                 unlink(public_path() . '/files/resume/' . Auth::user()->resume);
+    //             }
+    //             $name = time() . $file->getClientOriginalName();
+    //             $file->move('files/resume/', $name);
+    //             //progress bar
+    //             $mark_profile_section = Auth::user()->mark_profile_section;
+    //             if ($mark_profile_section) {
+    //                 if (!in_array(2, $mark_profile_section)) {
+    //                     array_push($mark_profile_section, 2);
+    //                 }
+    //             } else {
+    //                 $mark_profile_section = array();
+    //                 array_push($mark_profile_section, 2);
+    //             }
+    //             $userModel = User::find(Auth::user()->id);
+    //             $userModel->resume = $name;
+    //             $userModel->mark_profile_section = $mark_profile_section;
+    //             $userModel->save();
+    //             //toaster message
+    //             toastr()->success('User Resume Saved Successfull!');
+    //             return \Redirect::route('profile')->with('currtab', 'languages');
+    //         }
+    //     } catch (\Exception $exception) {
+    //         toastr()->error('Something went wrong, try again');
+    //         return back()->with('currtab', $request->currtab);
+    //     }
+    // }
+
+    //upload resume
     public function upload_resume(Request $request)
     {
         try {
-
             if ($file = $request->file('resume')) {
-                $path = 'files/resume/';
-                if (!file_exists(public_path() . '/' . $path)) {
-                    $path = 'files/resume/';
-                    File::makeDirectory(public_path() . '/' . $path, 0777, true);
+                $allowedfileExtension = ['pdf', 'docx'];
+                $files = $request->file('resume');
+                foreach ($files as $file) {
+                    $filename = $file->getClientOriginalName();
+                    $extension = $file->getClientOriginalExtension();
+                    $check = in_array($extension, $allowedfileExtension);
+
+                    if ($check) {
+                        $path = 'files/resume/';
+                        if (!file_exists(public_path() . '/' . $path)) {
+                            $path = 'files/resume/';
+                            File::makeDirectory(public_path() . '/' . $path, 0777, true);
+                        }
+                        $name = time() . $file->getClientOriginalName();
+                        $file->move('files/resume/', $name);
+
+                        $userModel = User::find(Auth::user()->id);
+                        $user_id = $userModel->id;
+
+
+                        $resumeModel = new resume();
+
+                        $resumeModel->file = $filename;
+                        $resumeModel->user_id = $user_id;
+
+                        $resumeModel->save();
+                    } else {
+                        toastr()->error('Selected Files not supported');
+                        return back();
+                    }
                 }
-                if (Auth::user()->resume) //if already resume unlink resume and upload new one
-                {
-                    unlink(public_path() . '/files/resume/' . Auth::user()->resume);
-                }
-                $name = time() . $file->getClientOriginalName();
-                $file->move('files/resume/', $name);
+
                 //progress bar
                 $mark_profile_section = Auth::user()->mark_profile_section;
                 if ($mark_profile_section) {
@@ -144,8 +206,8 @@ class UserController extends Controller
                 $userModel->resume = $name;
                 $userModel->mark_profile_section = $mark_profile_section;
                 $userModel->save();
-                //toaster message
-                toastr()->success('User Resume Saved Successfull!');
+                // toaster message
+                toastr()->success('User Resume Saved Successfully!');
                 return \Redirect::route('profile')->with('currtab', $request->currtab);
             }
         } catch (\Exception $exception) {
@@ -175,7 +237,7 @@ class UserController extends Controller
             }
             User::find(Auth::user()->id)->update(['mark_profile_section' => $mark_profile_section]);
             toastr()->success('User Language Saved Successfull!');
-            return \Redirect::route('profile')->with('currtab', $request->currtab);
+            return \Redirect::route('profile')->with('currtab', 'service_rates');
         } catch (\Exception $exception) {
             toastr()->error('Something went wrong, try again');
             return back()->with('currtab', $request->currtab);
@@ -231,7 +293,7 @@ class UserController extends Controller
             }
             User::find(Auth::user()->id)->update(['mark_profile_section' => $mark_profile_section]);
             toastr()->success('User Services Saved Successfull!');
-            return \Redirect::route('profile')->with('currtab', $request->currtab);
+            return \Redirect::route('profile')->with('currtab', 'voiceover');
         } catch (\Exception $exception) {
             toastr()->error('Something went wrong, try again');
             return back()->with('currtab', $request->currtab);
@@ -245,8 +307,20 @@ class UserController extends Controller
             //check if language alreayd exist
             $exist = UserVoiceOver::where('language', $request->language)->where('user_id', Auth::user()->id)->first();
             if (!$exist) {
+                $name = "";
+                if ($request->file('voice')) {
+                    $file = $request->file('voice');
+                    $path = 'files/voice/';
+                    if (!file_exists(public_path() . '/' . $path)) {
+                        $path = 'files/voice/';
+                        File::makeDirectory(public_path() . '/' . $path, 0777, true);
+                    }
+                    $name = time() . $file->getClientOriginalName();
+                    $file->move('files/voice/', $name);
+                }
                 $UserVoiceOver = new UserVoiceOver();
                 $UserVoiceOver->language = $request->language;
+                $UserVoiceOver->voice = $name;
                 $UserVoiceOver->user_id = Auth::user()->id;
                 $UserVoiceOver->save();
                 //profile progress
@@ -264,7 +338,7 @@ class UserController extends Controller
             } else {
                 toastr()->error('User VoiceOver Language Already Added');
             }
-            return \Redirect::route('profile')->with('currtab', $request->currtab);
+            return \Redirect::route('profile')->with('currtab', 'specialization');
         } catch (\Exception $exception) {
             toastr()->error('Something went wrong, try again');
             return back()->with('currtab', $request->currtab);
@@ -299,7 +373,7 @@ class UserController extends Controller
                 User::find(Auth::user()->id)->update(['mark_profile_section' => $mark_profile_section]);
             }
             toastr()->success('User specializtions Saved Successfull!');
-            return \Redirect::route('profile')->with('currtab', $request->currtab);
+            return \Redirect::route('profile')->with('currtab', 'softwares');
         } catch (\Exception $exception) {
             toastr()->error('Something went wrong, try again');
             return back()->with('currtab', $request->currtab);
@@ -335,7 +409,7 @@ class UserController extends Controller
                 User::find(Auth::user()->id)->update(['mark_profile_section' => $mark_profile_section]);
             }
             toastr()->success('User Softwares Saved Successfull!');
-            return \Redirect::route('profile')->with('currtab', $request->currtab);
+            return \Redirect::route('profile');
         } catch (\Exception $exception) {
             toastr()->error('Something went wrong, try again');
             return back()->with('currtab', $request->currtab);
@@ -343,46 +417,46 @@ class UserController extends Controller
     }
 
     //save user files
-    public function user_save_files(Request $request)
-    {
-        try {
-            if ($file = $request->file('file')) {
-                $path = 'files/userfiles/';
-                if (!file_exists(public_path() . '/' . $path)) {
-                    $path = 'files/userfiles/';
-                    File::makeDirectory(public_path() . '/' . $path, 0777, true);
-                }
-                $name = time() . $file->getClientOriginalName();
-                $size = $file->getSize();
-                $file->move('files/userfiles/', $name);
-            }
-            $UserFiles = new UserFiles();
-            $UserFiles->file_title = $request->file_title;
-            $UserFiles->file = $name;
-            $UserFiles->file_size = $size;
-            $UserFiles->purpose = $request->purpose;
-            $UserFiles->language = $request->language;
-            $UserFiles->comments = $request->comments;
-            $UserFiles->user_id = Auth::user()->id;
-            $UserFiles->save();
-            //profile progress
-            $mark_profile_section = Auth::user()->mark_profile_section;
-            if ($mark_profile_section) {
-                if (!in_array(9, $mark_profile_section)) {
-                    array_push($mark_profile_section, 9);
-                }
-            } else {
-                $mark_profile_section = array();
-                array_push($mark_profile_section, 9);
-            }
-            User::find(Auth::user()->id)->update(['mark_profile_section' => $mark_profile_section]);
-            toastr()->success('User Files Saved Successfully!!');
-            return \Redirect::route('profile');
-        } catch (\Exception $exception) {
-            toastr()->error('Something went wrong, try again');
-            return back();
-        }
-    }
+    // public function user_save_files(Request $request)
+    // {
+    //     try {
+    //         if ($file = $request->file('file')) {
+    //             $path = 'files/userfiles/';
+    //             if (!file_exists(public_path() . '/' . $path)) {
+    //                 $path = 'files/userfiles/';
+    //                 File::makeDirectory(public_path() . '/' . $path, 0777, true);
+    //             }
+    //             $name = time() . $file->getClientOriginalName();
+    //             $size = $file->getSize();
+    //             $file->move('files/userfiles/', $name);
+    //         }
+    //         $UserFiles = new UserFiles();
+    //         $UserFiles->file_title = $request->file_title;
+    //         $UserFiles->file = $name;
+    //         $UserFiles->file_size = $size;
+    //         $UserFiles->purpose = $request->purpose;
+    //         $UserFiles->language = $request->language;
+    //         $UserFiles->comments = $request->comments;
+    //         $UserFiles->user_id = Auth::user()->id;
+    //         $UserFiles->save();
+    //         //profile progress
+    //         $mark_profile_section = Auth::user()->mark_profile_section;
+    //         if ($mark_profile_section) {
+    //             if (!in_array(9, $mark_profile_section)) {
+    //                 array_push($mark_profile_section, 9);
+    //             }
+    //         } else {
+    //             $mark_profile_section = array();
+    //             array_push($mark_profile_section, 9);
+    //         }
+    //         User::find(Auth::user()->id)->update(['mark_profile_section' => $mark_profile_section]);
+    //         toastr()->success('User Files Saved Successfully!!');
+    //         return \Redirect::route('profile');
+    //     } catch (\Exception $exception) {
+    //         toastr()->error('Something went wrong, try again');
+    //         return back();
+    //     }
+    // }
 
     //delete user language
     public function delete_user_languages(Request $request)
@@ -412,7 +486,12 @@ class UserController extends Controller
     public function delete_voiceover_language(Request $request)
     {
         try {
+            $voicedata = UserVoiceOver::find($request->id);
             UserVoiceOver::find($request->id)->delete();
+            if ($voicedata->voice) //if already resume unlink resume and upload new one
+            {
+                unlink(public_path() . '/files/vlice/' .  $voicedata->voice);
+            }
             toastr()->success('VoiceOver Language Deleted Successfull!');
             return \Redirect::route('profile')->with('currtab', 'voiceover');
         } catch (\Exception $exception) {

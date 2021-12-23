@@ -108,6 +108,8 @@ Route::middleware(['verified', 'auth', 'profile'])->group(function () {
     Route::get('/post-a-job', 'JobsController@index')->name('post-a-job');
     Route::post('/post-a-job', 'JobsController@store')->name('post-a-job');
     Route::get('/job-details/{id}', 'JobsController@job_details')->name('job-details');
+    Route::post('/edit-job', 'JobsController@edit_job')->name('edit-job');
+    Route::post('/update-a-job', 'JobsController@update_a_job')->name('update-a-job');
     //SEND JOB PROPOSAL OR MESSAGE ROUTE
     Route::post('/job-send-message', 'JobsController@job_send_message')->name('job-send-message');
     Route::get('/job-applied-user/{id}', 'JobsController@job_applied_user')->name('job-applied-user');

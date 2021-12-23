@@ -6,28 +6,28 @@
 <section id="contactDiv" class="sectionMain padd-100">
     <div class="container">
         <div class="row">
-            <div class="col-lg-9">
+            <div class="col-lg-12">
                 <div class="commonDiv">
                     <h3>Search Freelancer</h3>
                     <form action="{{route('search-freelancer')}}" method="post">
                         @csrf
-                        <div class="inputDiv">
+                        <!-- <div class="inputDiv">
                             <label for="">Freelancer</label>
                             <input class="form-control" name="name" id="name" placeholder="Enter Freelancer Name" />
-                            <!-- <select name="freelancerid" id="freelancerid" required>
+                            <select name="freelancerid" id="freelancerid" required>
                                 <option value="">Select Freelancer</option>
                                 @foreach($allafreelancermembers as $freelance)
                                 <option value="{{$freelance->id}}">{{$freelance->fname .' '.$freelance->lname}}</option>
                                 @endforeach
-                            </select> -->
+                            </select> 
                         </div>
                         <div class="inputDiv">
                             <label for="">Keywords:</label>
                             <input type="text" class="form-control" name="keyword" id="keyword">
-                        </div>
+                        </div> -->
                         <div class="inputDiv">
-                            <label for="">Language</label>
-                            <select id="slanguages" name="slanguages">
+                            <label for="">Source – Language:</label>
+                            <select id="slanguages" name="slanguages" class="form-control">
                                 <option value="">Source Language</option>
                                 <option value="af">Afrikaans</option>
                                 <option value="sq">Albanian - shqip</option>
@@ -174,8 +174,8 @@
                             </select>
                         </div>
                         <div class="inputDiv">
-                            <label for="">Language</label>
-                            <select id="tlanguages" name="tlanguages">
+                            <label for=""> Target- Language:</label>
+                            <select id="tlanguages" name="tlanguages" class="form-control">
                                 <option value="">Target Language</option>
                                 <option value="af">Afrikaans</option>
                                 <option value="sq">Albanian - shqip</option>
@@ -326,7 +326,7 @@
                             <label class="form-check-label" for="exampleCheck1">Freelancer profile updated during the last 30 days</label>
                         </div> -->
                         <div class="inputDiv pt-3">
-                            <label for="">Location</label>
+                            <label for="">Location:</label>
                             <select name="country" id="country" class="form-control">
                                 <option value="">Select Location</option>
                                 @foreach($countries as $country)
@@ -363,8 +363,11 @@
                                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
                                 </td>
                                 <td class="companyimg">
-                                    <h3>{{$freelancer->fname.' '.$freelancer->lname}}</h3>
-                                    <img src="@if($freelancer->profile_photo!=null){{asset('/profile-images').'/'.$freelancer->profile_photo}} @else{{'/assets/img/Job Posted.png'}}@endif" alt="" class="img-circle img-responsive " width="100px" height="100px">
+                                    <a href="{{route('public-profile',$freelancer->id)}}">
+                                        <strong>{{$freelancer->fname.' '.$freelancer->lname}}</strong>
+                                    </a>
+                                    <br>
+                                    <img src="@if($freelancer->profile_photo!=null){{asset('/profile-images').'/'.$freelancer->profile_photo}} @else{{'/assets/img/Job Posted.png'}}@endif" alt="" class="img-circle img-responsive " width="60px" height="60px">
                                 </td>
                                 <td class="location">{{$freelancer->usergeneralinfo->address ?? ''}}</td>
                                 <td class="date">
