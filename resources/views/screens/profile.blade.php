@@ -1160,7 +1160,7 @@
                                                 <th>S-no</th>
                                                 <th>Resume Files/Images</th>
                                                 <th>Created Date</th>
-                                                <th>Actions</th>
+                                                <!-- <th>Actions</th> -->
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -1170,7 +1170,7 @@
                                                 <td>{{$loop->index+1}}</td>
                                                 <td><a href="{{asset('files/resume/'.$resume->file ?? '')}}" target="_blank">{{$resume->file}}</a></td>
                                                 <td>{{$resume->created_at}}</td>
-                                                <td></td>
+                                                <!-- <td></td> -->
                                             </tr>
                                             @endforeach
                                             @else
