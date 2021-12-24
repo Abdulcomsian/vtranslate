@@ -37,6 +37,7 @@
                   </form>
                   <form action="{{route('post-a-job')}}" method="post">
                      @csrf
+                     <input type="hidden" name="job_form" id="job_form" value="" />
                      <div class="inputDiv">
                         <label for="">Job Title <span class="required">*</span></label>
                         <input class="form-control" type="text" name="job_title" id="job_title" placeholder="Job Title" required="required">
@@ -970,8 +971,10 @@
       $('input[name="fav_language"]').change(function() {
          var val = $(this).val();
          if (val == "Full form") {
+            $("#job_form").val("Full form");
             $(".simpleForm").css("display", "block");
          } else {
+            $("#job_form").val("Simple form")
             $(".simpleForm").css("display", "none")
          }
       });

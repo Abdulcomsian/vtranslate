@@ -1,14 +1,14 @@
 @extends('layouts.master' ,['page_title' => 'Post a Job'])
 @section('css')
 <style>
-#from_language{
-   text-transform:capitalize;
-}
+   #from_language {
+      text-transform: capitalize;
+   }
 
-#to_language{
-   text-transform:capitalize;
-}
-   </style>
+   #to_language {
+      text-transform: capitalize;
+   }
+</style>
 @endsection
 @section('content')
 <section id="profileBanner">
@@ -25,9 +25,10 @@
                <div class="selectionBox">
                   <p>Because this is your first job posting and no agency is associated with your profile, some of the form fields are hidden to make the process of posting a job easier. If you want to fill out the full form, please select the Full form option.</p>
                   <div class="radoBtn">
-                     <input type="radio" id="html" name="fav_language" value="Full form" checked>
+
+                     <input type="radio" id="html" name="fav_language" value="Full form" @if($editjob->job_form=="Full form"){{'checked'}}@endif>
                      <label for="html">Full form with all fields</label><br>
-                     <input type="radio" id="css" name="fav_language" value="Simple form">
+                     <input type="radio" id="css" name="fav_language" value="Simple form" @if($editjob->job_form=="Simple form"){{'checked'}}@endif>
                      <label for="css">Simple form</label><br>
                   </div>
                </div>
@@ -94,7 +95,7 @@
                               <option value="Voice-over" @if($editjob->job_type=="Voice-over"){{'selected'}}@endif>Voice-over</option>
                            </select>
                         </div>
-                  
+
                         <div class="radioDiv">
                            <input type="radio" id="Intermediate" name="job_type_level" value="Intermediate" {{ $editjob->job_level=='Intermediate' ? 'checked' : '' }}>
                            <label for="Intermediate">Intermediate</label>
@@ -111,12 +112,12 @@
                         if($editjob->expiry_status=="0")
                         {
                         $style="display:none";
-                        
+
                         }
                         elseif($editjob->expiry_status=="1")
                         {
                         $style="display:block";
-                       
+
                         }
                         else{
                         $checked="";
@@ -145,32 +146,32 @@
                               <div class="col-md-4">
                                  <select class="form-control" id="from_language" name="from_language[]" required>
                                     <option value="{{$pair !='' ? $pair->from_lang : ''}}">{{$pair !='' ? $pair->from_lang : 'Select Language'}}</option>
-                                    <option value="af" >Afrikaans</option>
-                                    <option value="sq" >Albanian - shqip</option>
-                                    <option value="am" >Amharic - አማርኛ</option>
-                                    <option value="ar" >Arabic - العربية</option>
-                                    <option value="an" >Aragonese - aragonés</option>
-                                    <option value="hy" >Armenian - հայերեն</option>
-                                    <option value="ast" >Asturian - asturianu</option>
-                                    <option value="az" >Azerbaijani - azərbaycan dili</option>
-                                    <option value="eu" >Basque - euskara</option>
-                                    <option value="be" >Belarusian - беларуская</option>
-                                    <option value="bn" >Bengali - বাংলা</option>
-                                    <option value="bs" >Bosnian - bosanski</option>
-                                    <option value="br" >Breton - brezhoneg</option>
-                                    <option value="bg" >Bulgarian - български</option>
-                                    <option value="ca" >Catalan - català</option>
-                                    <option value="ckb" >Central Kurdish - کوردی (دەستنوسی عەرەبی)</option>
-                                    <option value="zh" >Chinese - 中文</option>
-                                    <option value="zh-HK" >Chinese (Hong Kong) - 中文（香港）</option>
-                                    <option value="zh-CN" >Chinese (Simplified) - 中文（简体）</option>
-                                    <option value="zh-TW" >Chinese (Traditional) - 中文（繁體）</option>
-                                    <option value="co" >Corsican</option>
-                                    <option value="hr" >Croatian - hrvatski</option>
-                                    <option value="cs" >Czech - čeština</option>
-                                    <option value="da" >Danish - dansk</option>
-                                    <option value="nl" >Dutch - Nederlands</option>
-                                    <option value="en" >English</option>
+                                    <option value="af">Afrikaans</option>
+                                    <option value="sq">Albanian - shqip</option>
+                                    <option value="am">Amharic - አማርኛ</option>
+                                    <option value="ar">Arabic - العربية</option>
+                                    <option value="an">Aragonese - aragonés</option>
+                                    <option value="hy">Armenian - հայերեն</option>
+                                    <option value="ast">Asturian - asturianu</option>
+                                    <option value="az">Azerbaijani - azərbaycan dili</option>
+                                    <option value="eu">Basque - euskara</option>
+                                    <option value="be">Belarusian - беларуская</option>
+                                    <option value="bn">Bengali - বাংলা</option>
+                                    <option value="bs">Bosnian - bosanski</option>
+                                    <option value="br">Breton - brezhoneg</option>
+                                    <option value="bg">Bulgarian - български</option>
+                                    <option value="ca">Catalan - català</option>
+                                    <option value="ckb">Central Kurdish - کوردی (دەستنوسی عەرەبی)</option>
+                                    <option value="zh">Chinese - 中文</option>
+                                    <option value="zh-HK">Chinese (Hong Kong) - 中文（香港）</option>
+                                    <option value="zh-CN">Chinese (Simplified) - 中文（简体）</option>
+                                    <option value="zh-TW">Chinese (Traditional) - 中文（繁體）</option>
+                                    <option value="co">Corsican</option>
+                                    <option value="hr">Croatian - hrvatski</option>
+                                    <option value="cs">Czech - čeština</option>
+                                    <option value="da">Danish - dansk</option>
+                                    <option value="nl">Dutch - Nederlands</option>
+                                    <option value="en">English</option>
                                     <option value="en-AU">English (Australia)</option>
                                     <option value="en-CA">English (Canada)</option>
                                     <option value="en-IN">English (India)</option>
@@ -294,7 +295,7 @@
                               </div>
                               <div class="col-md-4">
                                  <select class="form-control" id="to_language" name="to_language[]" required>
-                                 <option value="{{$pair !='' ? $pair->to_lang : ''}}">{{$pair !='' ? $pair->to_lang : 'Select Language'}}</option>
+                                    <option value="{{$pair !='' ? $pair->to_lang : ''}}">{{$pair !='' ? $pair->to_lang : 'Select Language'}}</option>
                                     <option value="af">Afrikaans</option>
                                     <option value="sq">Albanian - shqip</option>
                                     <option value="am">Amharic - አማርኛ</option>
@@ -446,12 +447,16 @@
                      <div class="col-md-4">
                         <button type="button" class="commonBtn addpair">Add Language Pair</button>
                      </div>
-                     <div class="simpleForm">
-                        <!-- <div class="subjectMatter">
-                           <div class="scroll" id="fldJobSpecCnt">
-                              @include("screens.includes.jobspecializtioncheckbox")
-                           </div>
-                        </div> -->
+                     @php
+                     if($editjob->job_form=="Full form"){
+                     $style="display:block";
+                     }
+                     else{
+                     $style="display:none";
+                     }
+                     @endphp
+                     <div class="simpleForm" style="{{$style}}">
+
                         <div style="padding: 15px 50px">
                            <div class="requiredSpecial">
                               <div class="d-flex lableDiv">
@@ -459,7 +464,7 @@
                                  <p style="margin: 0px;">Required Specialization</p>
                               </div>
                               <div class="viewDiv">
-                             
+
                                  @include("screens.includes.jobspecializtioncheckbox")
                               </div>
                            </div>
@@ -570,7 +575,7 @@
                                              </tr>
                                              <tr>
                                                 <td>
-                                                  
+
                                                    <select id="Country" name="Country" class="country">
                                                       <option value="">Select Country</option>
                                                       @foreach($countries as $country)
@@ -626,7 +631,7 @@
                            </div>
                            <!-- <input type="checkbox" name="job_notify_master_member" style="margin-right: 10px;">
                            <label for=""> Send notifications only to <a href="">Master Members</a></label><br> -->
-                           
+
                            <input type="checkbox" name="job_show_master_member" style="margin-right: 10px;" {{ $editjob->show_job_master_member == 1 ? 'checked' : '' }}>
                            <label for=""> Show job to Master Members immediately, to all users after a 12-hour delay.</label><br>
                            <p>Please note that the request to send notifications only to Master Members will always be considered, however, sometimes it cannot be guaranteed. For example, if the number of Master Members who qualify for this job offer is less than 10, it's in the interests of the outsourcer to send notifications to all members who qualify, not only to Master members.</p>

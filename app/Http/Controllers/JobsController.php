@@ -75,6 +75,7 @@ class JobsController extends Controller
             $jobsModel->publish = isset($request->publish) ? 1 : 0;
             $jobsModel->show_tc_user = isset($request->job_show_tc_user) ? 1 : 0;
             $jobsModel->user_id = Auth::user()->id;
+            $jobsModel->job_form = $request->job_form;
             if (Auth::user()->packages_id == 1) {
                 $jobsModel->status = 1;
             }
