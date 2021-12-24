@@ -100,6 +100,7 @@ Route::group(['prefix' => 'user', 'middleware' => ['verified', 'auth']], functio
     Route::get('/change-pass', 'UserController@change_pass')->name('change-pass');
     Route::post('/change-pass', 'UserController@update_pass')->name('change-pass');
     Route::post('/profile-delete', 'UserController@delete_profile')->name('profile-delete');
+    Route::get('/get-states', 'UserController@get_states')->name('get-states');
 });
 //public profile freelancer
 Route::get('/public-profile/{id}', 'UserController@public_profile')->name('public-profile');
@@ -108,6 +109,8 @@ Route::middleware(['verified', 'auth', 'profile'])->group(function () {
     Route::get('/post-a-job', 'JobsController@index')->name('post-a-job');
     Route::post('/post-a-job', 'JobsController@store')->name('post-a-job');
     Route::get('/job-details/{id}', 'JobsController@job_details')->name('job-details');
+    Route::post('/edit-job', 'JobsController@edit_job')->name('edit-job');
+    Route::post('/update-a-job', 'JobsController@update_a_job')->name('update-a-job');
     //SEND JOB PROPOSAL OR MESSAGE ROUTE
     Route::post('/job-send-message', 'JobsController@job_send_message')->name('job-send-message');
     Route::get('/job-applied-user/{id}', 'JobsController@job_applied_user')->name('job-applied-user');

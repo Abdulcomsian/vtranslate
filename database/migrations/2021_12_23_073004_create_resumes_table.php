@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserVoiceOversTable extends Migration
+class CreateResumesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateUserVoiceOversTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_voice_overs', function (Blueprint $table) {
+        Schema::create('resumes', function (Blueprint $table) {
             $table->id();
-            $table->string('language')->nullable();
-            $table->string('voice')->nullable();
+            $table->string('file');
             $table->bigInteger('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateUserVoiceOversTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_voice_overs');
+        Schema::dropIfExists('resumes');
     }
 }

@@ -1,4 +1,15 @@
 @extends('layouts.master' ,['page_title' => 'Post a Job'])
+@section('css')
+<style>
+   #from_language {
+      text-transform: capitalize;
+   }
+
+   #to_language {
+      text-transform: capitalize;
+   }
+</style>
+@endsection
 @section('content')
 <section id="profileBanner">
    <h3>Post A Job</h3>
@@ -14,33 +25,32 @@
                <div class="selectionBox">
                   <p>Because this is your first job posting and no agency is associated with your profile, some of the form fields are hidden to make the process of posting a job easier. If you want to fill out the full form, please select the Full form option.</p>
                   <div class="radoBtn">
-                     <input type="radio" id="html" name="fav_language" value="Full form" checked>
+
+                     <input type="radio" id="html" name="fav_language" value="Full form" @if($editjob->job_form=="Full form"){{'checked'}}@endif>
                      <label for="html">Full form with all fields</label><br>
-                     <input type="radio" id="css" name="fav_language" value="Simple form">
+                     <input type="radio" id="css" name="fav_language" value="Simple form" @if($editjob->job_form=="Simple form"){{'checked'}}@endif>
                      <label for="css">Simple form</label><br>
                   </div>
                </div>
                <div class="fullForm">
-                  <form method="post" action="{{route('edit-job')}}">
+                  <div class="inputDiv editJob">
+                     <label for="">Edit Job</label>
+                     <select class="form-control" name="edit_job" id="edit_job">
+                        <option value="">Select Job</option>
+                        @foreach( $jobs as $job)
+                        <option value="{{$job->id}}" @if($job->id==$editjob->id){{'selected'}}@endif>{{$job->job_title}}</option>
+                        @endforeach
+                     </select>
+                     <!-- <input class="form-control" type="text" name="edit_job" id="edit_job" placeholder="Job Title" required="required" value="0"> -->
+                     <button>Load</button>
+                  </div>
+                  <form action="{{route('update-a-job')}}" method="post">
                      @csrf
-                     <div class="inputDiv editJob">
-                        <label for="">Edit Job</label>
-                        <select class="form-control" name="edit_job" id="edit_job" required>
-                           <option>Select Job</option>
-                           @foreach( $jobs as $job)
-                           <option value="{{$job->id}}">{{$job->job_title}}</option>
-                           @endforeach
-                        </select>
-                        <!-- <input class="form-control" type="text" name="edit_job" id="edit_job" placeholder="Job Title" required="required" value="0"> -->
-                        <button type="submit" id="loadjob">Load</button>
-                     </div>
-                  </form>
-                  <form action="{{route('post-a-job')}}" method="post">
-                     @csrf
-                     <input type="hidden" name="job_form" id="job_form" value="" />
+
+                     <input type="hidden" name="job_id" value="{{$editjob->id}}">
                      <div class="inputDiv">
                         <label for="">Job Title <span class="required">*</span></label>
-                        <input class="form-control" type="text" name="job_title" id="job_title" placeholder="Job Title" required="required">
+                        <input class="form-control" type="text" name="job_title" id="job_title" value="{{$editjob->job_title ?? ''}}" placeholder="Job Title" required="required">
                      </div>
                      <!-- <div class="inputDiv">
                         <label for="">Job Budget <span class="required">*</span></label>
@@ -48,7 +58,7 @@
                         </div> -->
                      <div class="inputDiv">
                         <label for="">Job Description <span class="required">*</span></label>
-                        <textarea class="form-control" name="job_desc" id="job_desc" cols="30" rows="10" required></textarea>
+                        <textarea class="form-control" name="job_desc" id="job_desc" cols="30" rows="10" required>{{$editjob->job_desc ?? ''}}</textarea>
                      </div>
                      <p class="hint">
                         Max. 2500 characters, incl. spaces.<br>(Short description of the project, required expertise, payment, and any other relevant information. Please provide as many details as possible regarding the specific subject matter of your project. Do not enter "technical", "medical", "legal", etc. — please be specific: e.g., "manual for a vacuum cleaner", "an article from Scientific American on new advances in cancer treatment", "a lease agreement from Spain", etc. Please also provide translators with an exact or approximate word count of your document.)
@@ -57,53 +67,70 @@
                         <h5>Job Types</h5>
                         <div class="multiple-select">
                            <select name="job_type" class="form-control p-0" required>
+
                               <option value="">Select Service</option>
-                              <option value="Closed captioning">Closed captioning</option>
-                              <option value="Copywriting">Copywriting</option>
-                              <option value="Desktop publishing">Desktop publishing</option>
-                              <option value="Editing">Editing</option>
-                              <option value="Interpreting">Interpreting</option>
-                              <option value="Interpreting – conference">Interpreting – conference</option>
-                              <option value="Interpreting – court/legal">Interpreting – court/legal</option>
-                              <option value="Interpreting – medical">Interpreting – medical</option>
-                              <option value="Interpreting – phone">Interpreting – phone</option>
-                              <option value="Interpreting – sign language">Interpreting – sign language</option>
-                              <option value="Localization">Localization</option>
-                              <option value="Other">Other</option>
-                              <option value="Project management">Project management</option>
-                              <option value="Proofreading">Proofreading</option>
-                              <option value="Research">Research</option>
-                              <option value="Subtitling">Subtitling</option>
-                              <option value="Teaching">Teaching</option>
-                              <option value="Technical Review">Technical Review</option>
-                              <option value="Technical writing">Technical writing</option>
-                              <option value="Terminology research">Terminology research</option>
-                              <option value="Transcription">Transcription</option>
-                              <option value="Translation">Translation</option>
-                              <option value="Typesetting">Typesetting</option>
-                              <option value="Voice-over">Voice-over</option>
+                              <option value="Closed captioning" @if($editjob->job_type=="Closed captioning"){{'selected'}}@endif>Closed captioning</option>
+                              <option value="Copywriting" @if($editjob->job_type=="Copywriting"){{'selected'}}@endif>Copywriting</option>
+                              <option value="Desktop publishing" @if($editjob->job_type=="Desktop publishing"){{'selected'}}@endif>Desktop publishing</option>
+                              <option value="Editing" @if($editjob->job_type=="Editing"){{'selected'}}@endif>Editing</option>
+                              <option value="Interpreting" @if($editjob->job_type=="Interpreting"){{'selected'}}@endif>Interpreting</option>
+                              <option value="Interpreting – conference" @if($editjob->job_type=="Interpreting – conference"){{'selected'}}@endif>Interpreting – conference</option>
+                              <option value="Interpreting – court/legal" @if($editjob->job_type=="Interpreting – court/legal"){{'selected'}}@endif>Interpreting – court/legal</option>
+                              <option value="Interpreting – medical" @if($editjob->job_type=="Interpreting – medical"){{'selected'}}@endif>Interpreting – medical</option>
+                              <option value="Interpreting – phone" @if($editjob->job_type=="Interpreting – phone"){{'selected'}}@endif>Interpreting – phone</option>
+                              <option value="Interpreting – sign language" @if($editjob->job_type=="Interpreting – sign language"){{'selected'}}@endif>Interpreting – sign language</option>
+                              <option value="Localization" @if($editjob->job_type=="Localization"){{'selected'}}@endif>Localization</option>
+                              <option value="Other" @if($editjob->job_type=="Other"){{'selected'}}@endif>Other</option>
+                              <option value="Project management" @if($editjob->job_type=="Project management"){{'selected'}}@endif>Project management</option>
+                              <option value="Proofreading" @if($editjob->job_type=="Proofreading"){{'selected'}}@endif>Proofreading</option>
+                              <option value="Research" @if($editjob->job_type=="Research"){{'selected'}}@endif>Research</option>
+                              <option value="Subtitling" @if($editjob->job_type=="Subtitling"){{'selected'}}@endif>Subtitling</option>
+                              <option value="Teaching" @if($editjob->job_type=="Teaching"){{'selected'}}@endif>Teaching</option>
+                              <option value="Technical Review" @if($editjob->job_type=="Technical Review"){{'selected'}}@endif>Technical Review</option>
+                              <option value="Technical writing" @if($editjob->job_type=="Technical writing"){{'selected'}}@endif>Technical writing</option>
+                              <option value="Terminology research" @if($editjob->job_type=="Terminology research"){{'selected'}}@endif>Terminology research</option>
+                              <option value="Transcription" @if($editjob->job_type=="Transcription"){{'selected'}}@endif>Transcription</option>
+                              <option value="Translation" @if($editjob->job_type=="Translation"){{'selected'}}@endif>Translation</option>
+                              <option value="Typesetting" @if($editjob->job_type=="Typesetting"){{'selected'}}@endif>Typesetting</option>
+                              <option value="Voice-over" @if($editjob->job_type=="Voice-over"){{'selected'}}@endif>Voice-over</option>
                            </select>
                         </div>
+
                         <div class="radioDiv">
-                           <input type="radio" id="Intermediate" name="job_type_level" value="Intermediate" checked>
+                           <input type="radio" id="Intermediate" name="job_type_level" value="Intermediate" {{ $editjob->job_level=='Intermediate' ? 'checked' : '' }}>
                            <label for="Intermediate">Intermediate</label>
-                           <input type="radio" id="Potential" name="job_type_level" value="Potential">
+                           <input type="radio" id="Potential" name="job_type_level" value="Potential" {{ $editjob->job_level=='Potential' ? 'checked' : '' }}>
                            <label for="Potential">Potential</label>
-                           <input type="radio" id="In-House" name="job_type_level" value="In-House">
+                           <input type="radio" id="In-House" name="job_type_level" value="In-House" {{ $editjob->job_level=='In-House' ? 'checked' : '' }}>
                            <label for="In-House">In-House</label>
-                           <input type="radio" id="Tele-Community" name="job_type_level" value="Tele-Community">
+                           <input type="radio" id="Tele-Community" name="job_type_level" value="Tele-Community" {{ $editjob->job_level=='Tele-Community' ? 'checked' : '' }}>
                            <label for="Tele-Community">Tele-Community</label>
                         </div>
                         <p><b>Expalanation of Job Types</b></p>
                         <h5>Deadlines</h5>
+                        @php
+                        if($editjob->expiry_status=="0")
+                        {
+                        $style="display:none";
+
+                        }
+                        elseif($editjob->expiry_status=="1")
+                        {
+                        $style="display:block";
+
+                        }
+                        else{
+                        $checked="";
+                        }
+                        @endphp
                         <div class="radioDiv">
-                           <input type="radio" id="No-dealine" name="expiry_status" value="0" checked>
+                           <input type="radio" id="No-dealine" name="expiry_status" value="0" {{$editjob->expiry_status =='0' ? 'checked' : ''}}>
                            <label for="No-dealine">No-dealine</label>
-                           <input type="radio" id="Set-Date" name="expiry_status" value="1">
+                           <input type="radio" id="Set-Date" name="expiry_status" value="1" {{$editjob->expiry_status =='1' ? 'checked' : ''}}>
                            <label for="Set Date">Set Date</label>
                         </div>
-                        <div class="setDateDiv">
-                           <input class="form-control" type="date" name="expiry_date" />
+                        <div class="setDateDiv" style="{{$style}}">
+                           <input class="form-control" type="date" name="expiry_date" value="{{$editjob->expiry_date ?? ''}}" />
                         </div>
                      </div>
                      <div class="languageDiv">
@@ -113,10 +140,12 @@
                            and French>English.
                         </p>
                         <div class="multiple-select pairlng">
+                           @foreach( $editjob->jobspairlang as $pair)
+
                            <div class="row">
                               <div class="col-md-4">
                                  <select class="form-control" id="from_language" name="from_language[]" required>
-                                    <option value="">Select Language</option>
+                                    <option value="{{$pair !='' ? $pair->from_lang : ''}}">{{$pair !='' ? $pair->from_lang : 'Select Language'}}</option>
                                     <option value="af">Afrikaans</option>
                                     <option value="sq">Albanian - shqip</option>
                                     <option value="am">Amharic - አማርኛ</option>
@@ -201,7 +230,7 @@
                                     <option value="mn">Mongolian - монгол</option>
                                     <option value="ne">Nepali - नेपाली</option>
                                     <option value="no">Norwegian - norsk</option>
-                                    <option value="nb">Norwegian Bokmål - norsk bokmål</option>
+                                    <option value="nb" {{ $pair->from_lang=== "nb" ? "selected" :'' }}>Norwegian Bokmål - norsk bokmål</option>
                                     <option value="nn">Norwegian Nynorsk - nynorsk</option>
                                     <option value="oc">Occitan</option>
                                     <option value="or">Oriya - ଓଡ଼ିଆ</option>
@@ -266,7 +295,7 @@
                               </div>
                               <div class="col-md-4">
                                  <select class="form-control" id="to_language" name="to_language[]" required>
-                                    <option value="">Select Language</option>
+                                    <option value="{{$pair !='' ? $pair->to_lang : ''}}">{{$pair !='' ? $pair->to_lang : 'Select Language'}}</option>
                                     <option value="af">Afrikaans</option>
                                     <option value="sq">Albanian - shqip</option>
                                     <option value="am">Amharic - አማርኛ</option>
@@ -376,7 +405,7 @@
                                     <option value="si">Sinhala - සිංහල</option>
                                     <option value="sk">Slovak - slovenčina</option>
                                     <option value="sl">Slovenian - slovenščina</option>
-                                    <option value="so">Somali - Soomaali</option>
+                                    <option value="so" {{ $pair->to_lang=== "so" ? "selected" :'' }}>Somali - Soomaali</option>
                                     <option value="st">Southern Sotho</option>
                                     <option value="es">Spanish - español</option>
                                     <option value="es-AR">Spanish (Argentina) - español (Argentina)</option>
@@ -412,17 +441,22 @@
                                  </select>
                               </div>
                            </div>
+                           @endforeach
                         </div>
                      </div>
                      <div class="col-md-4">
                         <button type="button" class="commonBtn addpair">Add Language Pair</button>
                      </div>
-                     <div class="simpleForm">
-                        <!-- <div class="subjectMatter">
-                           <div class="scroll" id="fldJobSpecCnt">
-                              @include("screens.includes.jobspecializtioncheckbox")
-                           </div>
-                        </div> -->
+                     @php
+                     if($editjob->job_form=="Full form"){
+                     $style="display:block";
+                     }
+                     else{
+                     $style="display:none";
+                     }
+                     @endphp
+                     <div class="simpleForm" style="{{$style}}">
+
                         <div style="padding: 15px 50px">
                            <div class="requiredSpecial">
                               <div class="d-flex lableDiv">
@@ -430,6 +464,7 @@
                                  <p style="margin: 0px;">Required Specialization</p>
                               </div>
                               <div class="viewDiv">
+
                                  @include("screens.includes.jobspecializtioncheckbox")
                               </div>
                            </div>
@@ -540,15 +575,16 @@
                                              </tr>
                                              <tr>
                                                 <td>
+
                                                    <select id="Country" name="Country" class="country">
-                                                      <option value="">Select Coutnry</option>
+                                                      <option value="">Select Country</option>
                                                       @foreach($countries as $country)
-                                                      <option value="{{$country->id}}">{{$country->country_name}}</option>
+                                                      <option value="{{$country->id}}" @if($editjob->country_id == $country->id){{'selected'}} @endif >{{$country->country_name}}</option>
                                                       @endforeach
                                                    </select>
                                                 </td>
-                                                <td><input maxlength="50" style="width: 120px;" id="City" name="City" value=""></td>
-                                                <td><input maxlength="50" style="width: 120px;" id="StateRegion" name="StateRegion" value=""></td>
+                                                <td><input maxlength="50" style="width: 120px;" id="City" name="City" value="{{$editjob->city}}"></td>
+                                                <td><input maxlength="50" style="width: 120px;" id="StateRegion" name="StateRegion" value="{{$editjob->state}}"></td>
                                              </tr>
                                           </tbody>
                                        </table>
@@ -561,9 +597,9 @@
                                              <tr>
                                                 <td>
                                                    <select id="MustLiveIn1" name="linguists_live[]" class="country">
-                                                      <option value="">Select Coutnry</option>
+                                                      <option value="">Select Country</option>
                                                       @foreach($countries as $country)
-                                                      <option value="{{$country->id}}">{{$country->country_name}}</option>
+                                                      <option value="{{$country->id}}" @if($editjob->linguists_live[0] == $country->id){{'selected'}} @endif;>{{$country->country_name}}</option>
                                                       @endforeach
                                                    </select>
                                                    &nbsp;or
@@ -595,26 +631,27 @@
                            </div>
                            <!-- <input type="checkbox" name="job_notify_master_member" style="margin-right: 10px;">
                            <label for=""> Send notifications only to <a href="">Master Members</a></label><br> -->
-                           <input type="checkbox" name="job_show_master_member" style="margin-right: 10px;">
+
+                           <input type="checkbox" name="job_show_master_member" style="margin-right: 10px;" {{ $editjob->show_job_master_member == 1 ? 'checked' : '' }}>
                            <label for=""> Show job to Master Members immediately, to all users after a 12-hour delay.</label><br>
                            <p>Please note that the request to send notifications only to Master Members will always be considered, however, sometimes it cannot be guaranteed. For example, if the number of Master Members who qualify for this job offer is less than 10, it's in the interests of the outsourcer to send notifications to all members who qualify, not only to Master members.</p>
                            <!-- <input type="checkbox" name="publish" style="margin-right: 10px;">
                            <label for=""> Not to be published in other forums or mailing lists.</label><br>
                            <p>Jobs posted on the TranslatorsCafe.com Job Board are considered to be sent to the public at large and links to them may be posted elsewhere unless the job poster selects this check box.</p> -->
-                           <input type="checkbox" name="job_show_tc_user" style="margin-right: 10px;">
+                           <input type="checkbox" name="job_show_tc_user" style="margin-right: 10px;" {{ $editjob->show_tc_user == 1 ? 'checked' : '' }}>
                            <label for=""> Show this job only to TC registered users.</label><br>
                         </div>
                      </div>
                      <div style="margin:10px 50px">
                         <div class="d-flex" style="align-item: center;">
-                           <input type="checkbox" name="cerfity" style="margin-right: 10px;" required>
+                           <input type="checkbox" name="cerfity" style="margin-right: 10px;" required {{ $editjob->certify == 1 ? 'checked' : '' }}>
                            <label for=""> I certify that the information I have provided in this job offer form and during the process of registration is true and correct and does not contain any illegal content or links to illegal or objectionable Web sites (e.g. with adult content). I further certify that I am willing to provide my feedback to all language professionals who offered their services for this job and that I will not ask them to translate any illegal or objectionable content (e.g. adult).</label><br>
                         </div>
                         <div class="fv div notes">
                            <p class="jfn">The IP address of your computer 203.175.72.37 will be recorded.&nbsp;&nbsp;<a class="tcHelp" href="#_" data-help=";C;17"><sup title="Click or tap to get help" class="qmark">?</sup></a><br>Your country determined by your IP address:<img src="/cafe/images/flags/PK.gif" alt="PK" style="width:18px;height:12px;"> Pakistan</p>
                            <p>HTML is not allowed, except for &lt;b&gt;&lt;/b&gt;, &lt;i&gt;&lt;/i&gt; tags.</p>
                         </div>
-                        <p style="margin: 10px 0px;">When you have completed filling out this form, please click or tap the Submit button. Please do not click or tap several times and be prepared to wait for a result. On the next page you will be provided with a job number. If you find any mistakes in your posting after its submission, you can always edit the job. Note that you must use your job number to do so. A confirmation message will be sent to your e-mail address hamza.alam@accrualgroup.com. If you cannot receive it, you may want to check your e-mail address.</p>
+                        <p style="margin: 10px 0px;">When you have completed filling out this form, please click or tap the Submit button. Please do not click or tap several times and be prepared to wait for a result. On the next page you will be provided with a job number. If you find any mistakes in your posting after its submission, you can always edit the job. Note that you must use your job number to do so. A confirmation message will be sent to your e-mail address hamza.alam@accrualgroup.com. If you cannot receive it, you may want to check your e-mail address. <a href="">More information.</a></p>
                      </div>
                      <button type="submit" class="commonBtn">Submit</button>
                   </form>
@@ -971,10 +1008,8 @@
       $('input[name="fav_language"]').change(function() {
          var val = $(this).val();
          if (val == "Full form") {
-            $("#job_form").val("Full form");
             $(".simpleForm").css("display", "block");
          } else {
-            $("#job_form").val("Simple form")
             $(".simpleForm").css("display", "none")
          }
       });

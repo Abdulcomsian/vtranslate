@@ -16,6 +16,7 @@ use App\Models\WorkHistory;
 use App\Jobs\JobPostedMailQueue;
 use Auth;
 use DB;
+use Illuminate\Contracts\Queue\Job;
 use Mail;
 use phpDocumentor\Reflection\Types\Null_;
 
@@ -32,7 +33,8 @@ class JobsController extends Controller
     {
         if (Auth::user()->user_status == "Employer") {
             $countries = Country::get();
-            return view('screens.job-posting', compact('countries'));
+            $jobs = Jobs::where('user_id', Auth::user()->id)->get();
+            return view('screens.job-posting', compact('countries', 'jobs'));
         } else {
             toastr()->error('Please signup as an agency to post a job');
             return back();
@@ -42,7 +44,6 @@ class JobsController extends Controller
     //save job
     public function store(Request $request)
     {
-        //dd($request->all());
         try {
             $jobsModel = new Jobs();
             $jobsModel->job_title = $request->job_title;
@@ -74,6 +75,7 @@ class JobsController extends Controller
             $jobsModel->publish = isset($request->publish) ? 1 : 0;
             $jobsModel->show_tc_user = isset($request->job_show_tc_user) ? 1 : 0;
             $jobsModel->user_id = Auth::user()->id;
+            $jobsModel->job_form = $request->job_form;
             if (Auth::user()->packages_id == 1) {
                 $jobsModel->status = 1;
             }
@@ -104,6 +106,74 @@ class JobsController extends Controller
             return back();
         }
     }
+
+    //edit job
+    public function edit_job(Request $request)
+    {
+        $editjob = Jobs::with('jobspairlang')->find($request->edit_job);
+        $countries = Country::get();
+        $jobs = Jobs::where('user_id', Auth::user()->id)->get();
+        return view('screens.edit-job-posting', compact('countries', 'jobs', 'editjob'));
+    }
+
+    // Update a Job
+    public function update_a_job(Request $request)
+    {
+
+        //dd($request->all());
+        $jobsModel = jobs::find($request->job_id);
+        $jobsModel->job_title = $request->job_title;
+        $jobsModel->job_desc = $request->job_desc;
+        $jobsModel->job_type = $request->job_type;
+        $jobsModel->job_level = $request->job_type_level;
+
+        if ($request->expiry_status == 1) {
+            $jobsModel->expiry_status = 1;
+            $jobsModel->expiry_date = $request->expiry_date;
+        } else {
+            $jobsModel->expiry_status = 0;
+        }
+        //job specialization
+        if (isset($request->spicializations)) {
+            $jobsModel->job_specialization = $request->spicializations;
+        }
+        //job softwares
+        if (isset($request->softwares)) {
+            $jobsModel->job_software = $request->softwares;
+        }
+        $jobsModel->country_id  = $request->Country ?? NULL;
+        $jobsModel->state  = $request->StateRegion ?? NULL;
+        $jobsModel->city  = $request->City ?? '';
+        $jobsModel->linguists_live = $request->linguists_live ?? NULL;
+        $jobsModel->certify = isset($request->cerfity) ? 1 : 0;
+        $jobsModel->notify_master_member = isset($request->job_notify_master_member) ? 1 : 0;
+        $jobsModel->show_job_master_member = isset($request->job_show_master_member) ? 1 : 0;
+        $jobsModel->publish = isset($request->publish) ? 1 : 0;
+        $jobsModel->show_tc_user = isset($request->job_show_tc_user) ? 1 : 0;
+        $jobsModel->user_id = Auth::user()->id;
+        if (Auth::user()->packages_id == 1) {
+            $jobsModel->status = 1;
+        }
+        $jobsModel->save();
+        $jobsid = $jobsModel->id;
+
+        JobsPairLanguages::where('jobs_id', $jobsid)->delete();
+        for ($i = 0; $i < count($request->from_language); $i++) {
+            $JobsPairLanguages = new JobsPairLanguages();
+            $JobsPairLanguages->from_lang = $request->from_language[$i];
+            $JobsPairLanguages->to_lang = $request->to_language[$i];
+            $JobsPairLanguages->jobs_id = $jobsid;
+            $JobsPairLanguages->save();
+        }
+        //email for admin
+        $data = [
+            'messsage' => "here",
+        ];
+        toastr()->success('Job Updated Successfully!');
+        return redirect('/post-a-job');
+    }
+
+
     //make job favourite
     public function make_job_fav(Request $request)
     {

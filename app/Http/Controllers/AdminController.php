@@ -10,6 +10,8 @@ class AdminController extends Controller
 {
     public function index()
     {
+
+        
         $Users = User::get();
         return view('admin.screens.dashboard', compact('Users'));
     }

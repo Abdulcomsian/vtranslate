@@ -39,6 +39,7 @@ class CreateJobsTable extends Migration
             $table->longtext('cancel_reason')->nullable();
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('job_form')->nullable();
             $table->timestamps();
         });
     }

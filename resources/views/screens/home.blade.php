@@ -994,7 +994,7 @@
 
         </div>
         <div class="row text-center pt-5">
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="servicesIcon">
                     <div class="imgparent">
                         <a href="{{url('register')}}"><img class="servicesImg" src="assets/img/Group 22.png"></a>
@@ -1008,7 +1008,7 @@
                 </div>
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="servicesIcon">
                     <div class="imgparent">
                         <a href="{{route('post-a-job')}}"><img class="servicesImg" src="assets/img/Group 23.png"></a>
@@ -1020,7 +1020,7 @@
                 </div>
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="servicesIcon">
                     <div class="imgparent">
                         <a href="{{route('top-freelancer')}}"><img class="servicesImg" src="assets/img/Group 24.png"></a>
@@ -1032,7 +1032,7 @@
                 </div>
             </div>
 
-            <div class="col-md-3">
+            <!-- <div class="col-md-3">
                 <div class="servicesIcon">
                     <div class="imgparent">
                         <img class="servicesImg" src="assets/img/Group 25.png">
@@ -1042,7 +1042,7 @@
                         <p>Only pay when you'r completely satisfied</p>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </section>

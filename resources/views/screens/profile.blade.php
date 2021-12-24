@@ -338,7 +338,7 @@
                             <a href="#resume" class="nav-link {{$resumetab}}" data-toggle="pill"><span>Resume</span> </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="pill" href="#self-promotion"><span>Self Promotion</span> </a>
+                            <a class="nav-link" data-toggle="pill" href="#self-promotion"><span>Premium Member</span> </a>
                         </li>
                         <li class="nav-item">
                             <a href="#language" class="nav-link {{$languages}}" data-toggle="pill"><span>Languages</span> </a>
@@ -355,9 +355,10 @@
                         <li class="nav-item">
                             <a href="#software" class="nav-link {{$softwarestab}}" data-toggle="pill"><span>Software</span> </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a href="#files" class="nav-link" data-toggle="pill"><span>Files</span> </a>
-                        </li>
+                        </li> -->
+
                         @endif
                     </ul>
                 </div>
@@ -420,7 +421,7 @@
                             </form>
                         </div>
                         <div class="col-lg-6 otherBtn" align="center" style="padding-top:253px">
-                            <a href="{{route('view-user-profile')}}" class="btn btn-info p-2 " style="width: 55%;padding:5px;float:none">For Other</a>
+                            <a href="{{route('view-user-profile')}}" class="btn btn-info p-2 " style="width: 55%;padding:5px;float:none" target="_blank">For Other</a>
                         </div>
                     </div>
                     <div class="box" style="margin-top:20px">
@@ -447,7 +448,6 @@
                         Busy members are shown at the end of the search results.
                     </p>
                     <p>Click or tap the <b>Disable</b> button to hide your availability status.</p>
-                    <p>You can use the following link to place your current busy status into another Website: <a href="">img src="https://www.translatorscafe.com/cafe/misc/GetBusy.asp?ID=449990"</a> </p>
                     <div class="text-center" style="margin-top:20px">
                         <p class="mainHeading">Availability</p>
                     </div>
@@ -832,18 +832,6 @@
                                 </div>
                             </div>
                             <div class="inputDiv">
-                                <label for="">City:<span class="text-danger">*</span></label>
-                                <div class="inputSpan">
-                                    <input type="text" name="city" id="city" required="required" value="{{$userData[0]->usergeneralinfo->city ?? '' }}">
-                                </div>
-                            </div>
-                            <div class="inputDiv">
-                                <label for="">State/Region:<span class="text-danger">*</span></label>
-                                <div class="inputSpan">
-                                    <input type="text" name="state" id="state" required="required" value="{{$userData[0]->usergeneralinfo->state ?? '' }}">
-                                </div>
-                            </div>
-                            <div class="inputDiv">
                                 <label for="">Country:<span class="text-danger">*</span></label>
                                 <div class="inputSpan">
                                     <select name="country_id" id="country_id" required="required">
@@ -858,6 +846,26 @@
                                         @endphp
                                         <option value="{{$country->id}}" {{$selected}}>{{$country->country_name}}</option>
                                         @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="inputDiv">
+                                <label for="">State/Region:<span class="text-danger">*</span></label>
+                                <div class="inputSpan">
+                                    <select name="state" id="state" required="required">
+                                        @if(isset($userData[0]->usergeneralinfo->state) && $userData[0]->usergeneralinfo->state!='')
+                                        <option value="{{$userData[0]->usergeneralinfo->state ?? '' }}" selected>{{$userData[0]->usergeneralinfo->state ?? '' }}</option>
+                                        @endif
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="inputDiv">
+                                <label for="">City:<span class="text-danger">*</span></label>
+                                <div class="inputSpan">
+                                    <select name="city" id="city" required="required">
+                                        @if(isset($userData[0]->usergeneralinfo->city) && $userData[0]->usergeneralinfo->city!='')
+                                        <option value="{{$userData[0]->usergeneralinfo->city ?? '' }}" selected>{{$userData[0]->usergeneralinfo->city ?? '' }}</option>
+                                        @endif
                                     </select>
                                 </div>
                             </div>
@@ -1129,13 +1137,13 @@
                                 <div id="resumeContent" class="commonDiv">
                                     <h3>Resume</h3>
                                     <p class="warning">Upload Your Resume</p>
-                                    <p><a href="{{asset('files/resume/'.auth::user()->resume ?? '')}}" target="_blank">{{auth::user()->resume ?? ''}}</a></p>
+                                    <!-- <p><a href="{{asset('files/resume/'.auth::user()->resume ?? '')}}" target="_blank">{{auth::user()->resume ?? ''}}</a></p> -->
                                     <form action="{{route('upload-resume')}}" method="post" enctype="multipart/form-data">
                                         @csrf
                                         <div class="control-group">
                                             <div class="controls bootstrap-timepicker">
-                                                <label class="form-label" for="customFile">Upload Your Resume</label>
-                                                <input type="file" name="resume" accept="application/pdf,application/ms-word" class="control " id="customFile" required="required" />
+                                                <div class="input-images"></div>
+                                                <!-- <input type="file" name="resume[]" accept="application/pdf,application/ms-word" class="control " id="customFile" required="required" multiple /> -->
                                             </div>
                                         </div>
 
@@ -1145,7 +1153,36 @@
                                         </div>
 
                                     </form>
+                                    <br>
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>S-no</th>
+                                                <th>Resume Files/Images</th>
+                                                <th>Created Date</th>
+                                                <!-- <th>Actions</th> -->
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if($userData[0]->resumee)
+                                            @foreach($userData[0]->resumee as $resume)
+                                            <tr>
+                                                <td>{{$loop->index+1}}</td>
+                                                <td><a href="{{asset('files/resume/'.$resume->file ?? '')}}" target="_blank">{{$resume->file}}</a></td>
+                                                <td>{{$resume->created_at}}</td>
+                                                <!-- <td></td> -->
+                                            </tr>
+                                            @endforeach
+                                            @else
+                                            <tr>
+                                                <td colspan="4" class="text-danger text-center"><strong>No Resume Uplaoded!</strong></td>
+                                            </tr>
+                                            @endif
+                                        </tbody>
+
+                                    </table>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -1157,10 +1194,14 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="commonDiv">
-                                    <h3>Self Promotion</h3>
-                                    <p>You may use <b>Self Promotion</b> pages for placing any promotional materials that will be attached to your profile. For example you place <b>TC Master Only</b> here your translation, pieces of poetry and prose. You can also upload files, for example images on your resume in .doc or .zip or .pdf format and provide links to your uploaded files or show them on you personal pages.</p>
-                                    <p>The features available <b>Master Membership Only.</b></p>
-                                    <a href=""><b>Upgrade to Master Now !</b></a>
+                                    <h3>Self Promotion-Premium Member </h3>
+                                    <ol>
+                                        <li>If you become premium member you’ll get the job notification instantly immediate to job get posted. </li>
+                                        <li>If not you’ll get the notification post 3 hours.</li>
+                                        <li>If you are a member your profile is going to visible on top of the <b>Home Page.</b> </li>
+                                        <li>Your profile is going to be considered on the top 20 freelancers. </li>
+                                        <li>Membership is just going to be <b>50 USD</b> ,but we have a promotion going on so we are giving membership free of cost use Coupon Code XYZ.</li>
+                                    </ol>
                                 </div>
                             </div>
                         </div>
@@ -1174,7 +1215,7 @@
                             <div class="col-lg-12">
                                 <div class="commonDiv">
                                     <h3>Language</h3>
-                                    <p class="warningself">You can select only Two Mohter and Five Pair languages from below</p>
+                                    <p class="warningself">You can select only Two Mother and Five Pair languages from below</p>
 
                                     <div class="row">
                                         <div class="col-md-12">
@@ -1819,7 +1860,7 @@
                                                     <input class="form-control" type="text" name="min_rate_per_word" placeholder="Min rate Per Word $" required="required">
                                                 </div>
                                                 <div class="form-group ">
-                                                    <input class="form-control" type="text" name="min_rate_per_minute" placeholder="Minrate Per minute $" required="required">
+                                                    <input class="form-control" type="text" name="min_rate_per_minute" placeholder="Minrate Per minute $">
                                                 </div>
                                             </div>
                                     </div>
@@ -2024,12 +2065,14 @@
                                             <option value="yo">Yoruba - Èdè Yorùbá</option>
                                             <option value="zu">Zulu - isiZulu</option>
                                         </select>
+                                        <input type="file" name="voice" accept="audio/mp3,audio/wav" />
                                         <input type="hidden" name="currtab" value="voiceover">
-                                        <button type="submit" class="addLanguageBtn commonBtn">Add Language</button>
                                         <br>
+                                        <button type="submit" class="addLanguageBtn commonBtn" style="margin-top:10px">Add Language</button>
+
                                     </form>
                                 </div>
-                                <table class="table-responsive voiceOverTable">
+                                <table class="table table-hover  voiceOverTable">
                                     <thead>
                                         <tr>
                                             <th><b>Selected Language</b></th>
@@ -2114,7 +2157,7 @@
                     </div>
                 </div>
             </div>
-            <div id="files" class="container tab-pane fade">
+            <!-- <div id="files" class="container tab-pane fade">
                 <div id="contactDiv" class="padd-100">
                     <div class="container">
                         <div class="row">
@@ -2241,7 +2284,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
+
             <div id="change-pass" class="container tab-pane {{$change_pass_tab}}">
                 <div id="contactDiv" class="padd-100">
                     <div class="container">
@@ -2447,7 +2491,7 @@
             },
             success: function(res) {
                 if (res == "success") {
-                    Swal.fire('Status Changed Successfully!', '', 'success');
+                    // Swal.fire('Status Changed Successfully!', '', 'success');
                 } else {
                     Swal.fire('Oops!', '', 'error');
                 }
@@ -2550,5 +2594,36 @@
             $(".speech-bubble").fadeIn();
         }
     );
+</script>
+
+<script>
+    $("#country_id").on('change', function() {
+        country_id = $(this).val();
+        $.ajax({
+            url: '{{route("get-states")}}',
+            method: "get",
+            data: {
+                id: country_id,
+                type: 'state',
+            },
+            success: function(res) {
+                $("#state").html(res);
+            }
+        })
+    })
+    $("#state").on('change', function() {
+        state_id = $(this).find(':selected').attr('data-id');
+        $.ajax({
+            url: '{{route("get-states")}}',
+            method: "get",
+            data: {
+                id: state_id,
+                type: 'city',
+            },
+            success: function(res) {
+                $("#city").html(res);
+            }
+        })
+    })
 </script>
 @endsection

@@ -6,7 +6,7 @@
 <section id="contactDiv" class="sectionMain padd-100">
     <div class="container">
         <div class="row">
-            <div class="col-lg-9">
+            <div class="col-lg-12">
 
                 <div class="table-responsive">
                     <table class="table">
@@ -29,9 +29,11 @@
                                 </td>
                                 <td class="companyimg">
                                     <a href="{{route('public-profile',$freelancer->id)}}">
-                                        <h3>{{$freelancer->fname.' '.$freelancer->lname}}</h3>
-                                        <img src="@if($freelancer->profile_photo!=null){{asset('/profile-images').'/'.$freelancer->profile_photo}} @else{{'/assets/img/Job Posted.png'}}@endif" alt="" class="img-circle img-responsive " width="100px" height="100px">
+                                        <strong>{{$freelancer->fname.' '.$freelancer->lname}}</strong>
                                     </a>
+                                    <br>
+                                    <img src="@if($freelancer->profile_photo!=null){{asset('/profile-images').'/'.$freelancer->profile_photo}} @else{{'/assets/img/Job Posted.png'}}@endif" alt="" class="img-circle img-responsive " width="60px" height="60px">
+
                                 </td>
                                 <td class="location">{{$freelancer->usergeneralinfo->address ?? ''}}</td>
                                 <td class="date">{{date("F-Y", strtotime($freelancer->usergeneralinfo->updated_at ?? ''));}}</td>
