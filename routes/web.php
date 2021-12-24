@@ -100,6 +100,7 @@ Route::group(['prefix' => 'user', 'middleware' => ['verified', 'auth']], functio
     Route::get('/change-pass', 'UserController@change_pass')->name('change-pass');
     Route::post('/change-pass', 'UserController@update_pass')->name('change-pass');
     Route::post('/profile-delete', 'UserController@delete_profile')->name('profile-delete');
+    Route::get('/get-states', 'UserController@get_states')->name('get-states');
 });
 //public profile freelancer
 Route::get('/public-profile/{id}', 'UserController@public_profile')->name('public-profile');

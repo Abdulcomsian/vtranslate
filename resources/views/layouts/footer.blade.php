@@ -61,6 +61,7 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 <script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="{{asset('js/image-uploader.min.js')}}"></script>
 @toastr_js
 @toastr_render
 <script>
@@ -81,13 +82,11 @@
         window.location = url;
     });
 </script>
+<script type="text/javascript">
+    $('.input-images').imageUploader();
+</script>
 
 <script>
-    // $(".addLanguageBtn").click(function(){
-    //     var val=$('#voice-Over select').find(":selected").text();
-    //     $(".voiceOverTable tbody").append("<tr><td>"+val+"</td><td><a>Remove</a></td></tr>");
-    //     val="";
-    // })
     $(".favoriteIcon").click(function() {
         //mywork here
         if ($(this).hasClass("fa-heart-o")) {
@@ -97,18 +96,6 @@
             $(this).removeClass("fa-heart")
             $(this).addClass("fa-heart-o")
         }
-
-
-        // if($(this).prop('class')=="fa fa-heart-o favoriteIcon"){
-        //     $(this).removeClass("fa-heart-o")
-        //     $(this).addClass("fa-heart")
-        // } else if($(this).prop('class')=="fa favoriteIcon fa-heart-o"){
-        //     $(this).removeClass("fa-heart-o")
-        //     $(this).addClass("fa-heart")
-        // } else{
-        //     $(this).removeClass("fa-heart")
-        //     $(this).addClass("fa fa-heart-o favoriteIcon")
-        // }
     })
     $("#Set-Date").click(function() {
         $(".setDateDiv").css("display", "block")

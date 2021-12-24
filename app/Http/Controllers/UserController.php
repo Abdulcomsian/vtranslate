@@ -17,6 +17,8 @@ use App\Models\Jobs;
 use App\Models\JobProposal;
 use App\Models\WorkHistory;
 use App\Models\Resume;
+use App\Models\States;
+use App\Models\Cities;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Auth;
@@ -47,8 +49,7 @@ class UserController extends Controller
     public function profile()
     {
         $countries = Country::get();
-        $userData = User::with('usergeneralinfo', 'userlanguages', 'usersoftwares', 'userspicialize', 'uservoicover', 'userfiles', 'usermotherlanguages', 'usersevices')->where('id', Auth::user()->id)->get();
-        //dd($userData[0]->userspicialize->spicializations);
+        $userData = User::with('resumee', 'usergeneralinfo', 'userlanguages', 'usersoftwares', 'userspicialize', 'uservoicover', 'userfiles', 'usermotherlanguages', 'usersevices')->where('id', Auth::user()->id)->get();
         return view('screens.profile', compact('countries', 'userData'));
     }
 
@@ -159,11 +160,10 @@ class UserController extends Controller
     public function upload_resume(Request $request)
     {
         try {
-            if ($file = $request->file('resume')) {
-                $allowedfileExtension = ['pdf', 'docx'];
-                $files = $request->file('resume');
+            if ($file = $request->file('images')) {
+                $allowedfileExtension = ['pdf', 'docx', 'jpg', 'jpeg'];
+                $files = $request->file('images');
                 foreach ($files as $file) {
-                    $filename = $file->getClientOriginalName();
                     $extension = $file->getClientOriginalExtension();
                     $check = in_array($extension, $allowedfileExtension);
 
@@ -178,11 +178,9 @@ class UserController extends Controller
 
                         $userModel = User::find(Auth::user()->id);
                         $user_id = $userModel->id;
-
-
                         $resumeModel = new resume();
 
-                        $resumeModel->file = $filename;
+                        $resumeModel->file =  $name;
                         $resumeModel->user_id = $user_id;
 
                         $resumeModel->save();
@@ -202,7 +200,6 @@ class UserController extends Controller
                     $mark_profile_section = array();
                     array_push($mark_profile_section, 2);
                 }
-                $userModel = User::find(Auth::user()->id);
                 $userModel->resume = $name;
                 $userModel->mark_profile_section = $mark_profile_section;
                 $userModel->save();
@@ -691,5 +688,26 @@ class UserController extends Controller
             toastr()->error('Something went wrong');
             return back();
         }
+    }
+    //get states
+    public function get_states(Request $request)
+    {
+        $type = $request->type;
+        if ($type == "state") {
+            $countryid = $request->id;
+            $states = States::where('country_id', $countryid)->get();
+            $list = '<option value="">Select State</option>';
+            foreach ($states as $state) {
+                $list .= '<option value="' . $state->name . '" data-id="' . $state->id . '">' . $state->name . '</option>';
+            }
+        } elseif ($type == "city") {
+            $stateid = $request->id;
+            $states = Cities::where('state_id', $stateid)->get();
+            $list = '<option value="">Select City</option>';
+            foreach ($states as $state) {
+                $list .= '<option value="' . $state->name . '" data-id="' . $state->id . '">' . $state->name . '</option>';
+            }
+        }
+        echo $list;
     }
 }
