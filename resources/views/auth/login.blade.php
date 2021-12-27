@@ -16,7 +16,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="inputDiv">
-                            <label for="">Email</label>
+                            <label for="">Email/Username:</label>
                             <input type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                             @error('email')
                             <span class="invalid-feedback" role="alert">
@@ -25,7 +25,7 @@
                             @enderror
                         </div>
                         <div class="inputDiv">
-                            <label for="">Password</label>
+                            <label for="">Password:</label>
                             <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
                             @error('password')
                             <span class="invalid-feedback" role="alert">

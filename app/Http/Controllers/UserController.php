@@ -205,7 +205,7 @@ class UserController extends Controller
                 $userModel->save();
                 // toaster message
                 toastr()->success('User Resume Saved Successfully!');
-                return \Redirect::route('profile')->with('currtab', $request->currtab);
+                return \Redirect::route('profile')->with('currtab', 'languages');
             }
         } catch (\Exception $exception) {
             toastr()->error('Something went wrong, try again');
@@ -213,6 +213,12 @@ class UserController extends Controller
         }
     }
 
+    //save pramium
+    public function user_save_paramium(Request $request)
+    {
+        toastr()->success('Pramium save');
+        return \Redirect::route('profile')->with('currtab', 'languages');
+    }
     //save languages
     public function user_save_languages(Request $request)
     {
@@ -234,7 +240,7 @@ class UserController extends Controller
             }
             User::find(Auth::user()->id)->update(['mark_profile_section' => $mark_profile_section]);
             toastr()->success('User Language Saved Successfull!');
-            return \Redirect::route('profile')->with('currtab', 'service_rates');
+            return \Redirect::route('profile')->with('currtab', $request->currtab);
         } catch (\Exception $exception) {
             toastr()->error('Something went wrong, try again');
             return back()->with('currtab', $request->currtab);
