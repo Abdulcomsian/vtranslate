@@ -87,7 +87,7 @@ class RegisterController extends Controller
                 $job_notification_status = 0;
             }
             if ($data['user_status'] == "Freelancer") {
-                $total_profile_section = 9;
+                $total_profile_section = 8;
             } else {
                 $total_profile_section = 1;
             }

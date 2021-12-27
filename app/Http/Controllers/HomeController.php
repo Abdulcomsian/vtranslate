@@ -30,11 +30,12 @@ class HomeController extends Controller
 
     public function index()
     {
-        try {
-            if (Auth::check()) {
-                if (Auth::user()->user_status != "Admin") {
-                    if (Auth::user()->total_profile_section == count(Auth::user()->mark_profile_section ?? [])) {
-                    } else {
+        // try {
+        if (Auth::check()) {
+            if (Auth::user()->user_status != "Admin") {
+                if (Auth::user()->total_profile_section == count(Auth::user()->mark_profile_section ?? [])) {
+                } else {
+                    if (Auth::user()->mark_profile_section) {
                         if (!in_array(1, Auth::user()->mark_profile_section)) {
                             toastr()->error('Please Complete General section to complete Your Profile 100% to proceed!');
                         } elseif (!in_array(2, Auth::user()->mark_profile_section)) {
@@ -52,48 +53,51 @@ class HomeController extends Controller
                         } elseif (!in_array(8, Auth::user()->mark_profile_section)) {
                             toastr()->error('Please Complete Software section to complete Your Profile 100% to proceed!');
                         }
-                        return redirect('user/profile');
+                    } else {
+                        toastr()->error('Please Complete Profile 100% to proceed!');
                     }
+                    return redirect('user/profile');
                 }
             }
-            //approved all jobs whos posted 4 hours before
-            make_job_approved(); //function in helper file
-            $countries = Country::get();
-            //Agency of the day
-            $toprateagency = User::with('rates')
-                ->join('work_histories', 'users.id', '=', 'work_histories.user_id')
-                ->select('users.*', DB::raw('avg(rating) as avgrate,count(rating) as totalreview'))
-                ->where(['users.user_status' => 'Employer'])
-                ->groupBy('work_histories.user_id')
-                ->orderBy('avgrate', 'Desc')
-                ->limit(2)
-                ->get();
-            //freelancer of the day
-            $topfreelancer = User::with('rates')
-                ->join('work_histories', 'users.id', '=', 'work_histories.user_id')
-                ->select('users.*', DB::raw('avg(rating) as avgrate,count(rating) as totalreview'))
-                ->where(['users.user_status' => 'Freelancer'])
-                ->groupBy('work_histories.user_id')
-                ->orderBy('avgrate', 'Desc')
-                ->limit(2)
-                ->get();
-            //top category(languages)
-            $toplang = DB::table('work_histories')
-                ->join('jobs_pair_languages', 'jobs_pair_languages.jobs_id', '=', 'work_histories.jobs_id')
-                ->select('jobs_pair_languages.*', DB::raw('count(jobs_pair_languages.id) as totallan'))
-                ->orderBy('totallan', 'Desc')
-                ->groupBy('jobs_pair_languages.from_lang')
-                ->limit(3)
-                ->get();
-
-            $totaltranslater = User::where('user_status', 'Freelancer')->count();
-            $completedjob = Jobs::where('status', 4)->count();
-            $jobs = jobs::with('user')->with('jobspairlang')->with('jobproposals')->where('status', 1)->paginate(20);
-            return view('screens.home', compact('jobs', 'totaltranslater', 'countries', 'toprateagency', 'topfreelancer', 'toplang', 'completedjob'));
-        } catch (\Exception $exception) {
-            toastr()->error('Something went wrong, try again');
-            return back();
         }
+        //approved all jobs whos posted 4 hours before
+        make_job_approved(); //function in helper file
+        $countries = Country::get();
+        //Agency of the day
+        $toprateagency = User::with('rates')
+            ->join('work_histories', 'users.id', '=', 'work_histories.user_id')
+            ->select('users.*', DB::raw('avg(rating) as avgrate,count(rating) as totalreview'))
+            ->where(['users.user_status' => 'Employer'])
+            ->groupBy('work_histories.user_id')
+            ->orderBy('avgrate', 'Desc')
+            ->limit(2)
+            ->get();
+        //freelancer of the day
+        $topfreelancer = User::with('rates')
+            ->join('work_histories', 'users.id', '=', 'work_histories.user_id')
+            ->select('users.*', DB::raw('avg(rating) as avgrate,count(rating) as totalreview'))
+            ->where(['users.user_status' => 'Freelancer'])
+            ->groupBy('work_histories.user_id')
+            ->orderBy('avgrate', 'Desc')
+            ->limit(2)
+            ->get();
+        //top category(languages)
+        $toplang = DB::table('work_histories')
+            ->join('jobs_pair_languages', 'jobs_pair_languages.jobs_id', '=', 'work_histories.jobs_id')
+            ->select('jobs_pair_languages.*', DB::raw('count(jobs_pair_languages.id) as totallan'))
+            ->orderBy('totallan', 'Desc')
+            ->groupBy('jobs_pair_languages.from_lang')
+            ->limit(3)
+            ->get();
+
+        $totaltranslater = User::where('user_status', 'Freelancer')->count();
+        $completedjob = Jobs::where('status', 4)->count();
+        $jobs = jobs::with('user')->with('jobspairlang')->with('jobproposals')->where('status', 1)->paginate(20);
+        return view('screens.home', compact('jobs', 'totaltranslater', 'countries', 'toprateagency', 'topfreelancer', 'toplang', 'completedjob'));
+        // } catch (\Exception $exception) {
+        //     toastr()->error('Something went wrong, try again');
+        //     return back();
+        // }
     }
     //search job on home page
     public function job_search(Request $request)
