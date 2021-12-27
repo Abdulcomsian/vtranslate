@@ -324,9 +324,7 @@
                     }
                     @endphp
                     <ul class="nav nav-pills" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link {{$factive}}" data-toggle="pill" href="#profile"><span>My Profile</span> </a>
-                        </li>
+
                         <!-- <li class="nav-item">
                             <a href="#status" class="nav-link {{$statusactive}}" data-toggle="pill"><span>Status</span> </a>
                         </li> -->
@@ -358,6 +356,9 @@
                         <!-- <li class="nav-item">
                             <a href="#files" class="nav-link" data-toggle="pill"><span>Files</span> </a>
                         </li> -->
+                        <li class="nav-item">
+                            <a class="nav-link {{$factive}}" data-toggle="pill" href="#profile"><span>My Profile</span> </a>
+                        </li>
 
                         @endif
                     </ul>
@@ -1123,7 +1124,7 @@
                             <p>When you have completed filling out this form, please click or tap the Save button. Please note that the recent changes made
                                 in your profile will not appear immediately in the search results</p>
                             <input type="hidden" name="currtab" value="generaltab">
-                            <button type="submit" class="commonBtn">Save</button>
+                            <button type="submit" class="commonBtn">Save & Next</button>
                         </form>
                     </div>
                 </div>
@@ -1149,7 +1150,7 @@
 
                                         <div class="multiBtn text-center">
                                             <input type="hidden" name="currtab" value="resume">
-                                            <button class="commonBtn">Submit</button>
+                                            <button class="commonBtn">Submit & Next</button>
                                         </div>
 
                                     </form>
@@ -1202,6 +1203,10 @@
                                         <li>Your profile is going to be considered on the top 20 freelancers. </li>
                                         <li>Membership is just going to be <b>50 USD</b> ,but we have a promotion going on so we are giving membership free of cost use Coupon Code XYZ.</li>
                                     </ol>
+                                    <form method="post" action="{{route('user.premium.store')}}">
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger">Next</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -1740,9 +1745,11 @@
                                         <div class="multiBtn text-center pt-5">
                                             <input type="hidden" name="currtab" value="languages">
                                             @if(count($userData[0]->userlanguages)<'5') <button type="submit" class="commonBtn">Submit</button>
+
                                                 @endif
                                         </div>
                                     </form>
+
                                     <div class="pt-5">
                                         <table class="table table-responsive">
                                             <thead>
@@ -1857,16 +1864,16 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-group">
-                                                    <input class="form-control" type="text" name="min_rate_per_word" placeholder="Min rate Per Word $" required="required">
+                                                    <input class="form-control" type="text" name="min_rate_per_word" placeholder="Min rate Per Word(USD)" required="required">
                                                 </div>
                                                 <div class="form-group ">
-                                                    <input class="form-control" type="text" name="min_rate_per_minute" placeholder="Minrate Per minute $">
+                                                    <input class="form-control" type="text" name="min_rate_per_minute" placeholder="Minrate Per Hoaur(USD)">
                                                 </div>
                                             </div>
                                     </div>
                                     <div class="text-center">
                                         <input type="hidden" name="currtab" value="service_rates">
-                                        <button type="submit" class="commonBtn addservicebtn">Add Service</button>
+                                        <button type="submit" class="commonBtn addservicebtn">save & next</button>
                                     </div>
                                     </form>
                                     <br>
@@ -2068,7 +2075,7 @@
                                         <input type="file" name="voice" accept="audio/mp3,audio/wav" />
                                         <input type="hidden" name="currtab" value="voiceover">
                                         <br>
-                                        <button type="submit" class="addLanguageBtn commonBtn" style="margin-top:10px">Add Language</button>
+                                        <button type="submit" class="addLanguageBtn commonBtn" style="margin-top:10px">Save & Next</button>
 
                                     </form>
                                 </div>
@@ -2113,7 +2120,7 @@
                                         @include("screens.includes.specializtioncheckbox")
                                         <div class="multiBtn pt-5">
                                             <input type="hidden" name="currtab" value="specialization">
-                                            <button type="submit" class="commonBtn">Submit</button>
+                                            <button type="submit" class="commonBtn">Submit & Next</button>
                                         </div>
 
                                     </form>
@@ -2146,7 +2153,7 @@
                                         </div>
                                         <div class="multiBtn pt-5">
                                             <input type="hidden" name="currtab" value="softwares">
-                                            <button class="commonBtn">Submit</button>
+                                            <button class="commonBtn">Submit & Next</button>
                                         </div>
 
                                     </form>

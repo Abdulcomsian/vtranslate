@@ -16,7 +16,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="inputDiv">
-                            <label for="">Email</label>
+                            <label for="">Email/Username:</label>
                             <input type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                             @error('email')
                             <span class="invalid-feedback" role="alert">
@@ -25,7 +25,7 @@
                             @enderror
                         </div>
                         <div class="inputDiv">
-                            <label for="">Password</label>
+                            <label for="">Password:</label>
                             <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
                             @error('password')
                             <span class="invalid-feedback" role="alert">
@@ -46,9 +46,9 @@
                         </div>
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <!-- <button type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
-                                </button>
+                                </button> -->
 
                                 @if (Route::has('password.request'))
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
