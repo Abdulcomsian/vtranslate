@@ -177,7 +177,7 @@ select:focus {
     padding-bottom: 15px;
     margin-bottom: 40px;
     width: 255px;
-    height: 407px;
+    height: 385px;
 }
 #homeBanner .lookingFor p.header,
 #contactDiv .lookingFor p.header,
@@ -848,402 +848,8 @@ table#jobTable tr th {
     border-radius: 8px;
 }
 
-@media screen and (min-width: 1500px) {
-    #header .navbar-collapse {
-        justify-content: flex-end;
-    }
-    .banner .banner-content .inputfield {
-        background: #fff;
-        border-radius: 15px;
-        padding: 10px;
-        font-family: Montserrat;
-        display: flex;
-        width: 100%;
-        max-width: 85% !important;
-        justify-content: center;
-        align-items: center;
-    }
 
-    #voice-Over .commonDiv form .inputDiv {
-    }
-    #voice-Over .commonDiv form .inputDiv select {
-        padding: 5px 40px 5px 5px;
-    }
-    #voice-Over .commonDiv .btn-primary {
-        background: #ff0202;
-        border: none;
-        color: #fff;
-    }
-}
-@media screen and (min-width: 1200px) {
-    #voice-Over .commonDiv form .inputDiv {
-    }
-    #voice-Over .commonDiv form .inputDiv select {
-        padding: 5px 40px 5px 5px;
-    }
-    #voice-Over .commonDiv .btn-primary {
-        background: #ff0202;
-        border: none;
-        color: #fff;
-    }
-}
-@media screen and (max-width: 1200px) {
-    .banner .banner-content .inputfield {
-        max-width: 60% !important;
-    }
-    #header ul.navbar-nav.mt-2.mt-lg-0 li {
-        padding-left: 5px;
-    }
-    .navbar-light .navbar-brand img {
-        width: 150px;
-    }
-    #header ul.navbar-nav.mt-2.mt-lg-0 li a,
-    #header .navbar-collapse .language {
-        font-size: 12px;
-        padding: 5px 5px;
-    }
-    #findJobSection .multiDiv select {
-        background: #ececec;
-        border-radius: 10px;
-        margin-right: 20px;
-        padding: 10px 20px !important;
-    }
-    .servicesContent h2,
-    .servicesContent h2 a {
-        font-size: 18px !important;
-    }
-    .servicesContent p {
-        font-size: 14px !important;
-        line-height: 22px !important;
-    }
-    #Services .servicesIcon .servicesImg {
-        width: 100px;
-    }
-    .banner .banner-content .inputfield {
-        background: #fff;
-        border-radius: 15px;
-        padding: 10px;
-        font-family: Montserrat;
-        display: flex;
-        width: 100%;
-        max-width: 93% !important;
-        justify-content: center;
-        align-items: center;
-    }
-    .banner .banner-content .language p span {
-        font-size: 13px !important;
-        font-family: Montserrat;
-        text-align: left;
-    }
-    #homeBanner .lookingFor,
-    #contactDiv .lookingFor,
-    #postJobDiv .lookingFor {
-        background: #fcfcfc !important;
-        box-shadow: 0px 0px 9px rgb(0 0 0 / 25%) !important;
-        border-radius: 10px !important;
-        padding-bottom: 15px !important;
-        margin-bottom: 40px !important;
-        width: 210px !important;
-        height: 365px !important;
-    }
-    #homeBanner .lookingFor {
-        margin: auto;
-    }
-}
-@media screen and (max-width: 992px) {
-    .box .form-group {
-        width: 100%;
-        margin-bottom: 20px !important;
-    }
-    .box .form-group select,
-    .box .form-group input {
-        width: 100%;
-        margin: 0px !important;
-    }
-    #profileDiv .actionDiv ul {
-        display: block !important;
-    }
-    #profileDiv .actionDiv ul li:after {
-        display: none !important;
-    }
-    .changeProfileBtn {
-        width: 75% !important;
-    }
-    .otherBtn {
-        padding: 0px !important;
-    }
-    #howWorks .left-img {
-        margin: auto !important;
-        text-align: center;
-    }
-    #contactDiv form .inputDiv .textArea textarea {
-        width: 100% !important;
-    }
-    #homeBanner .lookingFor,
-    #contactDiv .lookingFor,
-    #postJobDiv .lookingFor {
-        margin: auto;
-        margin-top: 50px;
-    }
-    #header {
-        padding: 0px;
-    }
-    #mainSection .multiDiv .mainContent {
-        width: 100%;
-        padding: 150px 50px 50px;
-    }
-    #mainSideBar .menuButton {
-        display: block;
-    }
-    #mainSideBar .desktop-nav {
-        display: none;
-    }
-    #contactDiv form .inputDiv {
-        max-width: 100% !important;
-    }
-    .servicesContent h2,
-    .servicesContent h2 a {
-        font-size: 14px !important;
-        padding: 10px 0px !important;
-    }
-    .banner .banner-content .inputfield {
-        max-width: 80% !important;
-    }
-    #header ul {
-        justify-content: flex-start;
-        align-items: flex-start;
-    }
-    #findJobSection .multiDiv select {
-        background: #ececec !important;
-        border-radius: 10px !important;
-        margin-right: 9px !important;
-        padding: 2px 80px 2px 6px !important;
-    }
-    #homeBanner .lookingFor,
-    #contactDiv .lookingFor,
-    #postJobDiv .lookingFor {
-        background: #fcfcfc !important;
-        box-shadow: 0px 0px 9px rgb(0 0 0 / 25%) !important;
-        border-radius: 10px !important;
-        width: 255px !important;
-        height: 380px !important;
-    }
-    #our-mission .left-div {
-        padding: 50px;
-    }
-}
 
-@media screen and (max-width: 768px) {
-    #howWorks .right-text a,
-    #howWorks .right-text a:hover {
-        width: 40% !important;
-    }
-    #informationCollected .bs-callout {
-        padding: 15px 10px !important;
-    }
-    #contactDiv .checkboxh {
-        margin-left: 7%;
-        display: flex;
-        justify-content: space-between;
-    }
-    #contactDiv .checkboxh label {
-        margin-left: 5px;
-    }
-    #findJobSection .multiCards .cardDiv p {
-        letter-spacing: -1px;
-        text-align: justify;
-    }
-    #findJobSection .multiCards .cardDiv .priceInfo .detailDiv {
-        max-width: 100%;
-    }
-    #profile .inputDiv,
-    #contactDiv form .inputDiv,
-    #postJobDiv .inputDiv {
-        display: block !important;
-        max-width: 100% !important;
-    }
-    #postJobDiv .inputDiv input,
-    #postJobDiv .inputDiv textarea {
-        margin: 0px !important;
-        width: 100% !important;
-    }
-    #profile .inputDiv .inputSpan,
-    #profile .inputDiv .inputSpan input,
-    #profile .inputDiv label,
-    #profile .inputDiv .inputSpan textarea,
-    #contactDiv form .inputDiv input,
-    #contactDiv form .inputDiv select {
-        width: 100% !important;
-    }
-
-    tr th {
-        min-width: 150px;
-    }
-    #term-condition .introduction p {
-        line-height: 24px;
-        text-align: justify;
-    }
-    #howWorks .right-text .dummy p,
-    #informationCollected p {
-        text-align: left !important;
-    }
-    #informationCollected .bs-callout h4 {
-        letter-spacing: -1px;
-    }
-    #howWorks .right-text a {
-        width: 45%;
-    }
-    #homeBanner .lookingFor {
-        margin: auto !important;
-    }
-    #profileDiv .tabDiv ul {
-        display: block;
-        overflow: scroll;
-        height: 150px;
-    }
-    #profileDiv .actionDiv ul li {
-        margin-left: 10px !important;
-        font-size: 14px;
-    }
-    #profileDiv .actionDiv ul li:after {
-        right: 10px !important;
-    }
-    .Services .heading {
-        text-align: center;
-    }
-    .mainpart2 {
-        justify-content: center !important;
-    }
-    .banner .banner-content .inputfield {
-        max-width: 100% !important;
-    }
-    #homeBanner {
-        background-size: cover;
-        width: 100%;
-        background-repeat: no-repeat;
-        background-position: top right;
-        display: flex;
-        align-items: right;
-        color: #fff;
-        flex-direction: column;
-        padding-top: 15%;
-        padding: 0px 0px 50px;
-        background: rgba(44, 40, 135, 1);
-        height: auto;
-    }
-    .banner .banner-content {
-        justify-content: center;
-        text-align: center;
-    }
-    #findJobSection .multiDiv select {
-        background: #ececec !important;
-        border-radius: 10px !important;
-        margin-right: 9px !important;
-        padding: 2px 80px 2px 6px !important;
-    }
-    #resume #contactDiv,
-    #self-promotion #contactDiv,
-    #agency #contactDiv,
-    #service #contactDiv,
-    #voice-Over #contactDiv,
-    #specialization #contactDiv,
-    #software #contactDiv {
-        padding: 0px !important;
-    }
-    #our-mission .left-div,
-    #our-mission .right-div,
-    #comon-div .right-side {
-        width: 100%;
-        text-align: center;
-    }
-    #our-mission .left-div,
-    #our-mission .right-div,
-    #comon-div .right-side {
-        width: 100%;
-        text-align: center;
-    }
-}
-@media screen and (max-width: 576px) {
-    #mainSection .multiDiv .mainContent {
-        padding: 100px 20px 50px;
-    }
-    .footerBottom p {
-        font-size: 10px;
-    }
-    #mainSideBar .menuButton {
-        padding: 20px;
-    }
-    #mainSideBar .menuButton span {
-        padding: 10px 15px;
-    }
-    #dashboard-header .navbar-light .navbar-brand img {
-        width: 100px;
-    }
-    #dashboard-header {
-        padding: 15px 0px;
-    }
-    #dashboard-header .dashboard-header-right .profileDiv .dropDown ul li a {
-        font-size: 12px;
-    }
-    #dashboard-header .dashboard-header-right .profileDiv .dropDown {
-        padding: 0px 20px;
-        top: 35px;
-    }
-    #dashboard-header .dashboard-header-right .profileDiv .profileImage img {
-        width: 25px;
-        height: 25px;
-    }
-    #dashboard-header .dashboard-header-right .profileDiv .userInfo p {
-        font-size: 10px;
-    }
-    .downloadFile {
-        display: block;
-        justify-content: center;
-        text-align: center;
-    }
-    .commonDiv h3 {
-        top: -12px !important;
-        font-size: 18px;
-    }
-    #language table,
-    #specialization table,
-    #software table {
-        margin: 10px 0px;
-    }
-    #profileDiv .actionDiv ul {
-        justify-content: center !important;
-    }
-    #profileDiv .actionDiv ul li {
-        font-size: 10px !important;
-        margin-right: 0px !important;
-        margin-left: 10px !important;
-    }
-    #profileDiv .actionDiv ul li:after {
-        right: -10px !important;
-    }
-    .centerbannerbtn1 {
-        padding-right: 10px !important;
-    }
-    #header {
-        top: 4%;
-    }
-    #findJobSection .multiDiv select {
-        background: #ececec !important;
-        border-radius: 10px !important;
-        margin-right: 8px !important;
-        padding: 2px 20px 2px 6px !important;
-    }
-}
-@media screen and (max-width: 576px) {
-    #findJobSection .multiDiv select {
-        background: #ececec !important;
-        border-radius: 10px !important;
-        margin-right: 20px !important;
-        padding: 2px 115px 2px 6px !important;
-        margin: 10px !important;
-        max-width: 100%;
-    }
-}
 
 .banner .banner-content h1 {
     color: #fff;
@@ -1299,6 +905,7 @@ table#jobTable tr th {
     font-family: Montserrat;
 }
 
+
 .banner .banner-content .inputfield .Categories {
     width: 125%;
     height: 40px;
@@ -1312,9 +919,11 @@ table#jobTable tr th {
     font-family: Montserrat;
 }
 .banner .banner-content .inputfield .form-control {
-    padding-left: 35px;
+    padding-left: 2px;
+    width: 100%;
     border: none;
     font-family: Montserrat;
+    font-size: 15px;
 }
 
 .banner .banner-content .inputfield .form-group i {
@@ -1327,7 +936,7 @@ table#jobTable tr th {
 .banner .banner-content .inputfield .input-bar-item .btn {
     background: red;
     border: none;
-    padding: 6px 20px;
+    padding: 5px 20px;
     border-radius: 10px;
 }
 
@@ -2201,7 +1810,120 @@ div#fldJobSpecCnt input[type="checkbox"],
 .jobLocation .viewDiv table input {
     width: 150px;
 }
+.btn-link {
+    font-weight: 400;
+    color: #007bff;
+    float: right;
+    text-decoration: none;
+    font-size: 10px;
+}
+#homeBanner #mainbanner .col-md-3.inputfield-select {
+    padding: 0px 7px 0px 0px !important;
+}
+#homeBanner #mainbanner #leftBannerForm {
+    width: 105%;
+}
+@media screen and (min-width: 1500px) {
+    #header .navbar-collapse {
+        justify-content: flex-end;
+    }
+    .banner .banner-content .inputfield {
+        background: #fff;
+        border-radius: 15px;
+        padding: 10px;
+        font-family: Montserrat;
+        display: flex;
+        width: 100%;
+        max-width: 85% !important;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #voice-Over .commonDiv form .inputDiv {
+    }
+    #voice-Over .commonDiv form .inputDiv select {
+        padding: 5px 40px 5px 5px;
+    }
+    #voice-Over .commonDiv .btn-primary {
+        background: #ff0202;
+        border: none;
+        color: #fff;
+    }
+}
 @media screen and (max-width: 1200px) {
+
+    #voice-Over .commonDiv form .inputDiv select {
+        padding: 5px 40px 5px 5px;
+    }
+    #voice-Over .commonDiv .btn-primary {
+        background: #ff0202;
+        border: none;
+        color: #fff;
+    }
+    .banner .banner-content .inputfield {
+        max-width: 60% !important;
+    }
+    #header ul.navbar-nav.mt-2.mt-lg-0 li {
+        padding-left: 5px;
+    }
+    .navbar-light .navbar-brand img {
+        width: 150px;
+    }
+    #header ul.navbar-nav.mt-2.mt-lg-0 li a,
+    #header .navbar-collapse .language {
+        font-size: 12px;
+        padding: 5px 5px;
+    }
+    #findJobSection .multiDiv select {
+        background: #ececec;
+        border-radius: 10px;
+        margin-right: 20px;
+        padding: 10px 20px !important;
+    }
+    .servicesContent h2,
+    .servicesContent h2 a {
+        font-size: 18px !important;
+    }
+    .servicesContent p {
+        font-size: 14px !important;
+        line-height: 22px !important;
+    }
+    #Services .servicesIcon .servicesImg {
+        width: 100px;
+    }
+    .banner .banner-content .inputfield {
+        background: #fff;
+        border-radius: 15px;
+        padding: 10px;
+        font-family: Montserrat;
+        display: flex;
+        width: 100%;
+        max-width: 93% !important;
+        justify-content: center;
+        align-items: center;
+    }
+    .banner .banner-content .language p span {
+        font-size: 13px !important;
+        font-family: Montserrat;
+        text-align: left;
+    }
+    #homeBanner .lookingFor,
+    #contactDiv .lookingFor,
+    #postJobDiv .lookingFor {
+        background: #fcfcfc !important;
+        box-shadow: 0px 0px 9px rgb(0 0 0 / 25%) !important;
+        border-radius: 10px !important;
+        padding-bottom: 15px !important;
+        margin-bottom: 40px !important;
+        width: 210px !important;
+        height: 365px !important;
+    }
+    #homeBanner .lookingFor {
+        margin: auto;
+    }
+    #homeBanner #mainbanner #leftBannerForm {
+        width: 100%;
+    }
     #mainSideBar .desktop-nav ul li a i {
         margin-right: 5px;
     }
@@ -2238,6 +1960,89 @@ div#fldJobSpecCnt input[type="checkbox"],
     }
 }
 @media screen and (max-width: 992px) {
+    .box .form-group {
+        width: 100%;
+        margin-bottom: 20px !important;
+    }
+    .box .form-group select,
+    .box .form-group input {
+        width: 100%;
+        margin: 0px !important;
+    }
+    #profileDiv .actionDiv ul {
+        display: block !important;
+    }
+    #profileDiv .actionDiv ul li:after {
+        display: none !important;
+    }
+    .changeProfileBtn {
+        width: 75% !important;
+    }
+    .otherBtn {
+        padding: 0px !important;
+    }
+    #howWorks .left-img {
+        margin: auto !important;
+        text-align: center;
+    }
+    #contactDiv form .inputDiv .textArea textarea {
+        width: 100% !important;
+    }
+    #homeBanner .lookingFor,
+    #contactDiv .lookingFor,
+    #postJobDiv .lookingFor {
+        margin: auto;
+        margin-top: 50px;
+    }
+    #header {
+        padding: 0px;
+    }
+    #mainSection .multiDiv .mainContent {
+        width: 100%;
+        padding: 150px 50px 50px;
+    }
+    #mainSideBar .menuButton {
+        display: block;
+    }
+    #mainSideBar .desktop-nav {
+        display: none;
+    }
+    #contactDiv form .inputDiv {
+        max-width: 100% !important;
+    }
+    .servicesContent h2,
+    .servicesContent h2 a {
+        font-size: 14px !important;
+        padding: 10px 0px !important;
+    }
+    .banner .banner-content .inputfield {
+        max-width: 80% !important;
+    }
+    #header ul {
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+    #findJobSection .multiDiv select {
+        background: #ececec !important;
+        border-radius: 10px !important;
+        margin-right: 9px !important;
+        padding: 2px 80px 2px 6px !important;
+    }
+    #homeBanner .lookingFor,
+    #contactDiv .lookingFor,
+    #postJobDiv .lookingFor {
+        background: #fcfcfc !important;
+        box-shadow: 0px 0px 9px rgb(0 0 0 / 25%) !important;
+        border-radius: 10px !important;
+        width: 255px !important;
+        height: 380px !important;
+    }
+    #our-mission .left-div {
+        padding: 50px;
+    }
+    #homeBanner #mainbanner #leftBannerForm {
+        width: 100%;
+    }
     #homeBanner .lookingFor,
     #contactDiv .lookingFor,
     #postJobDiv .lookingFor {
@@ -2310,6 +2115,140 @@ div#fldJobSpecCnt input[type="checkbox"],
     }
 }
 @media screen and (max-width: 768px) {
+    #howWorks .right-text a,
+    #howWorks .right-text a:hover {
+        width: 40% !important;
+    }
+    #informationCollected .bs-callout {
+        padding: 15px 10px !important;
+    }
+    #contactDiv .checkboxh {
+        margin-left: 7%;
+        display: flex;
+        justify-content: space-between;
+    }
+    #contactDiv .checkboxh label {
+        margin-left: 5px;
+    }
+    #findJobSection .multiCards .cardDiv p {
+        letter-spacing: -1px;
+        text-align: justify;
+    }
+    #findJobSection .multiCards .cardDiv .priceInfo .detailDiv {
+        max-width: 100%;
+    }
+    #profile .inputDiv,
+    #contactDiv form .inputDiv,
+    #postJobDiv .inputDiv {
+        display: block !important;
+        max-width: 100% !important;
+    }
+    #postJobDiv .inputDiv input,
+    #postJobDiv .inputDiv textarea {
+        margin: 0px !important;
+        width: 100% !important;
+    }
+    #profile .inputDiv .inputSpan,
+    #profile .inputDiv .inputSpan input,
+    #profile .inputDiv label,
+    #profile .inputDiv .inputSpan textarea,
+    #contactDiv form .inputDiv input,
+    #contactDiv form .inputDiv select {
+        width: 100% !important;
+    }
+
+    tr th {
+        min-width: 150px;
+    }
+    #term-condition .introduction p {
+        line-height: 24px;
+        text-align: justify;
+    }
+    #howWorks .right-text .dummy p,
+    #informationCollected p {
+        text-align: left !important;
+    }
+    #informationCollected .bs-callout h4 {
+        letter-spacing: -1px;
+    }
+    #howWorks .right-text a {
+        width: 45%;
+    }
+    #homeBanner .lookingFor {
+        margin: auto !important;
+    }
+    #profileDiv .tabDiv ul {
+        display: block;
+        overflow: scroll;
+        height: 150px;
+    }
+    #profileDiv .actionDiv ul li {
+        margin-left: 10px !important;
+        font-size: 14px;
+    }
+    #profileDiv .actionDiv ul li:after {
+        right: 10px !important;
+    }
+    .Services .heading {
+        text-align: center;
+    }
+    .mainpart2 {
+        justify-content: center !important;
+    }
+    .banner .banner-content .inputfield {
+        max-width: 100% !important;
+    }
+    #homeBanner {
+        background-size: cover;
+        width: 100%;
+        background-repeat: no-repeat;
+        background-position: top right;
+        display: flex;
+        align-items: right;
+        color: #fff;
+        flex-direction: column;
+        padding-top: 15%;
+        padding: 0px 0px 50px;
+        background: rgba(44, 40, 135, 1);
+        height: auto;
+    }
+    .banner .banner-content {
+        justify-content: center;
+        text-align: center;
+    }
+    #findJobSection .multiDiv select {
+        background: #ececec !important;
+        border-radius: 10px !important;
+        margin-right: 9px !important;
+        padding: 2px 80px 2px 6px !important;
+    }
+    #resume #contactDiv,
+    #self-promotion #contactDiv,
+    #agency #contactDiv,
+    #service #contactDiv,
+    #voice-Over #contactDiv,
+    #specialization #contactDiv,
+    #software #contactDiv {
+        padding: 0px !important;
+    }
+    #our-mission .left-div,
+    #our-mission .right-div,
+    #comon-div .right-side {
+        width: 100%;
+        text-align: center;
+    }
+    #our-mission .left-div,
+    #our-mission .right-div,
+    #comon-div .right-side {
+        width: 100%;
+        text-align: center;
+    }
+    #homeBanner #mainbanner .col-md-3.inputfield-select {
+        padding: 7px 7px 0px 0px !important;
+    }
+    #homeBanner #mainbanner #leftBannerForm {
+        width: 100%;
+    }
     .infoDiv {
         display: grid;
     }
@@ -2414,6 +2353,92 @@ div#fldJobSpecCnt input[type="checkbox"],
     }
 }
 @media screen and (max-width: 576px) {
+    #findJobSection .multiDiv select {
+        background: #ececec !important;
+        border-radius: 10px !important;
+        margin-right: 20px !important;
+        padding: 2px 115px 2px 6px !important;
+        margin: 10px !important;
+        max-width: 100%;
+    }
+    #mainSection .multiDiv .mainContent {
+        padding: 100px 20px 50px;
+    }
+    .footerBottom p {
+        font-size: 10px;
+    }
+    #mainSideBar .menuButton {
+        padding: 20px;
+    }
+    #mainSideBar .menuButton span {
+        padding: 10px 15px;
+    }
+    #dashboard-header .navbar-light .navbar-brand img {
+        width: 100px;
+    }
+    #dashboard-header {
+        padding: 15px 0px;
+    }
+    #dashboard-header .dashboard-header-right .profileDiv .dropDown ul li a {
+        font-size: 12px;
+    }
+    #dashboard-header .dashboard-header-right .profileDiv .dropDown {
+        padding: 0px 20px;
+        top: 35px;
+    }
+    #dashboard-header .dashboard-header-right .profileDiv .profileImage img {
+        width: 25px;
+        height: 25px;
+    }
+    #dashboard-header .dashboard-header-right .profileDiv .userInfo p {
+        font-size: 10px;
+    }
+    .downloadFile {
+        display: block;
+        justify-content: center;
+        text-align: center;
+    }
+    .commonDiv h3 {
+        top: -12px !important;
+        font-size: 18px;
+    }
+    #language table,
+    #specialization table,
+    #software table {
+        margin: 10px 0px;
+    }
+    #profileDiv .actionDiv ul {
+        justify-content: center !important;
+    }
+    #profileDiv .actionDiv ul li {
+        font-size: 10px !important;
+        margin-right: 0px !important;
+        margin-left: 10px !important;
+    }
+    #profileDiv .actionDiv ul li:after {
+        right: -10px !important;
+    }
+    .centerbannerbtn1 {
+        padding-right: 10px !important;
+    }
+    #header {
+        top: 4%;
+    }
+    #findJobSection .multiDiv select {
+        background: #ececec !important;
+        border-radius: 10px !important;
+        margin-right: 8px !important;
+        padding: 2px 20px 2px 6px !important;
+    }
+    #homeBanner #mainbanner .col-md-3.inputfield-select {
+        padding: 7px 7px 0px 0px !important;
+    }
+    #homeBanner #mainbanner #leftBannerForm {
+        width: 100%;
+    }
+    #homeBanner #mainbanner .inputfield-select{
+        padding-bottom: 8px;
+    }
     .tableContent h2 {
         font-size: 10px;
     }
@@ -2456,7 +2481,7 @@ div#fldJobSpecCnt input[type="checkbox"],
         margin: 5px 0px;
     }
     .banner .banner-content .inputfield {
-        display: block;
+        display: flex;
     }
     #findJobSection .forumtopButton .topbtnchild2 {
         margin-left: 17%;
@@ -2485,6 +2510,7 @@ div#fldJobSpecCnt input[type="checkbox"],
     #createAccount .formDiv .checkBoxDiv {
         max-width: 100%;
     }
+    
     #homeBanner .lookingFor,
     #contactDiv .lookingFor,
     #postJobDiv .lookingFor {
@@ -2505,7 +2531,8 @@ div#fldJobSpecCnt input[type="checkbox"],
         font-weight: 500;
         margin-bottom: 0;
         margin: auto;
-        margin-top: 50px;
+        /* margin-top: 50px; */
+        width: 100%;
     }
     #voice-Over .commonDiv form .inputDiv {
     }
