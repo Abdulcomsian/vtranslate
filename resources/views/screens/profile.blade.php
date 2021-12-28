@@ -1129,6 +1129,7 @@
                     </div>
                 </div>
             </div>
+            @if(!empty(auth::user()->user_status) && auth::user()->user_status=="Freelancer")
             <div id="resume" class="container tab-pane {{$resumetab}}">
                 <div id="contactDiv" class="padd-100">
                     <div class="container">
@@ -1150,7 +1151,8 @@
 
                                         <div class="multiBtn text-center">
                                             <input type="hidden" name="currtab" value="resume">
-                                            <button class="commonBtn">Submit & Next</button>
+                                            <button class="commonBtn">Submit</button>
+                                            <button type="button" class="commonBtn resumenextbtn">Next</button>
                                         </div>
 
                                     </form>
@@ -1203,10 +1205,7 @@
                                         <li>Your profile is going to be considered on the top 20 freelancers. </li>
                                         <li>Membership is just going to be <b>50 USD</b> ,but we have a promotion going on so we are giving membership free of cost use Coupon Code XYZ.</li>
                                     </ol>
-                                    <form method="post" action="{{route('user.premium.store')}}">
-                                        @csrf
-                                        <button type="submit" class="btn btn-danger">Next</button>
-                                    </form>
+                                    <button type="button" class="btn btn-danger pramiumnextbtn">Next</button>
                                 </div>
                             </div>
                         </div>
@@ -1377,10 +1376,7 @@
                                                                 <option value="yo">Yoruba - Èdè Yorùbá</option>
                                                                 <option value="zu">Zulu - isiZulu</option>
                                                             </select>
-
                                                         </td>
-
-
                                                     </tbody>
                                                 </table>
                                                 <div class="multiBtn text-center pt-5">
@@ -1745,6 +1741,7 @@
                                         <div class="multiBtn text-center pt-5">
                                             <input type="hidden" name="currtab" value="languages">
                                             @if(count($userData[0]->userlanguages)<'5') <button type="submit" class="commonBtn">Submit</button>
+                                                <button type="button" class="commonBtn" id="languagenext">Next</button>
 
                                                 @endif
                                         </div>
@@ -1873,7 +1870,8 @@
                                     </div>
                                     <div class="text-center">
                                         <input type="hidden" name="currtab" value="service_rates">
-                                        <button type="submit" class="commonBtn addservicebtn">save & next</button>
+                                        <button type="submit" class="commonBtn addservicebtn">save</button>
+                                        <button type="submit" class="commonBtn servicenextbtn">Next</button>
                                     </div>
                                     </form>
                                     <br>
@@ -2075,8 +2073,8 @@
                                         <input type="file" name="voice" accept="audio/mp3,audio/wav" />
                                         <input type="hidden" name="currtab" value="voiceover">
                                         <br>
-                                        <button type="submit" class="addLanguageBtn commonBtn" style="margin-top:10px">Save & Next</button>
-
+                                        <button type="submit" class="addLanguageBtn commonBtn" style="margin-top:10px">Save</button>
+                                        <button type="button" class="voiceovernextbtn commonBtn" style="margin-top:10px">Next</button>
                                     </form>
                                 </div>
                                 <table class="table table-hover  voiceOverTable">
@@ -2292,6 +2290,7 @@
                     </div>
                 </div>
             </div> -->
+            @endif
 
             <div id="change-pass" class="container tab-pane {{$change_pass_tab}}">
                 <div id="contactDiv" class="padd-100">
@@ -2631,6 +2630,48 @@
                 $("#city").html(res);
             }
         })
+    })
+</script>
+
+<script>
+    $("#languagenext").on('click', function() {
+        $("#profileDiv .tabDiv ul li a").removeClass("active");
+        $("a[href='#service']").addClass('active');
+        $(".tab-content>.tab-pane").removeClass('active show');
+        $("#service").addClass('active show');
+
+    })
+
+    $(".servicenextbtn").on('click', function() {
+        $("#profileDiv .tabDiv ul li a").removeClass("active");
+        $("a[href='#voice-Over']").addClass('active');
+        $(".tab-content>.tab-pane").removeClass('active show');
+        $("#voice-Over").addClass('active show');
+
+    })
+
+    $(".voiceovernextbtn").on('click', function() {
+        $("#profileDiv .tabDiv ul li a").removeClass("active");
+        $("a[href='#specialization']").addClass('active');
+        $(".tab-content>.tab-pane").removeClass('active show');
+        $("#specialization").addClass('active show');
+
+    })
+
+    $(".pramiumnextbtn").on('click', function() {
+        $("#profileDiv .tabDiv ul li a").removeClass("active");
+        $("a[href='#language']").addClass('active');
+        $(".tab-content>.tab-pane").removeClass('active show');
+        $("#language").addClass('active show');
+
+    })
+
+    $(".resumenextbtn").on('click', function() {
+        $("#profileDiv .tabDiv ul li a").removeClass("active");
+        $("a[href='#self-promotion']").addClass('active');
+        $(".tab-content>.tab-pane").removeClass('active show');
+        $("#self-promotion").addClass('active show');
+
     })
 </script>
 @endsection

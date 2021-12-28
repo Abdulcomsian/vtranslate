@@ -22,7 +22,8 @@ class Profile
                 if (Auth::user()->total_profile_section == count(Auth::user()->mark_profile_section ?? [])) {
                     return $next($request);
                 } else {
-                    if (Auth::user()->mark_profile_section) {
+                    toastr()->error('Please Complete Profile 100% to proceed!');
+                    if (Auth::user()->mark_profile_section && Auth::user()->user_status == "Translator") {
                         if (!in_array(1, Auth::user()->mark_profile_section)) {
                             toastr()->error('Please Complete General section to complete Your Profile 100% to proceed!');
                         } elseif (!in_array(2, Auth::user()->mark_profile_section)) {
@@ -40,8 +41,6 @@ class Profile
                         } elseif (!in_array(8, Auth::user()->mark_profile_section)) {
                             toastr()->error('Please Complete Software section to complete Your Profile 100% to proceed!');
                         }
-                    } else {
-                        toastr()->error('Please Complete Profile 100% to proceed!');
                     }
                     return redirect('user/profile');
                 }
