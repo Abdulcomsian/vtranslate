@@ -109,7 +109,11 @@ class UserController extends Controller
             ]);
             //toaster message
             toastr()->success('User Gneral Info Saved Successfull!');
-            return \Redirect::route('profile')->with('currtab', 'resume');
+            if (Auth::user()->user_status == "Employer") {
+                return \Redirect::route('profile')->with('currtab', $request->currtab);
+            } else {
+                return \Redirect::route('profile')->with('currtab', 'resume');
+            }
         } catch (\Exception $exception) {
             toastr()->error('Something went wrong, try again');
             return back()->with('currtab', $request->currtab);
@@ -206,6 +210,9 @@ class UserController extends Controller
                 // toaster message
                 toastr()->success('User Resume Saved Successfully!');
                 return \Redirect::route('profile')->with('currtab', 'languages');
+            } else {
+                toastr()->error('Please Select Resume');
+                return back()->with('currtab', $request->currtab);
             }
         } catch (\Exception $exception) {
             toastr()->error('Something went wrong, try again');
@@ -213,12 +220,6 @@ class UserController extends Controller
         }
     }
 
-    //save pramium
-    public function user_save_paramium(Request $request)
-    {
-        toastr()->success('Pramium save');
-        return \Redirect::route('profile')->with('currtab', 'languages');
-    }
     //save languages
     public function user_save_languages(Request $request)
     {

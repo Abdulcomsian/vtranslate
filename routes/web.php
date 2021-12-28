@@ -101,7 +101,6 @@ Route::group(['prefix' => 'user', 'middleware' => ['verified', 'auth']], functio
     Route::post('/change-pass', 'UserController@update_pass')->name('change-pass');
     Route::post('/profile-delete', 'UserController@delete_profile')->name('profile-delete');
     Route::get('/get-states', 'UserController@get_states')->name('get-states');
-    Route::post('/user-save-pramium', 'UserController@user_save_paramium')->name('user.premium.store');
 });
 //public profile freelancer
 Route::get('/public-profile/{id}', 'UserController@public_profile')->name('public-profile');
