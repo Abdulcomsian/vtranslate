@@ -9,11 +9,11 @@
                         <div class="leftBannerContent">
                             <h1>The Easiest Way To Hire <br> Expert Translate</h1>
                             <h2>lorem ipsum dolor sit amit, consectetur adipiscing elit ut aliquam, purus <br> sit amet luctus</h2>
-                            <form action="{{route('search-job')}}">
+                            <form id="leftBannerForm" action="{{route('search-job')}}">
                                 <div class="inputfield">
                                     <div class="row">
-                                        <div class="col-md-3">
-                                            <select class="form-control pl-4" id="slanguage" name="slanguage">
+                                        <div class="col-md-3 inputfield-select">
+                                            <select class="form-control" id="slanguage" name="slanguage">
                                                 <option value="">Source Language</option>
                                                 <option value="af">Afrikaans</option>
                                                 <option value="sq">Albanian - shqip</option>
@@ -159,8 +159,8 @@
                                                 <option value="zu">Zulu - isiZulu</option>
                                             </select>
                                         </div>
-                                        <div class="col-md-3">
-                                            <select class="form-control pl-4" id="tlanguage" name="tlanguage">
+                                        <div class="col-md-3 inputfield-select">
+                                            <select class="form-control" id="tlanguage" name="tlanguage">
                                                 <option value="">Target Language</option>
                                                 <option value="af">Afrikaans</option>
                                                 <option value="sq">Albanian - shqip</option>
@@ -306,8 +306,8 @@
                                                 <option value="zu">Zulu - isiZulu</option>
                                             </select>
                                         </div>
-                                        <div class="col-md-3">
-                                            <select name="job_type" class="form-control pl-4">
+                                        <div class="col-md-3 inputfield-select">
+                                            <select name="job_type" class="form-control">
                                                 <option value="">Select Job Type</option>
                                                 <option value="Closed captioning">Closed captioning</option>
                                                 <option value="Copywriting">Copywriting</option>
@@ -335,9 +335,9 @@
                                                 <option value="Voice-over">Voice-over</option>
                                             </select>
                                         </div>
-                                        <div class="col-md-2">
-                                            <div class="input-bar-item">
-                                                <button class="btn btn-info">Search</button>
+                                        <div class="col-md-3 inputfield-select ">
+                                            <div class="input-bar-item ">
+                                                <button class="btn btn-info w-100">Search</button>
                                             </div>
                                         </div>
                                     </div>
