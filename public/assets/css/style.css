@@ -871,12 +871,12 @@ table#jobTable tr th {
     font-weight: 400;
 }
 .banner .banner-content p {
-    margin: 10px 0 0;
+    margin: 15px 0 0;
     padding: 0;
     font-family: Montserrat;
     font-weight: 700;
     color: #fff;
-    font-size: 1.5em;
+    /* font-size: 1.5em; */
     text-transform: uppercase;
 }
 
@@ -887,6 +887,16 @@ table#jobTable tr th {
 
 .banner .banner-content .inputfield {
     background: #fff;
+    border-radius: 15px;
+    padding: 10px;
+    font-family: Montserrat;
+    display: flex;
+    width: 95%;
+    justify-content: center;
+    align-items: center;
+}
+.banner .banner-content .btninputfield {
+    background: none !important;
     border-radius: 15px;
     padding: 10px;
     font-family: Montserrat;
@@ -923,7 +933,7 @@ table#jobTable tr th {
     width: 100%;
     border: none;
     font-family: Montserrat;
-    font-size: 15px;
+    font-size:12px;
 }
 
 .banner .banner-content .inputfield .form-group i {
@@ -936,8 +946,29 @@ table#jobTable tr th {
 .banner .banner-content .inputfield .input-bar-item .btn {
     background: red;
     border: none;
+    padding: 5px 25px;
+    border-radius: 10px;
+    font-size: 13px;
+}
+ button.btn.btn-info {
+    background: red;
+    border: none;
     padding: 5px 20px;
     border-radius: 10px;
+    font-size: 13px;
+    float: right;
+}
+.banner .banner-content .btninputfield .input-bar-item .btn {
+    background: red;
+    border: none;
+    padding: 5px 20px;
+    border-radius: 10px;
+    font-size: 13px;
+    width: 100%;
+    max-width: 20%;
+}
+.input-bar-item {
+    text-align: end;
 }
 
 .navbar-light .navbar-toggler {
@@ -1824,6 +1855,15 @@ div#fldJobSpecCnt input[type="checkbox"],
     width: 105%;
 }
 @media screen and (min-width: 1500px) {
+    button.btn.btn-info {
+        background: red !important;
+        border: none !important;
+        padding: 5px 20px !important;
+        border-radius: 10px !important;
+        font-size: 13px !important;
+        float: right;
+        margin-right: 11%;
+    }
     #header .navbar-collapse {
         justify-content: flex-end;
     }
@@ -1851,7 +1891,14 @@ div#fldJobSpecCnt input[type="checkbox"],
     }
 }
 @media screen and (max-width: 1200px) {
-
+    button.btn.btn-info {
+        background: red;
+        border: none;
+        padding: 5px 20px;
+        border-radius: 10px;
+        font-size: 13px;
+        float: inherit;
+    }
     #voice-Over .commonDiv form .inputDiv select {
         padding: 5px 40px 5px 5px;
     }
@@ -1873,6 +1920,16 @@ div#fldJobSpecCnt input[type="checkbox"],
     #header .navbar-collapse .language {
         font-size: 12px;
         padding: 5px 5px;
+    }
+    #homeBanner #mainbanner .banner-content .leftBannerContent .language {
+        border-radius: 15px;
+        padding: 10px;
+        font-family: Montserrat;
+        display: table-cell;
+        width: 10%;
+        max-width: 85% !important;
+        justify-content: center;
+        align-items: center;
     }
     #findJobSection .multiDiv select {
         background: #ececec;
@@ -2353,6 +2410,14 @@ div#fldJobSpecCnt input[type="checkbox"],
     }
 }
 @media screen and (max-width: 576px) {
+    button.btn.btn-info {
+        background: red;
+        border: none;
+        padding: 5px 20px;
+        border-radius: 10px;
+        font-size: 13px;
+        width: 100%;
+    }
     #postJobDiv button {
         display: block;
         width: 100%;

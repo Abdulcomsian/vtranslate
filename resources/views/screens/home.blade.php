@@ -12,7 +12,7 @@
                             <form id="leftBannerForm" action="{{route('search-job')}}">
                                 <div class="inputfield">
                                     <div class="row">
-                                        <div class="col-md-3 inputfield-select">
+                                        <div class="col-md-4 inputfield-select">
                                             <select class="form-control" id="slanguage" name="slanguage">
                                                 <option value="">Source Language</option>
                                                 <option value="af">Afrikaans</option>
@@ -159,7 +159,7 @@
                                                 <option value="zu">Zulu - isiZulu</option>
                                             </select>
                                         </div>
-                                        <div class="col-md-3 inputfield-select">
+                                        <div class="col-md-4 inputfield-select">
                                             <select class="form-control" id="tlanguage" name="tlanguage">
                                                 <option value="">Target Language</option>
                                                 <option value="af">Afrikaans</option>
@@ -306,7 +306,7 @@
                                                 <option value="zu">Zulu - isiZulu</option>
                                             </select>
                                         </div>
-                                        <div class="col-md-3 inputfield-select">
+                                        <div class="col-md-4 inputfield-select">
                                             <select name="job_type" class="form-control">
                                                 <option value="">Select Job Type</option>
                                                 <option value="Closed captioning">Closed captioning</option>
@@ -335,13 +335,16 @@
                                                 <option value="Voice-over">Voice-over</option>
                                             </select>
                                         </div>
-                                        <div class="col-md-3 inputfield-select ">
+                                        
+                                    </div>
+                                </div>      
+                                <!-- <div class="inputfield">                          
+                                        <div class="col inputfield-select ">
                                             <div class="input-bar-item ">
                                                 <button class="btn btn-info w-100">Search</button>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
+                                </div> -->
                             </form>
                             <div class="language">
                                 <p>
@@ -353,7 +356,14 @@
                                     @else
                                     <span class="spantext">No Job Category rated yet.</span>
                                     @endif
-
+                                    <span class=""><button class="btn btn-info ">Search</button></span>
+                                    <!-- <div class="btninputfield">                          
+                                        <div class="col inputfield-select ">
+                                            <div class="input-bar-item ">
+                                                <button class="btn btn-info w-100">Search</button>
+                                            </div>
+                                        </div>
+                                    </div> -->
                                 </p>
                             </div>
                         </div>
