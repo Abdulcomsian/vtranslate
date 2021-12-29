@@ -149,3 +149,11 @@ function make_job_approved()
         $jobsapproved->save();
     }
 }
+
+
+function worldlanguages()
+{
+    $path = public_path() . "/json/countrylang.json"; // ie: /var/www/laravel/app/storage/json/filename.json
+    $json = json_decode(file_get_contents($path), true);
+    return $json;
+}

@@ -54,7 +54,8 @@ class AgencyController extends Controller
                 ->orderBy('avgrate', 'Desc')
                 ->limit(1)
                 ->first();
-            return view('screens.agencies.search-agencies', compact('AgencyData', 'allagencymembers', 'countries', 'topagency'));
+            $worldlang = worldlanguages();
+            return view('screens.agencies.search-agencies', compact('AgencyData', 'allagencymembers', 'countries', 'topagency', 'worldlang'));
         } catch (\Exception $exception) {
             toastr()->error('Something went wrong, try again');
             return back();
@@ -98,7 +99,8 @@ class AgencyController extends Controller
                 ->orderBy('avgrate', 'Desc')
                 ->limit(1)
                 ->first();
-            return view('screens.agencies.search-agencies', compact('AgencyData', 'allagencymembers', 'countries', 'topagency'));
+            $worldlang = worldlanguages();
+            return view('screens.agencies.search-agencies', compact('AgencyData', 'allagencymembers', 'countries', 'topagency', 'worldlang'));
         } catch (\Exception $exception) {
             toastr()->error('Something went wrong, try again');
             return back();

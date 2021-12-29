@@ -31,10 +31,12 @@ class JobsController extends Controller
 
     public function index()
     {
+
         if (Auth::user()->user_status == "Employer") {
             $countries = Country::get();
             $jobs = Jobs::where('user_id', Auth::user()->id)->get();
-            return view('screens.job-posting', compact('countries', 'jobs'));
+            $worldlang = worldlanguages();
+            return view('screens.job-posting', compact('countries', 'jobs', 'worldlang'));
         } else {
             toastr()->error('Please signup as an agency to post a job');
             return back();
@@ -112,8 +114,9 @@ class JobsController extends Controller
     {
         $editjob = Jobs::with('jobspairlang')->find($request->edit_job);
         $countries = Country::get();
+        $worldlang = worldlanguages();
         $jobs = Jobs::where('user_id', Auth::user()->id)->get();
-        return view('screens.edit-job-posting', compact('countries', 'jobs', 'editjob'));
+        return view('screens.edit-job-posting', compact('countries', 'jobs', 'editjob', 'worldlang'));
     }
 
     // Update a Job
