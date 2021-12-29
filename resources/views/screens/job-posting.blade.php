@@ -14,9 +14,9 @@
                <div class="selectionBox">
                   <p>Because this is your first job posting and no agency is associated with your profile, some of the form fields are hidden to make the process of posting a job easier. If you want to fill out the full form, please select the Full form option.</p>
                   <div class="radoBtn">
-                     <input type="radio" id="html" name="fav_language" value="Full form" checked>
+                     <input type="radio" id="html" name="fav_language" value="Full form" checked>&nbsp
                      <label for="html">Full form with all fields</label><br>
-                     <input type="radio" id="css" name="fav_language" value="Simple form">
+                     <input type="radio" id="css" name="fav_language" value="Simple form">&nbsp 
                      <label for="css">Simple form</label><br>
                   </div>
                </div>
@@ -85,21 +85,21 @@
                            </select>
                         </div>
                         <div class="radioDiv">
-                           <input type="radio" id="Intermediate" name="job_type_level" value="Intermediate" checked>
-                           <label for="Intermediate">Intermediate</label>
-                           <input type="radio" id="Potential" name="job_type_level" value="Potential">
-                           <label for="Potential">Potential</label>
-                           <input type="radio" id="In-House" name="job_type_level" value="In-House">
-                           <label for="In-House">In-House</label>
-                           <input type="radio" id="Tele-Community" name="job_type_level" value="Tele-Community">
+                           <input type="radio" id="Intermediate" name="job_type_level" value="Intermediate" checked>&nbsp
+                           <label for="Intermediate">Intermediate</label>&nbsp &nbsp
+                           <input type="radio" id="Potential" name="job_type_level" value="Potential">&nbsp
+                           <label for="Potential">Potential</label>&nbsp &nbsp &nbsp
+                           <input type="radio" id="In-House" name="job_type_level" value="In-House">&nbsp
+                           <label for="In-House">In-House</label>&nbsp &nbsp
+                           <input type="radio" id="Tele-Community" name="job_type_level" value="Tele-Community">&nbsp
                            <label for="Tele-Community">Tele-Community</label>
                         </div>
                         <p><b>Expalanation of Job Types</b></p>
                         <h5>Deadlines</h5>
                         <div class="radioDiv">
-                           <input type="radio" id="No-dealine" name="expiry_status" value="0" checked>
-                           <label for="No-dealine">No-dealine</label>
-                           <input type="radio" id="Set-Date" name="expiry_status" value="1">
+                           <input type="radio" id="No-dealine" name="expiry_status" value="0" checked>&nbsp
+                           <label for="No-dealine">No-dealine</label>&nbsp &nbsp
+                           <input type="radio" id="Set-Date" name="expiry_status" value="1">&nbsp
                            <label for="Set Date">Set Date</label>
                         </div>
                         <div class="setDateDiv">
@@ -108,7 +108,7 @@
                      </div>
                      <div class="languageDiv">
                         <h5>Languages</h5>
-                        <p class="warning">At least one language pair is required.</p>
+                        <p class=""><b>At least one language pair is required.</b></p>
                         <p>Please include both language pairs if you need an interpreter. For example, if you need an English-French interpreter, select English>French
                            and French>English.
                         </p>
@@ -595,14 +595,20 @@
                            </div>
                            <!-- <input type="checkbox" name="job_notify_master_member" style="margin-right: 10px;">
                            <label for=""> Send notifications only to <a href="">Master Members</a></label><br> -->
-                           <input type="checkbox" name="job_show_master_member" style="margin-right: 10px;">
-                           <label for=""> Show job to Master Members immediately, to all users after a 12-hour delay.</label><br>
+                           
+                           <div class="d-flex pt-3" style="align-item: center;">
+                              <input type="checkbox" name="job_show_master_member" style="margin-right: 10px;">
+                              <label for=""> Show job to Master Members immediately, to all users after a 12-hour delay.</label>
+                           </div>
+                              <br>
                            <p>Please note that the request to send notifications only to Master Members will always be considered, however, sometimes it cannot be guaranteed. For example, if the number of Master Members who qualify for this job offer is less than 10, it's in the interests of the outsourcer to send notifications to all members who qualify, not only to Master members.</p>
                            <!-- <input type="checkbox" name="publish" style="margin-right: 10px;">
                            <label for=""> Not to be published in other forums or mailing lists.</label><br>
                            <p>Jobs posted on the TranslatorsCafe.com Job Board are considered to be sent to the public at large and links to them may be posted elsewhere unless the job poster selects this check box.</p> -->
-                           <input type="checkbox" name="job_show_tc_user" style="margin-right: 10px;">
-                           <label for=""> Show this job only to TC registered users.</label><br>
+                           <div class="d-flex" style="align-item: center;">
+                              <input type="checkbox" name="job_show_tc_user" style="margin-right: 10px;">
+                              <label for=""> Show this job only to TC registered users.</label><br>
+                           </div>
                         </div>
                      </div>
                      <div style="margin:10px 50px">
@@ -612,7 +618,7 @@
                         </div>
                         <div class="fv div notes">
                            <p class="jfn">The IP address of your computer 203.175.72.37 will be recorded.&nbsp;&nbsp;<a class="tcHelp" href="#_" data-help=";C;17"><sup title="Click or tap to get help" class="qmark">?</sup></a><br>Your country determined by your IP address:<img src="/cafe/images/flags/PK.gif" alt="PK" style="width:18px;height:12px;"> Pakistan</p>
-                           <p>HTML is not allowed, except for &lt;b&gt;&lt;/b&gt;, &lt;i&gt;&lt;/i&gt; tags.</p>
+                           <!-- <p>HTML is not allowed, except for &lt;b&gt;&lt;/b&gt;, &lt;i&gt;&lt;/i&gt; tags.</p> -->
                         </div>
                         <p style="margin: 10px 0px;">When you have completed filling out this form, please click or tap the Submit button. Please do not click or tap several times and be prepared to wait for a result. On the next page you will be provided with a job number. If you find any mistakes in your posting after its submission, you can always edit the job. Note that you must use your job number to do so. A confirmation message will be sent to your e-mail address hamza.alam@accrualgroup.com. If you cannot receive it, you may want to check your e-mail address.</p>
                      </div>

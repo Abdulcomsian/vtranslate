@@ -919,7 +919,7 @@ table#jobTable tr th {
     font-family: Montserrat;
 }
 .banner .banner-content .inputfield .form-control {
-    padding-left: 2px;
+    padding-left: 2%;
     width: 100%;
     border: none;
     font-family: Montserrat;
@@ -2353,6 +2353,22 @@ div#fldJobSpecCnt input[type="checkbox"],
     }
 }
 @media screen and (max-width: 576px) {
+    #postJobDiv button {
+        display: block;
+        width: 100%;
+        justify-content: center;
+        align-items: baseline;
+        max-width: 100%
+    }
+    .fullForm .editJob button, .simpleForm .editJob button {
+        margin: 13px 0px !important;
+        /* margin-left: 20px !important; */
+        background: #2c2887 !important;
+        color: #fff !important;
+        border: none !important;
+        border-radius: 5px !important;
+        font-size: 16px !important;
+    }
     #findJobSection .multiDiv select {
         background: #ececec !important;
         border-radius: 10px !important;
