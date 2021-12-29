@@ -14,7 +14,7 @@
                 @csrf
                 
                 <div class="row">
-                    <div class="col-md-8 offset-md-2">
+                    <div class="col-md-6 offset-md-3">
                         <div class="formDiv">
                             <h2>Login</h2>
                             <div class="inputDiv">
