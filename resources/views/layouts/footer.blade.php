@@ -5,7 +5,7 @@
                 <div class="footerBox">
                     <a href="home.html">
                         <!-- <img src="{{ asset('assets/img/logo.png') }}" alt="" class="img-fluid"> -->
-                        <h3>V Translate</h3>
+                        <h3><img src="{{ asset('assets/img/logo.png') }}" alt="" class="img-fluid"></h3>
                     </a>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim.</p>
                 </div>

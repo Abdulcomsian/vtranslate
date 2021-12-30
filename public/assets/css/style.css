@@ -1223,13 +1223,41 @@ table#jobTable tr th {
     padding: 10px 45px;
 }
 /* Voice-Over */
+.nav-pills .show>.nav-link {
+
+}
+a.nav-link.heading1 {
+    font-size: 14px;
+    color: #000;
+    font-weight: 600;
+}
+a.nav-link.heading1:active {
+    color: red;
+    background-color: #fff;
+    font-weight: 600;
+}
+a.nav-link.heading2 {
+    font-size: 14px;
+    color: #000;
+    font-weight: 600;
+    
+}
+a.nav-link.heading2:active {
+    color: red;
+    background-color: #fff;
+    font-weight: 600;
+}
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: red !important; 
+    background-color: #ffffff !important;
+}
 
 /******************* Find - A - Job ********************/
 #findJobSection .multiDiv select {
     background: #ececec;
     border-radius: 10px;
     margin-right: 20px;
-    padding: 10px 20px !important;
+    padding: 10px 8px !important;
     border: none;
     font-size: 14px;
 }
@@ -1240,7 +1268,7 @@ table#jobTable tr th {
 #findJobSection form button,
 #contactDiv form .multiBtn .commonBtn,
 postJobDiv .multiple-select a {
-    padding: 5px 32px;
+    padding: 5px 20px;
     background-color: #ff0202;
 }
 .multiBtn .agencycommonBtn {
@@ -3115,16 +3143,19 @@ div#fldJobSpecCnt input[type="checkbox"],
     padding: 18px;
     font-family: Montserrat;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 18px;
     color: rgba(0, 0, 0, 1);
 }
 .servicesContent p {
-    font-family: Montserrat;
+    /* font-family: Montserrat;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
-    line-height: 24px;
+    line-height: 24px; */
+    font-size: 14px;
+    color: #000;
+    font-weight: 500;
 }
 
 /***************** About Us - CSS ******************/

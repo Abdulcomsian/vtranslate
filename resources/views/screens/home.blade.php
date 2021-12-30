@@ -36,11 +36,11 @@
                                                 <option value="Desktop publishing">Desktop publishing</option>
                                                 <option value="Editing">Editing</option>
                                                 <option value="Interpreting">Interpreting</option>
-                                                <option value="Interpreting – conference">Interpreting – conference</option>
-                                                <option value="Interpreting – court/legal">Interpreting – court/legal</option>
-                                                <option value="Interpreting – medical">Interpreting – medical</option>
-                                                <option value="Interpreting – phone">Interpreting – phone</option>
-                                                <option value="Interpreting – sign language">Interpreting – sign language</option>
+                                                <option value="Interpreting  conference">Interpreting - conference</option>
+                                                <option value="Interpreting court/legal">Interpreting - court/legal</option>
+                                                <option value="Interpreting medical">Interpreting - medical</option>
+                                                <option value="Interpreting phone">Interpreting - phone</option>
+                                                <option value="Interpreting sign language">Interpreting - sign language</option>
                                                 <option value="Localization">Localization</option>
                                                 <option value="Other">Other</option>
                                                 <option value="Project management">Project management</option>
@@ -235,11 +235,11 @@
                                                 <option value="Desktop publishing">Desktop publishing</option>
                                                 <option value="Editing">Editing</option>
                                                 <option value="Interpreting">Interpreting</option>
-                                                <option value="Interpreting – conference">Interpreting – conference</option>
-                                                <option value="Interpreting – court/legal">Interpreting – court/legal</option>
-                                                <option value="Interpreting – medical">Interpreting – medical</option>
-                                                <option value="Interpreting – phone">Interpreting – phone</option>
-                                                <option value="Interpreting – sign language">Interpreting – sign language</option>
+                                                <option value="Interpreting conference">Interpreting - conference</option>
+                                                <option value="Interpreting court/legal">Interpreting - court/legal</option>
+                                                <option value="Interpreting medical">Interpreting - medical</option>
+                                                <option value="Interpreting phone">Interpreting - phone</option>
+                                                <option value="Interpreting sign language">Interpreting - sign language</option>
                                                 <option value="Localization">Localization</option>
                                                 <option value="Other">Other</option>
                                                 <option value="Project management">Project management</option>
@@ -254,14 +254,6 @@
                                                 <option value="Translation">Translation</option>
                                                 <option value="Typesetting">Typesetting</option>
                                                 <option value="Voice-over">Voice-over</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <select class="form-control p-0 pl-4" name="country" id="country">
-                                                <option value="">Country</option>
-                                                @foreach($countries as $country)
-                                                <option value="{{$country->id}}">{{$country->country_name}}</option>
-                                                @endforeach
                                             </select>
                                         </div>
                                         <div class="col-md-3">
@@ -280,9 +272,17 @@
                                                 @endforeach
                                             </select>
                                         </div>
+                                        <div class="col-md-3">
+                                            <select class="form-control p-0 pl-4" name="country" id="country">
+                                                <option value="">Country</option>
+                                                @foreach($countries as $country)
+                                                <option value="{{$country->id}}">{{$country->country_name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                                &nbsp;
+                                &nbsp;&nbsp;&nbsp;
                                 <button type="submit" class="commonBtn">Search</button>
                             </form>
                         </div>
@@ -442,64 +442,116 @@
                 <h2 class="heading">How it Works?</h2>
             </div>
             <div class="col-md-6 mainpart2 ">
-                <p class="heading1">For Employer</p>
-                <p class="heading2">For Freelancer</p>
+                <!-- <p class="heading1" id="employerBtn">For Employer</p>
+                <p class="heading2" id="freelancerBtn">For Freelancer</p> -->
+                <ul class="nav nav-pills">
+                    <li class="nav-item">
+                        <a class="nav-link heading1 active" data-toggle="pill" href="#employer" role="tab" aria-controls="pills-employer" aria-selected="true">For Employer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link heading2" data-toggle="pill" href="#freelancer" role="tab" aria-controls="pills-freelancer" aria-selected="false">For Freelancer</a>
+                    </li>
+                </ul>
             </div>
-
         </div>
-        <div class="row text-center pt-5">
-            <div class="col-md-4">
-                <div class="servicesIcon">
-                    <div class="imgparent">
-                        <a href="{{url('register')}}"><img class="servicesImg" src="assets/img/Group 22.png"></a>
+        <div class="tab-content mt-3">
+            <div class="tab-pane fade show active" id="employer" role="tabpanel" aria-labelledby="employer-tab">
+                <div class="row text-center pt-5">
+                    <div class="col-md-4">
+                        <div class="servicesIcon">
+                            <div class="imgparent">
+                                <a href="{{url('register')}}"><img class="servicesImg" src="assets/img/Group 22.png"></a>
+                            </div>
+                            <div class="servicesContent">
+                                <a href="{{url('register')}}">
+                                    <h2>Create an account</h2>
+                                </a>
+                                <p>Become an Employer by creating an account</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="servicesContent">
-                        <a href="{{url('register')}}">
-                            <h2>Create in Account</h2>
-                        </a>
-                        <p>Become an Employer by creating an account</p>
+
+                    <div class="col-md-4">
+                        <div class="servicesIcon">
+                            <div class="imgparent">
+                                <a href="{{route('post-a-job')}}"><img class="servicesImg" src="assets/img/Group 23.png"></a>
+                            </div>
+                            <div class="servicesContent">
+                                <h2><a href="{{route('post-a-job')}}">Post a Job</a></h2>
+                                <p>Tell Us what you need done in seconds</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="servicesIcon">
+                            <div class="imgparent">
+                                <a href="{{route('top-freelancer')}}"><img class="servicesImg" src="assets/img/Group 24.png"></a>
+                            </div>
+                            <div class="servicesContent">
+                                <h2>Get Job Done</h2>
+                                <p>Get your bids in a while and choose a from best </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+            <div class="tab-pane fade" id="freelancer" role="tabpanel" aria-labelledby="freelancer-tab">
+                <div class="row text-center pt-5">
+                    <div class="col-md-4">
+                        <div class="servicesIcon">
+                            <div class="imgparent">
+                                <a href="{{url('register')}}"><img class="servicesImg" src="assets/img/Group 22.png"></a>
+                            </div>
+                            <div class="servicesContent">
+                                <a href="{{url('register')}}">
+                                    <h2>Create an Account</h2>
+                                </a>
+                                <p>Become a Freelancer by creating an account</p>
+                            </div>
+                        </div>
+                    </div>
 
-            <div class="col-md-4">
-                <div class="servicesIcon">
-                    <div class="imgparent">
-                        <a href="{{route('post-a-job')}}"><img class="servicesImg" src="assets/img/Group 23.png"></a>
+                    <div class="col-md-4">
+                        <div class="servicesIcon">
+                            <div class="imgparent">
+                                <a href="{{route('post-a-job')}}"><img class="servicesImg" src="assets/img/Group 23.png"></a>
+                            </div>
+                            <div class="servicesContent">
+                                <h2><a href="{{route('post-a-job')}}">Find a Job</a></h2>
+                                <p>Browse through thousands of jobs.</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="servicesContent">
-                        <h2><a href="{{route('post-a-job')}}">Find a job</a></h2>
-                        <p>Tell Us what you need done in seconds</p>
+
+                    <div class="col-md-4">
+                        <div class="servicesIcon">
+                            <div class="imgparent">
+                                <a href="{{route('top-freelancer')}}"><img class="servicesImg" src="assets/img/Group 24.png"></a>
+                            </div>
+                            <div class="servicesContent">
+                                <h2>Apply on a Job</h2>
+                                <p>Apply on the job based on your expertise.</p>
+                            </div>
+                        </div>
                     </div>
+
+                    <!-- <div class="col-md-3">
+                        <div class="servicesIcon">
+                            <div class="imgparent">
+                                <img class="servicesImg" src="assets/img/Group 25.png">
+                            </div>
+                            <div class="servicesContent">
+                                <h2>Get payment safely</h2>
+                                <p>Only pay when you'r completely satisfied</p>
+                            </div>
+                        </div>
+                    </div> -->
                 </div>
             </div>
-
-            <div class="col-md-4">
-                <div class="servicesIcon">
-                    <div class="imgparent">
-                        <a href="{{route('top-freelancer')}}"><img class="servicesImg" src="assets/img/Group 24.png"></a>
-                    </div>
-                    <div class="servicesContent">
-                        <h2>Apply on a job</h2>
-                        <p>Get your bids in a while and choose a from best </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- <div class="col-md-3">
-                <div class="servicesIcon">
-                    <div class="imgparent">
-                        <img class="servicesImg" src="assets/img/Group 25.png">
-                    </div>
-                    <div class="servicesContent">
-                        <h2>Get payment safely</h2>
-                        <p>Only pay when you'r completely satisfied</p>
-                    </div>
-                </div>
-            </div> -->
         </div>
     </div>
-</section>
+</section><br>
 @endsection
 @section('script')
 <script type="text/javascript">
