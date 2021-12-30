@@ -34,8 +34,7 @@
 
                             </div>
                         </div>
-                        <p class="notice">You will be able to describe your question in detail on the next page that will appear after you click or tap the Submit Your Request button.</p>
-
+                        
                         <div class="multiBtn">
                             <button type="submit" class="commonBtn mb-4 ">Submit You Request</button>
                             <a href="/"><button type="button" class="commonBtn">Back</button></a>

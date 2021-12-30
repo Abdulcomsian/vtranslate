@@ -490,7 +490,7 @@
                             </div>
                             <div class="servicesContent">
                                 <h2>Get Job Done</h2>
-                                <p>Get your bids in a while and choose a from best </p>
+                                <p>Get your bids in a while and choose a from best</p>
                             </div>
                         </div>
                     </div>
@@ -519,7 +519,7 @@
                             </div>
                             <div class="servicesContent">
                                 <h2><a href="{{route('post-a-job')}}">Find a Job</a></h2>
-                                <p>Browse through thousands of jobs.</p>
+                                <p>Browse through thousands of jobs</p>
                             </div>
                         </div>
                     </div>
@@ -531,7 +531,7 @@
                             </div>
                             <div class="servicesContent">
                                 <h2>Apply on a Job</h2>
-                                <p>Apply on the job based on your expertise.</p>
+                                <p>Apply on the job based on your expertise</p>
                             </div>
                         </div>
                     </div>
