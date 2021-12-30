@@ -79,21 +79,21 @@
                                 <tbody>
                                     @if(count($AgencyData)>0)
                                     @foreach($AgencyData as $agency)
-                                    <tr>
-                                        <td class="checkbox">
-                                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                        </td>
-                                        <td>
-                                            {{$agency->fname.' '.$agency->lname}}
-                                        </td>
-                                        <td class="companyimg">
-                                            <img src="@if($agency->profile_photo!=null){{asset('/profile-images').'/'.$agency->profile_photo}} @else{{'/assets/img/Job Posted.png'}}@endif" alt="" class="img-circle img-responsive " width="100px" height="100px">
-                                        </td>
-                                        <td class="location">{{$agency->usergeneralinfo->address ?? ''}}</td>
-                                        <td class="date">{{date("F-Y", strtotime($agency->usergeneralinfo->updated_at ?? ''));}}</td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
+                                        <tr>
+                                            <td class="checkbox">
+                                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                            </td>
+                                            <td>
+                                                {{$agency->fname.' '.$agency->lname}}
+                                            </td>
+                                            <td class="companyimg">
+                                                <img src="@if($agency->profile_photo!=null){{asset('/profile-images').'/'.$agency->profile_photo}} @else{{'/assets/img/Job Posted.png'}}@endif" alt="" class="img-circle img-responsive " width="60px" height="60px">
+                                            </td>
+                                            <td class="location">{{$agency->usergeneralinfo->address ?? ''}}</td>
+                                            <td class="date">{{date("F-Y", strtotime($agency->usergeneralinfo->updated_at ?? ''));}}</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
                                     @endforeach
                                     @endif
                                 </tbody>

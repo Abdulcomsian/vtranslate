@@ -30,7 +30,7 @@
                                 </td>
                                 <td class="companyimg">
                                     <h3>{{$agency->fname ?? ''}} {{$agency->lname ?? ''}}</h3>
-                                    <img src="@if(isset($agency->profile_photo) && $agency->profile_photo!=null){{asset('/profile-images').'/'.$agency->profile_photo}} @else{{'/assets/img/Job Posted.png'}}@endif" alt="" class="img-circle img-responsive " width="100px" height="100px">
+                                    <img src="@if(isset($agency->profile_photo) && $agency->profile_photo!=null){{asset('/profile-images').'/'.$agency->profile_photo}} @else{{'/assets/img/Job Posted.png'}}@endif" alt="" class="img-circle img-responsive " width="60px" height="60px">
                                 </td>
                                 <td class="location">{{$agency->usergeneralinfo->address ?? ''}}</td>
                                 <td class="date">{{date("F-Y", strtotime($agency->usergeneralinfo->updated_at ?? ''));}}</td>
@@ -42,7 +42,8 @@
                             <tr>
                                 <td colspan="6" style="text-align: center;">
                                     <h3 class="text-danger">No Record Found!</h3>
-                                <td </tr>
+                                <td>
+                            </tr>
                                     @endif
                         </tbody>
 
